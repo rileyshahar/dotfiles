@@ -17,5 +17,5 @@ plugins=(git colorize brew osx extract z python pipenv)
 source $ZSH/oh-my-zsh.sh
 
 # set editor to vim
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR="$VISUAL"
