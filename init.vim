@@ -19,6 +19,8 @@ set showmatch			        " highlight matching bracket-like characters
 " search
 set incsearch			        " search as characters are entered
 set hlsearch			        " highlight matches
+set ignorecase                          " ignore case in search
+set smartcase                           " unless there are uppercase letters
 
 " folding
 set foldenable			        " enable folding
