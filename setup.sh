@@ -19,6 +19,5 @@ git config --global user.email "riley.shahar@gmail.com"
 # ln -sv ~/code/dotfiles/.gitignore ~/ 
 # ln -sv ~/code/dotfiles/.gitconfig ~/ 
 # ln -sv ~/code/dotfiles/init.vim ~/
-# nvim plugin management
 
-sudo spctl --master-disable  # disable unidentified developer
+sudo spctl --master-dis able  # disable unidentified developer
