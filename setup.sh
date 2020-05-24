@@ -10,5 +10,10 @@ git config --global user.email "riley.shahar@gmail.com"
 
 # set up ssh key for github
 # set up zsh config and oh my zsh
+# pull dotfiles from git
+
+# ln -sv ~/code/dotfiles/.zshrc ~/ 
+# ln -sv ~/code/dotfiles/.gitignore ~/ 
+# ln -sv ~/code/dotfiles/.gitconfig ~/ 
 
 sudo spctl --master-disable  # disable unidentified developer
