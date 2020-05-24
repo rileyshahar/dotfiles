@@ -1,0 +1,5 @@
+[user]
+	name = Riley Shahar
+	email = riley.shahar@gmail.com
+[core]
+	excludesfile = /Users/rileyshahar/.gitignore
