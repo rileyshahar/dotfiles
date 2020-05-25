@@ -53,6 +53,24 @@ nnoremap ; :
 vnoremap ; :
 
 " coc
+" use tab for autocompletion
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" use <c-space> to trigger autocomplete
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" add `:Fold` command to fold current buffer
+command! -nargs=? Fold :call CocAction('fold', <f-args>)
+
 " graphical settings they like
 set cmdheight=2
 set updatetime=300
@@ -77,7 +95,6 @@ endfunction
 nmap <leader>rn <Plug>(coc-rename)|     " rename
 nmap <leader>ac <Plug>(coc-codeaction)| " code actions
 nmap <leader>qf  <Plug>(coc-fix-current)
-
 
 "ale
 let g:ale_lint_on_insert_leave = 1      " lint on leaving insert
