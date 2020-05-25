@@ -19,3 +19,7 @@ source $ZSH/oh-my-zsh.sh
 # set editor to vim
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+
+# aliases
+alias code="cd ~/code"
+alias pycode="cd ~/code/python"
