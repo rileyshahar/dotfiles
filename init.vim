@@ -114,6 +114,5 @@ let g:lightline.active = {
 
 " language-specific settings
 " python
-let g:python3_host_prog='/usr/local/opt/python@3.8/bin/python3'         " python3 provider with pynvim installed
-let g:semshi#mark_selected_nodes=2                                      " highlight copies of the same symbol
-
+let g:python3_host_prog='~/.local/share/virtualenvs/dotfiles-fBLaMnxs/bin/python'       " python3 provider with pynvim installed
+let g:semshi#mark_selected_nodes=2                                                      " highlight copies of the same symbol

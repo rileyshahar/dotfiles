@@ -15,7 +15,7 @@ git config --global user.email "riley.shahar@gmail.com"
 # set up zsh config and oh my zsh
 # pull dotfiles from git
 
-# install pynvim and pydocstyle either globally or in a pipenv
+# install pynvim, isort, and pydocstyle either globally or in a pipenv
 
 # ln -sv ~/code/dotfiles/.zshrc ~/ 
 # ln -sv ~/code/dotfiles/.gitignore ~/ 
