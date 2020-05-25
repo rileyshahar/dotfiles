@@ -5,10 +5,9 @@ Plug 'scrooloose/nerdtree'              " file tree viewer
 Plug 'Xuyuanp/nerdtree-git-plugin'      " git in nerdtree
 Plug 'jiangmiao/auto-pairs'             " autoclose brackets
 Plug 'preservim/nerdcommenter'          " easy commenting
-Plug 'liuchengxu/vista.vim'             " vista tagbar
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'dense-analysis/ale'               " asynchronous linter
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'itchyny/lightline.vim'            " statusline
 Plug 'maximbaz/lightline-ale'           " ale on statusline
 Plug 'jeetsukumaran/vim-pythonsense'    " python motions
