@@ -6,8 +6,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'      " git in nerdtree
 Plug 'jiangmiao/auto-pairs'             " autoclose brackets
 Plug 'preservim/nerdcommenter'          " easy commenting
 Plug 'liuchengxu/vista.vim'             " vista tagbar
-Plug 'dense-analysis/ale'               " asynchronous linter
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'dense-analysis/ale'               " asynchronous linter
 Plug 'itchyny/lightline.vim'            " statusline
 Plug 'maximbaz/lightline-ale'           " ale on statusline
 Plug 'jeetsukumaran/vim-pythonsense'    " python motions
@@ -52,15 +52,42 @@ nnoremap k gk
 nnoremap ; :
 vnoremap ; :
 
-" ale
+" coc
+" graphical settings they like
+set cmdheight=2
+set updatetime=300
+
+" code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" show documentation
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" refactoring
+nmap <leader>rn <Plug>(coc-rename)|     " rename
+nmap <leader>ac <Plug>(coc-codeaction)| " code actions
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+
+"ale
 let g:ale_lint_on_insert_leave = 1      " lint on leaving insert
-nmap <F10> :ALEFix<CR>                  " convenient keybinding
 let g:ale_fix_on_save = 1               " run fixer on save
 let g:ale_linters = {
-        \ 'python': ['flake8', 'pylint', 'mypy', 'pydocstyle'],
+        \ 'python': ['mypy', 'pylint', 'flake8', 'pydocstyle'],
         \ }
 let g:ale_fixers = {
-        \ 'python': ['black'],
+        \ '*' : ['remove_trailing_lines', 'trim_whitespace'],
+        \ 'python': ['black', 'isort'],
         \ }
 
 " lightline
