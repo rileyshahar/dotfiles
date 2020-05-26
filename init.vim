@@ -51,11 +51,6 @@ nnoremap k gk
 " shift is hard to type
 nnoremap ; :
 vnoremap ; :
-" window navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
 " coc
 " use tab for autocompletion
@@ -112,8 +107,8 @@ let g:ale_fixers = {
         \ 'python': ['black', 'isort'],
         \ }
 " error navigation
-nmap <silent> <leader>K <Plug>(ale_previous_wrap)
-nmap <silent> <leader>J <Plug>(ale_next_wrap)
+nmap <silent> <C-K> <Plug>(ale_previous_wrap)
+nmap <silent> <C-J> <Plug>(ale_next_wrap)
 
 " lightline
 let g:lightline = {}
@@ -141,3 +136,7 @@ let g:lightline.active = {
 " python
 let g:python3_host_prog='~/.local/share/virtualenvs/dotfiles-fBLaMnxs/bin/python'       " python3 provider with pynvim installed
 let g:semshi#mark_selected_nodes=2                                                      " highlight copies of the same symbol
+
+" project-specific settings
+" botcbot (python)
+autocmd FileType python map <buffer> <F9> :w<CR>:vsplit<CR><C-W>L:term<CR>ipython main.py Test Bot<cr><C-\><C-N>
