@@ -10,6 +10,7 @@ Plug 'dense-analysis/ale'               " asynchronous linter
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'itchyny/lightline.vim'            " statusline
 Plug 'maximbaz/lightline-ale'           " ale on statusline
+Plug 'ap/vim-buftabline'                " buffers in tabline
 Plug 'jeetsukumaran/vim-pythonsense'    " python motions
 Plug 'numirias/semshi'                  " python syntax highlighting
 Plug 'Vimjas/vim-python-pep8-indent'    " python autoindentation
