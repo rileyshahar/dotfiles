@@ -1,4 +1,5 @@
 [MASTER]  # pylint
+init-hook='import sys; sys.path.append(".")'
 disable=bad-continuation
 
 [FORMAT]
