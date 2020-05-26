@@ -106,6 +106,7 @@ let g:ale_fixers = {
         \ '*' : ['remove_trailing_lines', 'trim_whitespace'],
         \ 'python': ['black', 'isort'],
         \ }
+let g:ale_python_pylint_options = '--rcfile=~/code/dotfiles/.pylintrc'
 " error navigation
 nmap <silent> <C-K> <Plug>(ale_previous_wrap)
 nmap <silent> <C-J> <Plug>(ale_next_wrap)

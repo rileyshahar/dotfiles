@@ -1,0 +1,2 @@
+[MASTER]  # pylint
+ignore=bad-continuation
