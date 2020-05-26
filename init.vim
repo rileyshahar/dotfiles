@@ -51,6 +51,11 @@ nnoremap k gk
 " shift is hard to type
 nnoremap ; :
 vnoremap ; :
+" window navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " coc
 " use tab for autocompletion
@@ -107,8 +112,8 @@ let g:ale_fixers = {
         \ 'python': ['black', 'isort'],
         \ }
 " error navigation
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <silent> EK <Plug>(ale_previous_wrap)
+nmap <silent> EJ <Plug>(ale_next_wrap)
 
 " lightline
 let g:lightline = {}
