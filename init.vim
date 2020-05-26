@@ -45,6 +45,7 @@ let mapleader = ","                     " \ is hard to get to
 inoremap jk <esc>|                      " <esc> is hard to get to
 nnoremap <leader>s :mksession<CR>|      " save the current session
 map <leader>m :NERDTreeToggle<CR>|      " open the file tree
+nnoremap <silent> <C-L> :nohlsearch<CR><C-L>| " clear highlighting
 " if a line is autowrapped, don't skip the second graphical line
 nnoremap j gj
 nnoremap k gk
