@@ -112,8 +112,8 @@ let g:ale_fixers = {
         \ 'python': ['black', 'isort'],
         \ }
 " error navigation
-nmap <silent> EK <Plug>(ale_previous_wrap)
-nmap <silent> EJ <Plug>(ale_next_wrap)
+nmap <silent> <leader>K <Plug>(ale_previous_wrap)
+nmap <silent> <leader>J <Plug>(ale_next_wrap)
 
 " lightline
 let g:lightline = {}
