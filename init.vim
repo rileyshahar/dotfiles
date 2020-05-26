@@ -100,7 +100,7 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 let g:ale_lint_on_insert_leave = 1      " lint on leaving insert
 let g:ale_fix_on_save = 1               " run fixer on save
 let g:ale_linters = {
-        \ 'python': ['mypy', 'pylint', 'flake8', 'pydocstyle'],
+        \ 'python': [],
         \ }
 let g:ale_fixers = {
         \ '*' : ['remove_trailing_lines', 'trim_whitespace'],
