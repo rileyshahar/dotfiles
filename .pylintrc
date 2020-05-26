@@ -1,2 +1,5 @@
 [MASTER]  # pylint
-ignore=bad-continuation
+disable=bad-continuation
+
+[FORMAT]
+max-line-length=88
