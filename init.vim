@@ -1,21 +1,30 @@
 " plugins
 call plug#begin()                       " start plug
+" appearance
 Plug 'joshdick/onedark.vim'             " good color scheme
+Plug 'itchyny/lightline.vim'            " statusline
 Plug 'scrooloose/nerdtree'              " file tree viewer
-Plug 'Xuyuanp/nerdtree-git-plugin'      " git in nerdtree
+Plug 'ap/vim-buftabline'                " buffers in tabline
+
+" fast editing
 Plug 'jiangmiao/auto-pairs'             " autoclose brackets
 Plug 'preservim/nerdcommenter'          " easy commenting
-Plug 'tpope/vim-fugitive'               " git integration
 Plug 'tpope/vim-surround'               " quote manipulation
+
+" git
+Plug 'tpope/vim-fugitive'               " git integration
+Plug 'Xuyuanp/nerdtree-git-plugin'      " git in nerdtree
+Plug 'airblade/vim-gitgutter'           " show git info in gutter
+
+" code parsing
 Plug 'dense-analysis/ale'               " asynchronous linter
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'itchyny/lightline.vim'            " statusline
 Plug 'maximbaz/lightline-ale'           " ale on statusline
-Plug 'ap/vim-buftabline'                " buffers in tabline
+
+" python
 Plug 'jeetsukumaran/vim-pythonsense'    " python motions
 Plug 'numirias/semshi'                  " python syntax highlighting
 Plug 'Vimjas/vim-python-pep8-indent'    " python autoindentation
-Plug 'airblade/vim-gitgutter'           " show git info in gutter
 call plug#end()                         " end plug
 
 " color-related
