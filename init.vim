@@ -6,6 +6,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'      " git in nerdtree
 Plug 'jiangmiao/auto-pairs'             " autoclose brackets
 Plug 'preservim/nerdcommenter'          " easy commenting
 Plug 'tpope/vim-fugitive'               " git integration
+Plug 'tpope/vim-surround'               " quote manipulation
 Plug 'dense-analysis/ale'               " asynchronous linter
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'itchyny/lightline.vim'            " statusline
@@ -14,6 +15,7 @@ Plug 'ap/vim-buftabline'                " buffers in tabline
 Plug 'jeetsukumaran/vim-pythonsense'    " python motions
 Plug 'numirias/semshi'                  " python syntax highlighting
 Plug 'Vimjas/vim-python-pep8-indent'    " python autoindentation
+Plug 'airblade/vim-gitgutter'           " show git info in gutter
 call plug#end()                         " end plug
 
 " color-related
@@ -55,7 +57,11 @@ nnoremap k gk
 nnoremap ; :
 vnoremap ; :
 
-" coc
+" make gitgutter use the correct executabl
+let g:gitgutter_git_executable = '/usr/local/bin/git'
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+"coc
 " use tab for autocompletion
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -76,7 +82,7 @@ command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " graphical settings they like
 set cmdheight=2
-set updatetime=300
+set updatetime=100
 
 " code navigation
 nmap <silent> gd <Plug>(coc-definition)
