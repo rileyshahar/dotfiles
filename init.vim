@@ -1,3 +1,6 @@
+" general
+set nocompatible
+
 " plugins
 call plug#begin()                       " start plug
 " appearance
@@ -20,6 +23,10 @@ Plug 'airblade/vim-gitgutter'           " show git info in gutter
 Plug 'dense-analysis/ale'               " asynchronous linter
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'maximbaz/lightline-ale'           " ale on statusline
+
+" notes
+Plug 'xolox/vim-misc'                   " vim-notes dependency
+Plug 'xolox/vim-notes'                  " note-taking
 
 " python
 Plug 'jeetsukumaran/vim-pythonsense'    " python motions
@@ -70,7 +77,8 @@ vnoremap ; :
 let g:gitgutter_git_executable = '/usr/local/bin/git'
 nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
-"coc
+
+" coc
 " use tab for autocompletion
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -155,6 +163,15 @@ let g:lightline.active = {
 " python
 let g:python3_host_prog='~/.local/share/virtualenvs/dotfiles-fBLaMnxs/bin/python'       " python3 provider with pynvim installed
 let g:semshi#mark_selected_nodes=2                                                      " highlight copies of the same symbol
+
+" notes
+let g:notes_directories = ['~/notes']           " change where notes save
+" make the C-] combination search for @tags
+imap <C-]> <C-o>:SearchNotes<CR>
+nmap <C-]> :SearchNotes<CR>
+" make double mouse click search for @tags
+imap <2-LeftMouse> <C-o>:SearchNotes<CR>
+nmap <2-LeftMouse> :SearchNotes<CR>
 
 " project-specific settings
 " botcbot (python)
