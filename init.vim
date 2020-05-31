@@ -14,6 +14,10 @@ Plug 'jiangmiao/auto-pairs'             " autoclose brackets
 Plug 'preservim/nerdcommenter'          " easy commenting
 Plug 'tpope/vim-surround'               " quote manipulation
 
+" search
+Plug 'ctrlpvim/ctrlp.vim'               " search for files
+Plug 'mileszs/ack.vim'                  " search within files
+
 " git
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'Xuyuanp/nerdtree-git-plugin'      " git in nerdtree
@@ -53,6 +57,10 @@ set incsearch			        " search as characters are entered
 set hlsearch			        " highlight matches
 set ignorecase                          " ignore case in search
 set smartcase                           " unless there are uppercase letters
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif                                   " make ack.vim use ag
+map <leader>f :Ack<space>|              " shortcut for ack
 
 " folding
 set foldenable			        " enable folding
@@ -64,7 +72,6 @@ set foldmethod=indent                   " fold based on language syntax file
 let mapleader = ","                     " \ is hard to get to
 inoremap jk <esc>|                      " <esc> is hard to get to
 nnoremap <leader>s :mksession<CR>|      " save the current session
-map <leader>m :NERDTreeToggle<CR>|      " open the file tree
 nnoremap <silent> <C-L> :nohlsearch<CR><C-L>| " clear highlighting
 " if a line is autowrapped, don't skip the second graphical line
 nnoremap j gj
@@ -81,6 +88,7 @@ nmap [h <Plug>(GitGutterPrevHunk)
 " nerdtree
 let NERDTreeQuitOnOpen = 1              " quit when you open a file
 let NERDTreeMinimalUI = 1               " minimal UI
+map <leader>m :NERDTreeToggle<CR>|      " open the file tree
 
 " coc
 " use tab for autocompletion
