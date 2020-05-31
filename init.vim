@@ -78,6 +78,10 @@ let g:gitgutter_git_executable = '/usr/local/bin/git'
 nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
 
+" nerdtree
+let NERDTreeQuitOnOpen = 1              " quit when you open a file
+let NERDTreeMinimalUI = 1               " minimal UI
+
 " coc
 " use tab for autocompletion
 inoremap <silent><expr> <TAB>
@@ -122,7 +126,7 @@ nmap <leader>rn <Plug>(coc-rename)|     " rename
 nmap <leader>ac <Plug>(coc-codeaction)| " code actions
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-"ale
+" ale
 let g:ale_lint_on_insert_leave = 1      " lint on leaving insert
 let g:ale_linters = {
         \ 'python': ['pylint', 'mypy', 'flake8', 'pydocstyle'],
@@ -136,6 +140,8 @@ let g:ale_python_pylint_options = '--rcfile=~/code/dotfiles/.pylintrc'
 " error navigation
 nmap <silent> <C-K> <Plug>(ale_previous_wrap)
 nmap <silent> <C-J> <Plug>(ale_next_wrap)
+" display text
+let g:ale_echo_msg_format = '[%linter%] %s'
 
 " lightline
 let g:lightline = {}
