@@ -81,6 +81,11 @@ nnoremap k gk
 nnoremap ; :
 vnoremap ; :
 
+" splits
+" open new splits on the right and down
+set splitbelow
+set splitright
+
 " make gitgutter use the correct executabl
 let g:gitgutter_git_executable = '/usr/local/bin/git'
 nmap ]h <Plug>(GitGutterNextHunk)
