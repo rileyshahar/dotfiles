@@ -18,5 +18,6 @@ ln -sv ~/code/dotfiles/git/.gitignore ~/
 ln -sv ~/code/dotfiles/git/.gitconfig ~/
 ln -sv ~/code/dotfiles/vim/init.vim ~/.config/nvim/init.vim
 ln -sv ~/code/dotfiles/python/setup.cfg ~/code/python
+ln -sv ~/code/dotfiles/python/.pylintrc ~/
 
 sudo spctl --master-dis able  # disable unidentified developer
