@@ -13,6 +13,7 @@ Plug 'ap/vim-buftabline'                " buffers in tabline
 Plug 'jiangmiao/auto-pairs'             " autoclose brackets
 Plug 'preservim/nerdcommenter'          " easy commenting
 Plug 'tpope/vim-surround'               " quote manipulation
+Plug 'tommcdo/vim-exchange'             " exchange text objects
 
 " search
 Plug 'ctrlpvim/ctrlp.vim'               " search for files
