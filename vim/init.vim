@@ -37,6 +37,7 @@ Plug 'xolox/vim-notes'                  " note-taking
 Plug 'jeetsukumaran/vim-pythonsense'    " python motions
 Plug 'numirias/semshi'                  " python syntax highlighting
 Plug 'Vimjas/vim-python-pep8-indent'    " python autoindentation
+Plug 'heavenshell/vim-pydocstring', {'do': 'make install'}
 call plug#end()                         " end plug
 
 " color-related
@@ -183,6 +184,8 @@ let g:lightline.active = {
 " python
 let g:python3_host_prog='/Users/rileyshahar/.local/share/virtualenvs/vim-R3ASTuF3/bin/python'       " python3 provider with pynvim installed
 let g:semshi#mark_selected_nodes=2                                                      " highlight copies of the same symbol
+let g:pydocstring_formatter = 'numpy'                   " numpy docstrings for autodoc
+autocmd FileType python nnoremap <leader>dd :Pydocstring<CR>
 
 " notes
 let g:notes_directories = ['~/notes']           " change where notes save
