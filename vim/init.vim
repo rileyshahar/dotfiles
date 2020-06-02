@@ -23,6 +23,9 @@ Plug 'honza/vim-snippets'               " actual snippets
 Plug 'ctrlpvim/ctrlp.vim'               " search for files
 Plug 'mileszs/ack.vim'                  " search within files
 
+" testing
+Plug 'vim-test/vim-test'                " automated tests
+
 " git
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'Xuyuanp/nerdtree-git-plugin'      " git in nerdtree
@@ -92,11 +95,18 @@ set splitbelow
 set splitright
 
 " snippets
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-s>"
 let g:UltiSnipsJumpForwardTrigger="<c-d>"
 let g:UltiSnipsJumpBackwardTrigger="<c-a>"
 let g:UltiSnipsEditSplit="vertical"
 let g:ultisnips_python_style="numpy"
+
+" vim-test
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
 
 " make gitgutter use the correct executabl
 let g:gitgutter_git_executable = '/usr/local/bin/git'
