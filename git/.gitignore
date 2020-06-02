@@ -14,7 +14,7 @@ Thumbs.db
 *.pyc
 
 # Mypy caches
-.mypy-cache/
+.mypy_cache/
 
 # Compiled C++ files
 *.out
