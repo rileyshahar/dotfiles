@@ -6,8 +6,11 @@ call plug#begin()                       " start plug
 " appearance
 Plug 'joshdick/onedark.vim'             " good color scheme
 Plug 'itchyny/lightline.vim'            " statusline
-Plug 'scrooloose/nerdtree'              " file tree viewer
 Plug 'ap/vim-buftabline'                " buffers in tabline
+
+" file navigation
+Plug 'scrooloose/nerdtree'              " file tree viewer
+Plug 'tpope/vim-eunuch'                 " UNIX shell commands
 
 " fast editing
 Plug 'jiangmiao/auto-pairs'             " autoclose brackets
