@@ -15,6 +15,10 @@ Plug 'preservim/nerdcommenter'          " easy commenting
 Plug 'tpope/vim-surround'               " quote manipulation
 Plug 'tommcdo/vim-exchange'             " exchange text objects
 
+" snippets
+Plug 'SirVer/ultisnips'                 " snippet engine
+Plug 'honza/vim-snippets'               " actual snippets
+
 " search
 Plug 'ctrlpvim/ctrlp.vim'               " search for files
 Plug 'mileszs/ack.vim'                  " search within files
@@ -86,6 +90,13 @@ vnoremap ; :
 " open new splits on the right and down
 set splitbelow
 set splitright
+
+" snippets
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-d>"
+let g:UltiSnipsJumpBackwardTrigger="<c-a>"
+let g:UltiSnipsEditSplit="vertical"
+let g:ultisnips_python_style="numpy"
 
 " make gitgutter use the correct executabl
 let g:gitgutter_git_executable = '/usr/local/bin/git'
