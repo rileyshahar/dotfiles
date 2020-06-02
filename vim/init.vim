@@ -108,7 +108,7 @@ let g:ultisnips_python_style="numpy"
 nmap <silent> t<C-n> :TestNearest<CR>
 nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-s> :TestSuite<CR>
-nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-p> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
 
 " make gitgutter use the correct executabl
