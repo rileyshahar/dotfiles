@@ -72,7 +72,7 @@ set smartcase                           " unless there are uppercase letters
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif                                   " make ack.vim use ag
-map <leader>f :Ack<space>|              " shortcut for ack
+nnoremap <C-F> :Ack<space>|              " shortcut for ack
 
 " folding
 set foldenable			        " enable folding
@@ -83,7 +83,7 @@ set foldmethod=indent                   " fold based on language syntax file
 " common keybindings
 let mapleader = ","                     " \ is hard to get to
 inoremap jk <esc>|                      " <esc> is hard to get to
-nnoremap <leader>s :mksession<CR>|      " save the current session
+nnoremap <leader>s :mksession!<CR>|      " save the current session
 nnoremap <silent> <C-S> :nohlsearch<CR><C-L>| " clear highlighting
 " if a line is autowrapped, don't skip the second graphical line
 nnoremap j gj
@@ -169,11 +169,13 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 let g:ale_lint_on_insert_leave = 1      " lint on leaving insert
 let g:ale_linters = {
         \ 'python': ['pylint', 'mypy', 'flake8', 'pydocstyle'],
+        \ 'typescript': ['eslint']
         \ }
 let g:ale_fix_on_save = 1               " run fixer on save
 let g:ale_fixers = {
         \ '*' : ['remove_trailing_lines', 'trim_whitespace'],
         \ 'python': ['black', 'isort'],
+        \ 'typescript': ['prettier']
         \ }
 let g:ale_python_pylint_options = '--rcfile=~/code/dotfiles/.pylintrc'
 " error navigation
