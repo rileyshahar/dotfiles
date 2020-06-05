@@ -169,13 +169,15 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 let g:ale_lint_on_insert_leave = 1      " lint on leaving insert
 let g:ale_linters = {
         \ 'python': ['pylint', 'mypy', 'flake8', 'pydocstyle'],
-        \ 'typescript': ['eslint']
+        \ 'typescript': ['eslint'],
+        \ 'rust': ['rls', 'cargo']
         \ }
 let g:ale_fix_on_save = 1               " run fixer on save
 let g:ale_fixers = {
         \ '*' : ['remove_trailing_lines', 'trim_whitespace'],
         \ 'python': ['black', 'isort'],
-        \ 'typescript': ['prettier']
+        \ 'typescript': ['pretter'],
+        \ 'rust': ['rustfmt']
         \ }
 let g:ale_python_pylint_options = '--rcfile=~/code/dotfiles/.pylintrc'
 " error navigation
