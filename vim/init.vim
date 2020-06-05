@@ -98,7 +98,7 @@ set splitbelow
 set splitright
 
 " snippets
-let g:UltiSnipsExpandTrigger="<c-s>"
+let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-d>"
 let g:UltiSnipsJumpBackwardTrigger="<c-a>"
 let g:UltiSnipsEditSplit="vertical"
