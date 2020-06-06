@@ -1,4 +1,4 @@
-" general
+ " general
 set nocompatible
 
 " plugins
@@ -91,6 +91,10 @@ nnoremap k gk
 " shift is hard to type
 nnoremap ; :
 vnoremap ; :
+
+" permanent undo
+set undodir=~/.vimdid
+set undofile
 
 " splits
 " open new splits on the right and down
