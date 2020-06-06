@@ -58,7 +58,7 @@ colorscheme onedark                     " generic colorscheme
 set expandtab			        " turn tabs into spaces
 
 " ui
-set relativenumber			" show relative line numbers
+set number relativenumber		" show relative line numbers
 filetype indent on		        " detect filetypes and load language-specific indent files
 set wildmenu			        " graphical command autocomplete menu
 set showmatch			        " highlight matching bracket-like characters
