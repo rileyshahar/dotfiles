@@ -20,9 +20,5 @@ source $ZSH/oh-my-zsh.sh
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-# aliases
-alias code="cd ~/code"
-alias pycode="cd ~/code/python"
-
 # python setup
 export PYLINTRC="~/code/python/setup.cfg" # pylint rc file
