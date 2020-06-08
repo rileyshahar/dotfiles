@@ -100,6 +100,11 @@ set undofile
 " open new splits on the right and down
 set splitbelow
 set splitright
+" split navigation
+nnoremap J <C-W><C-J>
+nnoremap K <C-W><C-K>
+nnoremap L <C-W><C-L>
+nnoremap H <C-W><C-H>
 
 " snippets
 let g:UltiSnipsExpandTrigger="<c-s>"
@@ -157,7 +162,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " show documentation
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> W :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
