@@ -17,6 +17,7 @@ Plug 'jiangmiao/auto-pairs'             " autoclose brackets
 Plug 'preservim/nerdcommenter'          " easy commenting
 Plug 'tpope/vim-surround'               " quote manipulation
 Plug 'tommcdo/vim-exchange'             " exchange text objects
+Plug 'simnalamburt/vim-mundo'           " undo tree viewer
 
 " snippets
 Plug 'SirVer/ultisnips'                 " snippet engine
@@ -95,6 +96,8 @@ vnoremap ; :
 " permanent undo
 set undodir=~/.vimdid
 set undofile
+nnoremap <leader>uu :MundoToggle<CR>
+
 
 " splits
 " open new splits on the right and down
