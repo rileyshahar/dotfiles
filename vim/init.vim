@@ -11,6 +11,7 @@ Plug 'ap/vim-buftabline'                " buffers in tabline
 " file navigation
 Plug 'scrooloose/nerdtree'              " file tree viewer
 Plug 'tpope/vim-eunuch'                 " UNIX shell commands
+Plug 'mhinz/vim-startify'               " custom start menu
 Plug 'kana/vim-textobj-user'            " easy custom text objects
 
 " fast editing
@@ -136,6 +137,31 @@ nmap [h <Plug>(GitGutterPrevHunk)
 let NERDTreeQuitOnOpen = 1              " quit when you open a file
 let NERDTreeMinimalUI = 1               " minimal UI
 map <leader>m :NERDTreeToggle<CR>|      " open the file tree
+
+" startify
+
+" all modified git files
+function! s:gitModified()
+    let files = systemlist('git ls-files -m 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+" all untracked git files
+function! s:gitUntracked()
+    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+" actual config
+let g:startify_lists = [
+        \ { 'type': 'files',     'header': ['   MRU']            },
+        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+        \ { 'type': 'sessions',  'header': ['   Sessions']       },
+        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+        \ { 'type': function('s:gitModified'),  'header': ['   Git Modified']},
+        \ { 'type': function('s:gitUntracked'), 'header': ['   Git Untracked']},
+        \ { 'type': 'commands',  'header': ['   Commands']       },
+        \ ]
 
 " coc
 " use tab for autocompletion
