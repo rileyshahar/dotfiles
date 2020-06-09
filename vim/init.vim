@@ -11,6 +11,7 @@ Plug 'ap/vim-buftabline'                " buffers in tabline
 " file navigation
 Plug 'scrooloose/nerdtree'              " file tree viewer
 Plug 'tpope/vim-eunuch'                 " UNIX shell commands
+Plug 'kana/vim-textobj-user'            " easy custom text objects
 
 " fast editing
 Plug 'jiangmiao/auto-pairs'             " autoclose brackets
@@ -49,6 +50,7 @@ Plug 'jeetsukumaran/vim-pythonsense'    " python motions
 Plug 'numirias/semshi'                  " python syntax highlighting
 Plug 'Vimjas/vim-python-pep8-indent'    " python autoindentation
 Plug 'heavenshell/vim-pydocstring', {'do': 'make install'}
+Plug 'thalesmello/vim-textobj-multiline-str' " multiline comment object
 call plug#end()                         " end plug
 
 " color-related
