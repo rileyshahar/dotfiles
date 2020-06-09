@@ -19,6 +19,3 @@ source $ZSH/oh-my-zsh.sh
 # set editor to vim
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-
-# python setup
-export PYLINTRC="~/code/python/setup.cfg" # pylint rc file

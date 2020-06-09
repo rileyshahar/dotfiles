@@ -190,7 +190,7 @@ let g:ale_fixers = {
         \ 'typescript': ['pretter'],
         \ 'rust': ['rustfmt']
         \ }
-let g:ale_python_pylint_options = '--rcfile=~/code/dotfiles/.pylintrc'
+let g:ale_python_pylint_options = '--rcfile=~/code/dotfiles/python/.pylintrc'
 " error navigation
 nmap <silent> <C-K> <Plug>(ale_previous_wrap)
 nmap <silent> <C-J> <Plug>(ale_next_wrap)
