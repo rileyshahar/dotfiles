@@ -92,12 +92,14 @@ nnoremap k gk
 " shift is hard to type
 nnoremap ; :
 vnoremap ; :
+" sy to copy to the system clipboard
+nnoremap sy "*y
+vnoremap sy "*y
 
 " permanent undo
 set undodir=~/.vimdid
 set undofile
 nnoremap <leader>uu :MundoToggle<CR>
-
 
 " splits
 " open new splits on the right and down
