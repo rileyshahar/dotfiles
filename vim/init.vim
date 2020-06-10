@@ -125,10 +125,7 @@ let g:UltiSnipsEditSplit="vertical"
 let g:ultisnips_python_style="numpy"
 
 " terminal
-let g:floaterm_keymap_new    = '<F7>'
-let g:floaterm_keymap_prev   = '<F8>'
-let g:floaterm_keymap_next   = '<F9>'
-let g:floaterm_keymap_toggle = '<F12>'
+let g:floaterm_keymap_toggle = '<F9>'
 
 " vim-test
 nmap <silent> t<C-n> :TestNearest<CR>
