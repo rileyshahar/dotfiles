@@ -32,6 +32,9 @@ Plug 'mileszs/ack.vim'                  " search within files
 " testing
 Plug 'vim-test/vim-test'                " automated tests
 
+" terminal
+Plug 'voldikss/vim-floaterm'            " floating terminal
+
 " git
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'Xuyuanp/nerdtree-git-plugin'      " git in nerdtree
@@ -120,6 +123,12 @@ let g:UltiSnipsJumpForwardTrigger="<c-d>"
 let g:UltiSnipsJumpBackwardTrigger="<c-a>"
 let g:UltiSnipsEditSplit="vertical"
 let g:ultisnips_python_style="numpy"
+
+" terminal
+let g:floaterm_keymap_new    = '<F7>'
+let g:floaterm_keymap_prev   = '<F8>'
+let g:floaterm_keymap_next   = '<F9>'
+let g:floaterm_keymap_toggle = '<F12>'
 
 " vim-test
 nmap <silent> t<C-n> :TestNearest<CR>
