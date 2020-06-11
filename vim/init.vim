@@ -80,6 +80,7 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif                                   " make ack.vim use ag
 nnoremap <C-F> :Ack<space>|              " shortcut for ack
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>   " search under visual selection
 
 " folding
 set foldenable			        " enable folding
@@ -125,7 +126,7 @@ let g:UltiSnipsEditSplit="vertical"
 let g:ultisnips_python_style="numpy"
 
 " terminal
-let g:floaterm_keymap_toggle = '<F9>'
+let g:floaterm_keymap_toggle = '<leader>t'
 
 " vim-test
 nmap <silent> t<C-n> :TestNearest<CR>
