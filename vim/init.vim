@@ -126,7 +126,7 @@ let g:UltiSnipsEditSplit="vertical"
 let g:ultisnips_python_style="numpy"
 
 " terminal
-let g:floaterm_keymap_toggle = '<leader>t'
+let g:floaterm_keymap_toggle = '<F12>'
 
 " vim-test
 nmap <silent> t<C-n> :TestNearest<CR>
