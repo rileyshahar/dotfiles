@@ -7,11 +7,13 @@ call plug#begin()                       " start plug
 Plug 'joshdick/onedark.vim'             " good color scheme
 Plug 'itchyny/lightline.vim'            " statusline
 Plug 'ap/vim-buftabline'                " buffers in tabline
+Plug 'mhinz/vim-startify'               " custom start menu
 
 " file navigation
 Plug 'scrooloose/nerdtree'              " file tree viewer
 Plug 'tpope/vim-eunuch'                 " UNIX shell commands
-Plug 'mhinz/vim-startify'               " custom start menu
+
+" text objects
 Plug 'kana/vim-textobj-user'            " easy custom text objects
 
 " fast editing
