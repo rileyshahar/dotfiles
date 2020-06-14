@@ -15,6 +15,7 @@ Plug 'tpope/vim-eunuch'                 " UNIX shell commands
 
 " text objects
 Plug 'kana/vim-textobj-user'            " easy custom text objects
+Plug 'wellle/targets.vim'               " lots of useful text objects
 
 " fast editing
 Plug 'jiangmiao/auto-pairs'             " autoclose brackets
@@ -22,6 +23,7 @@ Plug 'preservim/nerdcommenter'          " easy commenting
 Plug 'tpope/vim-surround'               " quote manipulation
 Plug 'tommcdo/vim-exchange'             " exchange text objects
 Plug 'simnalamburt/vim-mundo'           " undo tree viewer
+Plug 'AndrewRadev/splitjoin.vim'        " switch betweeen single- and multiline statemenets
 
 " snippets
 Plug 'SirVer/ultisnips'                 " snippet engine
