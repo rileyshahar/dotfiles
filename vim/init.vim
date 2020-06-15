@@ -4,7 +4,8 @@ set nocompatible
 " plugins
 call plug#begin()                       " start plug
 " appearance
-Plug 'joshdick/onedark.vim'             " good color scheme
+Plug 'joshdick/onedark.vim'             " atom color scheme
+Plug 'arzg/vim-colors-xcode'            " xcode color scheme
 Plug 'itchyny/lightline.vim'            " statusline
 Plug 'ap/vim-buftabline'                " buffers in tabline
 Plug 'mhinz/vim-startify'               " custom start menu
@@ -63,7 +64,7 @@ call plug#end()                         " end plug
 
 " color-related
 syntax enable			        " syntax processing on
-colorscheme onedark                     " generic colorscheme
+colorscheme xcodedarkhc                     " generic colorscheme
 
 " tabs and spacing
 set expandtab			        " turn tabs into spaces
