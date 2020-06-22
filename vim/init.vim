@@ -6,6 +6,7 @@ call plug#begin()                       " start plug
 " appearance
 Plug 'joshdick/onedark.vim'             " atom color scheme
 Plug 'arzg/vim-colors-xcode'            " xcode color scheme
+Plug 'ghifarit53/tokyonight.vim'        " tokyo color scheme
 Plug 'itchyny/lightline.vim'            " statusline
 Plug 'ap/vim-buftabline'                " buffers in tabline
 Plug 'mhinz/vim-startify'               " custom start menu
@@ -64,7 +65,8 @@ call plug#end()                         " end plug
 
 " color-related
 syntax enable			        " syntax processing on
-colorscheme xcodedarkhc                     " generic colorscheme
+set termguicolors                       " fancier colors
+colorscheme tokyonight                  " generic colorscheme
 
 " tabs and spacing
 set expandtab			        " turn tabs into spaces
