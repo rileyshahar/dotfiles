@@ -99,8 +99,9 @@ set foldmethod=indent                   " fold based on language syntax file
 " common keybindings
 let mapleader = ","                     " \ is hard to get to
 inoremap jk <esc>|                      " <esc> is hard to get to
-nnoremap <leader>s :mksession!<CR>|      " save the current session
+nnoremap <leader>s :mksession!<CR>|     " save the current session
 nnoremap <silent> <leader>l :nohlsearch<CR><C-L>| " clear highlighting
+nmap Y y$|                              " this should be a default
 " if a line is autowrapped, don't skip the second graphical line
 nnoremap j gj
 nnoremap k gk
