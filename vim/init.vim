@@ -251,6 +251,7 @@ let g:ale_echo_msg_format = '[%linter%] %s'
 
 " lightline
 let g:lightline = {}
+let g:lightline.colorscheme = 'tokyonight'
 let g:lightline.component_expand = {
       \  'linter_checking': 'lightline#ale#checking',
       \  'linter_infos': 'lightline#ale#infos',
