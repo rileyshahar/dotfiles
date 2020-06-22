@@ -26,6 +26,7 @@ Plug 'tpope/vim-surround'               " quote manipulation
 Plug 'tommcdo/vim-exchange'             " exchange text objects
 Plug 'simnalamburt/vim-mundo'           " undo tree viewer
 Plug 'AndrewRadev/splitjoin.vim'        " switch betweeen single- and multiline statemenets
+Plug 'machakann/vim-highlightedyank'    " highlight yanked text
 
 " snippets
 Plug 'SirVer/ultisnips'                 " snippet engine
@@ -124,6 +125,9 @@ nnoremap J <C-W><C-J>
 nnoremap K <C-W><C-K>
 nnoremap L <C-W><C-L>
 nnoremap H <C-W><C-H>
+
+" yank highlighting
+let g:highlightedyank_highlight_duration = -1   " make it permanent
 
 " snippets
 let g:UltiSnipsExpandTrigger="<c-s>"
