@@ -138,7 +138,7 @@ let g:UltiSnipsEditSplit="vertical"
 let g:ultisnips_python_style="numpy"
 
 " terminal
-let g:floaterm_keymap_toggle = '<F12>'
+let g:floaterm_keymap_toggle = '<F8>'
 
 " vim-test
 nmap <silent> t<C-n> :TestNearest<CR>
