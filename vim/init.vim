@@ -233,7 +233,7 @@ let g:ale_lint_on_insert_leave = 1      " lint on leaving insert
 let g:ale_linters = {
         \ 'python': ['pylint', 'mypy', 'flake8', 'pydocstyle'],
         \ 'typescript': ['eslint'],
-        \ 'rust': ['rls', 'cargo']
+        \ 'rust': ['cargo']
         \ }
 let g:ale_fix_on_save = 1               " run fixer on save
 let g:ale_fixers = {
