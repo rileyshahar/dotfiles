@@ -19,6 +19,9 @@ Thumbs.db
 # Compiled C++ files
 *.out
 
+# Vim
+Session.vim
+
 # Application specific files
 venv
 .venv
