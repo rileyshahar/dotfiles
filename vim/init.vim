@@ -3,6 +3,7 @@ set nocompatible
 
 " plugins
 call plug#begin()                       " start plug
+
 " appearance
 Plug 'joshdick/onedark.vim'             " atom color scheme
 Plug 'arzg/vim-colors-xcode'            " xcode color scheme
@@ -58,6 +59,11 @@ Plug 'numirias/semshi'                  " python syntax highlighting
 Plug 'Vimjas/vim-python-pep8-indent'    " python autoindentation
 Plug 'heavenshell/vim-pydocstring', {'do': 'make install'}
 Plug 'thalesmello/vim-textobj-multiline-str' " multiline comment object
+
+" latex
+Plug 'lervag/vimtex'                    " latex
+Plug 'KeitaNakamura/tex-conceal.vim'    " concealed text
+
 call plug#end()                         " end plug
 
 " color-related
@@ -74,6 +80,7 @@ filetype indent on		        " detect filetypes and load language-specific indent
 set wildmenu			        " graphical command autocomplete menu
 set showmatch			        " highlight matching bracket-like characters
 set hidden                              " don't close buffers when switching to a new buffer
+set conceallevel=2                      " autoconcealed text
 
 " search
 set incsearch			        " search as characters are entered
@@ -89,11 +96,11 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>   " search under visual selection
 " folding
 set foldenable			        " enable folding
 set foldlevelstart=5		        " default level to start folding
-nnoremap <space> za|		        " make space toggle the current fold
 set foldmethod=indent                   " fold based on language syntax file
 
 " common keybindings
 let mapleader = ","                     " \ is hard to get to
+let maplocalleader = "\<space>"         " ditto
 inoremap jk <esc>|                      " <esc> is hard to get to
 nnoremap <leader>s :mksession!<CR>|     " save the current session
 nnoremap <silent> <leader>l :nohlsearch<CR><C-L>| " clear highlighting
@@ -275,6 +282,9 @@ let g:semshi#mark_selected_nodes=2                                              
 let g:pydocstring_formatter = 'numpy'                   " numpy docstrings for autodoc
 autocmd FileType python nnoremap <leader>dd :Pydocstring<CR>
 
-" project-specific settings
-" botcbot (python)
-autocmd FileType python map <buffer> <F9> :w<CR>:vsplit<CR><C-W>L:term<CR>ipython main.py Test Bot<cr><C-\><C-N>
+" latex
+let g:tex_flavor = 'latex'              " we never want to write og tex
+let g:vimtex_view_method = 'skim'
+let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+let g:vimtex_view_general_options = '-r @line'
+let g:tex_conceal='abdmg'
