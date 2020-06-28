@@ -14,6 +14,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 # install pynvim, isort, and pydocstyle either globally or in a pipenv
 
 ln -sv ~/code/dotfiles/zsh/.zshrc ~/
+ln -sv ~/code/dotfiles/tmux/.tmux.conf ~/
 ln -sv ~/code/dotfiles/git/.gitignore ~/
 ln -sv ~/code/dotfiles/git/.gitconfig ~/
 ln -sv ~/code/dotfiles/vim/init.vim ~/.config/nvim/init.vim
