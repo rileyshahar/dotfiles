@@ -18,6 +18,7 @@ Plug 'mhinz/vim-startify'               " custom start menu
 " file navigation
 Plug 'scrooloose/nerdtree'              " file tree viewer
 Plug 'tpope/vim-eunuch'                 " UNIX shell commands
+Plug 'christoomey/vim-tmux-navigator'   " use <C-HJKL> to move between vim and tmux splits
 
 " text objects
 Plug 'kana/vim-textobj-user'            " easy custom text objects
@@ -130,10 +131,10 @@ nnoremap <leader>uu :MundoToggle<CR>
 set splitbelow
 set splitright
 " split navigation
-nnoremap J <C-W><C-J>
-nnoremap K <C-W><C-K>
-nnoremap L <C-W><C-L>
-nnoremap H <C-W><C-H>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " yank highlighting
 let g:highlightedyank_highlight_duration = -1   " make it permanent
