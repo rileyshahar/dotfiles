@@ -20,3 +20,9 @@ source $ZSH/oh-my-zsh.sh
 # set editor to vim
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+
+# enter tmux
+if [[ -z "$TMUX" ]]
+then
+        tmux has-session -t _default || tmux new-session -s _default && tmux a -t _default
+fi
