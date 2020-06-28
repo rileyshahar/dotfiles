@@ -116,6 +116,9 @@ vnoremap ; :
 " sy to copy to the system clipboard
 nnoremap sy "*y
 vnoremap sy "*y
+" buffer navigation
+nnoremap H :bprevious<CR>
+nnoremap L :bnext<CR>
 
 " permanent undo
 set undodir=~/.vimdid
@@ -244,8 +247,8 @@ let g:ale_fixers = {
         \ }
 let g:ale_python_pylint_options = '--rcfile=~/code/dotfiles/python/.pylintrc'
 " error navigation
-nmap <silent> <C-K> <Plug>(ale_previous_wrap)
-nmap <silent> <C-J> <Plug>(ale_next_wrap)
+nmap <silent> <K> <Plug>(ale_previous_wrap)
+nmap <silent> <J> <Plug>(ale_next_wrap)
 " display text
 let g:ale_echo_msg_format = '[%linter%] %s'
 
