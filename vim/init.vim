@@ -50,6 +50,7 @@ Plug 'voldikss/vim-floaterm'            " floating terminal
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'Xuyuanp/nerdtree-git-plugin'      " git in nerdtree
 Plug 'airblade/vim-gitgutter'           " show git info in gutter
+Plug 'rhysd/git-messenger.vim'          " view recent commit message
 
 " code parsing
 Plug 'dense-analysis/ale'               " asynchronous linter
