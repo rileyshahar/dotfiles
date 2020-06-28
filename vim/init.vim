@@ -4,10 +4,13 @@ set nocompatible
 " plugins
 call plug#begin()                       " start plug
 
-" appearance
+" colorscheme
 Plug 'joshdick/onedark.vim'             " atom color scheme
 Plug 'arzg/vim-colors-xcode'            " xcode color scheme
 Plug 'ghifarit53/tokyonight.vim'        " tokyo color scheme
+Plug 'morhetz/gruvbox'
+
+" appearance
 Plug 'itchyny/lightline.vim'            " statusline
 Plug 'ap/vim-buftabline'                " buffers in tabline
 Plug 'mhinz/vim-startify'               " custom start menu
@@ -69,7 +72,8 @@ call plug#end()                         " end plug
 " color-related
 syntax enable			        " syntax processing on
 set termguicolors                       " fancier colors
-colorscheme tokyonight                  " generic colorscheme
+colorscheme gruvbox                     " generic colorscheme
+let g:gruvbox_contrast_dark = 'hard'    " gruvbox is high-contrast
 
 " tabs and spacing
 set expandtab			        " turn tabs into spaces
@@ -254,7 +258,7 @@ let g:ale_echo_msg_format = '[%linter%] %s'
 
 " lightline
 let g:lightline = {}
-let g:lightline.colorscheme = 'tokyonight'
+let g:lightline.colorscheme = 'gruvbox'
 let g:lightline.component_expand = {
       \  'linter_checking': 'lightline#ale#checking',
       \  'linter_infos': 'lightline#ale#infos',
