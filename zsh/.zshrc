@@ -1,6 +1,6 @@
 # export bash python path
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/code/dotfiles/bin:$PATH"
 
 # fix to unnecessary error messages
 export ZSH_DISABLE_COMPFIX=true
@@ -20,4 +20,3 @@ source $ZSH/oh-my-zsh.sh
 # set editor to vim
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-
