@@ -89,7 +89,9 @@ set incsearch			        " search as characters are entered
 set hlsearch			        " highlight matches
 set ignorecase                          " ignore case in search
 set smartcase                           " unless there are uppercase letters
-if executable('ag')
+if executable('rg')
+  let g:ackprg = "rg --vimgrep --no-heading"
+elseif executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif                                   " make ack.vim use ag
 nnoremap <C-F> :Ack<space>|              " shortcut for ack
