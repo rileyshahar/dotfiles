@@ -21,6 +21,9 @@ source $ZSH/oh-my-zsh.sh
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
+# fzf config
+export FZF_DEFAULT_COMMAND="rg --files --hidden"
+
 # enter tmux
 if [[ -z "$TMUX" ]]
 then

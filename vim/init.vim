@@ -1,5 +1,7 @@
 " general
 set nocompatible
+let mapleader = ","                     " \ is hard to get to
+let maplocalleader = "\<space>"         " ditto
 
 " plugins
 call plug#begin()                       " start plug
@@ -35,7 +37,8 @@ Plug 'SirVer/ultisnips'                 " snippet engine
 Plug 'honza/vim-snippets'               " actual snippets
 
 " search
-Plug 'ctrlpvim/ctrlp.vim'               " search for files
+Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
+Plug 'junegunn/fzf.vim'                 " search for files
 Plug 'mileszs/ack.vim'                  " search within files
 
 " testing
@@ -94,7 +97,8 @@ if executable('rg')
 elseif executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif                                   " make ack.vim use ag
-nnoremap <C-F> :Ack<space>|              " shortcut for ack
+nnoremap <C-F> :Ack<space>|             " shortcut for ack
+nnoremap <leader>f :Files<CR>|          " shortcut for fzf
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>   " search under visual selection
 
 " folding
@@ -103,8 +107,6 @@ set foldlevelstart=5		        " default level to start folding
 set foldmethod=indent                   " fold based on language syntax file
 
 " common keybindings
-let mapleader = ","                     " \ is hard to get to
-let maplocalleader = "\<space>"         " ditto
 inoremap jk <esc>|                      " <esc> is hard to get to
 nnoremap <leader>s :mksession!<CR>|     " save the current session
 nnoremap <silent> <leader>l :nohlsearch<CR><C-L>| " clear highlighting
