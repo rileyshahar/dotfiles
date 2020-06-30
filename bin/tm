@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+# open a new tmux window if not in tmux, else echo an error message
+if [[ -z "$TMUX" ]]
+then
+        tmux has-session -t _default || tmux new-session -s _default && tmux a -t _default
+else
+        echo "Unable to enter tmux -- we're already there!"
+fi

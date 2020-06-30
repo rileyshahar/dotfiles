@@ -2,6 +2,9 @@
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 export PATH="$HOME/code/dotfiles/bin:$PATH"
 
+# zsh functions (for alacritty: https://github.com/alacritty/alacritty/blob/master/INSTALL.md#manual-page)
+fpath+="$HOME/code/dotfiles/zsh/zsh-functions"
+
 # fix to unnecessary error messages
 export ZSH_DISABLE_COMPFIX=true
 
@@ -25,7 +28,4 @@ export EDITOR="$VISUAL"
 export FZF_DEFAULT_COMMAND="rg --files --hidden"
 
 # enter tmux
-if [[ -z "$TMUX" ]]
-then
-        tmux has-session -t _default || tmux new-session -s _default && tmux a -t _default
-fi
+tm
