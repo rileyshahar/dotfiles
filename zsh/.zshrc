@@ -27,5 +27,9 @@ export EDITOR="$VISUAL"
 # fzf config
 export FZF_DEFAULT_COMMAND="rg --files --hidden"
 
+# keybindings
+bindkey -v  # use vi emulation
+bindkey -v jk vi-cmd-mode  # use jk in insert mode to enter command mode (vi zsh emulation speak for normal mode)
+
 # enter tmux
 tm
