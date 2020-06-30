@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 # open a new tmux window if not in tmux, else echo an error message
 if [[ -z "$TMUX" ]]
