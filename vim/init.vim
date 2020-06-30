@@ -69,6 +69,9 @@ Plug 'thalesmello/vim-textobj-multiline-str' " multiline comment object
 Plug 'lervag/vimtex'                    " latex
 Plug 'KeitaNakamura/tex-conceal.vim'    " concealed text
 
+" fish scripts
+Plug 'dag/vim-fish'                     " fish language support
+
 call plug#end()                         " end plug
 
 " color-related
