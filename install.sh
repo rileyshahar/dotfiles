@@ -13,13 +13,13 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 # install pynvim, isort, and pydocstyle either globally or in a pipenv
 
-ln -sv ~/code/dotfiles/alacritty/alacritty.yml ~/.alacritty.yml
-ln -sv ~/code/dotfiles/zsh/.zshrc ~/
-ln -sv ~/code/dotfiles/tmux/.tmux.conf ~/
-ln -sv ~/code/dotfiles/git/.gitignore ~/
-ln -sv ~/code/dotfiles/git/.gitconfig ~/
-ln -sv ~/code/dotfiles/vim/init.vim ~/.config/nvim/init.vim
-ln -sv ~/code/dotfiles/python/setup.cfg ~/code/python
-ln -sv ~/code/dotfiles/python/.pylintrc ~/
+ln -sv "$HOME/code/dotfiles/alacritty/alacritty.yml" "$HOME/.alacritty.yml"
+ln -sv "$HOME/code/dotfiles/zsh/zshrc" "$HOME/.zshrc"
+ln -sv "$HOME/code/dotfiles/tmux/tmux.conf" "$HOME/.tmux.conf"
+ln -sv "$HOME/code/dotfiles/git/gitignore" "$HOME/.gitignore"
+ln -sv "$HOME/code/dotfiles/git/gitconfig" "$HOME/.gitconfig"
+ln -sv "$HOME/code/dotfiles/vim/init.vim" "$HOME/.config/nvim/init.vim"
+ln -sv "$HOME/code/dotfiles/python/setup.cfg" "$HOME/code/python"
+ln -sv "$HOME/code/dotfiles/python/pylintrc" "$HOME/.pylintrc"
 
 sudo spctl --master-dis able  # disable unidentified developer
