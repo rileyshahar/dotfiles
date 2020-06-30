@@ -15,7 +15,7 @@ export ZSH="/Users/rileyshahar/.oh-my-zsh"
 ZSH_THEME="dst"
 
 # list of plugins
-plugins=(git colorize brew osx extract z python pipenv)
+plugins=(git colorize brew osx extract z python pipenv zsh-autosuggestions)
 
 # source
 source $ZSH/oh-my-zsh.sh
@@ -32,4 +32,7 @@ bindkey -v  # use vi emulation
 bindkey -v jk vi-cmd-mode  # use jk in insert mode to enter command mode (vi zsh emulation speak for normal mode)
 
 # enter tmux
-tm
+if [[ -z "$TMUX" ]]
+then
+        tm
+fi
