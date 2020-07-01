@@ -6,6 +6,9 @@ set -x EDITOR $VISUAL
 
 set -x FZF_DEFAULT_COMMAND "rg --files --hidden"
 
+fish_vi_key_bindings
+bind -M insert -m default jk backward-char force-repaint
+
 if status is-interactive
 and test -z $TMUX
         tm
