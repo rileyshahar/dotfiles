@@ -1,0 +1,7 @@
+#!/usr/bin/env fish
+
+if test -z $argv
+        brew install (brew search | fzf -m)
+else
+        brew install (brew search | fzf -m -q $argv)
+end
