@@ -1,6 +1,9 @@
-set PATH /usr/local/opt/python@3.8/bin $PATH
-set PATH $HOME/.cargo/bin $PATH
-set PATH $HOME/code/dotfiles/bin $PATH
+set paths_to_add /usr/local/opt/python@3.8 /bin/usr/local/opt/ruby/bin $HOME/.cargo/bin $HOME/code/dotfiles/bin
+
+for path in $paths_to_add
+        contains $path $fish_user_paths; or set -Ua fish_user_paths $path
+end
+
 
 set -x VISUAL nvim
 set -x EDITOR $VISUAL
