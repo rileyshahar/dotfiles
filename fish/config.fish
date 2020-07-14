@@ -12,6 +12,7 @@ set -x FZF_DEFAULT_COMMAND "rg --files --hidden"
 
 fish_vi_key_bindings
 bind -M insert -m default jk backward-char force-repaint
+bind -M insert \cf forward-char  # this doesn't work by default for some reason
 
 if status is-interactive
 and test -z $TMUX
