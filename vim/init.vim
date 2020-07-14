@@ -260,8 +260,8 @@ let g:ale_rust_cargo_check_tests = 1
 let g:ale_rust_cargo_clippy_options =
       \'-- -W clippy::nursery -W clippy::pedantic'
 " error navigation
-nnoremap gk <Plug>(ale_previous_wrap)
-nnoremap gj <Plug>(ale_next_wrap)
+nmap gk <Plug>(ale_previous_wrap)
+nmap gj <Plug>(ale_next_wrap)
 " display text
 let g:ale_echo_msg_format = '[%linter%] %s'
 
