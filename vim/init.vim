@@ -40,7 +40,7 @@ Plug 'honza/vim-snippets'               " actual snippets
 " search
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'                 " search for files
-Plug 'mileszs/ack.vim'                  " search within files
+Plug 'dyng/ctrlsf.vim'                  " search within files
 
 " testing
 Plug 'vim-test/vim-test'                " automated tests
@@ -96,15 +96,18 @@ set incsearch			        " search as characters are entered
 set hlsearch			        " highlight matches
 set ignorecase                          " ignore case in search
 set smartcase                           " unless there are uppercase letters
-if executable('rg')
-  let g:ackprg = "rg --vimgrep --no-heading"
-elseif executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif                                   " make ack.vim use ag
-nnoremap <C-F> :Ack<space>|             " shortcut for ack
 nnoremap <leader>f :Files<CR>|          " shortcut for fzf
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>   " search under visual selection
 
+" ctrlsf
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 " folding
 set foldenable			        " enable folding
 set foldlevelstart=5		        " default level to start folding
