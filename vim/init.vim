@@ -45,9 +45,6 @@ Plug 'dyng/ctrlsf.vim'                  " search within files
 " testing
 Plug 'vim-test/vim-test'                " automated tests
 
-" terminal
-Plug 'voldikss/vim-floaterm'            " floating terminal
-
 " git
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'Xuyuanp/nerdtree-git-plugin'      " git in nerdtree
@@ -63,7 +60,7 @@ Plug 'maximbaz/lightline-ale'           " ale on statusline
 Plug 'jeetsukumaran/vim-pythonsense'    " python motions
 Plug 'numirias/semshi'                  " python syntax highlighting
 Plug 'Vimjas/vim-python-pep8-indent'    " python autoindentation
-Plug 'heavenshell/vim-pydocstring', {'do': 'make install'}
+" Plug 'heavenshell/vim-pydocstring', {'do': 'make install'}
 Plug 'thalesmello/vim-textobj-multiline-str' " multiline comment object
 
 " latex
