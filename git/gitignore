@@ -21,6 +21,7 @@ Thumbs.db
 
 # Vim
 Session.vim
+.vim/
 
 # Application specific files
 venv
