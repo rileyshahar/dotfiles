@@ -69,7 +69,12 @@ Plug 'KeitaNakamura/tex-conceal.vim'    " concealed text
 " fish scripts
 Plug 'dag/vim-fish'                     " fish language support
 
+" markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
 call plug#end()                         " end plug
+
 
 " color-related
 syntax enable			        " syntax processing on
