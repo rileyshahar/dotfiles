@@ -7,6 +7,7 @@ end
 
 set -x VISUAL nvim
 set -x EDITOR $VISUAL
+set -x LANG "en_US.UTF-8"
 
 set -x FZF_DEFAULT_COMMAND "rg --files --hidden"
 
