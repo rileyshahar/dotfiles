@@ -17,7 +17,6 @@ Plug 'mhinz/vim-startify'               " custom start menu
 Plug 'scrooloose/nerdtree'              " file tree viewer
 Plug 'tpope/vim-eunuch'                 " UNIX shell commands
 Plug 'christoomey/vim-tmux-navigator'   " use <C-HJKL> to move between vim and tmux splits
-Plug 'airblade/vim-rooter'              " automatically set cwd
 
 " text objects
 Plug 'kana/vim-textobj-user'            " easy custom text objects
