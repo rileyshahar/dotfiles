@@ -6,11 +6,12 @@
         pager = delta
 [init]
 	defaultBranch = main
+[pull]
+	rebase = false
 
 [delta]
     plus-color = "#012800"
     minus-color = "#340001"
     syntax-theme = TwoDark
-
 [interactive]
     diffFilter = delta --color-only
