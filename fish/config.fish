@@ -54,12 +54,18 @@ end
 
 ## Make a directory and cd to it
 function mkdir-cd
-    mkdir $argv && cd $argv
+        mkdir $argv && cd $argv
 end
 
 ## Move the previously downloaded file to the cwd
 function move-last-download
-    mv ~/Downloads/(ls -t -A ~/Downloads/ | head -1) .
+        mv ~/Downloads/(ls -t -A ~/Downloads/ | head -1) .
+end
+
+## Wrapper for help utilities
+function fancy-help
+        tldr $argv
+        or man $argv
 end
 
 ### ENVIRONMENT VARIABLES
@@ -85,6 +91,8 @@ abbr -a mc mkdir-cd
 abbr -a mld move-last-download
 abbr -a b brew
 abbr -a o open
+abbr -a h fancy-help
+abbr -a m man
 
 
 
