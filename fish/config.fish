@@ -5,51 +5,6 @@ for path in $paths_to_add
         contains $path $fish_user_paths; or set -Ua fish_user_paths $path
 end
 
-### ABBREVIATIONS
-abbr -a e nvim
-abbr -a n nvim
-abbr -a p python
-abbr -a p3 python3
-abbr -a pt python -m pytes
-abbr -a c cargo
-abbr -a g git
-abbr -a gu git ls-files --other --exclude-standard  # git untracked files
-abbr -a b brew
-abbr -a o open
-
-# ls replacement
-if type -q exa
-        set ls_function "exa"
-else
-        set ls_function "ls"
-end
-
-abbr -a l $ls_function
-abbr -a ls $ls_function
-abbr -a ll $ls_function -l
-abbr -a la $ls_function -a
-abbr -a lll $ls_function -al
-
-# cat replacement
-if type -q bat
-        set cat_function "bat"
-else
-        set cat_function "cat"
-end
-
-abbr -a bat $cat_function
-abbr -a cat $cat_function
-
-# ps replacement
-if type -q procs
-        set ps_function "procs --watch --tree"
-else
-        set ps_function "ps"
-end
-
-abbr -a procs $ps_function
-abbr -a ps $ps_function
-
 
 ### FUNCTIONS
 ## Moves up the directory tree to find a git repo
@@ -92,6 +47,21 @@ function ping-to-google
         ping -c 1 google.com | tail -1 | awk '{print $4}' | cut -d '/' -f 2 | cut -d '.' -f 1
 end
 
+## Get git untracked files
+function git_untracked
+        git ls-files --other --exclude-standard
+end
+
+## Make a directory and cd to it
+function mkdir-cd
+    mkdir $argv && cd $argv
+end
+
+## Move the previously downloaded file to the cwd
+function move-last-download
+    mv ~/Downloads/(ls -t -A ~/Downloads/ | head -1) .
+end
+
 ### ENVIRONMENT VARIABLES
 set -x VISUAL nvim
 set -x EDITOR $VISUAL
@@ -100,6 +70,56 @@ set -x LANG "en_US.UTF-8"
 set -x FZF_DEFAULT_COMMAND "rg --files --hidden"
 
 set -x BAT_THEME "TwoDark"
+
+
+### ABBREVIATIONS
+abbr -a e nvim
+abbr -a n nvim
+abbr -a p python
+abbr -a p3 python3
+abbr -a pt python -m pytes
+abbr -a c cargo
+abbr -a g git
+abbr -a gu git_untracked
+abbr -a mc mkdir-cd
+abbr -a mld move-last-download
+abbr -a b brew
+abbr -a o open
+
+
+
+# ls replacement
+if type -q exa
+        set ls_function "exa"
+else
+        set ls_function "ls"
+end
+
+abbr -a l $ls_function
+abbr -a ls $ls_function
+abbr -a ll $ls_function -l
+abbr -a la $ls_function -a
+abbr -a lll $ls_function -al
+
+# cat replacement
+if type -q bat
+        set cat_function "bat"
+else
+        set cat_function "cat"
+end
+
+abbr -a bat $cat_function
+abbr -a cat $cat_function
+
+# ps replacement
+if type -q procs
+        set ps_function "procs --watch --tree"
+else
+        set ps_function "ps"
+end
+
+abbr -a procs $ps_function
+abbr -a ps $ps_function
 
 ### KEYBINDINGS
 fish_vi_key_bindings
