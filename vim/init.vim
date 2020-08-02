@@ -248,7 +248,7 @@ let g:ale_fixers = {
         \ 'typescript': ['pretter'],
         \ 'rust': ['rustfmt']
         \ }
-let g:ale_python_pylint_options = '--rcfile=~/code/dotfiles/python/.pylintrc'
+let g:ale_python_pylint_options = '--rcfile=~/code/dotfiles/python/pylintrc'
 let g:ale_rust_cargo_use_clippy = 1
 let g:ale_rust_cargo_check_examples = 1
 let g:ale_rust_cargo_check_tests = 1
