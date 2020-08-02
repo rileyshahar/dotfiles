@@ -11,7 +11,7 @@ set -x LANG "en_US.UTF-8"
 
 set -x FZF_DEFAULT_COMMAND "rg --files --hidden"
 
-navi widget fish | source
+set -x BAT_THEME "TwoDark"
 
 fish_vi_key_bindings
 bind -M insert -m default jk backward-char force-repaint
