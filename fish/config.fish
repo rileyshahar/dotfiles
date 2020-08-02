@@ -10,8 +10,10 @@ abbr -a e nvim
 abbr -a n nvim
 abbr -a p python
 abbr -a p3 python3
+abbr -a pt python -m pytes
 abbr -a c cargo
 abbr -a g git
+abbr -a gu git ls-files --other --exclude-standard  # git untracked files
 abbr -a o open
 
 # ls replacement
@@ -36,6 +38,16 @@ end
 
 abbr -a bat $cat_function
 abbr -a cat $cat_function
+
+# ps replacement
+if type -q procs
+        set ps_function "procs --watch --tree"
+else
+        set ps_function "ps"
+end
+
+abbr -a procs $ps_function
+abbr -a ps $ps_function
 
 
 ### FUNCTIONS
