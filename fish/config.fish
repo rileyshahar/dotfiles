@@ -14,6 +14,7 @@ abbr -a pt python -m pytes
 abbr -a c cargo
 abbr -a g git
 abbr -a gu git ls-files --other --exclude-standard  # git untracked files
+abbr -a b brew
 abbr -a o open
 
 # ls replacement
