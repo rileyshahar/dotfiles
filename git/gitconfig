@@ -3,5 +3,14 @@
 	email = riley.shahar@gmail.com
 [core]
 	excludesfile = /Users/rileyshahar/.gitignore
+        pager = delta
 [init]
 	defaultBranch = main
+
+[delta]
+    plus-color = "#012800"
+    minus-color = "#340001"
+    syntax-theme = TwoDark
+
+[interactive]
+    diffFilter = delta --color-only
