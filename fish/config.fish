@@ -86,6 +86,7 @@ abbr -a p3 python3
 abbr -a pt python -m pytes
 abbr -a c cargo
 abbr -a g git
+abbr -a gc git checkout
 abbr -a gu git_untracked
 abbr -a mc mkdir-cd
 abbr -a mld move-last-download
