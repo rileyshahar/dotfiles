@@ -31,6 +31,7 @@ Plug 'simnalamburt/vim-mundo'           " undo tree viewer
 Plug 'AndrewRadev/splitjoin.vim'        " switch betweeen single- and multiline statemenets
 Plug 'machakann/vim-highlightedyank'    " highlight yanked text
 Plug 'christoomey/vim-sort-motion'      " sort easily
+Plug 'unblevable/quick-scope'           " easier inline navigation
 
 " snippets
 Plug 'SirVer/ultisnips'                 " snippet engine

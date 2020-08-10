@@ -80,7 +80,6 @@ set -x BAT_THEME "TwoDark"
 
 ### ABBREVIATIONS
 abbr -a e nvim
-abbr -a n nvim
 abbr -a p python
 abbr -a p3 python3
 abbr -a pt python -m pytes
