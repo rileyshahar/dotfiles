@@ -82,7 +82,7 @@ set -x BAT_THEME "TwoDark"
 abbr -a e nvim
 abbr -a p python
 abbr -a p3 python3
-abbr -a pt python -m pytes
+abbr -a pt python -m pytest
 abbr -a c cargo
 abbr -a g git
 abbr -a gc git checkout
