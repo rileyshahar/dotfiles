@@ -6,6 +6,8 @@ let maplocalleader = "\<space>"         " ditto
 " plugins
 call plug#begin()                       " start plug
 
+" plugin meta
+Plug 'tpope/vim-repeat'                 " repeat plugin commands
 
 " appearance
 Plug 'joshdick/onedark.vim'             " atom color scheme
@@ -103,7 +105,7 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>   " search under visual selection
 
 " folding
 set foldenable			        " enable folding
-set foldlevelstart=5		        " default level to start folding
+set foldlevelstart=2		        " default level to start folding
 set foldmethod=indent                   " fold based on language syntax file
 
 " common keybindings
