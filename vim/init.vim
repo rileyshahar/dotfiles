@@ -249,7 +249,8 @@ let g:ale_fixers = {
         \ '*' : ['remove_trailing_lines', 'trim_whitespace'],
         \ 'python': ['black', 'isort'],
         \ 'typescript': ['pretter'],
-        \ 'rust': ['rustfmt']
+        \ 'rust': ['rustfmt'],
+        \ 'cpp': ['clang-format']
         \ }
 let g:ale_python_pylint_options = '--rcfile=~/code/dotfiles/python/pylintrc'
 let g:ale_rust_cargo_use_clippy = 1
