@@ -66,7 +66,6 @@ Plug 'thalesmello/vim-textobj-multiline-str' " multiline comment object
 
 " latex
 Plug 'lervag/vimtex'                    " latex
-Plug 'KeitaNakamura/tex-conceal.vim'    " concealed text
 
 " fish scripts
 Plug 'dag/vim-fish'                     " fish language support
@@ -92,7 +91,6 @@ filetype indent on		        " detect filetypes and load language-specific indent
 set wildmenu			        " graphical command autocomplete menu
 set showmatch			        " highlight matching bracket-like characters
 set hidden                              " don't close buffers when switching to a new buffer
-set conceallevel=2                      " autoconcealed text
 
 " search
 set incsearch			        " search as characters are entered
@@ -299,4 +297,3 @@ let g:tex_flavor = 'latex'              " we never want to write og tex
 let g:vimtex_view_method = 'skim'
 let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 let g:vimtex_view_general_options = '-r @line'
-let g:tex_conceal='abdmg'
