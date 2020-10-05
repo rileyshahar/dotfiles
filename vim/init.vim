@@ -13,7 +13,6 @@ Plug 'tpope/vim-repeat'                 " repeat plugin commands
 Plug 'joshdick/onedark.vim'             " atom color scheme
 Plug 'itchyny/lightline.vim'            " statusline
 Plug 'ap/vim-buftabline'                " buffers in tabline
-Plug 'mhinz/vim-startify'               " custom start menu
 
 " file navigation
 Plug 'scrooloose/nerdtree'              " file tree viewer
@@ -43,8 +42,8 @@ Plug 'honza/vim-snippets'               " actual snippets
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'                 " search for files
 
-" testing
-Plug 'vim-test/vim-test'                " automated tests
+" web
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 " git
 Plug 'tpope/vim-fugitive'               " git integration
