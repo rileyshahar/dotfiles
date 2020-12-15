@@ -52,8 +52,8 @@ Plug 'airblade/vim-gitgutter'           " show git info in gutter
 Plug 'rhysd/git-messenger.vim'          " view recent commit message
 
 " code parsing
+Plug 'neovim/nvim-lspconfig'            " neovim lsp
 Plug 'dense-analysis/ale'               " asynchronous linter
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'maximbaz/lightline-ale'           " ale on statusline
 
 " python
@@ -188,52 +188,6 @@ let g:startify_lists = [
         \ { 'type': 'commands',  'header': ['   Commands']       },
         \ ]
 
-" coc
-" use tab for autocompletion
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<tab>'
-
-" use <c-space> to trigger autocomplete
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" add `:Fold` command to fold current buffer
-command! -nargs=? Fold :call CocAction('fold', <f-args>)
-
-" graphical settings they like
-set cmdheight=2
-set updatetime=100
-
-" code navigation
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" show documentation
-nnoremap <silent> W :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" refactoring
-nmap <leader>rn <Plug>(coc-rename)|     " rename
-nmap <leader>ac <Plug>(coc-codeaction)| " code actions
-nmap <leader>qf  <Plug>(coc-fix-current)
-
 " ale
 let g:ale_lint_on_insert_leave = 1      " lint on leaving insert
 let g:ale_linters = {
@@ -283,6 +237,24 @@ let g:lightline.active = {
       \          [ 'readonly', 'filename', 'modified' ],
       \          [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]]
       \ }
+
+" neovim-lsp
+" general
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> ac    <cmd>lua vim.lsp.buf.code_action()<CR>
+
+" rust
+lua << EOF
+require'lspconfig'.rust_analyzer.setup{}
+EOF
 
 " language-specific settings
 " python
