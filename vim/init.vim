@@ -14,6 +14,11 @@ Plug 'joshdick/onedark.vim'             " atom color scheme
 Plug 'itchyny/lightline.vim'            " statusline
 Plug 'ap/vim-buftabline'                " buffers in tabline
 
+" telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 " file navigation
 Plug 'scrooloose/nerdtree'              " file tree viewer
 Plug 'tpope/vim-eunuch'                 " UNIX shell commands
@@ -45,9 +50,6 @@ Plug 'nvim-lua/completion-nvim'         " nvim completion
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'                 " search for files
 
-" web
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-
 " git
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'Xuyuanp/nerdtree-git-plugin'      " git in nerdtree
@@ -56,8 +58,8 @@ Plug 'rhysd/git-messenger.vim'          " view recent commit message
 
 " code parsing
 Plug 'neovim/nvim-lspconfig'            " neovim lsp
-Plug 'dense-analysis/ale'               " asynchronous linter
-Plug 'maximbaz/lightline-ale'           " ale on statusline
+Plug 'RishabhRD/popfix'
+Plug 'RishabhRD/nvim-lsputils'          " neovim lsp utils
 
 " python
 Plug 'jeetsukumaran/vim-pythonsense'    " python motions
@@ -80,23 +82,24 @@ call plug#end()                         " end plug
 
 
 " color-related
-syntax enable			        " syntax processing on
+syntax enable                           " syntax processing on
 set termguicolors                       " fancier colors
 colorscheme onedark                     " generic colorscheme
+set spell                               " spellcheck
 
 " tabs and spacing
-set expandtab			        " turn tabs into spaces
+set expandtab                           " turn tabs into spaces
 
 " ui
-set number relativenumber		" show relative line numbers
-filetype indent on		        " detect filetypes and load language-specific indent files
-set wildmenu			        " graphical command autocomplete menu
-set showmatch			        " highlight matching bracket-like characters
+set number relativenumber               " show relative line numbers
+filetype indent on                      " detect filetypes and load language-specific indent files
+set wildmenu                            " graphical command autocomplete menu
+set showmatch                           " highlight matching bracket-like characters
 set hidden                              " don't close buffers when switching to a new buffer
 
 " search
-set incsearch			        " search as characters are entered
-set hlsearch			        " highlight matches
+set incsearch                           " search as characters are entered
+set hlsearch                            " highlight matches
 set ignorecase                          " ignore case in search
 set smartcase                           " unless there are uppercase letters
 nnoremap <leader>f :Files<CR>|          " shortcut for fzf
@@ -104,8 +107,8 @@ nnoremap <c-f> :Rg |                    " search within project
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>   " search under visual selection
 
 " folding
-set foldenable			        " enable folding
-set foldlevelstart=1		        " default level to start folding
+set foldenable                          " enable folding
+set foldlevelstart=1                    " default level to start folding
 set foldmethod=indent                   " fold based on language syntax file
 
 " common keybindings
@@ -140,9 +143,9 @@ set splitright
 let g:highlightedyank_highlight_duration = -1   " make it permanent
 
 " snippets
-let g:UltiSnipsExpandTrigger="<c-s>"
-let g:UltiSnipsJumpForwardTrigger="<c-d>"
-let g:UltiSnipsJumpBackwardTrigger="<c-a>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
 let g:ultisnips_python_style="numpy"
 
@@ -170,76 +173,34 @@ map <leader>m :NERDTreeToggle<CR>|      " open the file tree
 
 " all modified git files
 function! s:gitModified()
-    let files = systemlist('git ls-files -m 2>/dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
+        let files = systemlist('git ls-files -m 2>/dev/null')
+        return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
 
 " all untracked git files
 function! s:gitUntracked()
-    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
+        let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+        return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
 
 " actual config
 let g:startify_lists = [
-        \ { 'type': 'files',     'header': ['   MRU']            },
-        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-        \ { 'type': 'sessions',  'header': ['   Sessions']       },
-        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-        \ { 'type': function('s:gitModified'),  'header': ['   Git Modified']},
-        \ { 'type': function('s:gitUntracked'), 'header': ['   Git Untracked']},
-        \ { 'type': 'commands',  'header': ['   Commands']       },
-        \ ]
-
-" ale
-let g:ale_lint_on_insert_leave = 1      " lint on leaving insert
-let g:ale_linters = {
-        \ 'python': ['pylint', 'mypy', 'flake8', 'pydocstyle'],
-        \ 'typescript': ['eslint'],
-        \ 'rust': ['cargo']
-        \ }
-let g:ale_fix_on_save = 1               " run fixer on save
-let g:ale_fixers = {
-        \ '*' : ['remove_trailing_lines', 'trim_whitespace'],
-        \ 'python': ['black', 'isort'],
-        \ 'typescript': ['pretter'],
-        \ 'rust': ['rustfmt'],
-        \ 'cpp': ['clang-format']
-        \ }
-let g:ale_python_pylint_options = '--rcfile=~/code/dotfiles/python/pylintrc'
-let g:ale_rust_cargo_use_clippy = 1
-let g:ale_rust_cargo_check_examples = 1
-let g:ale_rust_cargo_check_tests = 1
-let g:ale_rust_cargo_clippy_options =
-      \'-- -W clippy::nursery -W clippy::pedantic'
-" error navigation
-nmap gk <Plug>(ale_previous_wrap)
-nmap gj <Plug>(ale_next_wrap)
-" display text
-let g:ale_echo_msg_format = '[%linter%] %s'
+                        \ { 'type': 'files',     'header': ['   MRU']            },
+                        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+                        \ { 'type': 'sessions',  'header': ['   Sessions']       },
+                        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+                        \ { 'type': function('s:gitModified'),  'header': ['   Git Modified']},
+                        \ { 'type': function('s:gitUntracked'), 'header': ['   Git Untracked']},
+                        \ { 'type': 'commands',  'header': ['   Commands']       },
+                        \ ]
 
 " lightline
 let g:lightline = {}
 let g:lightline.colorscheme = 'onedark'
-let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_infos': 'lightline#ale#infos',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \ }
-let g:lightline.component_type = {
-      \     'linter_checking': 'right',
-      \     'linter_infos': 'right',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'right',
-      \ }
 let g:lightline.active = {
-      \  'left': [[ 'mode', 'paste' ],
-      \          [ 'readonly', 'filename', 'modified' ],
-      \          [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]]
-      \ }
+                        \  'left': [[ 'mode', 'paste' ],
+                        \          [ 'readonly', 'filename', 'modified' ]]
+                        \ }
 
 " neovim-lsp
 " general
@@ -258,7 +219,15 @@ lua << EOF
 require'lspconfig'.rust_analyzer.setup{on_attach=require'completion'.on_attach}
 require'lspconfig'.pyls.setup{on_attach=require'completion'.on_attach}
 require'lspconfig'.clangd.setup{on_attach=require'completion'.on_attach}
+vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
 EOF
+
+" autoformat on save
+augroup fmt
+        autocmd!
+        autocmd FileType python,rust,c,cpp nnoremap <localleader>f <cmd>lua vim.lsp.buf.formatting_sync(nil, 1000)<CR>
+        autocmd BufWritePre *.rs,*.c,*.cpp,*.py,*.h,*.hh lua vim.lsp.buf.formatting_sync(nil, 1000)
+augroup END
 
 " neovim-complete
 " Use <Tab> and <S-Tab> to navigate through popup menu
