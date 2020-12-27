@@ -73,6 +73,10 @@ set -x VISUAL nvim
 set -x EDITOR $VISUAL
 set -x LANG "en_US.UTF-8"
 
+set -x CXX "/usr/local/opt/llvm/bin//clang"
+set -x CPLUS_INCLUDE_PATH "/usr/local/include"
+set -x CMAKE_EXPORT_COMPILE_COMMANDS "true"
+
 set -x FZF_DEFAULT_COMMAND "rg --files --hidden"
 
 set -x BAT_THEME "TwoDark"

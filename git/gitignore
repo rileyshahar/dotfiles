@@ -14,7 +14,7 @@ Session.vim
 node_modules  # node.js modules
 
 ### RUST
-target  # compilation target directory
+target/ # compilation target directory
 
 ### C++
 .out  # compiled c++ files
@@ -29,3 +29,5 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+
+
