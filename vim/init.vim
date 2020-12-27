@@ -14,6 +14,11 @@ Plug 'joshdick/onedark.vim'             " atom color scheme
 Plug 'itchyny/lightline.vim'            " statusline
 Plug 'ap/vim-buftabline'                " buffers in tabline
 
+" telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 " file navigation
 Plug 'scrooloose/nerdtree'              " file tree viewer
 Plug 'tpope/vim-eunuch'                 " UNIX shell commands
@@ -38,12 +43,12 @@ Plug 'unblevable/quick-scope'           " easier inline navigation
 Plug 'SirVer/ultisnips'                 " snippet engine
 Plug 'honza/vim-snippets'               " actual snippets
 
+" completion
+Plug 'nvim-lua/completion-nvim'         " nvim completion
+
 " search
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'                 " search for files
-
-" web
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 " git
 Plug 'tpope/vim-fugitive'               " git integration
@@ -52,9 +57,9 @@ Plug 'airblade/vim-gitgutter'           " show git info in gutter
 Plug 'rhysd/git-messenger.vim'          " view recent commit message
 
 " code parsing
-Plug 'dense-analysis/ale'               " asynchronous linter
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'maximbaz/lightline-ale'           " ale on statusline
+Plug 'neovim/nvim-lspconfig'            " neovim lsp
+Plug 'RishabhRD/popfix'
+Plug 'RishabhRD/nvim-lsputils'          " neovim lsp utils
 
 " python
 Plug 'jeetsukumaran/vim-pythonsense'    " python motions
@@ -77,23 +82,24 @@ call plug#end()                         " end plug
 
 
 " color-related
-syntax enable			        " syntax processing on
+syntax enable                           " syntax processing on
 set termguicolors                       " fancier colors
 colorscheme onedark                     " generic colorscheme
+set spell                               " spellcheck
 
 " tabs and spacing
-set expandtab			        " turn tabs into spaces
+set expandtab                           " turn tabs into spaces
 
 " ui
-set number relativenumber		" show relative line numbers
-filetype indent on		        " detect filetypes and load language-specific indent files
-set wildmenu			        " graphical command autocomplete menu
-set showmatch			        " highlight matching bracket-like characters
+set number relativenumber               " show relative line numbers
+filetype indent on                      " detect filetypes and load language-specific indent files
+set wildmenu                            " graphical command autocomplete menu
+set showmatch                           " highlight matching bracket-like characters
 set hidden                              " don't close buffers when switching to a new buffer
 
 " search
-set incsearch			        " search as characters are entered
-set hlsearch			        " highlight matches
+set incsearch                           " search as characters are entered
+set hlsearch                            " highlight matches
 set ignorecase                          " ignore case in search
 set smartcase                           " unless there are uppercase letters
 nnoremap <leader>f :Files<CR>|          " shortcut for fzf
@@ -101,8 +107,8 @@ nnoremap <c-f> :Rg |                    " search within project
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>   " search under visual selection
 
 " folding
-set foldenable			        " enable folding
-set foldlevelstart=1		        " default level to start folding
+set foldenable                          " enable folding
+set foldlevelstart=1                    " default level to start folding
 set foldmethod=indent                   " fold based on language syntax file
 
 " common keybindings
@@ -137,9 +143,9 @@ set splitright
 let g:highlightedyank_highlight_duration = -1   " make it permanent
 
 " snippets
-let g:UltiSnipsExpandTrigger="<c-s>"
-let g:UltiSnipsJumpForwardTrigger="<c-d>"
-let g:UltiSnipsJumpBackwardTrigger="<c-a>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
 let g:ultisnips_python_style="numpy"
 
@@ -167,122 +173,72 @@ map <leader>m :NERDTreeToggle<CR>|      " open the file tree
 
 " all modified git files
 function! s:gitModified()
-    let files = systemlist('git ls-files -m 2>/dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
+        let files = systemlist('git ls-files -m 2>/dev/null')
+        return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
 
 " all untracked git files
 function! s:gitUntracked()
-    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
+        let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+        return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
 
 " actual config
 let g:startify_lists = [
-        \ { 'type': 'files',     'header': ['   MRU']            },
-        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-        \ { 'type': 'sessions',  'header': ['   Sessions']       },
-        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-        \ { 'type': function('s:gitModified'),  'header': ['   Git Modified']},
-        \ { 'type': function('s:gitUntracked'), 'header': ['   Git Untracked']},
-        \ { 'type': 'commands',  'header': ['   Commands']       },
-        \ ]
-
-" coc
-" use tab for autocompletion
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<tab>'
-
-" use <c-space> to trigger autocomplete
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" add `:Fold` command to fold current buffer
-command! -nargs=? Fold :call CocAction('fold', <f-args>)
-
-" graphical settings they like
-set cmdheight=2
-set updatetime=100
-
-" code navigation
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" show documentation
-nnoremap <silent> W :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" refactoring
-nmap <leader>rn <Plug>(coc-rename)|     " rename
-nmap <leader>ac <Plug>(coc-codeaction)| " code actions
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" ale
-let g:ale_lint_on_insert_leave = 1      " lint on leaving insert
-let g:ale_linters = {
-        \ 'python': ['pylint', 'mypy', 'flake8', 'pydocstyle'],
-        \ 'typescript': ['eslint'],
-        \ 'rust': ['cargo']
-        \ }
-let g:ale_fix_on_save = 1               " run fixer on save
-let g:ale_fixers = {
-        \ '*' : ['remove_trailing_lines', 'trim_whitespace'],
-        \ 'python': ['black', 'isort'],
-        \ 'typescript': ['pretter'],
-        \ 'rust': ['rustfmt'],
-        \ 'cpp': ['clang-format']
-        \ }
-let g:ale_python_pylint_options = '--rcfile=~/code/dotfiles/python/pylintrc'
-let g:ale_rust_cargo_use_clippy = 1
-let g:ale_rust_cargo_check_examples = 1
-let g:ale_rust_cargo_check_tests = 1
-let g:ale_rust_cargo_clippy_options =
-      \'-- -W clippy::nursery -W clippy::pedantic'
-" error navigation
-nmap gk <Plug>(ale_previous_wrap)
-nmap gj <Plug>(ale_next_wrap)
-" display text
-let g:ale_echo_msg_format = '[%linter%] %s'
+                        \ { 'type': 'files',     'header': ['   MRU']            },
+                        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+                        \ { 'type': 'sessions',  'header': ['   Sessions']       },
+                        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+                        \ { 'type': function('s:gitModified'),  'header': ['   Git Modified']},
+                        \ { 'type': function('s:gitUntracked'), 'header': ['   Git Untracked']},
+                        \ { 'type': 'commands',  'header': ['   Commands']       },
+                        \ ]
 
 " lightline
 let g:lightline = {}
 let g:lightline.colorscheme = 'onedark'
-let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_infos': 'lightline#ale#infos',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \ }
-let g:lightline.component_type = {
-      \     'linter_checking': 'right',
-      \     'linter_infos': 'right',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'right',
-      \ }
 let g:lightline.active = {
-      \  'left': [[ 'mode', 'paste' ],
-      \          [ 'readonly', 'filename', 'modified' ],
-      \          [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]]
-      \ }
+                        \  'left': [[ 'mode', 'paste' ],
+                        \          [ 'readonly', 'filename', 'modified' ]]
+                        \ }
+
+" neovim-lsp
+" general
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> W     <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> ac    <cmd>lua vim.lsp.buf.code_action()<CR>
+
+lua << EOF
+require'lspconfig'.rust_analyzer.setup{on_attach=require'completion'.on_attach}
+require'lspconfig'.pyls.setup{on_attach=require'completion'.on_attach}
+require'lspconfig'.clangd.setup{on_attach=require'completion'.on_attach}
+vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
+EOF
+
+" autoformat on save
+augroup fmt
+        autocmd!
+        autocmd FileType python,rust,c,cpp nnoremap <localleader>f <cmd>lua vim.lsp.buf.formatting_sync(nil, 1000)<CR>
+        autocmd BufWritePre *.rs,*.c,*.cpp,*.py,*.h,*.hh lua vim.lsp.buf.formatting_sync(nil, 1000)
+augroup END
+
+" neovim-complete
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
 
 " language-specific settings
 " python

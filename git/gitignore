@@ -3,15 +3,31 @@
 
 ### Vim
 Session.vim
-.vim/
+.vim
 
 ### PYTHON
-~/code/python/*.pyc  # Compiled Python files
-~/code/python/*.mypy_cache/  # mypy
-~/code/python/*/.venv/  # pipenv virtual environments
+.pyc  # Compiled Python files
+.mypy_cache  # mypy
+.venv  # pipenv virtual environments
 
 ### TS
-~/code/typescript/*/node_modules/  # node.js modules
+node_modules  # node.js modules
 
 ### RUST
-~/code/rust/*/target/  # compilation target directory
+target/ # compilation target directory
+
+### C++
+.out  # compiled c++ files
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+
+

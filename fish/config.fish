@@ -1,5 +1,5 @@
 # configure path
-set paths_to_add /usr/local/opt/python@3.8 /bin/usr/local/opt/ruby/bin $HOME/.cargo/bin
+set paths_to_add /usr/local/opt/python@3.8 /bin/usr/local/opt/ruby/bin $HOME/.cargo/bin /usr/local/opt/llvm/bin/
 
 for path in $paths_to_add
         contains $path $fish_user_paths; or set -Ua fish_user_paths $path
@@ -73,9 +73,15 @@ set -x VISUAL nvim
 set -x EDITOR $VISUAL
 set -x LANG "en_US.UTF-8"
 
+set -x CXX "/usr/local/opt/llvm/bin//clang"
+set -x CPLUS_INCLUDE_PATH "/usr/local/include"
+set -x CMAKE_EXPORT_COMPILE_COMMANDS "true"
+
 set -x FZF_DEFAULT_COMMAND "rg --files --hidden"
 
 set -x BAT_THEME "TwoDark"
+
+set -x CMAKE_EXPORT_COMPILE_COMMANDS true
 
 
 ### ABBREVIATIONS
