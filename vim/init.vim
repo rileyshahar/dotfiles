@@ -43,9 +43,6 @@ Plug 'unblevable/quick-scope'           " easier inline navigation
 Plug 'SirVer/ultisnips'                 " snippet engine
 Plug 'honza/vim-snippets'               " actual snippets
 
-" completion
-Plug 'nvim-lua/completion-nvim'         " nvim completion
-
 " search
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'                 " search for files
@@ -61,6 +58,9 @@ Plug 'neovim/nvim-lspconfig'            " neovim lsp
 Plug 'dense-analysis/ale'               " asynchronous linter
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'maximbaz/lightline-ale'           " ale on statusline
+
+" completion
+Plug 'nvim-lua/completion-nvim'         " nvim completion
 
 " python
 Plug 'jeetsukumaran/vim-pythonsense'    " python motions
@@ -144,9 +144,9 @@ set splitright
 let g:highlightedyank_highlight_duration = -1   " make it permanent
 
 " snippets
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<c-d>"
+let g:UltiSnipsJumpForwardTrigger="<c-d>"
+let g:UltiSnipsJumpBackwardTrigger="<c-s>"
 let g:UltiSnipsEditSplit="vertical"
 let g:ultisnips_python_style="numpy"
 
@@ -257,16 +257,22 @@ nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> ac    <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> <c-s> <cmd>lua vim.lsp.buf.code_action()<CR>
 
 lua << EOF
-require'lspconfig'.rust_analyzer.setup{on_attach=require'completion'.on_attach}
-require'lspconfig'.pyls.setup{on_attach=require'completion'.on_attach}
-require'lspconfig'.clangd.setup{on_attach=require'completion'.on_attach}
+require'lspconfig'.rust_analyzer.setup{}
+require'lspconfig'.pyls.setup{}
+require'lspconfig'.clangd.setup{}
 vim.lsp.callbacks["textDocument/publishDiagnostics"] = function() end -- disable diagnostics
 EOF
 
 " neovim-complete
+" Use completion-nvim in every buffer
+augroup completion
+        autocmd!
+        autocmd BufEnter * lua require'completion'.on_attach()
+augroup END
+
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -276,6 +282,9 @@ set completeopt=menuone,noinsert,noselect
 
 " Avoid showing message extra message when using completion
 set shortmess+=c
+
+" snippets support
+let g:completion_enable_snippet = 'UltiSnips'
 
 " language-specific settings
 " python
