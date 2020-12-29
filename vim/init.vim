@@ -58,8 +58,9 @@ Plug 'rhysd/git-messenger.vim'          " view recent commit message
 
 " code parsing
 Plug 'neovim/nvim-lspconfig'            " neovim lsp
-Plug 'RishabhRD/popfix'
-Plug 'RishabhRD/nvim-lsputils'          " neovim lsp utils
+Plug 'dense-analysis/ale'               " asynchronous linter
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'maximbaz/lightline-ale'           " ale on statusline
 
 " python
 Plug 'jeetsukumaran/vim-pythonsense'    " python motions
@@ -194,13 +195,56 @@ let g:startify_lists = [
                         \ { 'type': 'commands',  'header': ['   Commands']       },
                         \ ]
 
+" ale
+let g:ale_lint_on_insert_leave = 1      " lint on leaving insert
+let g:ale_linters = {
+        \ 'python': ['pylint', 'mypy', 'flake8', 'pydocstyle'],
+        \ 'typescript': ['eslint'],
+        \ 'rust': ['cargo']
+        \ }
+let g:ale_fix_on_save = 1               " run fixer on save
+let g:ale_fixers = {
+        \ '*' : ['remove_trailing_lines', 'trim_whitespace'],
+        \ 'python': ['black', 'isort'],
+        \ 'typescript': ['pretter'],
+        \ 'rust': ['rustfmt'],
+        \ 'cpp': ['clang-format']
+        \ }
+let g:ale_python_pylint_options = '--rcfile=~/code/dotfiles/python/pylintrc'
+let g:ale_rust_cargo_use_clippy = 1
+let g:ale_rust_cargo_check_examples = 1
+let g:ale_rust_cargo_check_tests = 1
+let g:ale_rust_cargo_clippy_options =
+      \'-- -W clippy::nursery -W clippy::pedantic'
+" error navigation
+nmap gk <Plug>(ale_previous_wrap)
+nmap gj <Plug>(ale_next_wrap)
+" display text
+let g:ale_echo_msg_format = '[%linter%] %s'
+
 " lightline
 let g:lightline = {}
 let g:lightline.colorscheme = 'onedark'
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_infos': 'lightline#ale#infos',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \     'linter_checking': 'right',
+      \     'linter_infos': 'right',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'right',
+      \ }
 let g:lightline.active = {
-                        \  'left': [[ 'mode', 'paste' ],
-                        \          [ 'readonly', 'filename', 'modified' ]]
-                        \ }
+      \  'left': [[ 'mode', 'paste' ],
+      \          [ 'readonly', 'filename', 'modified' ],
+      \          [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]]
+      \ }
+
 
 " neovim-lsp
 " general
@@ -219,15 +263,8 @@ lua << EOF
 require'lspconfig'.rust_analyzer.setup{on_attach=require'completion'.on_attach}
 require'lspconfig'.pyls.setup{on_attach=require'completion'.on_attach}
 require'lspconfig'.clangd.setup{on_attach=require'completion'.on_attach}
-vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
+vim.lsp.callbacks["textDocument/publishDiagnostics"] = function() end -- disable diagnostics
 EOF
-
-" autoformat on save
-augroup fmt
-        autocmd!
-        autocmd FileType python,rust,c,cpp nnoremap <localleader>f <cmd>lua vim.lsp.buf.formatting_sync(nil, 1000)<CR>
-        autocmd BufWritePre *.rs,*.c,*.cpp,*.py,*.h,*.hh lua vim.lsp.buf.formatting_sync(nil, 1000)
-augroup END
 
 " neovim-complete
 " Use <Tab> and <S-Tab> to navigate through popup menu
