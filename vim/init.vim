@@ -153,13 +153,6 @@ let g:ultisnips_python_style="numpy"
 " terminal
 let g:floaterm_keymap_toggle = '<F8>'
 
-" vim-test
-nmap <silent> t<C-n> :TestNearest<CR>
-nmap <silent> t<C-f> :TestFile<CR>
-nmap <silent> t<C-s> :TestSuite<CR>
-nmap <silent> t<C-p> :TestLast<CR>
-nmap <silent> t<C-g> :TestVisit<CR>
-
 " make gitgutter use the correct executabl
 let g:gitgutter_git_executable = '/usr/local/bin/git'
 nmap ]h <Plug>(GitGutterNextHunk)
