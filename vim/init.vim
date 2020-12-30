@@ -43,10 +43,6 @@ Plug 'unblevable/quick-scope'           " easier inline navigation
 Plug 'SirVer/ultisnips'                 " snippet engine
 Plug 'honza/vim-snippets'               " actual snippets
 
-" search
-Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
-Plug 'junegunn/fzf.vim'                 " search for files
-
 " git
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'Xuyuanp/nerdtree-git-plugin'      " git in nerdtree
@@ -101,9 +97,6 @@ set incsearch                           " search as characters are entered
 set hlsearch                            " highlight matches
 set ignorecase                          " ignore case in search
 set smartcase                           " unless there are uppercase letters
-nnoremap <leader>f :Files<CR>|          " shortcut for fzf
-nnoremap <c-f> :Rg |                    " search within project
-vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>   " search under visual selection
 
 " folding
 set foldenable                          " enable folding
