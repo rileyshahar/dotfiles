@@ -48,6 +48,7 @@ Plug 'honza/vim-snippets'               " actual snippets
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'Xuyuanp/nerdtree-git-plugin'      " git in nerdtree
 Plug 'airblade/vim-gitgutter'           " show git info in gutter
+Plug 'itchyny/vim-gitbranch'            " git branch function
 Plug 'rhysd/git-messenger.vim'          " view recent commit message
 
 " code parsing
@@ -240,10 +241,12 @@ let g:lightline.component_type = {
       \     'linter_errors': 'error',
       \     'linter_ok': 'right',
       \ }
+let g:lightline.component_function = {'gitbranch': 'gitbranch#name'}
 let g:lightline.active = {
       \  'left': [[ 'mode', 'paste' ],
       \          [ 'readonly', 'filename', 'modified' ],
-      \          [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]]
+      \          [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
+      \          [ 'gitbranch' ]]
       \ }
 
 
