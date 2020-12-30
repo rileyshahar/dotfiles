@@ -56,7 +56,6 @@ Plug 'rhysd/git-messenger.vim'          " view recent commit message
 " code parsing
 Plug 'neovim/nvim-lspconfig'            " neovim lsp
 Plug 'dense-analysis/ale'               " asynchronous linter
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'maximbaz/lightline-ale'           " ale on statusline
 
 " completion
@@ -66,7 +65,6 @@ Plug 'nvim-lua/completion-nvim'         " nvim completion
 Plug 'jeetsukumaran/vim-pythonsense'    " python motions
 Plug 'numirias/semshi'                  " python syntax highlighting
 Plug 'Vimjas/vim-python-pep8-indent'    " python autoindentation
-" Plug 'heavenshell/vim-pydocstring', {'do': 'make install'}
 Plug 'thalesmello/vim-textobj-multiline-str' " multiline comment object
 
 " latex
