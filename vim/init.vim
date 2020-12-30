@@ -18,6 +18,7 @@ Plug 'ap/vim-buftabline'                " buffers in tabline
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-github.nvim'
 
 " file navigation
 Plug 'scrooloose/nerdtree'              " file tree viewer
@@ -97,6 +98,22 @@ set incsearch                           " search as characters are entered
 set hlsearch                            " highlight matches
 set ignorecase                          " ignore case in search
 set smartcase                           " unless there are uppercase letters
+
+" telescope
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fs <cmd>lua require('telescope.builtin').grep_string()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <leader>fr <cmd>lua require('telescope.builtin').registers()<cr>
+nnoremap <leader>fc <cmd>lua require('telescope.builtin').git_bcommits()<cr>
+
+" github telescope
+lua << EOF
+require('telescope').load_extension('ghcli')
+EOF
+nnoremap <leader>gi <cmd>lua require('telescope.builtin').gh_issues()<cr>
+nnoremap <leader>gp <cmd>lua require('telescope.builtin').gh_pull_request()<cr>
 
 " folding
 set foldenable                          " enable folding
@@ -237,11 +254,12 @@ nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> W     <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gw    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>| "note this doesn't work with telescope
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
+
+nnoremap gr <cmd>lua require('telescope.builtin').lsp_references()<cr>
+nnoremap g0 <cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>
 
 lua << EOF
 require'lspconfig'.rust_analyzer.setup{}
