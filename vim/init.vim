@@ -58,7 +58,6 @@ Plug 'nvim-lua/completion-nvim'         " nvim completion
 
 " python
 Plug 'jeetsukumaran/vim-pythonsense'    " python motions
-Plug 'numirias/semshi'                  " python syntax highlighting
 Plug 'Vimjas/vim-python-pep8-indent'    " python autoindentation
 
 " latex
@@ -297,9 +296,6 @@ EOF
 " language-specific settings
 " python
 let g:python3_host_prog='/Users/rileyshahar/.local/share/virtualenvs/vim-R3ASTuF3/bin/python'       " python3 provider with pynvim installed
-let g:semshi#mark_selected_nodes=2                                                      " highlight copies of the same symbol
-let g:pydocstring_formatter = 'numpy'                   " numpy docstrings for autodoc
-autocmd FileType python nnoremap <leader>dd :Pydocstring<CR>
 
 " latex
 let g:tex_flavor = 'latex'              " we never want to write og tex
