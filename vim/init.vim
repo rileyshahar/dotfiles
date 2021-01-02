@@ -51,6 +51,7 @@ Plug 'rhysd/git-messenger.vim'          " view recent commit message
 Plug 'neovim/nvim-lspconfig'            " neovim lsp
 Plug 'dense-analysis/ale'               " asynchronous linter
 Plug 'maximbaz/lightline-ale'           " ale on statusline
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " completion
 Plug 'nvim-lua/completion-nvim'         " nvim completion
@@ -110,7 +111,8 @@ nnoremap <leader>gp <cmd>lua require('telescope.builtin').gh_pull_request()<cr>
 " folding
 set foldenable                          " enable folding
 set foldlevelstart=1                    " default level to start folding
-set foldmethod=indent                   " fold based on language syntax file
+set foldmethod=expr                     " fold based on tree-sitter
+set foldexpr=nvim_treesitter#foldexpr()
 
 " common keybindings
 inoremap jk <esc>|                      " <esc> is hard to get to
@@ -277,6 +279,20 @@ set shortmess+=c
 
 " snippets support
 let g:completion_enable_snippet = 'UltiSnips'
+
+" tree-sitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  highlight = {
+    enable = true,
+  },
+  indent = {
+    enable = true,
+  },
+}
+EOF
+
 
 " language-specific settings
 " python
