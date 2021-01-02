@@ -9,21 +9,17 @@ call plug#begin()                       " start plug
 " plugin meta
 Plug 'tpope/vim-repeat'                 " repeat plugin commands
 
-" appearance
+" display
 Plug 'joshdick/onedark.vim'             " atom color scheme
 Plug 'itchyny/lightline.vim'            " statusline
 Plug 'ap/vim-buftabline'                " buffers in tabline
+Plug 'christoomey/vim-tmux-navigator'   " use <C-HJKL> to move between vim and tmux splits
 
 " telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-github.nvim'
-
-" file navigation
-Plug 'scrooloose/nerdtree'              " file tree viewer
-Plug 'tpope/vim-eunuch'                 " UNIX shell commands
-Plug 'christoomey/vim-tmux-navigator'   " use <C-HJKL> to move between vim and tmux splits
 
 " text objects
 Plug 'kana/vim-textobj-user'            " easy custom text objects
@@ -63,17 +59,12 @@ Plug 'nvim-lua/completion-nvim'         " nvim completion
 Plug 'jeetsukumaran/vim-pythonsense'    " python motions
 Plug 'numirias/semshi'                  " python syntax highlighting
 Plug 'Vimjas/vim-python-pep8-indent'    " python autoindentation
-Plug 'thalesmello/vim-textobj-multiline-str' " multiline comment object
 
 " latex
 Plug 'lervag/vimtex'                    " latex
 
 " fish scripts
 Plug 'dag/vim-fish'                     " fish language support
-
-" markdown
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
 
 call plug#end()                         " end plug
 
