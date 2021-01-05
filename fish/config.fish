@@ -83,6 +83,31 @@ set -x BAT_THEME "TwoDark"
 
 set -x CMAKE_EXPORT_COMPILE_COMMANDS true
 
+# fish colors
+set pure_color_mute 82ac7c
+set pure_color_virtualenv 808080
+set pure_color_primary blue
+set pure_color_success magenta
+
+set fish_color_normal normal
+set fish_color_command magenta
+set fish_color_quote yellow
+set fish_color_redirection ff9e64
+set fish_color_end cyan
+set fish_color_error red
+set fish_color_param blue
+set fish_color_comment brmagenta
+set fish_color_match normal
+set fish_color_selection --background=brblack # todo: find a better color
+set fish_color_search_match normal
+set fish_color_history_current normal
+set fish_color_operator ff9e64
+set fish_color_escape ff9e64
+set fish_color_valid_path --underline
+set fish_color_autosuggestion 8599ad
+set fish_color_cancel -r
+
+
 
 ### ABBREVIATIONS
 abbr -a e nvim
@@ -99,7 +124,6 @@ abbr -a b brew
 abbr -a o open
 abbr -a h fancy-help
 abbr -a m man
-
 
 
 # ls replacement

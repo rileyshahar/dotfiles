@@ -10,7 +10,8 @@ call plug#begin()                       " start plug
 Plug 'tpope/vim-repeat'                 " repeat plugin commands
 
 " display
-Plug 'joshdick/onedark.vim'             " atom color scheme
+"Plug 'joshdick/onedark.vim'            " atom color scheme
+Plug 'ghifarit53/tokyonight-vim'
 Plug 'itchyny/lightline.vim'            " statusline
 Plug 'ap/vim-buftabline'                " buffers in tabline
 Plug 'christoomey/vim-tmux-navigator'   " use <C-HJKL> to move between vim and tmux splits
@@ -70,10 +71,10 @@ call plug#end()                         " end plug
 
 
 " color-related
-syntax enable                           " syntax processing on
+syntax enable                          " syntax processing on
 set termguicolors                       " fancier colors
-colorscheme onedark                     " generic colorscheme
-set spell                               " spellcheck
+colorscheme tokyonight                  " generic colorscheme
+highlight Comment guifg=#f6bdff
 
 " tabs and spacing
 set expandtab                           " turn tabs into spaces
@@ -218,7 +219,7 @@ let g:ale_echo_msg_format = '[%linter%] %s'
 
 " lightline
 let g:lightline = {}
-let g:lightline.colorscheme = 'onedark'
+let g:lightline.colorscheme = 'tokyonight'
 let g:lightline.component_expand = {
       \  'linter_checking': 'lightline#ale#checking',
       \  'linter_infos': 'lightline#ale#infos',
