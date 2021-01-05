@@ -191,8 +191,10 @@ abbr -a btm $top_function
 fish_vi_key_bindings
 bind -M insert -m default jk backward-char force-repaint
 bind -M insert \cf forward-char  # this doesn't work by default for some reason
-bind -M insert \cp history-token-search-backward
-bind -M insert \cn history-token-search-forward
+bind -M insert \ci history-token-search-backward
+bind -M insert \co history-token-search-forward
+bind -M insert \cp up-or-search
+bind -M insert \cn down-or-search
 
 ### MISC
 navi widget fish | source
