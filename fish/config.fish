@@ -173,8 +173,19 @@ else
         set ps_function "ps"
 end
 
-#abbr -a procs $ps_function
 abbr -a ps $ps_function
+
+# top replacement
+if type -q btm
+        set top_function "btm"
+else if type -q ytop
+        set top_function "ytop"
+else
+        set top_function "top"
+end
+
+abbr -a top $top_function
+abbr -a btm $top_function
 
 ### KEYBINDINGS
 fish_vi_key_bindings
