@@ -195,9 +195,11 @@ bind -M insert \ci history-token-search-backward
 bind -M insert \co history-token-search-forward
 bind -M insert \cp up-or-search
 bind -M insert \cn down-or-search
+bind -M insert \t complete
 
 ### MISC
 navi widget fish | source
+zoxide init fish | source
 
 if status is-interactive
 and test -z $TMUX
