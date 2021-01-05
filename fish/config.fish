@@ -42,6 +42,23 @@ function current-song
         osascript -l JavaScript "$HOME/code/dotfiles/lib/current-song.js"
 end
 
+## Get the current cpu usage
+## primarily for the tmux status bar
+## from https://stackoverflow.com/questions/30855440/how-to-get-cpu-utilization-in-in-terminal-mac
+function cpu-usage
+
+        # the printf ensures we have only two places after the decimal
+        set ping (printf '%.2f%%' (top -l 1 | grep -E "^CPU" | grep -Eo '[^[:space:]]+%' | head -1 | sed s/\%/\/))
+
+        # left-pad with a 0 if needed
+        if test 5 -eq ( string length $ping )
+                echo ( string join "" "0" $ping )
+        else
+                echo $ping
+        end
+
+end
+
 ## Get the ping to google
 function ping-to-google
         ping -c 1 google.com | tail -1 | awk '{print $4}' | cut -d '/' -f 2 | cut -d '.' -f 1
@@ -156,7 +173,7 @@ else
         set ps_function "ps"
 end
 
-abbr -a procs $ps_function
+#abbr -a procs $ps_function
 abbr -a ps $ps_function
 
 ### KEYBINDINGS
