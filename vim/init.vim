@@ -88,6 +88,7 @@ filetype indent on                      " detect filetypes and load language-spe
 set wildmenu                            " graphical command autocomplete menu
 set showmatch                           " highlight matching bracket-like characters
 set hidden                              " don't close buffers when switching to a new buffer
+set signcolumn=yes                      " always show the signcolumn
 
 " search
 set incsearch                           " search as characters are entered
