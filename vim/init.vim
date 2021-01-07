@@ -135,6 +135,7 @@ vnoremap sy "*y
 " buffer navigation
 nnoremap H :bprevious<CR>
 nnoremap L :bnext<CR>
+nnoremap X :bp<bar>bd #<cr>
 
 " permanent undo
 set undodir=~/.vimdid
