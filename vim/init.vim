@@ -141,11 +141,6 @@ set undodir=~/.vimdid
 set undofile
 nnoremap <leader>uu :MundoToggle<CR>
 
-" splits
-" open new splits on the right and down
-set splitbelow
-set splitright
-
 " yank highlighting
 let g:highlightedyank_highlight_duration = -1   " make it permanent
 
