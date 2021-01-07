@@ -50,6 +50,7 @@ Plug 'rhysd/git-messenger.vim'          " view recent commit message
 
 " code parsing
 Plug 'neovim/nvim-lspconfig'            " neovim lsp
+Plug 'nvim-lua/lsp_extensions.nvim'     " rust inlay hints
 Plug 'dense-analysis/ale'               " asynchronous linter
 Plug 'maximbaz/lightline-ale'           " ale on statusline
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -249,14 +250,15 @@ let g:lightline.active = {
 
 " neovim-lsp
 " general
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> W     <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gw    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>| "note this doesn't work with telescope
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> <c-]>         <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD            <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> W             <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD           <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gw            <cmd>lua vim.lsp.buf.workspace_symbol()<CR>| "note this doesn't work with telescope
+nnoremap <silent> gd            <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> ga            <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> <leader>t     <cmd>lua require'lsp_extensions'.inlay_hints()<cr>
 
 nnoremap gr <cmd>lua require('telescope.builtin').lsp_references()<cr>
 nnoremap g0 <cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>
