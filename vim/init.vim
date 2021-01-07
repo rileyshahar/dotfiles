@@ -71,10 +71,13 @@ call plug#end()                         " end plug
 
 
 " color-related
-syntax enable                          " syntax processing on
+syntax enable                           " syntax processing on
 set termguicolors                       " fancier colors
 colorscheme tokyonight                  " generic colorscheme
-highlight Comment guifg=#f6bdff
+highlight Comment guifg=#f6bdff|        " better comment color
+highlight Normal guibg=None|            " let tmux control background highlighting
+hi NormalNC guibg=#0D0E19|              " darken inactive windows
+
 
 " tabs and spacing
 set expandtab                           " turn tabs into spaces
