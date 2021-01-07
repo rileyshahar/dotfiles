@@ -43,7 +43,6 @@ Plug 'honza/vim-snippets'               " actual snippets
 
 " git
 Plug 'tpope/vim-fugitive'               " git integration
-Plug 'Xuyuanp/nerdtree-git-plugin'      " git in nerdtree
 Plug 'airblade/vim-gitgutter'           " show git info in gutter
 Plug 'itchyny/vim-gitbranch'            " git branch function
 Plug 'rhysd/git-messenger.vim'          " view recent commit message
@@ -165,13 +164,7 @@ let g:gitgutter_git_executable = '/usr/local/bin/git'
 nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
 
-" nerdtree
-let NERDTreeQuitOnOpen = 1              " quit when you open a file
-let NERDTreeMinimalUI = 1               " minimal UI
-map <leader>m :NERDTreeToggle<CR>|      " open the file tree
-
 " startify
-
 " all modified git files
 function! s:gitModified()
         let files = systemlist('git ls-files -m 2>/dev/null')
