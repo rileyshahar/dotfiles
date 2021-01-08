@@ -76,7 +76,9 @@ set termguicolors                       " fancier colors
 colorscheme tokyonight                  " generic colorscheme
 highlight Comment guifg=#f6bdff|        " better comment color
 highlight Normal guibg=None|            " let tmux control background highlighting
-hi NormalNC guibg=#232433|              " darken inactive windows
+highlight EndOfBuffer guibg=None
+highlight NormalNC guibg=#232433|       " darken inactive windows
+highlight EndOfBufferNC guibg=#232433
 
 
 " tabs and spacing
