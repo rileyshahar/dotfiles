@@ -6,9 +6,11 @@ for path in $paths_to_add
 end
 
 
+
 ### FUNCTIONS
-## Moves up the directory tree to find a git repo
-## from https://github.com/jonhoo/configs/blob/master/shell/.config/fish/config.fish
+## Utility functions
+# Moves up the directory tree to find a git repo
+# from https://github.com/jonhoo/configs/blob/master/shell/.config/fish/config.fish
 function d
 	while test $PWD != "/"
 		if test -d .git
@@ -18,7 +20,34 @@ function d
 	end
 end
 
-## Open a new tmux session with a nice pane arrangement
+# Get git untracked files
+function git_untracked
+        git ls-files --other --exclude-standard
+end
+
+# Make a directory and cd to it
+function mkdir-cd
+        mkdir $argv && cd $argv
+end
+
+# Move the previously downloaded file to the cwd
+function move-last-download
+        mv ~/Downloads/(ls -t -A ~/Downloads/ | head -1) .
+end
+
+# Wrapper for help utilities
+function fancy-help
+        tldr $argv
+        or man $argv
+end
+
+## Tmux utilities
+# Ring the bell after every command execution
+function _ring_bell --on-event fish_postexec
+        printf "\a"
+end
+
+# Open a new tmux session with a nice pane arrangement
 function tm
         if not set -q TMUX
                 tmux has-session -t _default || tmux new-session -s _default\; split-window -h\; resize-pane -R 20\; split-window -v\; resize-pane -D 20\; select-pane -L
@@ -28,23 +57,23 @@ function tm
         end
 end
 
-## Get the current battery level
-## primarily for the tmux status bar
-## from https://github.com/nicknisi/dotfiles/blob/master/bin/battery
+# Get the current battery level
+# primarily for the tmux status bar
+# from https://github.com/nicknisi/dotfiles/blob/master/bin/battery
 function battery
         pmset -g batt | grep -E "([0-9]+\%).*" -o --colour=auto | cut -f1 -d';'
 end
 
-## Get the current song playing
-## primarily for the tmux status bar
-## from https://github.com/nicknisi/dotfiles/blob/master/applescripts/tunes.js
+# Get the current song playing
+# primarily for the tmux status bar
+# from https://github.com/nicknisi/dotfiles/blob/master/applescripts/tunes.js
 function current-song
         osascript -l JavaScript "$HOME/code/dotfiles/lib/current-song.js"
 end
 
-## Get the current cpu usage
-## primarily for the tmux status bar
-## from https://stackoverflow.com/questions/30855440/how-to-get-cpu-utilization-in-in-terminal-mac
+# Get the current cpu usage
+# primarily for the tmux status bar
+# from https://stackoverflow.com/questions/30855440/how-to-get-cpu-utilization-in-in-terminal-mac
 function cpu-usage
 
         # the printf ensures we have only two places after the decimal
@@ -59,30 +88,9 @@ function cpu-usage
 
 end
 
-## Get the ping to google
+# Get the ping to google
 function ping-to-google
         ping -c 1 google.com | tail -1 | awk '{print $4}' | cut -d '/' -f 2 | cut -d '.' -f 1
-end
-
-## Get git untracked files
-function git_untracked
-        git ls-files --other --exclude-standard
-end
-
-## Make a directory and cd to it
-function mkdir-cd
-        mkdir $argv && cd $argv
-end
-
-## Move the previously downloaded file to the cwd
-function move-last-download
-        mv ~/Downloads/(ls -t -A ~/Downloads/ | head -1) .
-end
-
-## Wrapper for help utilities
-function fancy-help
-        tldr $argv
-        or man $argv
 end
 
 ### ENVIRONMENT VARIABLES
