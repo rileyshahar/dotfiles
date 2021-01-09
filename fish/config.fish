@@ -43,8 +43,27 @@ end
 
 ## Tmux utilities
 # Ring the bell after every command execution
-function _ring_bell --on-event fish_postexec
+function _ring_bell_after_cmd --on-event fish_postexec
         printf "\a"
+end
+
+# Blink the tmux coloring after a command completes in another window
+function _blink_tmux_coloring_after_cmd --on-event fish_postexec
+
+        # store the previous status so we can return it at the end
+        set prev_status $status
+
+        # only do so if we're in a non-active window
+        if test (tmux display-message -pt "$TMUX_PANE" '#{window_active}') -ne 1
+
+                # blink based on the previous status
+                if test $prev_status = 0
+                        blink_tmux_color green 1
+                else
+                        blink_tmux_color red 1
+                end
+        end
+        return $prev_status
 end
 
 # Open a new tmux session with a nice pane arrangement
@@ -57,6 +76,31 @@ function tm
         end
 end
 
+# Change the color of the tmux pane borders temporarily
+# Used for alerts
+function blink_tmux_color -a color duration
+
+        # if duration is not given, default to 0.5 sec
+        set -q duration[1]; or set duration 0.5
+
+        # manipulate tmux
+        # this is all in one tmux process so it's backgroundable, but it all executes simultaneously
+        # fish only allows backgrounding commands, not functions
+        tmux \
+                set-window-option pane-active-border-style fg=$color,bg=$bg\; \
+                set-window-option pane-border-style fg=$color,bg=$bg\; \
+                set message-style bg=$color,fg=black\; \
+                set display-time (math $duration \* 1000)\; \
+                display-message "Process completed in window #I."\; \
+                run-shell "sleep $duration"\; \
+                set -u pane-active-border-style\; \
+                set -u pane-border-style\; \
+                set -u display-time \
+                & # backgrounds the tmux command
+end
+
+
+## Tmux utilities bar
 # Get the current battery level
 # primarily for the tmux status bar
 # from https://github.com/nicknisi/dotfiles/blob/master/bin/battery
