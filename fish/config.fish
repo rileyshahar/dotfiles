@@ -41,14 +41,20 @@ function fancy-help
         or man $argv
 end
 
-## Tmux utilities
+function system-notification -a body title subtitle
+        set -q subtitle[0]; or set subtitle ""
+        osascript -l JavaScript "$HOME/code/dotfiles/lib/send-notification.js" $body $title $subtitle
+end
+
+
+## Event Hooks
 # Ring the bell after every command execution
 function _ring_bell_after_cmd --on-event fish_postexec
         printf "\a"
 end
 
-# Blink the tmux coloring after a command completes in another window
-function _blink_tmux_coloring_after_cmd --on-event fish_postexec
+# Blink the tmux coloring and send a system alert after a command completes in another window
+function _handle_cmd_completion_in_inactive_window --on-event fish_postexec -a last_command
 
         # store the previous status so we can return it at the end
         set prev_status $status
@@ -57,19 +63,23 @@ function _blink_tmux_coloring_after_cmd --on-event fish_postexec
         if test (tmux display-message -pt $TMUX_PANE '#{window_active}') -ne 1
 
                 # variables we need for the message
-                set last_command (history | head -1)
                 set window_number (tmux display-message -pt $TMUX_PANE '#{window_index}')
 
-                # blink based on the previous status
+                # handle output based on the previous status
                 if test $prev_status = 0
-                        blink_tmux_color green 1  "Command `$last_command` exited successfully in window $window_number."
+                        set message "Command `$last_command` exited successfully in window $window_number."
+                        blink_tmux_color green 1 $message
+                        system-notification $message (string split " " $last_command | head -1)
                 else
-                        blink_tmux_color red 1  "Command `$last_command` exited unsuccessfully in window $window_number."
+                        set message "Command `$last_command` exited unsuccessfully in window $window_number."
+                        blink_tmux_color red 1 $message
+                        system-notification $message (string split " " $last_command | head -1)
                 end
         end
         return $prev_status
 end
 
+## Tmux utilities
 # Open a new tmux session with a nice pane arrangement
 function tm
         if not set -q TMUX
@@ -102,8 +112,6 @@ function blink_tmux_color -a color duration message
                 & # backgrounds the tmux command
 end
 
-
-## Tmux utilities bar
 # Get the current battery level
 # primarily for the tmux status bar
 # from https://github.com/nicknisi/dotfiles/blob/master/bin/battery
