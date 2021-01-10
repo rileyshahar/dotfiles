@@ -54,13 +54,17 @@ function _blink_tmux_coloring_after_cmd --on-event fish_postexec
         set prev_status $status
 
         # only do so if we're in a non-active window
-        if test (tmux display-message -pt "$TMUX_PANE" '#{window_active}') -ne 1
+        if test (tmux display-message -pt $TMUX_PANE '#{window_active}') -ne 1
+
+                # variables we need for the message
+                set last_command (history | head -1)
+                set window_number (tmux display-message -pt $TMUX_PANE '#{window_index}')
 
                 # blink based on the previous status
                 if test $prev_status = 0
-                        blink_tmux_color green 1
+                        blink_tmux_color green 1  "Command `$last_command` exited successfully in window $window_number."
                 else
-                        blink_tmux_color red 1
+                        blink_tmux_color red 1  "Command `$last_command` exited unsuccessfully in window $window_number."
                 end
         end
         return $prev_status
@@ -78,23 +82,22 @@ end
 
 # Change the color of the tmux pane borders temporarily
 # Used for alerts
-function blink_tmux_color -a color duration
-
-        # if duration is not given, default to 0.5 sec
-        set -q duration[1]; or set duration 0.5
+function blink_tmux_color -a color duration message
 
         # manipulate tmux
         # this is all in one tmux process so it's backgroundable, but it all executes simultaneously
         # fish only allows backgrounding commands, not functions
+        # note we display the message for 3x as long, to allow it to be read, but its coloring goes away
         tmux \
                 set-window-option pane-active-border-style fg=$color,bg=$bg\; \
                 set-window-option pane-border-style fg=$color,bg=$bg\; \
                 set message-style bg=$color,fg=black\; \
-                set display-time (math $duration \* 1000)\; \
-                display-message "Process completed in window #I."\; \
+                set display-time (math $duration \* 3000)\; \
+                display-message $message\; \
                 run-shell "sleep $duration"\; \
                 set -u pane-active-border-style\; \
                 set -u pane-border-style\; \
+                set -u message-style\; \
                 set -u display-time \
                 & # backgrounds the tmux command
 end
