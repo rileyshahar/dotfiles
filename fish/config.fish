@@ -83,7 +83,13 @@ end
 # Open a new tmux session with a nice pane arrangement
 function tm
         if not set -q TMUX
-                tmux has-session -t _default || tmux new-session -s _default\; split-window -h\; resize-pane -R 20\; split-window -v\; resize-pane -D 20\; select-pane -L
+                tmux \
+                        has-session -t _default || tmux new-session -s _default -c (fd -td | fzf)\; \
+                        split-window -h\; \
+                        resize-pane -R 20\; \
+                        split-window -v\; \
+                        resize-pane -D 20\; \
+                        select-pane -L
                 tmux a -t _default
         else
                 echo "Unable to enter tmux -- we're already there!" >/dev/stderr
@@ -264,7 +270,7 @@ bind -M insert \t complete
 navi widget fish | source
 zoxide init fish | source
 
-if status is-interactive
-and test -z $TMUX
-        tm
-end
+#if status is-interactive
+#and test -z $TMUX
+        #tm
+#end
