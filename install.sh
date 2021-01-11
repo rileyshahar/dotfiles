@@ -26,6 +26,9 @@ ln -sv "$HOME/code/dotfiles/git/gitconfig" "$HOME/.gitconfig"
 ln -sv "$HOME/code/dotfiles/vim/init.vim" "$HOME/.config/nvim/init.vim"
 ln -sv "$HOME/code/dotfiles/python/setup.cfg" "$HOME/code/python"
 ln -sv "$HOME/code/dotfiles/python/pylintrc" "$HOME/.pylintrc"
+ln -sv "$HOME/code/dotfiles/tmux/dmux.conf.toml" "$HOME/.config/dmux"
+
+sudo tic -x "$HOME/code/dotfiles/tmux/tmux-256color.terminfo"
 
 # ln -sv "$HOME/code/dotfiles/zsh/zshrc" "$HOME/.zshrc"
 
