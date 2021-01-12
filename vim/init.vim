@@ -252,18 +252,24 @@ let g:lightline.active = {
 
 " neovim-lsp
 " general
-nnoremap <silent> <c-]>         <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD            <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> W             <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD           <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gw            <cmd>lua vim.lsp.buf.workspace_symbol()<CR>| "note this doesn't work with telescope
-nnoremap <silent> gd            <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> ga            <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> <leader>t     <cmd>lua require'lsp_extensions'.inlay_hints()<cr>
+augroup lsp
+        autocmd!
+        autocmd FileType rust,python,c,cpp :call EnableLspKeybinds()
+augroup END
 
-nnoremap gr <cmd>lua require('telescope.builtin').lsp_references()<cr>
-nnoremap g0 <cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>
+function EnableLspKeybinds()
+        nnoremap <silent> <c-]>         <cmd>lua vim.lsp.buf.definition()<CR>
+        nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
+        nnoremap <silent> gD            <cmd>lua vim.lsp.buf.implementation()<CR>
+        nnoremap <silent> W             <cmd>lua vim.lsp.buf.signature_help()<CR>
+        nnoremap <silent> 1gD           <cmd>lua vim.lsp.buf.type_definition()<CR>
+        nnoremap <silent> gw            <cmd>lua vim.lsp.buf.workspace_symbol()<CR>| "note this doesn't work with telescope
+        nnoremap <silent> gd            <cmd>lua vim.lsp.buf.declaration()<CR>
+        nnoremap <silent> ga            <cmd>lua vim.lsp.buf.code_action()<CR>
+        nnoremap <silent> <leader>t     <cmd>lua require'lsp_extensions'.inlay_hints()<cr>
+        nnoremap <silent> gr            <cmd>lua require('telescope.builtin').lsp_references()<cr>
+        nnoremap <silent> g0            <cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>
+endfunction
 
 lua << EOF
 require'lspconfig'.rust_analyzer.setup{}
