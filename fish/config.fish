@@ -58,8 +58,8 @@ function _handle_cmd_completion_in_inactive_window --on-event fish_postexec -a l
         # store the previous status so we can return it at the end
         set prev_status $status
 
-        # only do so if we're in a non-active window
-        if test (tmux display-message -pt $TMUX_PANE '#{window_active}') -ne 1
+        # only do so if we're in a non-active, tmux window
+        if status is-interactive; and not test -z $TMUX; and test (tmux display-message -pt $TMUX_PANE '#{window_active}') -ne 1
 
                 # variables we need for the message
                 set window_number (tmux display-message -pt $TMUX_PANE '#{window_index}')
