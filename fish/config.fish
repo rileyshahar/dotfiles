@@ -82,9 +82,9 @@ end
 ## Tmux utilities
 # Open a new tmux session with a nice pane arrangement
 function tm
-        if not set -q TMUX
+       if not set -q TMUX
                 tmux \
-                        has-session -t _default || tmux new-session -s _default -c (fd -td | fzf)\; \
+                        has-session -t _default || tmux new-session -s _default -c (begin fd -td; echo "~"; end | fzf)\; \
                         split-window -h\; \
                         resize-pane -R 20\; \
                         split-window -v\; \
