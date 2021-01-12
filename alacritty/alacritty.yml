@@ -268,7 +268,7 @@ shell:
   args:
     - -l
     - -c
-    - tm
+    - "tmux has-session -t default; or tmux new-session -s _default\\; source-file $HOME/code/dotfiles/tmux/default.tmux; tmux a -t _default"
 
 # Startup directory
 #

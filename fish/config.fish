@@ -6,7 +6,6 @@ for path in $paths_to_add
 end
 
 
-
 ### FUNCTIONS
 ## Utility functions
 # Moves up the directory tree to find a git repo
@@ -80,22 +79,6 @@ function _handle_cmd_completion_in_inactive_window --on-event fish_postexec -a l
 end
 
 ## Tmux utilities
-# Open a new tmux session with a nice pane arrangement
-function tm
-       if not set -q TMUX
-                tmux \
-                        has-session -t _default || tmux new-session -s _default -c (begin fd -td; echo "~"; end | fzf)\; \
-                        split-window -h\; \
-                        resize-pane -R 20\; \
-                        split-window -v\; \
-                        resize-pane -D 20\; \
-                        select-pane -L
-                tmux a -t _default
-        else
-                echo "Unable to enter tmux -- we're already there!" >/dev/stderr
-        end
-end
-
 # Change the color of the tmux pane borders temporarily
 # Used for alerts
 function blink_tmux_color -a color duration message
@@ -269,8 +252,3 @@ bind -M insert \t complete
 ### MISC
 navi widget fish | source
 zoxide init fish | source
-
-#if status is-interactive
-#and test -z $TMUX
-        #tm
-#end
