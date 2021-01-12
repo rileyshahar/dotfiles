@@ -3,7 +3,6 @@
 	email = riley.shahar@gmail.com
 	signingkey = 1F37547641586BC0
 [core]
-	excludesfile = /Users/rileyshahar/.gitignore
         pager = delta
 [init]
 	defaultBranch = main

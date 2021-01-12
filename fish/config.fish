@@ -162,6 +162,8 @@ end
 set -x VISUAL nvim
 set -x EDITOR $VISUAL
 set -x LANG "en_US.UTF-8"
+set -x XDG_CONFIG_HOME "$HOME/.config"
+set -x XDG_DATA_HOME "$HOME/.local/share"
 
 set -x CXX "/usr/local/opt/llvm/bin//clang"
 set -x CPLUS_INCLUDE_PATH "/usr/local/include"

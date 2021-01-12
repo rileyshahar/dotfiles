@@ -18,15 +18,16 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 # install pynvim, isort, and pydocstyle either globally or in a pipenv
 
-ln -sv "$HOME/code/dotfiles/alacritty/alacritty.yml" "$HOME/.alacritty.yml"
-ln -sv "$HOME/code/dotfiles/fish/" "$HOME/.config/"
-ln -sv "$HOME/code/dotfiles/tmux/tmux.conf" "$HOME/.tmux.conf"
-ln -sv "$HOME/code/dotfiles/git/gitignore" "$HOME/.gitignore"
-ln -sv "$HOME/code/dotfiles/git/gitconfig" "$HOME/.gitconfig"
-ln -sv "$HOME/code/dotfiles/vim/init.vim" "$HOME/.config/nvim/init.vim"
-ln -sv "$HOME/code/dotfiles/python/setup.cfg" "$HOME/code/python"
-ln -sv "$HOME/code/dotfiles/python/pylintrc" "$HOME/.pylintrc"
-ln -sv "$HOME/code/dotfiles/tmux/dmux.conf.toml" "$HOME/.config/dmux"
+DOTFILES_DIR="$HOME/code/dotfiles"
+CONFIG_HOME="$HOME/.config"
+
+ln -sv "$DOTFILES_DIR/alacritty" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/fish/" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/tmux" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/git" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/nvim/init.vim" "$CONFIG_HOME/nvim"
+ln -sv "$DOTFILES_DIR/python/setup.cfg" "$HOME/code/python"
+ln -sv "$DOTFILES_DIR/python/pylintrc" "$HOME/.pylintrc"
 
 sudo tic -x "$HOME/code/dotfiles/tmux/tmux-256color.terminfo"
 
