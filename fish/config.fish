@@ -42,7 +42,7 @@ end
 
 function system-notification -a body title subtitle
         set -q subtitle[0]; or set subtitle ""
-        osascript -l JavaScript "$HOME/code/dotfiles/lib/send-notification.js" $body $title $subtitle
+        osascript -l JavaScript "$HOME/bin/send-notification.js" $body $title $subtitle
 end
 
 
@@ -133,7 +133,7 @@ end
 # primarily for the tmux status bar
 # from https://github.com/nicknisi/dotfiles/blob/master/applescripts/tunes.js
 function current-song
-        osascript -l JavaScript "$HOME/code/dotfiles/lib/current-song.js"
+        osascript -l JavaScript "$HOME/bin/current-song.js"
 end
 
 # Get the current cpu usage

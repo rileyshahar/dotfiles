@@ -29,8 +29,8 @@ ln -sv "$DOTFILES_DIR/nvim/init.vim" "$CONFIG_HOME/nvim"
 ln -sv "$DOTFILES_DIR/python/setup.cfg" "$HOME/code/python"
 ln -sv "$DOTFILES_DIR/python/pylintrc" "$HOME/.pylintrc"
 
-sudo tic -x "$HOME/code/dotfiles/tmux/tmux-256color.terminfo"
+sudo tic -x "$CONFIG_HOME/tmux/tmux-256color.terminfo"
 
-# ln -sv "$HOME/code/dotfiles/zsh/zshrc" "$HOME/.zshrc"
+# ln -sv "$DOTFILES_DIR/zsh" "$CONFIG_HOMe"
 
 sudo spctl --master-dis able  # disable unidentified developer
