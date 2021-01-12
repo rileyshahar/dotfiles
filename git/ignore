@@ -1,31 +1,46 @@
-### MACOS
-.DS_Store  # Folder view configuration files
+### MacOS
+# Folder view configuration files
+.DS_Store
+
 
 ### Vim
+# Saved vim sessions
 Session.vim
-.vim
 
-### PYTHON
-.pyc  # Compiled Python files
-.mypy_cache  # mypy
-.venv  # pipenv virtual environments
+
+### Python
+# Python bytecode
+.pyc
+
+# Mypy cache
+.mypy_cache
+
+# Pipenv virtual environments
+.venv
+
 
 ### TS
-node_modules  # node.js modules
+# Node.js modules
+node_modules
 
-### RUST
-target/ # compilation target directory
+
+### Rust
+# Compilation target directory
+target/
+
 
 ### C++
-.out  # compiled c++ files
+# Build directory
+build/
+
+# Compiled files
+.out
+
+# CMake
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
 CMakeScripts
-Testing
-Makefile
 cmake_install.cmake
 install_manifest.txt
 compile_commands.json
-CTestTestfile.cmake
-_deps
