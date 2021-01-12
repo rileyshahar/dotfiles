@@ -16,6 +16,9 @@ Plug 'itchyny/lightline.vim'            " statusline
 Plug 'ap/vim-buftabline'                " buffers in tabline
 Plug 'christoomey/vim-tmux-navigator'   " use <C-HJKL> to move between vim and tmux splits
 
+" misc
+Plug 'mhinz/vim-startify'               " starting screen
+
 " telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
