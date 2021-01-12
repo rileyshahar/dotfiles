@@ -101,6 +101,27 @@ function blink_tmux_color -a color duration message
                 & # backgrounds the tmux command
 end
 
+# Run a command in all panes
+function execute_for_all_panes
+
+        # we need to be in tmux
+        if test -z $TMUX
+                echo "no tmux session found"
+                return 1
+        end
+
+        set to_run (echo $argv | string join " ")
+
+        for pane in (tmux list-panes -F "#P")
+                if test (tmux display-message -pt $pane "#{pane_current_command}") = "fish"
+                        tmux send-keys -t $pane $to_run C-m
+                end
+
+                # the current pane is running this function, not fish, so we need to handle it separately
+                eval $to_run
+        end
+end
+
 # Get the current battery level
 # primarily for the tmux status bar
 # from https://github.com/nicknisi/dotfiles/blob/master/bin/battery
@@ -193,6 +214,8 @@ abbr -a b brew
 abbr -a o open
 abbr -a h fancy-help
 abbr -a m man
+abbr -a te execute_for_all_panes
+abbr -a tz execute_for_all_panes z
 
 
 # ls replacement
