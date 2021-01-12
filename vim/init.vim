@@ -67,6 +67,9 @@ Plug 'lervag/vimtex'                    " latex
 " fish scripts
 Plug 'dag/vim-fish'                     " fish language support
 
+" tmux
+Plug 'tmux-plugins/vim-tmux'            " tmux.conf
+
 call plug#end()                         " end plug
 
 
@@ -305,3 +308,9 @@ let g:tex_flavor = 'latex'              " we never want to write og tex
 let g:vimtex_view_method = 'skim'
 let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 let g:vimtex_view_general_options = '-r @line'
+
+" tmux
+augroup tmux
+        autocmd!
+        autocmd BufNewFile,BufRead *.tmux set ft=tmux | compiler tmux
+augroup END
