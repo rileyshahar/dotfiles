@@ -51,7 +51,7 @@ set fish_color_autosuggestion 8599ad
 set fish_color_cancel -r
 
 # configure path
-set paths_to_add /usr/local/opt/python@3.8 /bin/usr/local/opt/ruby/bin $XDG_CACHE_HOME/.cargo/bin /usr/local/opt/llvm/bin/
+set paths_to_add /usr/local/opt/python@3.8 /bin/usr/local/opt/ruby/bin $XDG_CACHE_HOME/cargo/bin /usr/local/opt/llvm/bin/
 
 for path in $paths_to_add
         contains $path $fish_user_paths; or set -Ua fish_user_paths $path
@@ -60,9 +60,8 @@ end
 
 ### FUNCTIONS
 ## Utility functions
-# Moves up the directory tree to find a git repo
-# from https://github.com/jonhoo/configs/blob/master/shell/.config/fish/config.fish
-function d
+function d -d "Move up the directory tree to find a git repo"
+        # from https://github.com/jonhoo/configs/blob/master/shell/.config/fish/config.fish
 	while test $PWD != "/"
 		if test -d .git
 			break
@@ -71,41 +70,35 @@ function d
 	end
 end
 
-# Get git untracked files
-function git_untracked
+function git_untracked -d "Get git untracked files"
         git ls-files --other --exclude-standard
 end
 
-# Make a directory and cd to it
-function mkdir-cd
+function mkdir-cd -d "Get git untracked files"
         mkdir $argv && cd $argv
 end
 
-# Move the previously downloaded file to the cwd
-function move-last-download
+function move-last-download -d "Moves up the directory tree to find a git repo"
         mv ~/Downloads/(ls -t -A ~/Downloads/ | head -1) .
 end
 
-# Wrapper for help utilities
-function fancy-help
+function fancy-help -d "Wrapper for help utilities"
         tldr $argv
         or man $argv
 end
 
-function system-notification -a body title subtitle
+function system-notification -a body title subtitle -d "Send a system notification"
         set -q subtitle[0]; or set subtitle ""
         osascript -l JavaScript "$HOME/bin/send-notification.js" $body $title $subtitle
 end
 
 
 ## Event Hooks
-# Ring the bell after every command execution
-function _ring_bell_after_cmd --on-event fish_postexec
+function _ring_bell_after_cmd --on-event fish_postexec -d "Ring the bell after every command execution"
         printf "\a"
 end
 
-# Blink the tmux coloring and send a system alert after a command completes in another window
-function _handle_cmd_completion_in_inactive_window --on-event fish_postexec -a last_command
+function _handle_cmd_completion_in_inactive_window --on-event fish_postexec -a last_command -d "Blink the tmux coloring and send a system alert after a command completes in another window"
 
         # store the previous status so we can return it at the end
         set prev_status $status
@@ -131,9 +124,7 @@ function _handle_cmd_completion_in_inactive_window --on-event fish_postexec -a l
 end
 
 ## Tmux utilities
-# Change the color of the tmux pane borders temporarily
-# Used for alerts
-function blink_tmux_color -a color duration message
+function blink_tmux_color -a color duration message -d "Change the color of the tmux pane borders temporarily"
 
         # manipulate tmux
         # this is all in one tmux process so it's backgroundable, but it all executes simultaneously
@@ -153,8 +144,7 @@ function blink_tmux_color -a color duration message
                 & # backgrounds the tmux command
 end
 
-# Run a command in all panes
-function execute_for_all_panes
+function execute_for_all_panes -d "Run a command in all panes"
 
         # we need to be in tmux
         if test -z $TMUX
@@ -174,24 +164,21 @@ function execute_for_all_panes
         end
 end
 
-# Get the current battery level
-# primarily for the tmux status bar
-# from https://github.com/nicknisi/dotfiles/blob/master/bin/battery
-function battery
+function battery -d "Get the current battery level"
+        # primarily for the tmux status bar
+        # from https://github.com/nicknisi/dotfiles/blob/master/bin/battery
         pmset -g batt | grep -E "([0-9]+\%).*" -o --colour=auto | cut -f1 -d';'
 end
 
-# Get the current song playing
-# primarily for the tmux status bar
-# from https://github.com/nicknisi/dotfiles/blob/master/applescripts/tunes.js
-function current-song
+function current-song -d "Get the current song playing"
+        # primarily for the tmux status bar
+        # from https://github.com/nicknisi/dotfiles/blob/master/applescripts/tunes.js
         osascript -l JavaScript "$HOME/bin/current-song.js"
 end
 
-# Get the current cpu usage
-# primarily for the tmux status bar
-# from https://stackoverflow.com/questions/30855440/how-to-get-cpu-utilization-in-in-terminal-mac
-function cpu-usage
+function cpu-usage -d "Get the current cpu usage"
+        # primarily for the tmux status bar
+        # from https://stackoverflow.com/questions/30855440/how-to-get-cpu-utilization-in-in-terminal-mac
 
         # the printf ensures we have only two places after the decimal
         set ping (printf '%.2f%%' (top -l 1 | grep -E "^CPU" | grep -Eo '[^[:space:]]+%' | head -1 | sed s/\%/\/))
@@ -205,8 +192,7 @@ function cpu-usage
 
 end
 
-# Get the ping to google
-function ping-to-google
+function ping-to-google -d "Get the ping to google"
         ping -c 1 google.com | tail -1 | awk '{print $4}' | cut -d '/' -f 2 | cut -d '.' -f 1
 end
 
