@@ -16,7 +16,7 @@ set -x BAT_THEME "TwoDark"
 
 # please respect xdg specs
 set -x ATOMHOME "$XDG_DATA_HOME/atom"
-set -x CARGO_HOME "$XDG_CACHE_HOME/cargo"
+set -x CARGO_HOME "$XDG_DATA_HOME/cargo"
 set -x GNUPGHOME "$XDG_DATA_HOME/gnupg"
 set -x LESSHISTFILE "$XDG_DATA_HOME/less/history"
 set -x LESSKEY "$XDG_CONFIG_HOME/less/lesskey"
@@ -51,7 +51,7 @@ set fish_color_autosuggestion 8599ad
 set fish_color_cancel -r
 
 # configure path
-set paths_to_add /usr/local/opt/python@3.8 /bin/usr/local/opt/ruby/bin $XDG_CACHE_HOME/cargo/bin /usr/local/opt/llvm/bin/
+set paths_to_add /usr/local/opt/python@3.8 /bin/usr/local/opt/ruby/bin $CARGO_HOME/bin /usr/local/opt/llvm/bin/
 
 for path in $paths_to_add
         contains $path $fish_user_paths; or set -Ua fish_user_paths $path
