@@ -1,5 +1,57 @@
+### ENVIRONMENT VARIABLES
+set -x VISUAL nvim
+set -x EDITOR $VISUAL
+set -x LANG "en_US.UTF-8"
+set -x XDG_CACHE_HOME "$HOME/.cache"
+set -x XDG_CONFIG_HOME "$HOME/.config"
+set -x XDG_DATA_HOME "$HOME/.local/share"
+
+set -x CXX "/usr/local/opt/llvm/bin//clang"
+set -x CPLUS_INCLUDE_PATH "/usr/local/include"
+set -x CMAKE_EXPORT_COMPILE_COMMANDS "true"
+
+set -x FZF_DEFAULT_COMMAND "rg --files --hidden"
+
+set -x BAT_THEME "TwoDark"
+
+# please respect xdg specs
+set -x ATOMHOME "$XDG_DATA_HOME/atom"
+set -x CARGO_HOME "$XDG_CACHE_HOME/cargo"
+set -x GNUPGHOME "$XDG_DATA_HOME/gnupg"
+set -x LESSHISTFILE "$XDG_DATA_HOME/less/history"
+set -x LESSKEY "$XDG_CONFIG_HOME/less/lesskey"
+set -x NODE_REPL_HISTORY "$XDG_DATA_HOME/node/repl_history"
+set -x PYLINTHOME "$XDG_DATA_HOME"/pylint
+set -x RUSTUP_HOME "$XDG_DATA_HOME/rustup"
+set -x TERMINFO "$XDG_DATA_HOME/terminfo"
+set -x TMUX_PLUGIN_MANAGER_PATH "$XDG_DATA_HOME/tmux/plugins"
+
+# fish colors
+set pure_color_mute 82ac7c
+set pure_color_virtualenv 808080
+set pure_color_primary blue
+set pure_color_success magenta
+
+set fish_color_normal normal
+set fish_color_command magenta
+set fish_color_quote yellow
+set fish_color_redirection ff9e64
+set fish_color_end cyan
+set fish_color_error red
+set fish_color_param blue
+set fish_color_comment brmagenta
+set fish_color_match normal
+set fish_color_selection --background=brblack # todo: find a better color
+set fish_color_search_match normal
+set fish_color_history_current normal
+set fish_color_operator ff9e64
+set fish_color_escape ff9e64
+set fish_color_valid_path --underline
+set fish_color_autosuggestion 8599ad
+set fish_color_cancel -r
+
 # configure path
-set paths_to_add /usr/local/opt/python@3.8 /bin/usr/local/opt/ruby/bin $HOME/.cargo/bin /usr/local/opt/llvm/bin/
+set paths_to_add /usr/local/opt/python@3.8 /bin/usr/local/opt/ruby/bin $XDG_CACHE_HOME/.cargo/bin /usr/local/opt/llvm/bin/
 
 for path in $paths_to_add
         contains $path $fish_user_paths; or set -Ua fish_user_paths $path
@@ -157,49 +209,6 @@ end
 function ping-to-google
         ping -c 1 google.com | tail -1 | awk '{print $4}' | cut -d '/' -f 2 | cut -d '.' -f 1
 end
-
-### ENVIRONMENT VARIABLES
-set -x VISUAL nvim
-set -x EDITOR $VISUAL
-set -x LANG "en_US.UTF-8"
-set -x XDG_CONFIG_HOME "$HOME/.config"
-set -x XDG_DATA_HOME "$HOME/.local/share"
-
-set -x CXX "/usr/local/opt/llvm/bin//clang"
-set -x CPLUS_INCLUDE_PATH "/usr/local/include"
-set -x CMAKE_EXPORT_COMPILE_COMMANDS "true"
-
-set -x FZF_DEFAULT_COMMAND "rg --files --hidden"
-
-set -x BAT_THEME "TwoDark"
-
-set -x CMAKE_EXPORT_COMPILE_COMMANDS true
-
-# fish colors
-set pure_color_mute 82ac7c
-set pure_color_virtualenv 808080
-set pure_color_primary blue
-set pure_color_success magenta
-
-set fish_color_normal normal
-set fish_color_command magenta
-set fish_color_quote yellow
-set fish_color_redirection ff9e64
-set fish_color_end cyan
-set fish_color_error red
-set fish_color_param blue
-set fish_color_comment brmagenta
-set fish_color_match normal
-set fish_color_selection --background=brblack # todo: find a better color
-set fish_color_search_match normal
-set fish_color_history_current normal
-set fish_color_operator ff9e64
-set fish_color_escape ff9e64
-set fish_color_valid_path --underline
-set fish_color_autosuggestion 8599ad
-set fish_color_cancel -r
-
-
 
 ### ABBREVIATIONS
 abbr -a e nvim

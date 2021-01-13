@@ -146,7 +146,6 @@ nnoremap L :bnext<CR>
 nnoremap X :bp<bar>bd #<cr>
 
 " permanent undo
-set undodir=~/.vimdid
 set undofile
 nnoremap <leader>uu :MundoToggle<CR>
 
