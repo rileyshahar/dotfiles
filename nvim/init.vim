@@ -90,6 +90,7 @@ highlight EndOfBufferNC guibg=#232433
 
 " tabs and spacing
 set expandtab                           " turn tabs into spaces
+set shiftwidth=2
 
 " ui
 set number relativenumber               " show relative line numbers
