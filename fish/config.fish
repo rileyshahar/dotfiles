@@ -60,7 +60,7 @@ end
 
 ### FUNCTIONS
 ## Utility functions
-function d -d "Move up the directory tree to find a git repo"
+function upto_git -d "Move up the directory tree to find a git repo"
         # from https://github.com/jonhoo/configs/blob/master/shell/.config/fish/config.fish
 	while test $PWD != "/"
 		if test -d .git
@@ -213,6 +213,7 @@ abbr -a h fancy-help
 abbr -a m man
 abbr -a te execute_for_all_panes
 abbr -a tz execute_for_all_panes z
+abbr -a d upto_git
 
 
 # ls replacement
