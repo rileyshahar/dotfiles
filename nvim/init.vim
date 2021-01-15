@@ -297,7 +297,7 @@ let g:neoformat_enabled_rust = ["rustfmt"]
 
 " language-specific settings
 " python
-let g:python3_host_prog='/Users/rileyshahar/.local/share/virtualenvs/vim-R3ASTuF3/bin/python'       " python3 provider with pynvim installed
+let g:python3_host_prog='/Users/rileyshahar/.local/share/virtualenvs/nvim-L1s0lsRG/bin/python'       " python3 provider with pynvim installed
 
 " latex
 let g:tex_flavor = 'latex'              " we never want to write og tex
