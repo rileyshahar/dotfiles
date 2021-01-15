@@ -159,9 +159,9 @@ function execute_for_all_panes -d "Run a command in all panes"
             tmux send-keys -t $pane $to_run C-m
         end
 
-        # the current pane is running this function, not fish, so we need to handle it separately
-        eval $to_run
     end
+    # the current pane is running this function, not fish, so we need to handle it separately
+    eval $to_run
 end
 
 function battery -d "Get the current battery level"
