@@ -10,9 +10,11 @@ call plug#begin()                       " start plug
 Plug 'tpope/vim-repeat'                 " repeat plugin commands
 
 " display
-"Plug 'joshdick/onedark.vim'            " atom color scheme
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'itchyny/lightline.vim'            " statusline
+
+" navigation
+Plug 'moll/vim-bbye'                    " exit buffer command
 Plug 'ap/vim-buftabline'                " buffers in tabline
 Plug 'christoomey/vim-tmux-navigator'   " use <C-HJKL> to move between vim and tmux splits
 
@@ -145,7 +147,7 @@ vnoremap sy "*y
 " buffer navigation
 nnoremap H :bprevious<CR>
 nnoremap L :bnext<CR>
-nnoremap X :bp<bar>bd #<cr>
+nnoremap X :Bdelete<CR>
 
 " permanent undo
 set undofile
