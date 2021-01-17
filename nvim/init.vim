@@ -163,7 +163,7 @@ let g:highlightedyank_highlight_duration = -1   " make it permanent
 
 " snippets
 let g:UltiSnipsExpandTrigger = "<nop>"
-inoremap <expr> <CR> pumvisible() ? "<C-R>=UltiSnips#ExpandSnippetOrJump()<CR>" : "\<CR>"
+inoremap <expr> <tab> pumvisible() ? "<C-R>=UltiSnips#ExpandSnippetOrJump()<CR>" : "\<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
