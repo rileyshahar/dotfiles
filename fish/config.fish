@@ -202,6 +202,8 @@ abbr -a p python
 abbr -a p3 python3
 abbr -a pt python -m pytest
 abbr -a c cargo
+abbr -a ct cargo test
+abbr -a cti cargo test -- --ignored
 abbr -a g git
 abbr -a gc git checkout
 abbr -a gu git_untracked
