@@ -231,6 +231,9 @@ function EnableLspKeybinds()
         nnoremap <silent> <leader>t     <cmd>lua require'lsp_extensions'.inlay_hints()<cr>
         nnoremap <silent> gr            <cmd>lua require('telescope.builtin').lsp_references()<cr>
         nnoremap <silent> g0            <cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>
+        nnoremap <silent> <leader>d     <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
+        nnoremap <silent> gk            <cmd>lua vim.lsp.diagnostic.goto_prev({ wrap = true })<cr>
+        nnoremap <silent> gj            <cmd>lua vim.lsp.diagnostic.goto_next({ wrap = true })<cr>
 endfunction
 
 lua << EOF
@@ -246,6 +249,14 @@ require'lspconfig'.rust_analyzer.setup{
 }
 require'lspconfig'.pyls.setup{}
 require'lspconfig'.clangd.setup{}
+
+-- https://github.com/nvim-lua/diagnostic-nvim/issues/73
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    -- disable virtual text
+    virtual_text = false,
+  }
+)
 EOF
 
 " neovim-complete
