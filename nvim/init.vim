@@ -234,6 +234,7 @@ function EnableLspKeybinds()
         nnoremap <silent> <leader>d     <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
         nnoremap <silent> gk            <cmd>lua vim.lsp.diagnostic.goto_prev({ wrap = true })<cr>
         nnoremap <silent> gj            <cmd>lua vim.lsp.diagnostic.goto_next({ wrap = true })<cr>
+        nnoremap <silent> <leader>rn    <cmd>lua vim.lsp.buf.rename()<cr>
 endfunction
 
 lua << EOF
