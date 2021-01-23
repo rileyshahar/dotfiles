@@ -1,9 +1,21 @@
-" general
+"                                  _ 
+"   __ _  ___ _ __   ___ _ __ __ _| |
+"  / _` |/ _ \ '_ \ / _ \ '__/ _` | |
+" | (_| |  __/ | | |  __/ | | (_| | |
+"  \__, |\___|_| |_|\___|_|  \__,_|_|
+"  |___/                             
+"
 set nocompatible
 let mapleader = ","                     " \ is hard to get to
 let maplocalleader = "\<space>"         " ditto
 
-" plugins
+"        _             _           
+"  _ __ | |_   _  __ _(_)_ __  ___ 
+" | '_ \| | | | |/ _` | | '_ \/ __|
+" | |_) | | |_| | (_| | | | | \__ \
+" | .__/|_|\__,_|\__, |_|_| |_|___/
+" |_|            |___/             
+"
 call plug#begin()                       " start plug
 
 " plugin meta
@@ -79,7 +91,21 @@ Plug 'tmux-plugins/vim-tmux'            " tmux.conf
 call plug#end()                         " end plug
 
 
-" color-related
+"        _ 
+"  _   _(_)
+" | | | | |
+" | |_| | |
+"  \__,_|_|
+"          
+"
+set number relativenumber               " show relative line numbers
+filetype indent on                      " detect filetypes and load language-specific indent files
+set wildmenu                            " graphical command autocomplete menu
+set showmatch                           " highlight matching bracket-like characters
+set hidden                              " don't close buffers when switching to a new buffer
+set signcolumn=yes                      " always show the signcolumn
+
+" color
 syntax enable                           " syntax processing on
 set termguicolors                       " fancier colors
 colorscheme tokyonight                  " generic colorscheme
@@ -89,18 +115,9 @@ highlight EndOfBuffer guibg=None
 highlight NormalNC guibg=#232433|       " darken inactive windows
 highlight EndOfBufferNC guibg=#232433
 
-
 " tabs and spacing
 set expandtab                           " turn tabs into spaces
 set shiftwidth=2
-
-" ui
-set number relativenumber               " show relative line numbers
-filetype indent on                      " detect filetypes and load language-specific indent files
-set wildmenu                            " graphical command autocomplete menu
-set showmatch                           " highlight matching bracket-like characters
-set hidden                              " don't close buffers when switching to a new buffer
-set signcolumn=yes                      " always show the signcolumn
 
 " search
 set incsearch                           " search as characters are entered
@@ -130,47 +147,10 @@ set foldlevelstart=1                    " default level to start folding
 set foldmethod=expr                     " fold based on tree-sitter
 set foldexpr=nvim_treesitter#foldexpr()
 
-" common keybindings
-inoremap jk <esc>|                      " <esc> is hard to get to
-nnoremap <leader>s :mksession!<CR>|     " save the current session
-nnoremap <silent> <leader>l :nohlsearch<CR><C-L>| " clear highlighting
-nmap Y y$|                              " this should be a default
-" if a line is autowrapped, don't skip the second graphical line
-nnoremap j gj
-nnoremap k gk
-" shift is hard to type
-nnoremap ; :
-vnoremap ; :
-" sy to copy to the system clipboard
-nnoremap sy "*y
-vnoremap sy "*y
-" buffer navigation
-nnoremap H :bprevious<CR>
-nnoremap L :bnext<CR>
-nnoremap X :Bdelete<CR>
-
-" permanent undo
-set undofile
-nnoremap <leader>uu :MundoToggle<CR>
-
 " splits
 " open new splits on the right and down
 "set splitbelow
 "set splitright
-
-" yank highlighting
-let g:highlightedyank_highlight_duration = -1   " make it permanent
-
-" snippets
-let g:UltiSnipsExpandTrigger = "<nop>"
-inoremap <expr> <tab> pumvisible() ? "<C-R>=UltiSnips#ExpandSnippetOrJump()<CR>" : "\<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsEditSplit="vertical"
-let g:ultisnips_python_style="numpy"
-
-" terminal
-let g:floaterm_keymap_toggle = '<F8>'
 
 " figlet text
 function! FigletFormat(text)
@@ -190,6 +170,53 @@ endfunction
 
 nnoremap g@ <cmd>call FigletFormat(getline("."))<cr>`[kdd
 
+"            _            _              _     _           _     
+"  _ __ ___ (_)___  ___  | | _____ _   _| |__ (_)_ __   __| |___ 
+" | '_ ` _ \| / __|/ __| | |/ / _ \ | | | '_ \| | '_ \ / _` / __|
+" | | | | | | \__ \ (__  |   <  __/ |_| | |_) | | | | | (_| \__ \
+" |_| |_| |_|_|___/\___| |_|\_\___|\__, |_.__/|_|_| |_|\__,_|___/
+"                                  |___/                         
+"
+inoremap jk <esc>|                      " <esc> is hard to get to
+nnoremap <leader>s :mksession!<CR>|     " save the current session
+nnoremap <silent> <leader>l :nohlsearch<CR><C-L>| " clear highlighting
+nmap Y y$|                              " this should be a default
+" if a line is autowrapped, don't skip the second graphical line
+nnoremap j gj
+nnoremap k gk
+" shift is hard to type
+nnoremap ; :
+vnoremap ; :
+" sy to copy to the system clipboard
+nnoremap sy "*y
+vnoremap sy "*y
+" buffer navigation
+nnoremap H :bprevious<CR>
+nnoremap L :bnext<CR>
+nnoremap X :Bdelete<CR>
+
+
+"                  _       
+"  _   _ _ __   __| | ___  
+" | | | | '_ \ / _` |/ _ \ 
+" | |_| | | | | (_| | (_) |
+"  \__,_|_| |_|\__,_|\___/ 
+"                          
+"
+" permanent undo
+set undofile
+nnoremap <leader>uu :MundoToggle<CR>
+
+" yank highlighting
+let g:highlightedyank_highlight_duration = -1   " make it permanent
+
+"  _        __             _ _           _                 
+" (_)_ __  / _| ___     __| (_)___ _ __ | | __ _ _   _ ___ 
+" | | '_ \| |_ / _ \   / _` | / __| '_ \| |/ _` | | | / __|
+" | | | | |  _| (_) | | (_| | \__ \ |_) | | (_| | |_| \__ \
+" |_|_| |_|_|  \___/   \__,_|_|___/ .__/|_|\__,_|\__, |___/
+"                                 |_|            |___/     
+"
 " make gitgutter use the correct executabl
 let g:gitgutter_git_executable = '/usr/local/bin/git'
 nmap ]h <Plug>(GitGutterNextHunk)
@@ -229,6 +256,21 @@ let g:lightline.active = {
       \          [ 'gitbranch' ]]
       \ }
 
+
+"                                 _   _          
+"  ___  ___ _ __ ___   __ _ _ __ | |_(_) ___ ___ 
+" / __|/ _ \ '_ ` _ \ / _` | '_ \| __| |/ __/ __|
+" \__ \  __/ | | | | | (_| | | | | |_| | (__\__ \
+" |___/\___|_| |_| |_|\__,_|_| |_|\__|_|\___|___/
+"                                                
+"
+" snippets
+let g:UltiSnipsExpandTrigger = "<nop>"
+inoremap <expr> <tab> pumvisible() ? "<C-R>=UltiSnips#ExpandSnippetOrJump()<CR>" : "\<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsEditSplit="vertical"
+let g:ultisnips_python_style="numpy"
 
 " neovim-lsp
 " general
@@ -328,7 +370,14 @@ let g:neoformat_enabled_lua = ["lua-fmt"]
 let g:neoformat_enabled_python = ["black", "docformatter", "isort"]
 let g:neoformat_enabled_rust = ["rustfmt"]
 
-" language-specific settings
+
+"  _                                                                    
+" | | __ _ _ __   __ _ _   _  __ _  __ _  ___       ___ _ __   ___  ___ 
+" | |/ _` | '_ \ / _` | | | |/ _` |/ _` |/ _ \_____/ __| '_ \ / _ \/ __|
+" | | (_| | | | | (_| | |_| | (_| | (_| |  __/_____\__ \ |_) |  __/ (__ 
+" |_|\__,_|_| |_|\__, |\__,_|\__,_|\__, |\___|     |___/ .__/ \___|\___|
+"                |___/             |___/               |_|              
+"
 " python
 let g:python3_host_prog='/Users/rileyshahar/.local/share/virtualenvs/nvim-L1s0lsRG/bin/python'       " python3 provider with pynvim installed
 
