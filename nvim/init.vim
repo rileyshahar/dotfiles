@@ -172,6 +172,24 @@ let g:ultisnips_python_style="numpy"
 " terminal
 let g:floaterm_keymap_toggle = '<F8>'
 
+" figlet text
+function! FigletFormat(text)
+  let commentlist = split(&commentstring, '%s')
+  let text = a:text
+  for comment in commentlist
+    if text[:len(comment)] =~ comment
+      let text = text[len(comment):]
+      break
+    endif
+  endfor
+  let output = system("figlet " . shellescape(text))
+  let output = substitute(l:output, "\n", "\n" . commentlist[0], "g")
+  let output = substitute(l:output, "^", commentlist[0], "g")
+  put =output
+endfunction
+
+nnoremap g@ <cmd>call FigletFormat(getline("."))<cr>`[kdd
+
 " make gitgutter use the correct executabl
 let g:gitgutter_git_executable = '/usr/local/bin/git'
 nmap ]h <Plug>(GitGutterNextHunk)
