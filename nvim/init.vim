@@ -302,8 +302,7 @@ require'lspconfig'.rust_analyzer.setup{
   settings = {
     ["rust-analyzer"] = {
       checkOnSave = {
-        command = "clippy",
-        extraArgs = " -- -W clippy::nursery -W clippy::pedantic"
+        overrideCommand = {"cargo", "clippy", "--tests", "--message-format=json", "--", "-W", "clippy::nursery", "-W", "clippy::pedantic", "--verbose"}
       }
     }
   }
