@@ -16,8 +16,6 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 # set up fish
 # pull dotfiles from git
 
-# install pynvim, isort, and pydocstyle either globally or in a pipenv
-
 DOTFILES_DIR="$HOME/code/dotfiles"
 CONFIG_HOME="$HOME/.config"
 
@@ -25,12 +23,13 @@ ln -sv "$DOTFILES_DIR/alacritty" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/fish/" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/tmux" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/git" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/skhd" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/nvim/init.vim" "$CONFIG_HOME/nvim"
 ln -sv "$DOTFILES_DIR/python/setup.cfg" "$HOME/code/python"
 ln -sv "$DOTFILES_DIR/python/pylintrc" "$HOME/.pylintrc"
 
-sudo tic -x "$CONFIG_HOME/tmux/tmux-256color.terminfo"
+brew services start skhd
 
-# ln -sv "$DOTFILES_DIR/zsh" "$CONFIG_HOMe"
+sudo tic -x "$CONFIG_HOME/tmux/tmux-256color.terminfo"
 
 sudo spctl --master-dis able  # disable unidentified developer
