@@ -1,20 +1,20 @@
-"                                  _ 
+"                                  _
 "   __ _  ___ _ __   ___ _ __ __ _| |
 "  / _` |/ _ \ '_ \ / _ \ '__/ _` | |
 " | (_| |  __/ | | |  __/ | | (_| | |
 "  \__, |\___|_| |_|\___|_|  \__,_|_|
-"  |___/                             
+"  |___/
 "
 set nocompatible
 let mapleader = ","                     " \ is hard to get to
 let maplocalleader = "\<space>"         " ditto
 
-"        _             _           
-"  _ __ | |_   _  __ _(_)_ __  ___ 
+"        _             _
+"  _ __ | |_   _  __ _(_)_ __  ___
 " | '_ \| | | | |/ _` | | '_ \/ __|
 " | |_) | | |_| | (_| | | | | \__ \
 " | .__/|_|\__,_|\__, |_|_| |_|___/
-" |_|            |___/             
+" |_|            |___/
 "
 call plug#begin()                       " start plug
 
@@ -91,12 +91,12 @@ Plug 'tmux-plugins/vim-tmux'            " tmux.conf
 call plug#end()                         " end plug
 
 
-"        _ 
+"        _
 "  _   _(_)
 " | | | | |
 " | |_| | |
 "  \__,_|_|
-"          
+"
 "
 set number relativenumber               " show relative line numbers
 filetype indent on                      " detect filetypes and load language-specific indent files
@@ -170,12 +170,12 @@ endfunction
 
 nnoremap g@ <cmd>call FigletFormat(getline("."))<cr>`[kdd
 
-"            _            _              _     _           _     
-"  _ __ ___ (_)___  ___  | | _____ _   _| |__ (_)_ __   __| |___ 
+"            _            _              _     _           _
+"  _ __ ___ (_)___  ___  | | _____ _   _| |__ (_)_ __   __| |___
 " | '_ ` _ \| / __|/ __| | |/ / _ \ | | | '_ \| | '_ \ / _` / __|
 " | | | | | | \__ \ (__  |   <  __/ |_| | |_) | | | | | (_| \__ \
 " |_| |_| |_|_|___/\___| |_|\_\___|\__, |_.__/|_|_| |_|\__,_|___/
-"                                  |___/                         
+"                                  |___/
 "
 inoremap jk <esc>|                      " <esc> is hard to get to
 nnoremap <leader>s :mksession!<CR>|     " save the current session
@@ -196,12 +196,12 @@ nnoremap L :bnext<CR>
 nnoremap X :Bdelete<CR>
 
 
-"                  _       
-"  _   _ _ __   __| | ___  
-" | | | | '_ \ / _` |/ _ \ 
+"                  _
+"  _   _ _ __   __| | ___
+" | | | | '_ \ / _` |/ _ \
 " | |_| | | | | (_| | (_) |
-"  \__,_|_| |_|\__,_|\___/ 
-"                          
+"  \__,_|_| |_|\__,_|\___/
+"
 "
 " permanent undo
 set undofile
@@ -210,12 +210,12 @@ nnoremap <leader>uu :MundoToggle<CR>
 " yank highlighting
 let g:highlightedyank_highlight_duration = -1   " make it permanent
 
-"  _        __             _ _           _                 
-" (_)_ __  / _| ___     __| (_)___ _ __ | | __ _ _   _ ___ 
+"  _        __             _ _           _
+" (_)_ __  / _| ___     __| (_)___ _ __ | | __ _ _   _ ___
 " | | '_ \| |_ / _ \   / _` | / __| '_ \| |/ _` | | | / __|
 " | | | | |  _| (_) | | (_| | \__ \ |_) | | (_| | |_| \__ \
 " |_|_| |_|_|  \___/   \__,_|_|___/ .__/|_|\__,_|\__, |___/
-"                                 |_|            |___/     
+"                                 |_|            |___/
 "
 " make gitgutter use the correct executabl
 let g:gitgutter_git_executable = '/usr/local/bin/git'
@@ -257,12 +257,12 @@ let g:lightline.active = {
       \ }
 
 
-"                                 _   _          
-"  ___  ___ _ __ ___   __ _ _ __ | |_(_) ___ ___ 
+"                                 _   _
+"  ___  ___ _ __ ___   __ _ _ __ | |_(_) ___ ___
 " / __|/ _ \ '_ ` _ \ / _` | '_ \| __| |/ __/ __|
 " \__ \  __/ | | | | | (_| | | | | |_| | (__\__ \
 " |___/\___|_| |_| |_|\__,_|_| |_|\__|_|\___|___/
-"                                                
+"
 "
 " snippets
 let g:UltiSnipsExpandTrigger = "<nop>"
@@ -276,7 +276,7 @@ let g:ultisnips_python_style="numpy"
 " general
 augroup lsp
         autocmd!
-        autocmd FileType rust,python,c,cpp :call EnableLspKeybinds()
+        autocmd FileType rust,python,c,cpp,tex :call EnableLspKeybinds()
 augroup END
 
 function EnableLspKeybinds()
@@ -309,6 +309,15 @@ require'lspconfig'.rust_analyzer.setup{
 }
 require'lspconfig'.pyls.setup{}
 require'lspconfig'.clangd.setup{}
+require'lspconfig'.texlab.setup{
+  settings = {
+    latex = {
+      lint = {
+        onSave = true
+      }
+    }
+  }
+}
 
 -- https://github.com/nvim-lua/diagnostic-nvim/issues/73
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -360,6 +369,7 @@ let g:neoformat_run_all_formatters = 1
 
 " trim whitespace
 let g:neoformat_basic_format_retab = 1
+let g:neoformat_basic_format_trim = 1
 
 " enabled formatters
 let g:neoformat_enabled_c = ["clang-format"]
@@ -370,12 +380,12 @@ let g:neoformat_enabled_python = ["black", "docformatter", "isort"]
 let g:neoformat_enabled_rust = ["rustfmt"]
 
 
-"  _                                                                    
-" | | __ _ _ __   __ _ _   _  __ _  __ _  ___       ___ _ __   ___  ___ 
+"  _
+" | | __ _ _ __   __ _ _   _  __ _  __ _  ___       ___ _ __   ___  ___
 " | |/ _` | '_ \ / _` | | | |/ _` |/ _` |/ _ \_____/ __| '_ \ / _ \/ __|
-" | | (_| | | | | (_| | |_| | (_| | (_| |  __/_____\__ \ |_) |  __/ (__ 
+" | | (_| | | | | (_| | |_| | (_| | (_| |  __/_____\__ \ |_) |  __/ (__
 " |_|\__,_|_| |_|\__, |\__,_|\__,_|\__, |\___|     |___/ .__/ \___|\___|
-"                |___/             |___/               |_|              
+"                |___/             |___/               |_|
 "
 " python
 let g:python3_host_prog='/Users/rileyshahar/.local/share/virtualenvs/nvim-L1s0lsRG/bin/python'       " python3 provider with pynvim installed
