@@ -260,7 +260,7 @@ shell:
   args:
     - -l
     - -c
-    - "tmux has-session -t default; or tmux new-session -s _default\\; source-file $XDG_CONFIG_HOME/tmux/default.tmux; tmux a -t _default"
+    - "tmux has-session -t _default; or tmux new-session -s _default\\; source-file $XDG_CONFIG_HOME/tmux/default.tmux; tmux a -t _default"
 # Startup directory
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
