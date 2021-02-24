@@ -29,6 +29,7 @@ Plug 'itchyny/lightline.vim'            " statusline
 Plug 'moll/vim-bbye'                    " exit buffer command
 Plug 'ap/vim-buftabline'                " buffers in tabline
 Plug 'christoomey/vim-tmux-navigator'   " use <C-HJKL> to move between vim and tmux splits
+Plug 'chaoren/vim-wordmotion'           " better word motion
 
 " misc
 Plug 'mhinz/vim-startify'               " starting screen
@@ -283,7 +284,7 @@ function EnableLspKeybinds()
         nnoremap <silent> <c-]>         <cmd>lua vim.lsp.buf.definition()<CR>
         nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
         nnoremap <silent> gD            <cmd>lua vim.lsp.buf.implementation()<CR>
-        nnoremap <silent> W             <cmd>lua vim.lsp.buf.signature_help()<CR>
+        nnoremap <silent> gK            <cmd>lua vim.lsp.buf.signature_help()<CR>
         nnoremap <silent> 1gD           <cmd>lua vim.lsp.buf.type_definition()<CR>
         nnoremap <silent> gw            <cmd>lua vim.lsp.buf.workspace_symbol()<CR>| "note this doesn't work with telescope
         nnoremap <silent> gd            <cmd>lua vim.lsp.buf.declaration()<CR>
