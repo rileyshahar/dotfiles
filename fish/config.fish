@@ -51,7 +51,7 @@ set fish_color_autosuggestion 8599ad
 set fish_color_cancel -r
 
 # configure path
-set paths_to_add /usr/local/opt/python@3.8 /bin/usr/local/opt/ruby/bin $CARGO_HOME/bin /usr/local/opt/llvm/bin/
+set paths_to_add /usr/local/opt/python@3.8 /bin/usr/local/opt/ruby/bin $CARGO_HOME/bin /usr/local/opt/llvm/bin/ $XDG_DATA_HOME/bin
 
 for path in $paths_to_add
     contains $path $fish_user_paths; or set -Ua fish_user_paths $path
@@ -89,7 +89,7 @@ end
 
 function system-notification -a body title subtitle -d "Send a system notification"
     set -q subtitle[0]; or set subtitle ""
-    osascript -l JavaScript "$HOME/bin/send-notification.js" $body $title $subtitle
+    send-notification.js $body $title $subtitle
 end
 
 
@@ -173,7 +173,7 @@ end
 function current-song -d "Get the current song playing"
     # primarily for the tmux status bar
     # from https://github.com/nicknisi/dotfiles/blob/master/applescripts/tunes.js
-    osascript -l JavaScript "$HOME/bin/current-song.js"
+    current-song.js
 end
 
 function cpu-usage -d "Get the current cpu usage"
