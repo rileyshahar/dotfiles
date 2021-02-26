@@ -145,8 +145,7 @@ nnoremap <leader>gp <cmd>lua require('telescope.builtin').gh_pull_request()<cr>
 " folding
 set foldenable                          " enable folding
 set foldlevelstart=1                    " default level to start folding
-set foldmethod=expr                     " fold based on tree-sitter
-set foldexpr=nvim_treesitter#foldexpr()
+set foldmethod=indent                   " fold based on indentation
 
 " splits
 " open new splits on the right and down
