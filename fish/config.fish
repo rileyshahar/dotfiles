@@ -93,6 +93,28 @@ function system-notification -a body title subtitle -d "Send a system notificati
 end
 
 
+# make !! and !$ work
+function bind_bang
+    switch (commandline -t)[-1]
+        case "!"
+            commandline -t $history[1]
+            commandline -f repaint
+        case "*"
+            commandline -i !
+    end
+end
+
+function bind_dollar
+    switch (commandline -t)[-1]
+        case "!"
+            commandline -t ""
+            commandline -f history-token-search-backward
+        case "*"
+            commandline -i '$'
+    end
+end
+
+
 ## Event Hooks
 function _ring_bell_after_cmd --on-event fish_postexec -d "Ring the bell after every command execution"
     printf "\a"
@@ -273,6 +295,8 @@ bind -M insert \cd history-token-search-forward
 bind -M insert \cp up-or-search
 bind -M insert \cn down-or-search
 bind -M insert \t complete
+bind -M insert ! bind_bang
+bind -M insert '$' bind_dollar
 
 ### MISC
 navi widget fish | source
