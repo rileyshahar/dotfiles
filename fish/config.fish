@@ -240,6 +240,7 @@ abbr -a m man
 abbr -a te execute_for_all_panes
 abbr -a tz execute_for_all_panes z
 abbr -a d upto_git
+abbr -a rl tmux respawn-pane -k -c \'\#{pane_current_path}\'
 
 
 # ls replacement
