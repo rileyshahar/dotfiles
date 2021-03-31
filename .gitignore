@@ -4,3 +4,4 @@ fish/fish_variables
 fish/functions
 base16/
 conf.d
+Session.vim

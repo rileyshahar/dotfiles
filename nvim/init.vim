@@ -68,7 +68,7 @@ Plug 'rhysd/git-messenger.vim'          " view recent commit message
 " code parsing
 Plug 'neovim/nvim-lspconfig'            " neovim lsp
 Plug 'nvim-lua/lsp_extensions.nvim'     " rust inlay hints
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " completion
 Plug 'nvim-lua/completion-nvim'         " nvim completion
@@ -345,14 +345,14 @@ set shortmess+=c
 let g:completion_enable_snippet = 'UltiSnips'
 
 " tree-sitter
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
-  highlight = {
-    enable = true,
-  },
-}
-EOF
+" lua <<EOF
+" require'nvim-treesitter.configs'.setup {
+"   ensure_installed = "maintained",
+"   highlight = {
+"     enable = true,
+"   },
+" }
+" EOF
 
 " neoformat
 " run on save
