@@ -21,5 +21,5 @@ paq{'savq/paq-nvim', opt=true}          -- Let Paq manage itself
 
 -- shell out to modules
 require('appearance.lua')
-require('metanav.lua')
--- require('telescope.lua')
+require('buffers.lua')
+require('telescope.lua')
