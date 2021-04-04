@@ -1,7 +1,3 @@
--- dependencies
-paq 'nvim-lua/popup.nvim'
-paq 'nvim-lua/plenary.nvim'
-
 -- package
 paq 'nvim-telescope/telescope.nvim'
 

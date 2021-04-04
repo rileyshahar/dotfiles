@@ -25,8 +25,13 @@ cmd 'packadd paq-nvim'                  -- Load package
 paq = require'paq-nvim'.paq             -- Import module and bind `paq` function
 paq{'savq/paq-nvim', opt=true}          -- Let Paq manage itself
 
+-- common dependencies
+paq 'nvim-lua/popup.nvim'
+paq 'nvim-lua/plenary.nvim'
+
 -- shell out to modules
 require('appearance.lua')
-require('misc.lua')
 require('buffers.lua')
+require('git.lua')
+require('misc.lua')
 require('telescope.lua')
