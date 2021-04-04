@@ -3,7 +3,7 @@ vim.o.termguicolors = true
 
 -- colorscheme
 paq 'ghifarit53/tokyonight-vim'
-cmd 'colorscheme tokyonight'
+cmd 'colorscheme tokyonight' -- todo: this is *slow as fuck*, we need to rewrite smth by hand
 cmd 'highlight Comment guifg=#f6bdff'        -- better comment color
 
 -- syntax highlighting
