@@ -1,8 +1,5 @@
--- line numbers
-cmd 'set number relativenumber'
-
 -- prettier colors
-cmd 'set termguicolors'
+vim.o.termguicolors = true
 
 -- colorscheme
 paq 'ghifarit53/tokyonight-vim'

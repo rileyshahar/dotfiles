@@ -4,7 +4,7 @@ fn = vim.fn
 g = vim.g
 
 -- map function
-function map(lhs, rhs, opts, mode)
+function map(lhs, rhs, mode, opts)
   mode = mode or "n"
   local options = {noremap = true}
   if opts then
@@ -13,8 +13,8 @@ function map(lhs, rhs, opts, mode)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-function map_lua(lhs, rhs, opts, mode)
-  map(lhs, "<cmd>lua "..rhs.."<cr>", opts, mode)
+function map_lua(lhs, rhs, mode, opts)
+  map(lhs, "<cmd>lua "..rhs.."<cr>", mode, opts)
 end
 
 -- set basics
@@ -27,5 +27,6 @@ paq{'savq/paq-nvim', opt=true}          -- Let Paq manage itself
 
 -- shell out to modules
 require('appearance.lua')
+require('misc.lua')
 require('buffers.lua')
 require('telescope.lua')
