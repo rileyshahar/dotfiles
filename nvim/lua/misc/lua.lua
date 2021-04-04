@@ -1,5 +1,12 @@
 -- todo: reorg this into other files
 
+-- basic keybinds
+map("jk", "<esc>", "i")                 -- exit insert mode
+map(";", ":")                           -- don't type shift
+map(";", ":", "v")
+map("\\", ",")                          -- we remapped , and ;
+map("<c-\\>", ";")
+
 -- line numbering
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -26,15 +33,12 @@ vim.o.hlsearch = true                   -- highlight matches
 vim.o.ignorecase = true                 -- ignore case
 vim.o.smartcase = true                  -- except when the query has uppercase letters
 map("<leader>l", "<cmd>nohlsearch<cr><c-l>")
+map("Y", "y$")                          -- should be a default
 
 -- folding
 vim.wo.foldenable = true                -- enable folding
 vim.o.foldlevelstart = 1                -- default level to start folding at
 vim.wo.foldmethod = "syntax"            -- method to fold on (treesitter?)
 
--- basic keybinds
-map("jk", "<esc>", "i")
-map(";", ":")
-map(";", ":", "v")
-map("\\", ",")
-map("<c-\\>", ";")
+-- undo
+vim.bo.undofile = true                   -- persistent undo
