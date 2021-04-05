@@ -36,3 +36,9 @@ require('git.lua')
 require('misc.lua')
 require('statusline.lua')
 require('telescope.lua')
+
+-- todo
+-- lsp
+-- snippets
+-- autocomplete
+-- autoformat

@@ -20,12 +20,12 @@ vim.o.showmatch = true                  -- highlight matching brackets
 vim.o.hidden = true                     -- don't close buffers unnecessarily
 
 -- signcolumn
-vim.wo.signcolumn = "yes"               -- always show the signcolumn
+-- commented for now because of a gitsigns bug
+-- vim.wo.signcolumn = "yes"            -- always show the signcolumn
 
 -- spacing
--- todo: does this need to be a buffer option?
-vim.bo.expandtab = true                  -- turn tabs into spaces
-vim.bo.shiftwidth = 2                    -- 2 length spaces by default
+vim.bo.expandtab = true                 -- turn tabs into spaces
+vim.bo.shiftwidth = 2                   -- 2 length spaces by default
 
 -- search
 vim.o.incsearch = true                  -- search while typing
@@ -41,4 +41,7 @@ vim.o.foldlevelstart = 1                -- default level to start folding at
 vim.wo.foldmethod = "syntax"            -- method to fold on (treesitter?)
 
 -- undo
-vim.bo.undofile = true                   -- persistent undo
+vim.bo.undofile = true                  -- persistent undo
+
+-- misc plugins
+paq 'b3nj5m1n/kommentary'               -- comment plugin
