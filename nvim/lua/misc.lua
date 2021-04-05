@@ -20,8 +20,7 @@ vim.o.showmatch = true                  -- highlight matching brackets
 vim.o.hidden = true                     -- don't close buffers unnecessarily
 
 -- signcolumn
--- commented for now because of a gitsigns bug
--- vim.wo.signcolumn = "yes"            -- always show the signcolumn
+vim.wo.signcolumn = "yes"            -- always show the signcolumn
 
 -- spacing
 vim.bo.expandtab = true                 -- turn tabs into spaces
