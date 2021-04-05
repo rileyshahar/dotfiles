@@ -1,4 +1,14 @@
+paq 'nvim-lua/lsp-status.nvim'
+local lsp_status = require('lsp-status')
+lsp_status.register_progress()
 
+lsp_status.config {
+  kind_labels = {
+    Function = 'func',
+    Method = 'mthd',
+    Class = 'cls',
+  }
+}
 
 function gen_section(hl_string, items)
   out = ""
@@ -101,17 +111,37 @@ function is_readonly()
   return ""
 end
 
+function process_diagnostics(prefix, n, hl)
+  out = prefix..n
+  if n > 0 then
+    return hl..out..dark_highlight
+  end
+  return out
+end
+
 function status_line()
+  lsp_status.update_current_function()
+  local diagnostics = lsp_status.diagnostics()
+
   local mode = fn.mode()
   local mg = get_mode_group(mode)
   local accent_color = get_mode_group_color(mg)
+
   local status = ""
   status = status .. gen_section(accent_color, {get_mode_group_display_name(mg)})
-  status = status .. gen_section(emph_highlight, {is_readonly(), "%f", is_modified()})
-  status = status .. dark_highlight
+  status = status .. gen_section(emph_highlight, {is_readonly(), "%t", is_modified()})
+  status = status .. gen_section(dark_highlight, {
+    process_diagnostics("E:", diagnostics.errors, "%#SpellBad#"),
+    process_diagnostics("W:", diagnostics.warnings, "%#SpellCap#"),
+    process_diagnostics("I:", diagnostics.info, "%#SpellRare#"),
+  })
   status = status .. "%=" -- switch to the right side
-  status = status .. gen_section(dark_highlight, {vim.b.gitsigns_head, vim.b.gitsigns_status})
-  status = status .. gen_section(emph_highlight, {vim.bo.filetype, "%p%%"})
+  status = status .. gen_section(dark_highlight, {
+    vim.b.lsp_current_function,
+    vim.b.gitsigns_status,
+    vim.bo.filetype
+  })
+  status = status .. gen_section(emph_highlight, {"%p%%"})
   status = status .. gen_section(accent_color, {"%l:%c"})
 
   return status

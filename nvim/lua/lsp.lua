@@ -31,10 +31,6 @@ local on_attach = function(client, bufnr)
   -- rust-anayzer
   -- todo: make this only a thing for rust
   lsp_map('<leader>t', 'require("lsp_extensions").inlay_hints()')
-  
-  for key, _ in pairs(client.resolved_capabilities) do
-    print(key)
-  end
 
   -- rename if we have the capability
   -- todo: make sure this is the right name
