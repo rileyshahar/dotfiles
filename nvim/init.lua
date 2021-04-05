@@ -30,12 +30,12 @@ paq 'nvim-lua/popup.nvim'
 paq 'nvim-lua/plenary.nvim'
 
 -- shell out to modules
-require('appearance.lua')
-require('buffers.lua')
-require('git.lua')
-require('misc.lua')
-require('statusline.lua')
-require('telescope.lua')
+require('appearance')
+require('buffers')
+require('git')
+require('misc')
+require('statusline')
+require('telescope')
 
 -- todo
 -- lsp
