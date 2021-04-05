@@ -32,7 +32,7 @@ vim.o.incsearch = true                  -- search while typing
 vim.o.hlsearch = true                   -- highlight matches
 vim.o.ignorecase = true                 -- ignore case
 vim.o.smartcase = true                  -- except when the query has uppercase letters
-map("<leader>l", "<cmd>nohlsearch<cr><c-l>")
+map("<leader>l", "<cmd>nohlsearch<cr><c-l><cmd>lua vim.lsp.buf.clear_references()<cr>")
 map("Y", "y$")                          -- should be a default
 
 -- folding

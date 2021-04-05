@@ -33,6 +33,7 @@ paq 'nvim-lua/plenary.nvim'
 require('appearance')
 require('buffers')
 require('git')
+require('lsp')
 require('misc')
 require('statusline')
 require('telescope')
