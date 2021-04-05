@@ -45,3 +45,4 @@ vim.bo.undofile = true                  -- persistent undo
 
 -- misc plugins
 paq 'b3nj5m1n/kommentary'               -- comment plugin
+paq 'christoomey/vim-tmux-navigator'    -- tmux split navigation
