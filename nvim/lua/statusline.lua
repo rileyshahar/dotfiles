@@ -147,4 +147,4 @@ function status_line()
   return status
 end
 
-vim.wo.statusline = "%!luaeval('status_line()')"
+vim.o.statusline = "%!luaeval('status_line()')"
