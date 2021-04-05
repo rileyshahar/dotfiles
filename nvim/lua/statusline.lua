@@ -131,9 +131,9 @@ function status_line()
   status = status .. gen_section(accent_color, {get_mode_group_display_name(mg)})
   status = status .. gen_section(emph_highlight, {is_readonly(), "%t", is_modified()})
   status = status .. gen_section(dark_highlight, {
-    process_diagnostics("E:", diagnostics.errors, "%#SpellBad#"),
-    process_diagnostics("W:", diagnostics.warnings, "%#SpellCap#"),
-    process_diagnostics("I:", diagnostics.info, "%#SpellRare#"),
+    process_diagnostics("E:", diagnostics.errors, "%#LspDiagnosticsDefaultError#"),
+    process_diagnostics("W:", diagnostics.warnings, "%#LspDiagnosticsDefaultWarning#"),
+    process_diagnostics("I:", diagnostics.info, "%#LspDiagnosticsDefaultInformation#"),
   })
   status = status .. "%=" -- switch to the right side
   status = status .. gen_section(dark_highlight, {

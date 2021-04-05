@@ -64,6 +64,10 @@ nvim_lsp.util.default_config = vim.tbl_extend(
   }
 )
 
+fn.sign_define("LspDiagnosticsSignInformation", {text = "", numhl = "LspDiagnosticsDefaultInformation"})
+fn.sign_define("LspDiagnosticsSignWarning", {text = "", numhl = "LspDiagnosticsDefaultWarning"})
+fn.sign_define("LspDiagnosticsSignError", {text = "", numhl = "LspDiagnosticsDefaultError"})
+
 -- specific language servers
 nvim_lsp.pyls.setup{}
 nvim_lsp.clangd.setup{}
