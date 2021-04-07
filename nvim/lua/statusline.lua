@@ -1,15 +1,3 @@
-paq 'nvim-lua/lsp-status.nvim'
-local lsp_status = require('lsp-status')
-lsp_status.register_progress()
-
-lsp_status.config {
-  kind_labels = {
-    Function = 'func',
-    Method = 'mthd',
-    Class = 'cls',
-  }
-}
-
 function gen_section(hl_string, items)
   out = ""
   for _, item in pairs(items) do
@@ -119,10 +107,26 @@ function process_diagnostics(prefix, n, hl)
   return out
 end
 
-function status_line()
-  lsp_status.update_current_function()
-  local diagnostics = lsp_status.diagnostics()
+-- from https://github.com/nvim-lua/lsp-status.nvim/blob/master/lua/lsp-status/diagnostics.lua
+local function get_lsp_diagnostics(bufnr)
+  local result = {}
+  local levels = {
+    errors = 'Error',
+    warnings = 'Warning',
+    info = 'Information',
+    hints = 'Hint',
+  }
 
+  for k, level in pairs(levels) do
+    result[k] = vim.lsp.diagnostic.get_count(bufnr, level)
+  end
+
+  return result
+end
+
+
+function status_line()
+  local diagnostics = get_lsp_diagnostics()
   local mode = fn.mode()
   local mg = get_mode_group(mode)
   local accent_color = get_mode_group_color(mg)
@@ -137,7 +141,6 @@ function status_line()
   })
   status = status .. "%=" -- switch to the right side
   status = status .. gen_section(dark_highlight, {
-    vim.b.lsp_current_function,
     vim.b.gitsigns_status,
     vim.bo.filetype
   })
