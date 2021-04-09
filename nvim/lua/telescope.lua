@@ -1,6 +1,6 @@
 -- package
 -- todo: this package takes a long time to load, maybe not worth it
-paq 'nvim-telescope/telescope.nvim'
+paq "nvim-telescope/telescope.nvim"
 
 -- keybinds
 map_lua("<leader>ff", "require('telescope.builtin').find_files()")
