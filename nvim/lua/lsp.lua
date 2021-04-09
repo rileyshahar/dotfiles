@@ -40,11 +40,11 @@ local on_attach = function(client, bufnr)
 
   -- bind formatting if we have the capability
   if client.resolved_capabilities.document_formatting then
-    lsp_map("<leader>f", "vim.lsp.buf.formatting()")
-  elseif client.resolved_capabilities.document_range_formatting then
-    lsp_map("<leader>f", "vim.lsp.buf.range_formatting()")
+    vim.cmd [[augroup Format]]
+    vim.cmd [[autocmd! * <buffer>]]
+    vim.cmd [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
+    vim.cmd [[augroup END]]
   end
-
 end
 
 -- generic settings
@@ -87,6 +87,19 @@ nvim_lsp.rust_analyzer.setup {
       checkOnSave = {
         overrideCommand = {"cargo", "clippy", "--tests", "--message-format=json", "--", "-W", "clippy::nursery", "-W", "clippy::pedantic", "--verbose"}
       }
+    }
+  }
+}
+
+local luafmt = require "efm/luafmt"
+local remove_whitespace = require "efm/remove-whitespace"
+-- https://github.com/lukas-reineke/dotfiles/blob/master/vim/lua/lsp.lua
+nvim_lsp.efm.setup {
+  init_options = {documentFormatting = true},
+  settings = {
+    rootMarkers = {".git/"},
+    languages = {
+      ["="] = {remove_whitespace},
     }
   }
 }
