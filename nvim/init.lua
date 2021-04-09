@@ -19,6 +19,8 @@ end
 
 -- set basics
 g.mapleader = ","
+map("<space>", "<nop>")
+cmd 'let maplocalleader = "\\<space>"'
 
 -- install paq
 cmd 'packadd paq-nvim'                  -- Load package
