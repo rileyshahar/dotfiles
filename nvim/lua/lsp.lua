@@ -112,6 +112,8 @@ nvim_lsp.efm.setup {
     settings = {
         rootMarkers = {".git/"},
         languages = {
+            -- todo: luacheck
+            lua = {luafmt},
             ["="] = {remove_whitespace}
         }
     }
