@@ -20,6 +20,7 @@ end
 -- set basics
 g.mapleader = ","
 map("<space>", "<nop>")
+map("<space>", "<nop>", "v")
 cmd 'let maplocalleader = "\\<space>"'
 
 -- install paq
