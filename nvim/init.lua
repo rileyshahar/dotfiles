@@ -35,10 +35,12 @@ paq "nvim-lua/plenary.nvim"
 -- shell out to modules
 require("appearance")
 require("buffers")
+require("completion")
 require("git")
 require("lsp")
 require("misc")
 require("statusline")
+require("snippets")
 require("telescope")
 
 -- todo
