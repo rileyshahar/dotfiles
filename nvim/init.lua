@@ -43,7 +43,6 @@ require("statusline")
 require("snippets")
 require("telescope")
 
--- todo
--- snippets
--- autocomplete
--- autoformat
+-- ft plugins
+-- ft config is in the ftplugin folder
+paq "lervag/vimtex"
