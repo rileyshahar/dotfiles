@@ -12,7 +12,7 @@ function gen_section(hl_string, items)
     return hl_string .. out .. " "
 end
 
-function highlight(group, fg, bg)
+local function highlight(group, fg, bg)
     cmd("highlight " .. group .. " guifg=" .. fg .. " guibg=" .. bg)
 end
 
@@ -130,11 +130,9 @@ function status_line()
     local mg = get_mode_group(mode)
     local accent_color = get_mode_group_color(mg)
 
-    local status = ""
-    status = status .. gen_section(accent_color, {get_mode_group_display_name(mg)})
-    status = status .. gen_section(emph_highlight, {is_readonly(), "%t", is_modified()})
-    status =
-        status ..
+    return table.concat {
+        gen_section(accent_color, {get_mode_group_display_name(mg)}),
+        gen_section(emph_highlight, {is_readonly(), "%t", is_modified()}),
         gen_section(
             dark_highlight,
             {
@@ -142,21 +140,18 @@ function status_line()
                 process_diagnostics("W:", diagnostics.warnings, "%#LspDiagnosticsDefaultWarning#"),
                 process_diagnostics("I:", diagnostics.info, "%#LspDiagnosticsDefaultInformation#")
             }
-        )
-    status = status .. "%=" -- switch to the right side
-    status =
-        status ..
+        ),
+        "%=",
         gen_section(
             dark_highlight,
             {
                 vim.b.gitsigns_status,
                 vim.bo.filetype
             }
-        )
-    status = status .. gen_section(emph_highlight, {"%p%%"})
-    status = status .. gen_section(accent_color, {"%l:%c"})
-
-    return status
+        ),
+        gen_section(emph_highlight, {"%p%%"}),
+        gen_section(accent_color, {"%l:%c"})
+    }
 end
 
 vim.o.statusline = "%!luaeval('status_line()')"
