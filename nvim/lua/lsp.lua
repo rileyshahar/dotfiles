@@ -1,10 +1,9 @@
-paq "neovim/nvim-lspconfig"
-paq "nvim-lua/lsp_extensions.nvim"
-
 local nvim_lsp = require("lspconfig")
 
 -- modified from https://github.com/neovim/nvim-lspconfig
 local on_attach = function(client, bufnr)
+    require "lsp_signature".on_attach()
+
     local opts = {noremap = true, silent = false}
     local function lsp_map(lhs, rhs, mode)
         mode = mode or "n"
@@ -69,6 +68,7 @@ nvim_lsp.util.default_config =
 fn.sign_define("LspDiagnosticsSignInformation", {text = "", numhl = "LspDiagnosticsDefaultInformation"})
 fn.sign_define("LspDiagnosticsSignWarning", {text = "", numhl = "LspDiagnosticsDefaultWarning"})
 fn.sign_define("LspDiagnosticsSignError", {text = "", numhl = "LspDiagnosticsDefaultError"})
+fn.sign_define("LspDiagnosticsSignHint", {text = "", numhl = "LspDiagnosticsDefaultHint"})
 
 -- specific language servers
 nvim_lsp.pyls.setup {}

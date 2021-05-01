@@ -23,14 +23,7 @@ map("<space>", "<nop>")
 map("<space>", "<nop>", "v")
 cmd 'let maplocalleader = "\\<space>"'
 
--- install paq
-cmd "packadd paq-nvim" -- Load package
-paq = require "paq-nvim".paq -- Import module and bind `paq` function
-paq {"savq/paq-nvim", opt = true} -- Let Paq manage itself
-
--- common dependencies
-paq "nvim-lua/popup.nvim"
-paq "nvim-lua/plenary.nvim"
+require("plugins")
 
 -- shell out to modules
 require("appearance")
@@ -42,7 +35,3 @@ require("misc")
 require("statusline")
 require("snippets")
 require("telescope")
-
--- ft plugins
--- ft config is in the ftplugin folder
-paq "lervag/vimtex"

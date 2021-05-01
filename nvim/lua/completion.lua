@@ -1,5 +1,3 @@
-paq "hrsh7th/nvim-compe"
-
 vim.o.completeopt = "menuone,noselect"
 
 require "compe".setup {

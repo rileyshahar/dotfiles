@@ -40,20 +40,4 @@ vim.o.foldlevelstart = 1 -- default level to start folding at
 vim.wo.foldmethod = "syntax" -- method to fold on (treesitter?)
 
 -- undo
-vim.bo.undofile = true -- persistent undo
-
--- misc plugins
-paq "b3nj5m1n/kommentary" -- comment plugin
-paq "christoomey/vim-tmux-navigator" -- tmux split navigation
-
--- todo: make sure we need all this, copied from old config
-paq "tpope/vim-repeat" -- repeat plugin commands
-paq "jiangmiao/auto-pairs" -- autoclose brackets
-paq "tpope/vim-commentary" -- easy commenting
-paq "tpope/vim-surround" -- quote manipulation
-paq "tommcdo/vim-exchange" -- exchange text objects
-paq "simnalamburt/vim-mundo" -- undo tree viewer
-paq "AndrewRadev/splitjoin.vim" -- switch betweeen single- and multiline statemenets
-paq "machakann/vim-highlightedyank" -- highlight yanked text
-paq "christoomey/vim-sort-motion" -- sort easily
-paq "unblevable/quick-scope" -- easier inline navigation
+cmd "set undofile" -- persistent undo
