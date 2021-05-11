@@ -67,7 +67,7 @@ function get_mode_group(m)
         t = "Term",
         ["null"] = "None"
     }
-    return mode_groups[m]
+    return mode_groups[m] or "None"
 end
 
 -- get the highlight group for a mode group
