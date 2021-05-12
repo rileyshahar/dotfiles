@@ -44,5 +44,10 @@ paq "lewis6991/gitsigns.nvim"
 -- telescope
 paq "nvim-telescope/telescope.nvim"
 
--- lang
+-- tex
 paq "lervag/vimtex"
+
+-- rust
+paq "mhinz/vim-crates"
+paq "mattn/webapi-vim" -- dependency
+paq "rust-lang/rust.vim"
