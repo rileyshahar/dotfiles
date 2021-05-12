@@ -51,3 +51,6 @@ paq "lervag/vimtex"
 paq "mhinz/vim-crates"
 paq "mattn/webapi-vim" -- dependency
 paq "rust-lang/rust.vim"
+
+-- toml
+paq "cespare/vim-toml"
