@@ -83,6 +83,13 @@ nvim_lsp.texlab.setup {
     }
 }
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require "lspconfig".html.setup {
+    capabilities = capabilities
+}
+
 nvim_lsp.rust_analyzer.setup {
     settings = {
         ["rust-analyzer"] = {
@@ -105,6 +112,7 @@ nvim_lsp.rust_analyzer.setup {
 }
 
 local luafmt = require "efm/luafmt"
+local prettier = require "efm/prettier"
 local remove_whitespace = require "efm/remove-whitespace"
 -- https://github.com/lukas-reineke/dotfiles/blob/master/vim/lua/lsp.lua
 nvim_lsp.efm.setup {
@@ -114,6 +122,12 @@ nvim_lsp.efm.setup {
         languages = {
             -- todo: luacheck
             lua = {luafmt},
+            yaml = {prettier},
+            json = {prettier},
+            html = {prettier},
+            scss = {prettier},
+            css = {prettier},
+            markdown = {prettier},
             ["="] = {remove_whitespace}
         }
     }
