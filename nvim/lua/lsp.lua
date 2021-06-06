@@ -11,6 +11,7 @@ local on_attach = function(client, bufnr)
     end
 
     lsp_map("ga", "vim.lsp.buf.code_action()")
+    lsp_map("ga", "vim.lsp.buf.range_code_action()", "v")
     lsp_map("gD", "vim.lsp.buf.declaration()")
     lsp_map("gd", "vim.lsp.buf.definition()")
     lsp_map("K", "vim.lsp.buf.hover()")
