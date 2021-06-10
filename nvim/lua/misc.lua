@@ -33,6 +33,7 @@ vim.o.ignorecase = true -- ignore case
 vim.o.smartcase = true -- except when the query has uppercase letters
 map("<leader>l", "<cmd>nohlsearch<cr><c-l><cmd>lua vim.lsp.buf.clear_references()<cr>")
 map("Y", "y$") -- should be a default
+map("*", [[y/\V<C-R>"<CR>]], "v")
 
 -- folding
 vim.wo.foldenable = true -- enable folding
