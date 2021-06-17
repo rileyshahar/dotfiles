@@ -53,3 +53,6 @@ paq "rust-lang/rust.vim"
 
 -- toml
 paq "cespare/vim-toml"
+
+-- markdown
+paq "plasticboy/vim-markdown"
