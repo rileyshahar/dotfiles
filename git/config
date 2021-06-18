@@ -1,3 +1,4 @@
+# vim:syntax=gitconfig
 [user]
 	name = Riley Shahar
 	email = riley.shahar@gmail.com
