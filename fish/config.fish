@@ -220,7 +220,9 @@ function ping-to-google -d "Get the ping to google"
 end
 
 ### ABBREVIATIONS
-abbr -a e nvim
+abbr -a e $EDITOR
+
+# python
 abbr -a p python
 abbr -a p3 python3
 abbr -a pt python -m pytest
