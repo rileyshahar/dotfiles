@@ -8,12 +8,12 @@ set -x XDG_CACHE_HOME "$HOME/.cache"
 set -x XDG_CONFIG_HOME "$HOME/.config"
 set -x XDG_DATA_HOME "$HOME/.local/share"
 
-set -x CPLUS_INCLUDE_PATH "/usr/local/include"
-set -x CMAKE_EXPORT_COMPILE_COMMANDS "true"
+set -x CPLUS_INCLUDE_PATH /usr/local/include
+set -x CMAKE_EXPORT_COMPILE_COMMANDS true
 
 set -x FZF_DEFAULT_COMMAND "rg --files --hidden"
 
-set -x BAT_THEME "TwoDark"
+set -x BAT_THEME TwoDark
 
 # please respect xdg specs
 set -x ATOMHOME "$XDG_DATA_HOME/atom"
@@ -63,7 +63,7 @@ end
 ## Utility functions
 function upto_git -d "Move up the directory tree to find a git repo"
     # from https://github.com/jonhoo/configs/blob/master/shell/.config/fish/config.fish
-    while test $PWD != "/"
+    while test $PWD != /
         if test -d .git
             break
         end
@@ -73,6 +73,12 @@ end
 
 function git_untracked -d "Get git untracked files"
     git ls-files --other --exclude-standard
+end
+
+function git_short_log -d "Get a short-form git log"
+    # from https://github.com/jan-warchol/sensible-dotfiles/blob/master/.gitconfig
+    git log --color=always --decorate --graph --date=relative \
+	--format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(dim)- %an, %ad%C(reset)'
 end
 
 function mkdir-cd -d "Get git untracked files"
@@ -163,8 +169,7 @@ function blink_tmux_color -a color duration message -d "Change the color of the 
         set -u pane-active-border-style\; \
         set -u pane-border-style\; \
         set -u message-style\; \
-        set -u display-time \
-        & # backgrounds the tmux command
+        set -u display-time & # backgrounds the tmux command
 end
 
 function execute_for_all_panes -d "Run a command in all panes"
@@ -178,7 +183,7 @@ function execute_for_all_panes -d "Run a command in all panes"
     set to_run (echo $argv | string join " ")
 
     for pane in (tmux list-panes -F "#P")
-        if test (tmux display-message -pt $pane "#{pane_current_command}") = "fish"
+        if test (tmux display-message -pt $pane "#{pane_current_command}") = fish
             tmux send-keys -t $pane $to_run C-m
         end
 
@@ -216,7 +221,7 @@ function cpu-usage -d "Get the current cpu usage"
 end
 
 function ping-to-google -d "Get the ping to google"
-    ping -c 1 google.com | tail -1 | awk '{print $4}' | cut -d '/' -f 2 | cut -d '.' -f 1
+    ping -c 1 google.com | tail -1 | awk '{print $4}' | cut -d / -f 2 | cut -d '.' -f 1
 end
 
 ### ABBREVIATIONS
@@ -226,31 +231,47 @@ abbr -a e $EDITOR
 abbr -a p python
 abbr -a p3 python3
 abbr -a pt python -m pytest
+
+# cargo
 abbr -a c cargo
 abbr -a cc cargo clippy --tests -- -W clippy::nursery -W clippy::pedantic --verbose
 abbr -a cdc cargo doc --no-deps --quiet
 abbr -a ct cargo test
 abbr -a cti cargo test -- --ignored
+
+# git
 abbr -a g git
-abbr -a gc git checkout
+abbr -a gbr git branch
+abbr -a gc git commit
+abbr -a gco git checkout
+abbr -a ga git add
+abbr -a gp git push
+abbr -a gpp git push --force-with-lease # "push please"
+abbr -a gpl git pull --ff-only # don't pull if conflict
+abbr -a gls git_short_log
+abbr -a gll git log --stat-count=30
 abbr -a gu git_untracked
+abbr -a gd upto_git
+
+# tmux
+abbr -a te execute_for_all_panes
+abbr -a tz execute_for_all_panes z
+abbr -a rl tmux respawn-pane -k -c \'\#{pane_current_path}\'
+
+# misc
 abbr -a mc mkdir-cd
 abbr -a mld move-last-download
 abbr -a b brew
 abbr -a o open
 abbr -a h fancy-help
 abbr -a m man
-abbr -a te execute_for_all_panes
-abbr -a tz execute_for_all_panes z
-abbr -a d upto_git
-abbr -a rl tmux respawn-pane -k -c \'\#{pane_current_path}\'
 
 
 # ls replacement
 if type -q exa
-    set ls_function "exa"
+    set ls_function exa
 else
-    set ls_function "ls"
+    set ls_function ls
 end
 
 abbr -a l $ls_function
@@ -261,9 +282,9 @@ abbr -a lll $ls_function -al
 
 # cat replacement
 if type -q bat
-    set cat_function "bat"
+    set cat_function bat
 else
-    set cat_function "cat"
+    set cat_function cat
 end
 
 abbr -a bat $cat_function
@@ -273,18 +294,18 @@ abbr -a cat $cat_function
 if type -q procs
     set ps_function "procs --watch --tree"
 else
-    set ps_function "ps"
+    set ps_function ps
 end
 
 abbr -a ps $ps_function
 
 # top replacement
 if type -q btm
-    set top_function "btm"
+    set top_function btm
 else if type -q ytop
-    set top_function "ytop"
+    set top_function ytop
 else
-    set top_function "top"
+    set top_function top
 end
 
 abbr -a top $top_function

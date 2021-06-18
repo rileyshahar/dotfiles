@@ -11,14 +11,17 @@
   defaultBranch = main
 
 [pull]
-  rebase = false
+  ff = only
 
-[interactive]
-  diffFilter = delta --color-only
+[diff]
+  renames = copies
 
 [commit]
   gpgsign = true
   verbose = true
+
+[interactive]
+  diffFilter = delta --color-only
 
 [gpg]
   program = gpg2

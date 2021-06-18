@@ -56,3 +56,6 @@ paq "cespare/vim-toml"
 
 -- markdown
 paq "plasticboy/vim-markdown"
+
+-- fish
+paq "dag/vim-fish"
