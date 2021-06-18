@@ -1,31 +1,38 @@
 # vim:syntax=gitconfig
 [user]
-name = Riley Shahar
-email = riley.shahar@gmail.com
-signingkey = 7EAC08241471FBB2412AB3E88CBFA12E8F6C31DF
+  name = Riley Shahar
+  email = riley.shahar@gmail.com
+  signingkey = 7EAC08241471FBB2412AB3E88CBFA12E8F6C31DF
 
 [core]
-pager = delta
+  pager = delta
 
 [init]
-defaultBranch = main
+  defaultBranch = main
 
 [pull]
-rebase = false
-
-[delta]
-plus-color = "#012800"
-minus-color = "#340001"
-syntax-theme = TwoDark
+  rebase = false
 
 [interactive]
-diffFilter = delta --color-only
+  diffFilter = delta --color-only
 
 [commit]
-gpgsign = true
+  gpgsign = true
 
 [gpg]
-program = gpg2
+  program = gpg2
 
 [tag]
-forceSignAnnotated = true
+  forceSignAnnotated = true
+
+[pager]
+  diff = delta
+  log = delta
+  reflog = delta
+  show = delta
+
+[delta]
+  features = side-by-side line-numbers
+  plus-color = "#012800"
+  minus-color = "#340001"
+  syntax-theme = TwoDark
