@@ -140,6 +140,13 @@ sudo ln -sv "$DOTFILES_DIR/lightdm/lightdm-webkit2-greeter.conf" "/etc/lightdm" 
 
 echo "installing neovim dependencies"
 nvim --headless +PaqInstall +q
-EOSU
 
-reboot
+echo "enabling lightdm"
+echo "configuring user group"
+sudo systemctl enable lightdm
+# this allows lightdm to read the symlinked dotfiles
+# from https://github.com/prikhi/lightdm-mini-greeter#config-file-in-home
+sudo usermod -aG $(whoami) lightdm
+chmod g+rx $HOME
+
+EOSU
