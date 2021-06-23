@@ -127,83 +127,6 @@ function _ring_bell_after_cmd --on-event fish_postexec -d "Ring the bell after e
     printf "\a"
 end
 
-function _handle_cmd_completion_in_inactive_window --on-event fish_postexec -a last_command -d "Blink the tmux coloring and send a system alert after a command completes in another window"
-
-    # store the previous status so we can return it at the end
-    set prev_status $status
-
-    # only do so if we're in a non-active, tmux window
-    if status is-interactive; and not test -z $TMUX; and test (tmux display-message -pt $TMUX_PANE '#{window_active}') -ne 1
-
-        # variables we need for the message
-        set window_number (tmux display-message -pt $TMUX_PANE '#{window_index}')
-
-        # handle output based on the previous status
-        if test $prev_status = 0
-            set message "Command `$last_command` exited successfully in window $window_number."
-            blink_tmux_color green 1 $message
-            system-notification $message (string split " " $last_command | head -1)
-        else
-            set message "Command `$last_command` exited unsuccessfully in window $window_number."
-            blink_tmux_color red 1 $message
-            system-notification $message (string split " " $last_command | head -1)
-        end
-    end
-    return $prev_status
-end
-
-## Tmux utilities
-function blink_tmux_color -a color duration message -d "Change the color of the tmux pane borders temporarily"
-
-    # manipulate tmux
-    # this is all in one tmux process so it's backgroundable, but it all executes simultaneously
-    # fish only allows backgrounding commands, not functions
-    # note we display the message for 3x as long, to allow it to be read, but its coloring goes away
-    tmux \
-        set-window-option pane-active-border-style fg=$color,bg=$bg\; \
-        set-window-option pane-border-style fg=$color,bg=$bg\; \
-        set message-style bg=$color,fg=black\; \
-        set display-time (math $duration \* 3000)\; \
-        display-message $message\; \
-        run-shell "sleep $duration"\; \
-        set -u pane-active-border-style\; \
-        set -u pane-border-style\; \
-        set -u message-style\; \
-        set -u display-time & # backgrounds the tmux command
-end
-
-function execute_for_all_panes -d "Run a command in all panes"
-
-    # we need to be in tmux
-    if test -z $TMUX
-        echo "no tmux session found"
-        return 1
-    end
-
-    set to_run (echo $argv | string join " ")
-
-    for pane in (tmux list-panes -F "#P")
-        if test (tmux display-message -pt $pane "#{pane_current_command}") = fish
-            tmux send-keys -t $pane $to_run C-m
-        end
-
-    end
-    # the current pane is running this function, not fish, so we need to handle it separately
-    eval $to_run
-end
-
-function battery -d "Get the current battery level"
-    # primarily for the tmux status bar
-    # from https://github.com/nicknisi/dotfiles/blob/master/bin/battery
-    pmset -g batt | grep -E "([0-9]+\%).*" -o --colour=auto | cut -f1 -d';'
-end
-
-function current-song -d "Get the current song playing"
-    # primarily for the tmux status bar
-    # from https://github.com/nicknisi/dotfiles/blob/master/applescripts/tunes.js
-    current-song.js
-end
-
 function cpu-usage -d "Get the current cpu usage"
     # primarily for the tmux status bar
     # from https://stackoverflow.com/questions/30855440/how-to-get-cpu-utilization-in-in-terminal-mac
@@ -322,7 +245,3 @@ bind -M insert \cn down-or-search
 bind -M insert \t complete
 bind -M insert ! bind_bang
 bind -M insert '$' bind_dollar
-
-### MISC
-navi widget fish | source
-zoxide init fish | source

@@ -1,0 +1,12 @@
+xorg
+xorg-xinit
+i3-gaps
+lightdm
+lightdm-webkit2-greeter
+lightdm-webkit-theme-litarvan
+kitty
+rofi
+fish
+neovim-nightly-bin
+tmux
+nerd-fonts-meslo

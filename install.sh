@@ -113,11 +113,11 @@ makepkg -si --noconfirm > /dev/null
 cd ..
 rm -rf yay
 
-echo "installing packages; this make take a while."
-yay -S xorg xorg-xinit i3-gaps lightdm lightdm-webkit2-greeter lightdm-webkit-theme-litarvan alacritty rofi fish neovim-nightly-bin tmux nerd-fonts-meslo --noconfirm
-
 echo "downloading dotfiles"
 git clone --branch arch https://github.com/nihilistkitten/dotfiles > /dev/null
+
+echo "installing packages; this make take a while."
+yay -S --noconfirm --needed - <$HOME/dotfiles/paclist
 
 echo "symlinking configs"
 DOTFILES_DIR="$HOME/dotfiles"
@@ -126,7 +126,6 @@ mkdir $CONFIG_HOME
 mkdir $CONFIG_HOME/nvim
 ln -sv "$DOTFILES_DIR/git" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/fish" "$CONFIG_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/alacritty" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/tmux" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/i3" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/init.lua" "$CONFIG_HOME/nvim" > /dev/null
@@ -142,6 +141,10 @@ sudo ln -sv "$DOTFILES_DIR/lightdm/lightdm-webkit2-greeter.conf" "/etc/lightdm" 
 echo "installing neovim plugins"
 git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim > /dev/null
 nvim --headless +PaqInstall +q
+
+echo "installing fish plugins"
+curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher > /dev/null
+fisher update
 
 echo "enabling lightdm"
 echo "configuring user group"
