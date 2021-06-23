@@ -65,11 +65,11 @@ echo "synchronizing pacman databases"
 pacman -Sy
 
 echo "installing networkmanager"
-pacman -S networkmanager git --noconfirm > /dev/null
+pacman -S networkmanager git --noconfirm --needed > /dev/null
 systemctl enable NetworkManager > /dev/null
 
 echo "configuring sudo"
-pacman -S sudo --noconfirm > /dev/null
+pacman -S sudo --noconfirm --needed > /dev/null
 sed -i '/%wheel ALL=(ALL) ALL/s/^# //' /etc/sudoers
 
 echo "updating the system time"
@@ -94,7 +94,7 @@ echo "127.0.0.1\tlocalhost
 echo "setting up grub"
 fdisk -l
 read -p "Choose the EFI partition: " efi
-pacman -S grub efibootmgr --noconfirm > /dev/null
+pacman -S grub efibootmgr --noconfirm --needed > /dev/null
 mkdir /boot/EFI
 mount ${efi} /boot/EFI > /dev/null
 grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=GRUB > /dev/null
@@ -104,7 +104,7 @@ su $username <<'EOSU'
 cd
 
 echo "installing packages: git, base-devel"
-sudo pacman -S git base-devel --noconfirm > /dev/null
+sudo pacman -S git base-devel --noconfirm --needed > /dev/null
 
 echo "installing yay"
 git clone https://aur.archlinux.org/yay.git > /dev/null
