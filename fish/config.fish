@@ -27,28 +27,28 @@ set -x RUSTUP_HOME "$XDG_DATA_HOME/rustup"
 set -x TERMINFO "$XDG_DATA_HOME/terminfo"
 set -x TMUX_PLUGIN_MANAGER_PATH "$XDG_DATA_HOME/tmux/plugins"
 
-# fish colors
-set pure_color_mute 82ac7c
-set pure_color_virtualenv 808080
-set pure_color_primary blue
-set pure_color_success magenta
+# fish colors (comments are base16 numbers)
+set pure_color_mute yellow # a
+set pure_color_virtualenv brblack # 3
+set pure_color_primary magenta # e
+set pure_color_success blue # d
 
 set fish_color_normal normal
-set fish_color_command magenta
-set fish_color_quote yellow
-set fish_color_redirection ff9e64
-set fish_color_end cyan
-set fish_color_error red
-set fish_color_param blue
-set fish_color_comment brmagenta
-set fish_color_match normal
-set fish_color_selection --background=brblack # todo: find a better color
+set fish_color_command blue # d
+set fish_color_quote green # b
+set fish_color_redirection cyan # c
+set fish_color_end cyan # c
+set fish_color_error brcyan # f
+set fish_color_param magenta # e
+set fish_color_comment brblack # 5
+set fish_color_match cyan # c
+set fish_color_selection --background=bryellow # 2
 set fish_color_search_match normal
 set fish_color_history_current normal
-set fish_color_operator ff9e64
-set fish_color_escape ff9e64
+set fish_color_operator cyan # c
+set fish_color_escape cyan # c
 set fish_color_valid_path --underline
-set fish_color_autosuggestion 8599ad
+set fish_color_autosuggestion brmagenta # 6
 set fish_color_cancel -r
 
 # configure path
