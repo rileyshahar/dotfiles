@@ -32,23 +32,23 @@ set pure_color_git_branch brgreen
 set pure_color_git_stash brgreen
 set pure_color_git_dirty brgreen
 
-# set fish_color_normal normal
-# set fish_color_command blue
-# set fish_color_quote green
-# set fish_color_redirection cyan
-# set fish_color_end cyan
-# set fish_color_error brcyan
-# set fish_color_param magenta
-# set fish_color_comment brblack
-# set fish_color_match cyan
-# set fish_color_selection --background=bryellow
-# set fish_color_search_match normal
-# set fish_color_history_current normal
-# set fish_color_operator cyan
-# set fish_color_escape cyan
-# set fish_color_valid_path --underline
-# set fish_color_autosuggestion brmagenta
-# set fish_color_cancel -r
+set fish_color_normal normal
+set fish_color_command magenta
+set fish_color_quote green
+set fish_color_redirection cyan
+set fish_color_end cyan
+set fish_color_error red
+set fish_color_param blue
+set fish_color_comment brblack
+set fish_color_match normal
+set fish_color_selection --background=brblack  # todo
+set fish_color_search_match normal
+set fish_color_history_current normal
+set fish_color_operator cyan  # todo
+set fish_color_escape bryellow  # todo
+set fish_color_valid_path --underline
+set fish_color_autosuggestion brblack
+set fish_color_cancel -r
 
 # configure path
 set paths_to_add /usr/local/opt/python@3.8 /bin/usr/local/opt/ruby/bin $CARGO_HOME/bin /usr/local/opt/llvm/bin/ $XDG_DATA_HOME/bin
