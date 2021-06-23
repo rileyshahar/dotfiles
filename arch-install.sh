@@ -113,11 +113,8 @@ makepkg -si --noconfirm > /dev/null
 cd ..
 rm -rf yay
 
-echo "installing packages: xorg, xorg-xinit, i3, lightdm, kitty, rofi, neovim. this make take a while."
-yay -S xorg xorg-xinit i3-gaps lightdm lightdm-webkit2-greeter lightdm-webkit-theme-litarvan kitty rofi neovim-nightly-bin --noconfirm > /dev/null
-
-echo "installing nvim-paq"
-git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim > /dev/null
+echo "installing packages; this make take a while."
+yay -S xorg xorg-xinit i3-gaps lightdm lightdm-webkit2-greeter lightdm-webkit-theme-litarvan alacritty rofi neovim-nightly-bin tmux nerd-font-meslo --noconfirm > /dev/null
 
 echo "downloading dotfiles"
 git clone https://github.com/nihilistkitten/dotfiles > /dev/null
@@ -128,6 +125,10 @@ CONFIG_HOME="$HOME/.config"
 mkdir $CONFIG_HOME
 mkdir $CONFIG_HOME/nvim
 ln -sv "$DOTFILES_DIR/git" "$CONFIG_HOME" > /dev/null
+ln -sv "$DOTFILES_DIR/fish" "$CONFIG_HOME" > /dev/null
+ln -sv "$DOTFILES_DIR/alacritty" "$CONFIG_HOME" > /dev/null
+ln -sv "$DOTFILES_DIR/tmux" "$CONFIG_HOME" > /dev/null
+ln -sv "$DOTFILES_DIR/i3" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/init.lua" "$CONFIG_HOME/nvim" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/lua/" "$CONFIG_HOME/nvim" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/snippets/" "$CONFIG_HOME/nvim" > /dev/null
@@ -138,7 +139,8 @@ sudo ln -sv "$DOTFILES_DIR/lightdm/lightdm.conf" "/etc/lightdm" > /dev/null
 sudo rm /etc/lightdm/lightdm-webkit2-greeter.conf
 sudo ln -sv "$DOTFILES_DIR/lightdm/lightdm-webkit2-greeter.conf" "/etc/lightdm" > /dev/null
 
-echo "installing neovim dependencies"
+echo "installing neovim plugins"
+git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim > /dev/null
 nvim --headless +PaqInstall +q
 
 echo "enabling lightdm"
@@ -148,5 +150,8 @@ sudo systemctl enable lightdm
 # from https://github.com/prikhi/lightdm-mini-greeter#config-file-in-home
 sudo usermod -aG $(whoami) lightdm
 chmod g+rx $HOME
+
+echo "changing fish to default shell"
+sudo chsh -s $(which fish) $(whoami)
 
 EOSU
