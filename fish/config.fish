@@ -28,28 +28,27 @@ set -x TERMINFO "$XDG_DATA_HOME/terminfo"
 set -x TMUX_PLUGIN_MANAGER_PATH "$XDG_DATA_HOME/tmux/plugins"
 
 # fish colors (comments are base16 numbers)
-set pure_color_mute yellow # a
-set pure_color_virtualenv brblack # 3
-set pure_color_primary magenta # e
-set pure_color_success blue # d
+set pure_color_git_branch brgreen
+set pure_color_git_stash brgreen
+set pure_color_git_dirty brgreen
 
-set fish_color_normal normal
-set fish_color_command blue # d
-set fish_color_quote green # b
-set fish_color_redirection cyan # c
-set fish_color_end cyan # c
-set fish_color_error brcyan # f
-set fish_color_param magenta # e
-set fish_color_comment brblack # 5
-set fish_color_match cyan # c
-set fish_color_selection --background=bryellow # 2
-set fish_color_search_match normal
-set fish_color_history_current normal
-set fish_color_operator cyan # c
-set fish_color_escape cyan # c
-set fish_color_valid_path --underline
-set fish_color_autosuggestion brmagenta # 6
-set fish_color_cancel -r
+# set fish_color_normal normal
+# set fish_color_command blue
+# set fish_color_quote green
+# set fish_color_redirection cyan
+# set fish_color_end cyan
+# set fish_color_error brcyan
+# set fish_color_param magenta
+# set fish_color_comment brblack
+# set fish_color_match cyan
+# set fish_color_selection --background=bryellow
+# set fish_color_search_match normal
+# set fish_color_history_current normal
+# set fish_color_operator cyan
+# set fish_color_escape cyan
+# set fish_color_valid_path --underline
+# set fish_color_autosuggestion brmagenta
+# set fish_color_cancel -r
 
 # configure path
 set paths_to_add /usr/local/opt/python@3.8 /bin/usr/local/opt/ruby/bin $CARGO_HOME/bin /usr/local/opt/llvm/bin/ $XDG_DATA_HOME/bin
@@ -245,3 +244,10 @@ bind -M insert \cn down-or-search
 bind -M insert \t complete
 bind -M insert ! bind_bang
 bind -M insert '$' bind_dollar
+
+### Start x
+if status is-login
+    if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
+        exec startx "$XDG_CONFIG_HOME/X11/xinitrc" -- -keeptty
+    end
+end

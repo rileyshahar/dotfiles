@@ -128,39 +128,19 @@ ln -sv "$DOTFILES_DIR/git" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/fish" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/tmux" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/i3" "$CONFIG_HOME" > /dev/null
+ln -sv "$DOTFILES_DIR/X11" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/kitty" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/init.lua" "$CONFIG_HOME/nvim" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/lua/" "$CONFIG_HOME/nvim" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/snippets/" "$CONFIG_HOME/nvim" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/ftplugin/" "$CONFIG_HOME/nvim" > /dev/null
 
-sudo rm /etc/lightdm/lightdm.conf
-sudo ln -sv "$DOTFILES_DIR/lightdm/lightdm.conf" "/etc/lightdm" > /dev/null
-sudo rm /etc/lightdm/lightdm-webkit2-greeter.conf
-sudo ln -sv "$DOTFILES_DIR/lightdm/lightdm-webkit2-greeter.conf" "/etc/lightdm" > /dev/null
-
 echo "installing neovim plugins"
 git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim > /dev/null
 nvim --headless +PaqInstall +q
 
-echo "installing pybase16-builder"
-pip install pybase18-builder
-cd $DOTFILES_DIR/base16
-pybase16 update
-pybase16 build
-pybase16 inject -s onedark -f $DOTFILES_DIR/kitty/kitty.conf
-
 # echo "installing fish plugins"
 # curl -sL https://git.io/fisher | fish && fisher install jorgebucaran/fisher > /dev/null
-# fisher update
-
-echo "enabling lightdm"
-echo "configuring user group"
-sudo systemctl enable lightdm
-# this allows lightdm to read the symlinked dotfiles
-# from https://github.com/prikhi/lightdm-mini-greeter#config-file-in-home
-sudo usermod -aG $(whoami) lightdm
-chmod g+rx $HOME
 
 echo "changing fish to default shell"
 sudo chsh -s $(which fish) $(whoami)
