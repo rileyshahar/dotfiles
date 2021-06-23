@@ -32,7 +32,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec $TERMINAL
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+w kill
@@ -176,6 +176,6 @@ bar {
 }
 
 # Set the background with feh
-set $background-image ~/dotfiles/background.jpg
+set $background-image ~/dotfiles/wallpaper.jpg
 exec --no-startup-id feh --no-fehbg --bg-scale $background-image
 wal -i $background-image

@@ -109,7 +109,7 @@ sudo pacman -S git base-devel --noconfirm --needed > /dev/null
 echo "installing yay"
 git clone https://aur.archlinux.org/yay.git > /dev/null
 cd yay
-makepkg -si --noconfirm > /dev/null
+makepkg -si --noconfirm --needed > /dev/null
 cd ..
 rm -rf yay
 
@@ -143,7 +143,7 @@ git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME
 nvim --headless +PaqInstall +q
 
 echo "installing fish plugins"
-curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher > /dev/null
+curl -sL https://git.io/fisher | fish && fisher install jorgebucaran/fisher > /dev/null
 fisher update
 
 echo "enabling lightdm"
