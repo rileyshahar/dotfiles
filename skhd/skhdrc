@@ -1,3 +1,0 @@
-ctrl - return : open -a /Applications/Alacritty.app
-ctrl + shift - return : open -a "/Applications/Google Chrome.app"
-

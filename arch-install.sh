@@ -114,10 +114,10 @@ cd ..
 rm -rf yay
 
 echo "installing packages; this make take a while."
-yay -S xorg xorg-xinit i3-gaps lightdm lightdm-webkit2-greeter lightdm-webkit-theme-litarvan alacritty rofi neovim-nightly-bin tmux nerd-font-meslo --noconfirm > /dev/null
+yay -S xorg xorg-xinit i3-gaps lightdm lightdm-webkit2-greeter lightdm-webkit-theme-litarvan alacritty rofi fish neovim-nightly-bin tmux nerd-fonts-meslo --noconfirm
 
 echo "downloading dotfiles"
-git clone https://github.com/nihilistkitten/dotfiles > /dev/null
+git clone --branch arch https://github.com/nihilistkitten/dotfiles > /dev/null
 
 echo "symlinking configs"
 DOTFILES_DIR="$HOME/dotfiles"
