@@ -178,4 +178,3 @@ bar {
 # Set the background with feh
 set $background-image ~/dotfiles/wallpaper.jpg
 exec --no-startup-id feh --no-fehbg --bg-scale $background-image
-wal -i $background-image

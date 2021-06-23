@@ -128,6 +128,7 @@ ln -sv "$DOTFILES_DIR/git" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/fish" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/tmux" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/i3" "$CONFIG_HOME" > /dev/null
+ln -sv "$DOTFILES_DIR/kitty" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/init.lua" "$CONFIG_HOME/nvim" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/lua/" "$CONFIG_HOME/nvim" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/snippets/" "$CONFIG_HOME/nvim" > /dev/null
@@ -142,9 +143,16 @@ echo "installing neovim plugins"
 git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim > /dev/null
 nvim --headless +PaqInstall +q
 
-echo "installing fish plugins"
-curl -sL https://git.io/fisher | fish && fisher install jorgebucaran/fisher > /dev/null
-fisher update
+echo "installing pybase16-builder"
+pip install pybase18-builder
+cd $DOTFILES_DIR/base16
+pybase16 update
+pybase16 build
+pybase16 inject -s onedark -f $DOTFILES_DIR/kitty/kitty.conf
+
+# echo "installing fish plugins"
+# curl -sL https://git.io/fisher | fish && fisher install jorgebucaran/fisher > /dev/null
+# fisher update
 
 echo "enabling lightdm"
 echo "configuring user group"
