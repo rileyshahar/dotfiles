@@ -1,30 +1,57 @@
 #!/bin/env/python
 
 import os
+import json
 
 START_MARKER = "__colors:start"
 END_MARKER = "__colors:end"
 
-COLORS = {
-    "background": "1a1b26",
-    "foreground": "a9b1d6",
-    "dim_black": "06080a",
-    "dim_red": "e06c75",
-    "dim_green": "98c379",
-    "dim_yellow": "d19a66",
-    "dim_blue": "7aa2f7",
-    "dim_magenta": "ad8ee6",
-    "dim_cyan": "56bdb8",
-    "dim_white": "abb2bf",
-    "bright_black": "444b6a",
-    "bright_red": "f7768e",
-    "bright_green": "9ece6a",
-    "bright_yellow": "e0af68",
-    "bright_blue": "61afef",
-    "bright_magenta": "f6bdff",
-    "bright_cyan": "50c3bd",
-    "bright_white": "ffffff",
-}
+# set JSON_STRING to a json string from https://terminal.sexy/
+USE_JSON = False
+JSON_STRING = ""
+
+if USE_JSON:
+    COLORS = {}
+    js = json.loads(JSON_STRING)
+    COLORS["background"] = js["background"][1:]
+    COLORS["foreground"] = js["foreground"][1:]
+    COLORS["dim_black"] = js["color"][0][1:]
+    COLORS["dim_red"] = js["color"][1][1:]
+    COLORS["dim_green"] = js["color"][2][1:]
+    COLORS["dim_yellow"] = js["color"][3][1:]
+    COLORS["dim_blue"] = js["color"][4][1:]
+    COLORS["dim_magenta"] = js["color"][5][1:]
+    COLORS["dim_cyan"] = js["color"][6][1:]
+    COLORS["dim_white"] = js["color"][7][1:]
+    COLORS["bright_black"] = js["color"][8][1:]
+    COLORS["bright_red"] = js["color"][9][1:]
+    COLORS["bright_green"] = js["color"][10][1:]
+    COLORS["bright_yellow"] = js["color"][11][1:]
+    COLORS["bright_blue"] = js["color"][12][1:]
+    COLORS["bright_magenta"] = js["color"][13][1:]
+    COLORS["bright_cyan"] = js["color"][14][1:]
+    COLORS["bright_white"] = js["color"][15][1:]
+else:
+    COLORS = {
+        "background": "1a1b26",
+        "foreground": "a9b1d6",
+        "dim_black": "06080a",
+        "dim_red": "e06c75",
+        "dim_green": "98c379",
+        "dim_yellow": "d19a66",
+        "dim_blue": "7aa2f7",
+        "dim_magenta": "ad8ee6",
+        "dim_cyan": "56bdb8",
+        "dim_white": "abb2bf",
+        "bright_black": "444b6a",
+        "bright_red": "f7768e",
+        "bright_green": "9ece6a",
+        "bright_yellow": "e0af68",
+        "bright_blue": "61afef",
+        "bright_magenta": "f6bdff",
+        "bright_cyan": "50c3bd",
+        "bright_white": "ffffff",
+    }
 
 
 class ColorFormatter:
@@ -117,7 +144,6 @@ class Kitty(ColorFormatter):
     @classmethod
     def post_format_hook(cls):
         os.system(f"kitty @ set-colors --all --configured {cls.config_file}")
-
 
 
 class XResources(ColorFormatter):
