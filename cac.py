@@ -1,4 +1,6 @@
-#!/bin/env/python
+#!/usr/bin/env python
+#
+# cac: adjust colorschemes automatically
 
 import argparse
 import os
@@ -8,50 +10,45 @@ import json
 START_MARKER = "__colors:start"
 END_MARKER = "__colors:end"
 
-CONFIG_HOME = os.getenv("XDG_CONFIG_HOME")
+CONFIG_HOME = os.getenv(
+    "XDG_CONFIG_HOME", default=f"{os.getenv('HOME')}/.config")
 
-parser = argparse.ArgumentParser(description="Cac adjusts colorschemes.")
+parser = argparse.ArgumentParser(description="cac adjusts colorschemes:\
+    download a colorscheme JSON from https://terminal.sexy, place it in\
+    $XDG_CONFIG_HOME/cac, and run cac.")
 parser.add_argument(
-    "--json, -j",
-    default=None,
-    help="a path to a json file from terminal.sexy",
-    dest="json"
-)
-parser.add_argument(
-    "--scheme, -s",
+    "scheme",
     default=None,
     help="the name of a colorscheme in $XDG_CONFIG_HOME/cac",
-    dest="scheme"
 )
 args = parser.parse_args()
 
 colors = {}
+scheme_loc = CONFIG_HOME + "/cac/" + args.scheme + ".json"
 try:
-    js = json.load(open(CONFIG_HOME + "/cac/" + args.scheme + ".json"))
+    scheme = json.load(open(scheme_loc))
 except FileNotFoundError:
-    if (json_loc := args.json):
-        js = json.load(open(json_loc))
-    else:
-        raise
+    print(f"No colorscheme found at {scheme_loc}.")
+    quit(1)
 
-colors["background"] = js["background"][1:]
-colors["foreground"] = js["foreground"][1:]
-colors["dim_black"] = js["color"][0][1:]
-colors["dim_red"] = js["color"][1][1:]
-colors["dim_green"] = js["color"][2][1:]
-colors["dim_yellow"] = js["color"][3][1:]
-colors["dim_blue"] = js["color"][4][1:]
-colors["dim_magenta"] = js["color"][5][1:]
-colors["dim_cyan"] = js["color"][6][1:]
-colors["dim_white"] = js["color"][7][1:]
-colors["bright_black"] = js["color"][8][1:]
-colors["bright_red"] = js["color"][9][1:]
-colors["bright_green"] = js["color"][10][1:]
-colors["bright_yellow"] = js["color"][11][1:]
-colors["bright_blue"] = js["color"][12][1:]
-colors["bright_magenta"] = js["color"][13][1:]
-colors["bright_cyan"] = js["color"][14][1:]
-colors["bright_white"] = js["color"][15][1:]
+colors["background"] = scheme["background"][1:]
+colors["foreground"] = scheme["foreground"][1:]
+colors["dim_black"] = scheme["color"][0][1:]
+colors["dim_red"] = scheme["color"][1][1:]
+colors["dim_green"] = scheme["color"][2][1:]
+colors["dim_yellow"] = scheme["color"][3][1:]
+colors["dim_blue"] = scheme["color"][4][1:]
+colors["dim_magenta"] = scheme["color"][5][1:]
+colors["dim_cyan"] = scheme["color"][6][1:]
+colors["dim_white"] = scheme["color"][7][1:]
+colors["bright_black"] = scheme["color"][8][1:]
+colors["bright_red"] = scheme["color"][9][1:]
+colors["bright_green"] = scheme["color"][10][1:]
+colors["bright_yellow"] = scheme["color"][11][1:]
+colors["bright_blue"] = scheme["color"][12][1:]
+colors["bright_magenta"] = scheme["color"][13][1:]
+colors["bright_cyan"] = scheme["color"][14][1:]
+colors["bright_white"] = scheme["color"][15][1:]
 
 
 class ColorFormatter:
@@ -149,7 +146,7 @@ class Kitty(ColorFormatter):
 class XResources(ColorFormatter):
 
     color_fmt = "*{name}: #{col_hex}"
-    config_file = CONFIG_HOME + "X11/xresources"
+    config_file = CONFIG_HOME + "/X11/xresources"
     color_names = NUMBERED_COLOR_NAMES
 
     @classmethod
