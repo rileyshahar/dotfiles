@@ -140,6 +140,9 @@ echo "installing neovim plugins"
 git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim > /dev/null
 nvim --headless +PaqInstall +q
 
+echo "making user bin files executable"
+chmod +x $DOTFILES_DIR/bin/*
+
 # echo "installing fish plugins"
 # curl -sL https://git.io/fisher | fish && fisher install jorgebucaran/fisher > /dev/null
 
