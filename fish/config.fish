@@ -172,6 +172,7 @@ abbr -a ga git add
 abbr -a gp git push
 abbr -a gpp git push --force-with-lease # "push please"
 abbr -a gpl git pull --ff-only # don't pull if conflict
+abbr -a gpf git fetch\; git reset --hard origin/(git branch --show-current) # "pull --force"
 abbr -a gls git_short_log
 abbr -a gll git log --stat-count=30
 abbr -a gu git_untracked
