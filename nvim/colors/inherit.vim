@@ -44,7 +44,7 @@ fun! s:set_colors(group, fg, bg, attr)
 endfun
 
 " check if we can do colors 8-15
-if has('gui_running') || (&t_Co > 8 && (!exists('g:disco_nobright') || g:disco_nobright != 1))
+if has('gui_running') || &t_Co > 8 
     let s:gt_eight = 1
 else
     let s:gt_eight = 0
