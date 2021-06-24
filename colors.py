@@ -114,6 +114,11 @@ class Kitty(ColorFormatter):
     config_file = "kitty/kitty.conf"
     color_names = NUMBERED_COLOR_NAMES
 
+    @classmethod
+    def post_format_hook(cls):
+        os.system(f"kitty @ set-colors --all --configured {cls.config_file}")
+
+
 
 class XResources(ColorFormatter):
 
