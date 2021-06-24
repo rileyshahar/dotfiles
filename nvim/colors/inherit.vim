@@ -62,10 +62,29 @@ let s:bg               = 'NONE'
 let s:none             = 'NONE'
 
 " set greyscale colors
-if &background == "dark" && s:gt_eight
-    let s:dim          = 'DarkGray'
-    let s:dimtwo       = 'LightGray'
+if &background == "dark"
+    let s:black        = 'Black'
+    let s:white        = 'White'
     let s:fg           = 'White'
+    let s:dimtwo       = 'LightGray'
+  if s:gt_eight
+    let s:dim          = 'DarkGray'
+  else
+    let s:dim          = 'LightGray'
+  end
+else
+    let s:black        = 'White'
+    let s:white        = 'Black'
+    let s:fg           = 'Black'
+    let s:dim          = 'LightGray'
+  if s:gt_eight
+    let s:dimtwo       = 'DarkGray'
+  else
+    let s:dimtwo       = 'LightGray'
+  end
+end
+
+if &background == "dark" && s:gt_eight
 else
     let s:fg           = 'Black'
   if s:gt_eight
@@ -136,7 +155,7 @@ call s:set_colors("VertSplit", s:black, s:none, "")
 call s:set_colors("Folded", s:dimtwo, s:bg, "")
 call s:set_colors("FoldColumn", s:dimtwo, s:bg, "")
 call s:set_colors("SighColumn", s:fg, s:bg, "")
-call s:set_colors("IncSearch", s:bg, s:red, "") " todo
+call s:set_colors("IncSearch", s:black, s:red, "") " todo
 call s:set_colors("Substitute", s:bg, s:red, "") " todo
 call s:set_colors("LineNr", s:dim, s:bg, "")
 call s:set_colors("CursorLineNr", s:fg, s:dim, "")
@@ -148,104 +167,58 @@ call s:set_colors("Normal", s:fg, s:bg, "")
 call s:set_colors("NormalNC", s:fg, s:black, "")
 call s:set_colors("NormalNC", s:fg, s:dim, "")
 call s:set_colors("Pmenu", s:fg, s:dim, "")
-call s:set_colors("PmenuSel", s:dimblue, "") " todo
+call s:set_colors("PmenuSel", s:bg, s:blue, "") " todo
 call s:set_colors("PmenuSbar", s:fg, s:dim, "")
 call s:set_colors("PmenuThumb", s:fg, s:dimtwo, "")
 call s:set_colors("Question", s:yellow, s:bg, "")
 call s:set_colors("QuickFixLine", s:bg, s:blue, "") " todo
 call s:set_colors("Search", s:bg, s:green, "") " todo
+call s:set_colors("SignColumn", s:dim, s:dim, "") " todo
 call s:set_colors("SpecialKey", s:dimtwo, s:bg, "")
 call s:set_colors("SpellBad", s:red, s:bg, "underline")
 call s:set_colors("SpellCap", s:yellow, s:bg, "underline")
 call s:set_colors("SpellLocal", s:blue, s:bg, "underline")
 call s:set_colors("SpellRare", s:dimmagenta, s:bg, "underline")
-call s:set_colors("StatusLine", s:fg, s:dimtwo)
-call s:set_colors("TabLine", s:fg, s:dimtwo)
-call s:set_colors("TabLine", s:fg, s:dim)
-call s:set_colors("TabLineSel", s:bg, s:dimred, "") " todo
+call s:set_colors("StatusLine", s:fg, s:dimtwo, "")
+call s:set_colors("TabLine", s:fg, s:dimtwo, "")
+call s:set_colors("TabLineFill", s:dim, s:white, "")
+call s:set_colors("TabLineSel", s:black, s:dimred, "") " todo
 call s:set_colors("Title", s:red, s:bg, "bold")
-call s:set_colors("Visual", s:bg, s:dimtwo)
+call s:set_colors("Visual", s:bg, s:dimtwo, "")
 call s:set_colors("VisualNOS", s:bg, s:dimtwo, "underline")
 call s:set_colors("WarningMsg", s:yellow, s:bg, "")
 call s:set_colors("Whitespace", s:dimtwo, s:bg, "")
 call s:set_colors("WildMenu", s:bg, s:blue, "") " todo
 
+" statusline
+" todo: there were better colors here, check old commits
+call s:set_colors("StatusNormal", s:dim, s:dimblue, "")
+call s:set_colors("StatusNop", s:dim, s:dimyellow, "")
+call s:set_colors("StatusInsert", s:dim, s:green, "")
+call s:set_colors("StatusVisual", s:dim, s:dimmagenta, "")
+call s:set_colors("StatusSelect", s:dim, s:dimyellow, "")
+call s:set_colors("StatusReplace", s:dim, s:dimyellow, "")
+call s:set_colors("StatusCommand", s:dim, s:magenta, "")
+call s:set_colors("StatusPrompt", s:dim, s:dimyellow, "")
+call s:set_colors("StatusShell", s:dim, s:yellow, "")
+call s:set_colors("StatusNone", s:dim, s:dimtwo, "")
+call s:set_colors("StatusLineDark", s:fg, s:bg, "")
 
-" diff
-
-"}}}
-" Generic syntax {{{
-hi Delimiter       ctermfg=7
-hi Comment         ctermfg=8
-hi Underlined      ctermfg=4   cterm=underline
-hi Type            ctermfg=4
-hi String          ctermfg=11
-hi Keyword         ctermfg=2
-hi Todo            ctermfg=15  ctermbg=NONE     cterm=bold,underline
-hi Function        ctermfg=4
-hi Identifier      ctermfg=7   cterm=NONE
-hi Statement       ctermfg=2   cterm=bold
-hi Constant        ctermfg=13
-hi Number          ctermfg=12
-hi Boolean         ctermfg=4
-hi Special         ctermfg=13
-hi Ignore          ctermfg=0
-hi PreProc         ctermfg=8   cterm=bold
-hi! link Operator  Delimiter
+" syntax
+call s:set_colors("Comment", s:dimmagenta, s:bg, "italic")
+call s:set_colors("Constant", s:dimyellow, s:bg, "")
+call s:set_colors("String", s:green, s:bg, "")
+call s:set_colors("Character", s:green, s:bg, "")
+call s:set_colors("Identifier", s:yellow, s:bg, "NONE")
+call s:set_colors("Function", s:magenta, s:bg, "")
+call s:set_colors("Statement", s:red, s:bg, "")
+call s:set_colors("PreProc", s:red, s:bg, "")
+call s:set_colors("Type", s:blue, s:bg, "")
+call s:set_colors("Special", s:cyan, s:bg, "")
+call s:set_colors("Delimiter", s:dimtwo, s:bg, "")
+call s:set_colors("Underlined", s:dimblue, s:bg, "underline")
+call s:set_colors("Ignore", s:dim, s:bg, "")
+call s:set_colors("Todo", s:black, s:yellow, "")
 hi! link Error     ErrorMsg
-
-"}}}
-" Markdown {{{
-hi! link markdownHeadingRule        NonText
-hi! link markdownHeadingDelimiter   markdownHeadingRule
-hi! link markdownLinkDelimiter      Delimiter
-hi! link markdownURLDelimiter       Delimiter
-hi! link markdownCodeDelimiter      NonText
-hi! link markdownLinkTextDelimiter  markdownLinkDelimiter
-hi! link markdownUrl                markdownLinkText
-hi! link markdownAutomaticLink      markdownLinkText
-hi! link markdownCodeBlock          String
-hi markdownCode                     cterm=bold
-hi markdownBold                     cterm=bold
-hi markdownItalic                   cterm=underline
-
-"}}}
-" Git {{{
-hi gitCommitBranch               ctermfg=3
-hi gitCommitSelectedType         ctermfg=10
-hi gitCommitSelectedFile         ctermfg=2
-hi gitCommitUnmergedType         ctermfg=9
-hi gitCommitUnmergedFile         ctermfg=1
-hi! link gitCommitFile           Directory
-hi! link gitCommitUntrackedFile  gitCommitUnmergedFile
-hi! link gitCommitDiscardedType  gitCommitUnmergedType
-hi! link gitCommitDiscardedFile  gitCommitUnmergedFile
-
-"}}}
-" Vim {{{
-hi! link vimSetSep    Delimiter
-hi! link vimContinue  Delimiter
-hi! link vimHiAttrib  Constant
-
-"}}}
-" LESS {{{
-hi lessVariable             ctermfg=11
-hi! link lessVariableValue  Normal
-
-"}}}
-" Help {{{
-hi! link helpExample         String
-hi! link helpHeadline        Title
-hi! link helpSectionDelim    Comment
-hi! link helpHyperTextEntry  Statement
-hi! link helpHyperTextJump   Underlined
-hi! link helpURL             Underlined
-
-"}}}
-" Diff {{{
-hi diffAdded  ctermfg=2
-hi diffRemoved  ctermfg=1
-hi! link diffFile  PreProc
-hi! link diffLine  Title
 
 " vim: fdm=marker:sw=2:sts=2:et

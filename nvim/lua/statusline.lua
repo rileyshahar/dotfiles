@@ -16,20 +16,6 @@ local function highlight(group, fg, bg)
     cmd("highlight " .. group .. " guifg=" .. fg .. " guibg=" .. bg)
 end
 
-local dark_text = "#24283b"
-
-highlight("StatusNormal", dark_text, "#7aa2f7")
-highlight("StatusNop", dark_text, "#ff9e64")
-highlight("StatusInsert", dark_text, "#b9f27c")
-highlight("StatusVisual", dark_text, "#ad8ee6")
-highlight("StatusSelect", dark_text, "#ff9e64")
-highlight("StatusReplace", dark_text, "#ff9e64")
-highlight("StatusCommand", dark_text, "#f6bdff")
-highlight("StatusPrompt", dark_text, "#ff9e64")
-highlight("StatusShell", dark_text, "#e0af68")
-highlight("StatusNone", dark_text, "#444b6a")
-highlight("StatusLineDark", "#9098bd", "#232433")
-
 local emph_highlight = "%#StatusLine#"
 local dark_highlight = "%#StatusLineDark#"
 
