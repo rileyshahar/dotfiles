@@ -1,8 +1,8 @@
 -- prettier colors
-vim.o.termguicolors = true
+vim.o.termguicolors = false
 
 -- colorscheme
-cmd "colorscheme tokyonight" -- todo: this is *slow as fuck*, we need to rewrite smth by hand
+cmd "colorscheme inherit"
 
 -- syntax highlighting
 cmd "syntax enable"
