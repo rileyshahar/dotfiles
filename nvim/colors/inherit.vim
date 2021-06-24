@@ -65,7 +65,7 @@ let s:none             = 'NONE'
 if &background == "dark"
     let s:black        = 'Black'
     let s:white        = 'White'
-    let s:fg           = 'White'
+    let s:fg           = 'LightGray'
     let s:dimtwo       = 'LightGray'
   if s:gt_eight
     let s:dim          = 'DarkGray'
@@ -75,26 +75,15 @@ if &background == "dark"
 else
     let s:black        = 'White'
     let s:white        = 'Black'
-    let s:fg           = 'Black'
     let s:dim          = 'LightGray'
   if s:gt_eight
     let s:dimtwo       = 'DarkGray'
+    let s:fg           = 'DarkGray'
   else
     let s:dimtwo       = 'LightGray'
+    let s:fg           = 'Black'
   end
 end
-
-if &background == "dark" && s:gt_eight
-else
-    let s:fg           = 'Black'
-  if s:gt_eight
-    let s:dim          = 'LightGray'
-    let s:dimtwo       = 'DarkGray'
-  else
-    let s:dim          = 'LightGray'
-    let s:dimtwo       = 'LightGray'
-  endif
-endif
 
 if &background == "dark" && s:gt_eight
     let s:red          = 'Red'
@@ -179,10 +168,9 @@ call s:set_colors("SpellBad", s:red, s:bg, "underline")
 call s:set_colors("SpellCap", s:yellow, s:bg, "underline")
 call s:set_colors("SpellLocal", s:blue, s:bg, "underline")
 call s:set_colors("SpellRare", s:dimmagenta, s:bg, "underline")
-call s:set_colors("StatusLine", s:fg, s:dimtwo, "")
-call s:set_colors("TabLine", s:fg, s:dimtwo, "")
-call s:set_colors("TabLineFill", s:dim, s:white, "")
-call s:set_colors("TabLineSel", s:black, s:dimred, "") " todo
+call s:set_colors("TabLine", s:dimtwo, s:fg, "")
+call s:set_colors("TabLineFill", s:dim, s:fg, "")
+call s:set_colors("TabLineSel", s:black, s:red, "NONE") " todo
 call s:set_colors("Title", s:red, s:bg, "bold")
 call s:set_colors("Visual", s:bg, s:dimtwo, "")
 call s:set_colors("VisualNOS", s:bg, s:dimtwo, "underline")
@@ -192,6 +180,7 @@ call s:set_colors("WildMenu", s:bg, s:blue, "") " todo
 
 " statusline
 " todo: there were better colors here, check old commits
+call s:set_colors("StatusLine", s:dimtwo, s:dim, "NONE")
 call s:set_colors("StatusNormal", s:dim, s:dimblue, "")
 call s:set_colors("StatusNop", s:dim, s:dimyellow, "")
 call s:set_colors("StatusInsert", s:dim, s:green, "")
