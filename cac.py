@@ -1,57 +1,57 @@
 #!/bin/env/python
 
+import argparse
 import os
 import json
+
 
 START_MARKER = "__colors:start"
 END_MARKER = "__colors:end"
 
-# set JSON_STRING to a json string from https://terminal.sexy/
-USE_JSON = False
-JSON_STRING = ""
+CONFIG_HOME = os.getenv("XDG_CONFIG_HOME")
 
-if USE_JSON:
-    COLORS = {}
-    js = json.loads(JSON_STRING)
-    COLORS["background"] = js["background"][1:]
-    COLORS["foreground"] = js["foreground"][1:]
-    COLORS["dim_black"] = js["color"][0][1:]
-    COLORS["dim_red"] = js["color"][1][1:]
-    COLORS["dim_green"] = js["color"][2][1:]
-    COLORS["dim_yellow"] = js["color"][3][1:]
-    COLORS["dim_blue"] = js["color"][4][1:]
-    COLORS["dim_magenta"] = js["color"][5][1:]
-    COLORS["dim_cyan"] = js["color"][6][1:]
-    COLORS["dim_white"] = js["color"][7][1:]
-    COLORS["bright_black"] = js["color"][8][1:]
-    COLORS["bright_red"] = js["color"][9][1:]
-    COLORS["bright_green"] = js["color"][10][1:]
-    COLORS["bright_yellow"] = js["color"][11][1:]
-    COLORS["bright_blue"] = js["color"][12][1:]
-    COLORS["bright_magenta"] = js["color"][13][1:]
-    COLORS["bright_cyan"] = js["color"][14][1:]
-    COLORS["bright_white"] = js["color"][15][1:]
-else:
-    COLORS = {
-        "background": "1a1b26",
-        "foreground": "a9b1d6",
-        "dim_black": "06080a",
-        "dim_red": "e06c75",
-        "dim_green": "98c379",
-        "dim_yellow": "d19a66",
-        "dim_blue": "7aa2f7",
-        "dim_magenta": "ad8ee6",
-        "dim_cyan": "56bdb8",
-        "dim_white": "abb2bf",
-        "bright_black": "444b6a",
-        "bright_red": "f7768e",
-        "bright_green": "9ece6a",
-        "bright_yellow": "e0af68",
-        "bright_blue": "61afef",
-        "bright_magenta": "f6bdff",
-        "bright_cyan": "50c3bd",
-        "bright_white": "ffffff",
-    }
+parser = argparse.ArgumentParser(description="Cac adjusts colorschemes.")
+parser.add_argument(
+    "--json, -j",
+    default=None,
+    help="a path to a json file from terminal.sexy",
+    dest="json"
+)
+parser.add_argument(
+    "--scheme, -s",
+    default=None,
+    help="the name of a colorscheme in $XDG_CONFIG_HOME/cac",
+    dest="scheme"
+)
+args = parser.parse_args()
+
+colors = {}
+try:
+    js = json.load(open(CONFIG_HOME + "/cac/" + args.scheme + ".json"))
+except FileNotFoundError:
+    if (json_loc := args.json):
+        js = json.load(open(json_loc))
+    else:
+        raise
+
+colors["background"] = js["background"][1:]
+colors["foreground"] = js["foreground"][1:]
+colors["dim_black"] = js["color"][0][1:]
+colors["dim_red"] = js["color"][1][1:]
+colors["dim_green"] = js["color"][2][1:]
+colors["dim_yellow"] = js["color"][3][1:]
+colors["dim_blue"] = js["color"][4][1:]
+colors["dim_magenta"] = js["color"][5][1:]
+colors["dim_cyan"] = js["color"][6][1:]
+colors["dim_white"] = js["color"][7][1:]
+colors["bright_black"] = js["color"][8][1:]
+colors["bright_red"] = js["color"][9][1:]
+colors["bright_green"] = js["color"][10][1:]
+colors["bright_yellow"] = js["color"][11][1:]
+colors["bright_blue"] = js["color"][12][1:]
+colors["bright_magenta"] = js["color"][13][1:]
+colors["bright_cyan"] = js["color"][14][1:]
+colors["bright_white"] = js["color"][15][1:]
 
 
 class ColorFormatter:
@@ -64,7 +64,7 @@ class ColorFormatter:
     def change_colors(cls):
         """Change the colors of `file`.
 
-        names is be a dictionary mapping the names used in COLORS to the names
+        names is be a dictionary mapping the names used in colors to the names
             to be used in the file.
 
         colorfmt is an fstring which may use the following variables:
@@ -92,7 +92,7 @@ class ColorFormatter:
     @classmethod
     def process_colorfmt(cls):
         out = ""
-        for name, col_hex in COLORS.items():
+        for name, col_hex in colors.items():
             out = out + \
                 cls.color_fmt.format(
                     name=cls.color_names[name], col_hex=col_hex) + "\n"
@@ -138,7 +138,7 @@ NUMBERED_COLOR_NAMES = {
 class Kitty(ColorFormatter):
 
     color_fmt = "{name} #{col_hex}"
-    config_file = "kitty/kitty.conf"
+    config_file = CONFIG_HOME + "/kitty/kitty.conf"
     color_names = NUMBERED_COLOR_NAMES
 
     @classmethod
@@ -149,7 +149,7 @@ class Kitty(ColorFormatter):
 class XResources(ColorFormatter):
 
     color_fmt = "*{name}: #{col_hex}"
-    config_file = "X11/xresources"
+    config_file = CONFIG_HOME + "X11/xresources"
     color_names = NUMBERED_COLOR_NAMES
 
     @classmethod
