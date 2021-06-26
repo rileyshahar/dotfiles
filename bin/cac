@@ -70,20 +70,23 @@ class ColorFormatter:
         """
 
         out = ""
-        with open(cls.config_file, "r") as f:
-            while (line := f.readline()) and START_MARKER not in line:
+        try:
+            with open(cls.config_file, "r") as f:
+                while (line := f.readline()) and START_MARKER not in line:
+                    out = out + line
+                if not line:
+                    return False
                 out = out + line
-            if not line:
-                return False
-            out = out + line
-            out = out + cls.process_colorfmt()
-            while END_MARKER not in (line := f.readline()):
-                pass
-            out = out + line
-            while (line := f.readline()):
+                out = out + cls.process_colorfmt()
+                while END_MARKER not in (line := f.readline()):
+                    pass
                 out = out + line
-        with open(cls.config_file, "w") as f:
-            f.write(out)
+                while (line := f.readline()):
+                    out = out + line
+            with open(cls.config_file, "w") as f:
+                f.write(out)
+        except FileNotFoundError:
+            return False
         return True
 
     @classmethod
@@ -101,13 +104,36 @@ class ColorFormatter:
             cls.post_format_hook()
             print(f"{cls.__name__} formatted successfully")
         else:
-            print(f"{cls.__name__} could not be formatted."
-                  f" perhaps the start marker is missing: {START_MARKER}")
+            print(f"{cls.__name__} could not be formatted."\n
+                  f" Perhaps the file location is wrong: {cls.config_file}"\n
+                  f" or the start marker is missing: {START_MARKER}")
 
     @classmethod
     def post_format_hook(cls):
         pass
 
+
+# maps the color names we use internally to themselves
+INTERNAL_COLOR_NAMES = {
+    "background": "background",
+    "foreground": "foreground",
+    "dim_black": "dim_black",
+    "dim_red": "dim_red",
+    "dim_green": "dim_green",
+    "dim_yellow": "dim_yellow",
+    "dim_blue": "dim_blue",
+    "dim_magenta": "dim_magenta",
+    "dim_cyan": "dim_cyan",
+    "dim_white": "dim_white",
+    "bright_black": "bright_black",
+    "bright_red": "bright_red",
+    "bright_green": "bright_green",
+    "bright_yellow": "bright_yellow",
+    "bright_blue": "bright_blue",
+    "bright_magenta": "bright_magenta",
+    "bright_cyan": "bright_cyan",
+    "bright_white": "bright_white",
+}
 
 # a helpful set of names which use the ansi number
 NUMBERED_COLOR_NAMES = {
@@ -152,3 +178,13 @@ class XResources(ColorFormatter):
     @classmethod
     def post_format_hook(cls):
         os.system(f"xrdb {cls.config_file}")
+
+
+class Alacritty(ColorFormatter):
+
+    color_fmt = "{name}: 0x{col_hex}"
+    config_file = CONFIG_HOME + "/alacritty/alacritty.yml"
+    color_names = {key
+                   .replace("dim_", "normal:\n\t\t")
+                   .replace("bright_", "bright:\n\t\t"): value
+                   for key, value in INTERNAL_COLOR_NAMES.items()}
