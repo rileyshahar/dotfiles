@@ -1,12 +1,13 @@
 devour
 feh
 fish
-i3-gaps
 kitty
 neovim-nightly-bin
 nerd-fonts-meslo
 python
 rofi
 tmux
+xmonad
+xmonad-contrib
 xorg
 xorg-xinit
