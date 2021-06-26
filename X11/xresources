@@ -1,4 +1,4 @@
-! __colors:start
+! __cac:start
 *background: #1a1b26
 *foreground: #a9b1d6
 *color0: #06080a
@@ -17,4 +17,4 @@
 *color13: #f6bdff
 *color14: #50c3bd
 *color15: #ffffff
-! __colors:end
+! __cac:end
