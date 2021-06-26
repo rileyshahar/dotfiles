@@ -64,10 +64,6 @@ usermod -aG wheel $username
 echo "synchronizing pacman databases"
 pacman -Sy
 
-echo "installing networkmanager"
-pacman -S networkmanager git --noconfirm --needed > /dev/null
-systemctl enable NetworkManager > /dev/null
-
 echo "configuring sudo"
 pacman -S sudo --noconfirm --needed > /dev/null
 sed -i '/%wheel ALL=(ALL) ALL/s/^# //' /etc/sudoers
@@ -136,6 +132,9 @@ ln -sv "$DOTFILES_DIR/nvim/lua/" "$CONFIG_HOME/nvim" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/snippets/" "$CONFIG_HOME/nvim" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/ftplugin/" "$CONFIG_HOME/nvim" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/colors/" "$CONFIG_HOME/nvim" > /dev/null
+
+echo "enabling networkmanager"
+systemctl enable NetworkManager > /dev/null
 
 echo "installing neovim plugins"
 git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim > /dev/null
