@@ -85,6 +85,9 @@ class ColorFormatter:
                 out = out + cls.process_colorfmt()
                 while END_MARKER not in (line := f.readline()):
                     pass
+                if not line:
+                    raise CacError(
+                        f"could not find the end marker: {END_MARKER}")
                 out = out + line
                 while (line := f.readline()):
                     out = out + line
