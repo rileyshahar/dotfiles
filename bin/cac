@@ -186,15 +186,15 @@ class XResources(ColorFormatter):
 
 class Alacritty(ColorFormatter):
 
-    color_fmt = "{name}: 0x{col_hex}"
+    color_fmt = "{name}: \"0x{col_hex}\""
     config_file = CONFIG_HOME + "/alacritty/alacritty.yml"
-    color_names = {key
-                   .replace("dim_", "normal:\n\t\t")
-                   .replace("bright_", "bright:\n\t\t"): value
+    color_names = {key: " " * 4 + value
+                   .replace("dim_", "normal:\n      ")
+                   .replace("bright_", "bright:\n      ")
                    for key, value in INTERNAL_COLOR_NAMES.items()}
 
 
-class Haskell(ColorFormatter):
+class XMonad(ColorFormatter):
 
     color_fmt = "{name} = \"#{col_hex}\""
     config_file = CONFIG_HOME + "/xmonad/xmonad.hs"
