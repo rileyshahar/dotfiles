@@ -152,6 +152,6 @@ echo "changing fish to default shell"
 sudo chsh -s $(which fish) $(whoami)
 
 echo "setting colorscheme to tokyonight"
-$DOTFILES_DIR/bin/cac tokyonight
+$DOTFILES_DIR/bin/cac tokyonight --no-reload
 
 EOSU

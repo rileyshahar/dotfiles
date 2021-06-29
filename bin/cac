@@ -21,6 +21,13 @@ parser.add_argument(
     default=None,
     help="the name of a colorscheme in $XDG_CONFIG_HOME/cac",
 )
+parser.add_argument(
+    "--no-reload",
+    default=False,
+    action="store_true",
+    dest="no_reload",
+    help="don't run post-format hooks to apply the colorschemes",
+)
 args = parser.parse_args()
 
 colors = {}
@@ -110,7 +117,8 @@ class ColorFormatter:
     def __init_subclass__(cls):
         try:
             cls.change_colors()
-            cls.post_format_hook()
+            if not args.no_reload:
+                cls.post_format_hook()
             print(f"{cls.__name__} formatted successfully")
         except CacError as e:
             print(f"{cls.__name__} could not be formatted: {e}")
