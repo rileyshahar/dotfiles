@@ -5,3 +5,5 @@ fish/functions
 base16/
 conf.d
 Session.vim
+xmonad/xmonad.hi
+xmonad/xmonad.o

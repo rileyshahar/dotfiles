@@ -7,8 +7,6 @@ import System.Exit
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-myTerminal = "kitty"
-
 ------------------------------------------------------------------------
 -- Style
 -- colors (managed by cac)
@@ -28,7 +26,7 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 ------------------------------------------------------------------------
 -- Shell commands
-spawnTerminal   = spawn $ XMonad.terminal conf 					    -- start terminal
+myTerminal      = "kitty" 					                    -- start terminal
 launchMenu      = spawn "rofi -modi drun,run -show drun"	                    -- start rofi
 restartXmonad   = spawn "xmonad --recompile; xmonad --restart"                      -- restart xmonad
 setWallpaper    = spawnOnce "feh --no-fehbg --bg-scale $DOTFILES_DIR/wallpaper.jpg" -- set wallpaper
@@ -42,7 +40,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     ---------------------
     -- Launchers
-    [ ((modm, xK_Return), spawnTerminal)                                        -- terminal
+    [ ((modm, xK_Return), spawn $ XMonad.terminal conf)                         -- terminal
     , ((modm, xK_space), launchMenu)                                            -- menu
 
     ---------------------
