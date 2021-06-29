@@ -27,8 +27,8 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 ------------------------------------------------------------------------
 -- Shell commands
-myTerminal      = "kitty" 					                    -- start terminal
-launchMenu      = spawn "rofi -modi drun,run -show drun"	                    -- start rofi
+myTerminal      = "kitty"                                                           -- start terminal
+launchMenu      = spawn "rofi -modi drun,run -show drun"                            -- start rofi
 restartXmonad   = spawn "xmonad --recompile; xmonad --restart"                      -- restart xmonad
 setWallpaper    = spawnOnce "feh --no-fehbg --bg-scale $DOTFILES_DIR/wallpaper.jpg" -- set wallpaper
 startCompositor = spawnOnce "picom &"                                               -- start picom
@@ -107,3 +107,5 @@ defaults = desktopConfig {
         layoutHook          = myLayout,
         startupHook         = myStartupHook
     }
+
+-- vim:expandtab:sw=6:ts=6
