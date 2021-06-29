@@ -17,7 +17,7 @@ import qualified Data.Map        as M
 -- window border
 myBorderWidth        = 1
 myNormalBorderColor  = dim_white
-myFocusedBorderColor = bright_blue
+myFocusedBorderColor = dim_magenta
 
 
 ------------------------------------------------------------------------
@@ -31,7 +31,6 @@ myTerminal      = "kitty" 					                    -- start terminal
 launchMenu      = spawn "rofi -modi drun,run -show drun"	                    -- start rofi
 restartXmonad   = spawn "xmonad --recompile; xmonad --restart"                      -- restart xmonad
 setWallpaper    = spawnOnce "feh --no-fehbg --bg-scale $DOTFILES_DIR/wallpaper.jpg" -- set wallpaper
-startCompositor = spawnOnce "picom &"                                               -- start picom
 
 
 ------------------------------------------------------------------------
@@ -83,7 +82,6 @@ myLayout = gaps $ tiled ||| Mirror tiled ||| Full
 -- Startup hook
 myStartupHook = do
     setWallpaper
-    startCompositor
 
 
 ------------------------------------------------------------------------
@@ -93,17 +91,17 @@ main = xmonad defaults
 
 defaults = desktopConfig {
         -- simple stuff
-        terminal           = myTerminal,
-        borderWidth        = myBorderWidth,
-        modMask            = myModMask,
-        workspaces         = myWorkspaces,
-        normalBorderColor  = myNormalBorderColor,
-        focusedBorderColor = myFocusedBorderColor,
+        terminal            = myTerminal,
+        borderWidth         = myBorderWidth,
+        modMask             = myModMask,
+        workspaces          = myWorkspaces,
+        normalBorderColor   = myNormalBorderColor,
+        focusedBorderColor  = myFocusedBorderColor,
 
         -- key bindings
-        keys               = myKeys,
+        keys                = myKeys,
 
         -- hooks, layouts
-        layoutHook         = myLayout,
-        startupHook        = myStartupHook
+        layoutHook          = myLayout,
+        startupHook         = myStartupHook
     }
