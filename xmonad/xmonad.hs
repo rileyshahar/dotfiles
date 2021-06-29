@@ -56,6 +56,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_semicolon), sendMessage NextLayout)                            -- rotate to next layout
     , ((modm .|. shiftMask, xK_semicolon), setLayout $ XMonad.layoutHook conf)  -- reset to default layout
     , ((modm, xK_t), withFocused $ windows . W.sink)                            -- force window to tile
+    , ((modm, xK_g), sequence_
+              [toggleScreenSpacingEnabled, toggleWindowSpacingEnabled])         -- toggle gaps
 
     ---------------------
     -- Window Navigation
@@ -76,7 +78,7 @@ myLayout = tiled ||| Mirror tiled ||| Full
      nmaster = 1                         -- number of windows in master pane
      ratio   = 1/2                       -- proportion of screen occupied by master pane
      delta   = 3/100                     -- percent of screen to increment when resizing master pane
-     gapSize = 1                         -- size of the gaps
+     gapSize = 10                        -- size of the gaps
 
 
 ------------------------------------------------------------------------
