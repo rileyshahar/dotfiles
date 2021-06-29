@@ -202,3 +202,7 @@ class XMonad(ColorFormatter):
     color_fmt = "{name} = \"#{col_hex}\""
     config_file = CONFIG_HOME + "/xmonad/xmonad.hs"
     color_names = INTERNAL_COLOR_NAMES
+
+    @classmethod
+    def post_format_hook(_):
+        os.system("xmonad --recompile; xmonad --restart")

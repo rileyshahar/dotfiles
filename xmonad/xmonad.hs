@@ -7,6 +7,8 @@ import System.Exit
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
+myTerminal = "kitty"
+
 ------------------------------------------------------------------------
 -- Style
 -- colors (managed by cac)
@@ -26,7 +28,7 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 ------------------------------------------------------------------------
 -- Shell commands
-myTerminal      = "kitty" 					                    -- start terminal
+spawnTerminal   = spawn $ XMonad.terminal conf 					    -- start terminal
 launchMenu      = spawn "rofi -modi drun,run -show drun"	                    -- start rofi
 restartXmonad   = spawn "xmonad --recompile; xmonad --restart"                      -- restart xmonad
 setWallpaper    = spawnOnce "feh --no-fehbg --bg-scale $DOTFILES_DIR/wallpaper.jpg" -- set wallpaper
@@ -40,26 +42,26 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     ---------------------
     -- Launchers
-    [ ((modm, xK_Return), spawn $ XMonad.terminal conf)       -- terminal
-    , ((modm, xK_space), launchMenu)                          -- menu
+    [ ((modm, xK_Return), spawnTerminal)                                        -- terminal
+    , ((modm, xK_space), launchMenu)                                            -- menu
 
     ---------------------
     -- Troubleshooting
-    , ((modm, xK_r), refresh)                                 -- refresh renderer
-    , ((modm .|. shiftMask, xK_r), restartXmonad)             -- restart xmonad
-    , ((modm .|. shiftMask, xK_q), kill)                      -- close focused window
+    , ((modm, xK_r), refresh)                                                   -- refresh renderer
+    , ((modm .|. shiftMask, xK_r), restartXmonad)                               -- restart xmonad
+    , ((modm .|. shiftMask, xK_q), kill)                                        -- close focused window
 
     ---------------------
     -- Layout
-    , ((modm, xK_semicolon), sendMessage NextLayout)          -- rotate to next layout
-    , ((modm, xK_colon), setLayout $ XMonad.layoutHook conf)  -- reset to default layout
-    , ((modm, xK_t), withFocused $ windows . W.sink)          -- force window to tile
+    , ((modm, xK_semicolon), sendMessage NextLayout)                            -- rotate to next layout
+    , ((modm .|. shiftMask, xK_semicolon), setLayout $ XMonad.layoutHook conf)  -- reset to default layout
+    , ((modm, xK_t), withFocused $ windows . W.sink)                            -- force window to tile
 
     ---------------------
     -- Window Navigation
-    , ((modm, xK_j), windows W.focusDown)                     -- move focus to next window
-    , ((modm, xK_k), windows W.focusUp)                       -- move focus to prev window
-    , ((modm, xK_h), windows W.focusMaster)                   -- move focus to master window
+    , ((modm, xK_j), windows W.focusDown)                                       -- move focus to next window
+    , ((modm, xK_k), windows W.focusUp)                                         -- move focus to prev window
+    , ((modm, xK_h), windows W.focusMaster)                                     -- move focus to master window
 
     ]
 
