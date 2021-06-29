@@ -2,7 +2,6 @@ import XMonad
 import XMonad.Config.Desktop
 import XMonad.Layout.Spacing
 import XMonad.Util.SpawnOnce
-import XMonad.Hooks.FadeWindows
 import Data.Monoid
 import System.Exit
 
@@ -16,7 +15,7 @@ import qualified Data.Map        as M
 -- __cac:end
 
 -- window border
-myBorderWidth        = 1
+myBorderWidth        = 0
 myNormalBorderColor  = dim_white
 myFocusedBorderColor = dim_magenta
 
@@ -78,25 +77,6 @@ myLayout = gaps $ tiled ||| Mirror tiled ||| Full
      nmaster = 1                         -- number of windows in master pane
      ratio   = 1/2                       -- proportion of screen occupied by master pane
      delta   = 3/100                     -- percent of screen to increment when resizing master pane
-
-
-------------------------------------------------------------------------
--- Remove borders on inactive windows
--- https://github.com/Sam1431/Immutable-Dotfiles/blob/f7a0727bfba885f9cadc5805f0947179742848f1/system/profiles/x11-xorg/xmonad/xmonad.hs#L292-L305
-
-removeBorderQuery :: Query Bool
-removeBorderQuery = isUnfocused
-
-removeBorder :: Window -> X ()
-removeBorder ws = withDisplay $ \d -> mapM_ (\w -> io $ setWindowBorderWidth d w 0) [ws]
-
-myBorderEventHook :: Event -> X All
-
-myBorderEventHook (MapNotifyEvent {ev_window = window}) = do
-    whenX (runQuery removeBorderQuery window) (removeBorder window)
-    return $ All True
-
-myBorderEventHook _ = return $ All True
 
 
 ------------------------------------------------------------------------
