@@ -1,5 +1,6 @@
 import XMonad
 import XMonad.Config.Desktop
+import XMonad.Layout.Spacing
 import XMonad.Util.SpawnOnce
 import Data.Monoid
 import System.Exit
@@ -30,6 +31,7 @@ myTerminal      = "kitty" 					                    -- start terminal
 launchMenu      = spawn "rofi -modi drun,run -show drun"	                    -- start rofi
 restartXmonad   = spawn "xmonad --recompile; xmonad --restart"                      -- restart xmonad
 setWallpaper    = spawnOnce "feh --no-fehbg --bg-scale $DOTFILES_DIR/wallpaper.jpg" -- set wallpaper
+startCompositor = spawnOnce "picom &"                                               -- start picom
 
 
 ------------------------------------------------------------------------
@@ -66,8 +68,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 ------------------------------------------------------------------------
 -- Layouts
-myLayout = tiled ||| Mirror tiled ||| Full
+myLayout = gaps $ tiled ||| Mirror tiled ||| Full
   where
+     gaps    = spacingRaw True (Border 0 gapSize gapSize gapSize) True (Border gapSize gapSize gapSize gapSize) True
+     gapSize = 10                        -- size of the gaps
      tiled   = Tall nmaster delta ratio
      nmaster = 1                         -- number of windows in master pane
      ratio   = 1/2                       -- proportion of screen occupied by master pane
@@ -78,6 +82,8 @@ myLayout = tiled ||| Mirror tiled ||| Full
 -- Startup hook
 myStartupHook = do
     setWallpaper
+    startCompositor
+
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
