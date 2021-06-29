@@ -151,4 +151,7 @@ chmod +x $DOTFILES_DIR/bin/*
 echo "changing fish to default shell"
 sudo chsh -s $(which fish) $(whoami)
 
+echo "setting colorscheme to tokyonight"
+$DOTFILES_DIR/bin/cac tokyonight
+
 EOSU
