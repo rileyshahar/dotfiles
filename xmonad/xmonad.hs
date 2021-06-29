@@ -2,6 +2,7 @@ import XMonad
 import XMonad.Config.Desktop
 import XMonad.Layout.Spacing
 import XMonad.Util.SpawnOnce
+import XMonad.Hooks.FadeWindows
 import Data.Monoid
 import System.Exit
 
@@ -31,6 +32,7 @@ myTerminal      = "kitty" 					                    -- start terminal
 launchMenu      = spawn "rofi -modi drun,run -show drun"	                    -- start rofi
 restartXmonad   = spawn "xmonad --recompile; xmonad --restart"                      -- restart xmonad
 setWallpaper    = spawnOnce "feh --no-fehbg --bg-scale $DOTFILES_DIR/wallpaper.jpg" -- set wallpaper
+startCompositor = spawnOnce "picom &"                                               -- start picom
 
 
 ------------------------------------------------------------------------
@@ -79,9 +81,29 @@ myLayout = gaps $ tiled ||| Mirror tiled ||| Full
 
 
 ------------------------------------------------------------------------
+-- Remove borders on inactive windows
+-- https://github.com/Sam1431/Immutable-Dotfiles/blob/f7a0727bfba885f9cadc5805f0947179742848f1/system/profiles/x11-xorg/xmonad/xmonad.hs#L292-L305
+
+removeBorderQuery :: Query Bool
+removeBorderQuery = isUnfocused
+
+removeBorder :: Window -> X ()
+removeBorder ws = withDisplay $ \d -> mapM_ (\w -> io $ setWindowBorderWidth d w 0) [ws]
+
+myBorderEventHook :: Event -> X All
+
+myBorderEventHook (MapNotifyEvent {ev_window = window}) = do
+    whenX (runQuery removeBorderQuery window) (removeBorder window)
+    return $ All True
+
+myBorderEventHook _ = return $ All True
+
+
+------------------------------------------------------------------------
 -- Startup hook
 myStartupHook = do
     setWallpaper
+    startCompositor
 
 
 ------------------------------------------------------------------------
