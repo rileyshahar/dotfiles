@@ -70,8 +70,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 -- Layouts
 myLayout = gaps $ tiled ||| Mirror tiled ||| Full
   where
-     gaps    = spacingRaw True (Border 0 gapSize gapSize gapSize) True (Border gapSize gapSize gapSize gapSize) True
-     gapSize = 10                        -- size of the gaps
+     gaps    = spacingRaw True border True border True
+     border  = Border gapSize gapSize gapSize gapSize
+     gapSize = 4                         -- size of the gaps
      tiled   = Tall nmaster delta ratio
      nmaster = 1                         -- number of windows in master pane
      ratio   = 1/2                       -- proportion of screen occupied by master pane
