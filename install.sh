@@ -152,8 +152,10 @@ nvim --headless +PaqInstall +q > /dev/null
 echo "making user bin files executable"
 chmod +x $DOTFILES_DIR/bin/*
 
-# echo "installing fish plugins"
-# curl -sL https://git.io/fisher | fish && fisher install jorgebucaran/fisher > /dev/null
+echo "installing fish plugins"
+fish <<EOFS
+curl -sL https://git.io/fisher | source && fisher update
+EOFS
 
 echo "changing fish to default shell"
 sudo chsh -s $(which fish) $(whoami) > /dev/null
