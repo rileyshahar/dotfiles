@@ -114,7 +114,7 @@ git clone --branch arch https://github.com/nihilistkitten/dotfiles > /dev/null
 
 echo "installing packages; this make take a while."
 # https://github.com/xmonad/xmonad/issues/71#issuecomment-330676459
-mkdir $HOME/.local/share/xmonad  # this is a trick to force xmonad to not use the base directory
+mkdir -p $HOME/.local/share/xmonad  # this is a trick to force xmonad to not use the base directory
 yay -S --noconfirm --needed - <$HOME/dotfiles/paclist > /dev/null
 
 if hostnamectl status | grep -q "Virtualization"; then
