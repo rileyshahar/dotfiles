@@ -117,12 +117,6 @@ echo "installing packages; this make take a while."
 mkdir -p $HOME/.local/share/xmonad  # this is a trick to force xmonad to not use the base directory
 yay -S --noconfirm --needed - <$HOME/dotfiles/paclist > /dev/null
 
-if hostnamectl status | grep -q "Virtualization"; then
-	echo "installing virtualbox utils"
-	yay -S virtualbox-guest-utils > /dev/null
-	sudo systemctl enable vboxservice > /dev/null
-fi
-
 echo "symlinking configs"
 DOTFILES_DIR="$HOME/dotfiles"
 CONFIG_HOME="$HOME/.config"
