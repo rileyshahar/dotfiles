@@ -27,7 +27,7 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 ------------------------------------------------------------------------
 -- Shell commands
-myTerminal      = "kitty"                                                           -- start terminal
+myTerminal      = "kitty -1"                                                        -- start terminal
 launchMenu      = spawn "rofi -modi drun,run -show drun"                            -- start rofi
 restartXmonad   = spawn "xmonad --recompile; xmonad --restart"                      -- restart xmonad
 setWallpaper    = spawnOnce "feh --no-fehbg --bg-scale $DOTFILES_DIR/wallpaper.jpg" -- set wallpaper
