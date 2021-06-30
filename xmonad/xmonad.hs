@@ -75,10 +75,10 @@ myLayout = tiled ||| Mirror tiled ||| Full
      tiled   = gaps $ Tall nmaster delta ratio
      gaps    = spacingRaw True border True border True
      border  = Border gapSize gapSize gapSize gapSize
-     nmaster = 1                         -- number of windows in master pane
-     ratio   = 1/2                       -- proportion of screen occupied by master pane
-     delta   = 3/100                     -- percent of screen to increment when resizing master pane
-     gapSize = 10                        -- size of the gaps
+     nmaster = 1                                   -- number of windows in master pane
+     ratio   = toRational (2/(1 + sqrt 5::Double)) -- proportion of screen occupied by master pane
+     delta   = 3/100                               -- percent of screen to increment when resizing master pane
+     gapSize = 10                                  -- size of the gaps
 
 
 ------------------------------------------------------------------------
