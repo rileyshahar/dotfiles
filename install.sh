@@ -115,7 +115,13 @@ git clone --branch arch https://github.com/nihilistkitten/dotfiles > /dev/null
 echo "installing packages; this make take a while."
 # https://github.com/xmonad/xmonad/issues/71#issuecomment-330676459
 mkdir $HOME/.local/share/xmonad  # this is a trick to force xmonad to not use the base directory
-yay -S --noconfirm --needed - <$HOME/dotfiles/paclist
+yay -S --noconfirm --needed - <$HOME/dotfiles/paclist > /dev/null
+
+if hostnamectl status | grep -q "Virtualization"; then
+	echo "installing virtualbox utils"
+	yay -S virtualbox-guest-utils > /dev/null
+	sudo systemctl enable vboxservice > /dev/null
+fi
 
 echo "symlinking configs"
 DOTFILES_DIR="$HOME/dotfiles"
@@ -141,7 +147,7 @@ sudo systemctl enable NetworkManager > /dev/null
 
 echo "installing neovim plugins"
 git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim > /dev/null
-nvim --headless +PaqInstall +q
+nvim --headless +PaqInstall +q > /dev/null
 
 echo "making user bin files executable"
 chmod +x $DOTFILES_DIR/bin/*
@@ -150,9 +156,9 @@ chmod +x $DOTFILES_DIR/bin/*
 # curl -sL https://git.io/fisher | fish && fisher install jorgebucaran/fisher > /dev/null
 
 echo "changing fish to default shell"
-sudo chsh -s $(which fish) $(whoami)
+sudo chsh -s $(which fish) $(whoami) > /dev/null
 
 echo "setting colorscheme to tokyonight"
-$DOTFILES_DIR/bin/cac tokyonight --no-reload
+$DOTFILES_DIR/bin/cac tokyonight --no-reload > /dev/null
 
 EOSU
