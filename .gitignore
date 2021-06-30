@@ -1,5 +1,6 @@
 .DS_Store
 Brewfile.lock.json
+fish/completions
 fish/fish_variables
 fish/functions
 base16/
