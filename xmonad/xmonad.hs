@@ -73,8 +73,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 myLayout = tiled ||| Mirror tiled ||| Full
   where
      tiled   = gaps $ Tall nmaster delta ratio
-     gaps    = spacingRaw True border True border True
-     border  = Border gapSize gapSize gapSize gapSize
+     gaps    = spacing gapSize
      nmaster = 1                                   -- number of windows in master pane
      ratio   = toRational (2/(1 + sqrt 5::Double)) -- proportion of screen occupied by master pane
      delta   = 3/100                               -- percent of screen to increment when resizing master pane
