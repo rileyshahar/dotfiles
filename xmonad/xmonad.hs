@@ -32,6 +32,7 @@ launchMenu      = spawn "rofi -modi drun,run -show drun"                        
 restartXmonad   = spawn "xmonad --recompile; xmonad --restart"                      -- restart xmonad
 setWallpaper    = spawnOnce "feh --no-fehbg --bg-scale $DOTFILES_DIR/wallpaper.jpg" -- set wallpaper
 startCompositor = spawnOnce "picom &"                                               -- start picom
+widgetDaemon    = spawnOnce "eww daemon"                                            -- start eww daemon
 
 
 ------------------------------------------------------------------------
@@ -85,6 +86,7 @@ myLayout = tiled ||| Mirror tiled ||| Full
 myStartupHook = do
     setWallpaper
     startCompositor
+    widgetDaemon
 
 
 ------------------------------------------------------------------------
