@@ -2,6 +2,7 @@ import XMonad
 import XMonad.Config.Desktop
 import XMonad.Layout.Spacing
 import XMonad.Util.SpawnOnce
+import XMonad.Util.NamedScratchpad
 import Data.Monoid
 import System.Exit
 
@@ -34,6 +35,8 @@ setWallpaper    = spawnOnce "feh --no-fehbg --bg-scale $DOTFILES_DIR/wallpaper.j
 startCompositor = spawnOnce "picom &"                                               -- start picom
 widgetDaemon    = spawnOnce "eww daemon"                                            -- start eww daemon
 
+------------------------------------------------------------------------
+scratchpads = [ NS "term" "kitty --title scratchpad" (title =? "scratchpad") floatingRect ] where floatingRect = customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)
 
 ------------------------------------------------------------------------
 -- Key bindings
@@ -44,6 +47,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     ---------------------
     -- Launchers
     [ ((modm, xK_Return), spawn $ XMonad.terminal conf)                         -- terminal
+    , ((modm .|. shiftMask, xK_Return),
+                            namedScratchpadAction scratchpads "term")           -- scratchpad terminal
     , ((modm, xK_space), launchMenu)                                            -- menu
 
     ---------------------
@@ -90,6 +95,10 @@ myStartupHook = do
 
 
 ------------------------------------------------------------------------
+--
+
+
+------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
 main = xmonad defaults
@@ -108,7 +117,8 @@ defaults = desktopConfig {
 
         -- hooks, layouts
         layoutHook          = myLayout,
-        startupHook         = myStartupHook
+        startupHook         = myStartupHook,
+        manageHook          = namedScratchpadManageHook scratchpads
     }
 
 -- vim:expandtab:sw=6:ts=6
