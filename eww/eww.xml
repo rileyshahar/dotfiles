@@ -16,7 +16,7 @@
 
   <windows>
     <window name="dash">
-      <geometry anchor="top left" x="50%" y="50%" width="25%" height="20px"/>
+      <geometry anchor="top left" x="43%" y="50%" width="14%" height="20px"/>
       <reserve side="left" distance="50px"/>
       <widget>
 	<clock/>
