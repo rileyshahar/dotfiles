@@ -9,7 +9,7 @@
   </definitions>
 
   <variables>
-    <script-var name="time">
+    <script-var name="time" interval = "1s">
       date "+%T"
     </script-var>
   </variables>
