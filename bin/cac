@@ -214,3 +214,14 @@ class XMonad(ColorFormatter):
     @classmethod
     def post_format_hook(_):
         os.system("xmonad --recompile; xmonad --restart")
+
+
+class EWW(ColorFormatter):
+
+    color_fmt = "${name}: #{col_hex};"
+    config_file = CONFIG_HOME + "/eww/eww.scss"
+    color_names = INTERNAL_COLOR_NAMES
+
+    @classmethod
+    def post_format_hook(_):
+        os.system("eww reload")
