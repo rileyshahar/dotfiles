@@ -37,6 +37,7 @@ widgetDaemon    = "eww daemon"                                            -- sta
 topCommand      = "btm"                                                   -- system monitor
 toggleDashboard = "eww close dash || eww open dash"                       -- toggle dashboard
 
+
 ------------------------------------------------------------------------
 -- Scratchpads
 scratchpads = [
@@ -44,6 +45,12 @@ scratchpads = [
     NS "top" ("kitty --class " ++ topCommand ++ " " ++ topCommand) (className =? topCommand) floatingRect
     ] where
       floatingRect = customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)
+
+
+------------------------------------------------------------------------
+-- Widgets
+toggleWidget widget = "eww close " ++ widget ++ " || eww open " ++ widget
+
 
 ------------------------------------------------------------------------
 -- Key bindings
@@ -58,7 +65,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
                             namedScratchpadAction scratchpads "term")           -- scratchpad terminal
     , ((modm, xK_m), namedScratchpadAction scratchpads "top")                   -- system monitor
     , ((modm, xK_space), spawn menu)                                            -- menu
-    , ((modm, xK_period), spawn toggleDashboard)                                -- dashboard
+    , ((modm, xK_period), spawn (toggleWidget "dash"))                          -- dashboard
+    , ((modm, xK_slash), spawn (toggleWidget "clock"))                          -- clock
 
     ---------------------
     -- Troubleshooting
