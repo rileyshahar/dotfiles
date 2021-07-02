@@ -28,13 +28,13 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 ------------------------------------------------------------------------
 -- Shell commands
-myTerminal      = "kitty -1"                                                        -- start terminal
-launchMenu      = spawn "rofi -modi drun,run -show drun"                            -- start rofi
-restartXmonad   = spawn "xmonad --recompile; xmonad --restart"                      -- restart xmonad
-setWallpaper    = spawnOnce "feh --no-fehbg --bg-scale $DOTFILES_DIR/wallpaper.jpg" -- set wallpaper
-startCompositor = spawnOnce "picom &"                                               -- start picom
-widgetDaemon    = spawnOnce "eww daemon"                                            -- start eww daemon
-topCommand      = "btm"                                                             -- system monitor
+myTerminal      = "kitty -1"                                              -- start terminal
+menu            = "rofi -modi drun,run -show drun"                        -- start rofi
+restartXmonad   = "xmonad --recompile; xmonad --restart"                  -- restart xmonad
+setWallpaper    = "feh --no-fehbg --bg-scale $DOTFILES_DIR/wallpaper.jpg" -- set wallpaper
+startCompositor = "picom &"                                               -- start picom
+widgetDaemon    = "eww daemon"                                            -- start eww daemon
+topCommand      = "btm"                                                   -- system monitor
 
 ------------------------------------------------------------------------
 -- Scratchpads
@@ -55,13 +55,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm, xK_Return), spawn $ XMonad.terminal conf)                         -- terminal
     , ((modm .|. shiftMask, xK_Return),
                             namedScratchpadAction scratchpads "term")           -- scratchpad terminal
-    , ((modm, xK_space), launchMenu)                                            -- menu
+    , ((modm, xK_space), spawn menu)                                            -- menu
     , ((modm, xK_m), namedScratchpadAction scratchpads "top")                   -- system monitor
 
     ---------------------
     -- Troubleshooting
     , ((modm, xK_r), refresh)                                                   -- refresh renderer
-    , ((modm .|. shiftMask, xK_r), restartXmonad)                               -- restart xmonad
+    , ((modm .|. shiftMask, xK_r), spawn restartXmonad)                               -- restart xmonad
     , ((modm .|. shiftMask, xK_q), kill)                                        -- close focused window
 
     ---------------------
@@ -96,9 +96,9 @@ myLayout = tiled ||| Mirror tiled ||| Full
 ------------------------------------------------------------------------
 -- Startup hook
 myStartupHook = do
-    setWallpaper
-    startCompositor
-    widgetDaemon
+    spawnOnce setWallpaper
+    spawnOnce startCompositor
+    spawnOnce widgetDaemon
 
 
 ------------------------------------------------------------------------
