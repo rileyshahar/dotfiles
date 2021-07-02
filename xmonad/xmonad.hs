@@ -34,9 +34,15 @@ restartXmonad   = spawn "xmonad --recompile; xmonad --restart"                  
 setWallpaper    = spawnOnce "feh --no-fehbg --bg-scale $DOTFILES_DIR/wallpaper.jpg" -- set wallpaper
 startCompositor = spawnOnce "picom &"                                               -- start picom
 widgetDaemon    = spawnOnce "eww daemon"                                            -- start eww daemon
+topCommand      = "btm"                                                             -- system monitor
 
 ------------------------------------------------------------------------
-scratchpads = [ NS "term" "kitty --title scratchpad" (title =? "scratchpad") floatingRect ] where floatingRect = customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)
+-- Scratchpads
+scratchpads = [
+    NS "term" "kitty --title scratchpad" (title =? "scratchpad") floatingRect,
+    NS "top" ("kitty --class " ++ topCommand ++ " " ++ topCommand) (className =? topCommand) floatingRect
+    ] where
+      floatingRect = customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)
 
 ------------------------------------------------------------------------
 -- Key bindings
@@ -50,6 +56,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_Return),
                             namedScratchpadAction scratchpads "term")           -- scratchpad terminal
     , ((modm, xK_space), launchMenu)                                            -- menu
+    , ((modm, xK_m), namedScratchpadAction scratchpads "top")                   -- system monitor
 
     ---------------------
     -- Troubleshooting
@@ -92,10 +99,6 @@ myStartupHook = do
     setWallpaper
     startCompositor
     widgetDaemon
-
-
-------------------------------------------------------------------------
---
 
 
 ------------------------------------------------------------------------
