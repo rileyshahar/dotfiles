@@ -5,15 +5,9 @@
   all: unset;
 }
 
-window {
-  background-color: $background;
-  color: $foreground;
-}
-
 .clock {
-  font-size: 36px;
-  background-color: transparent;
-  color: $bright_blue;
+  font-size: 200px;
+  color: $bright_magenta;
 }
 
 // vim:sw=2
