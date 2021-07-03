@@ -6,8 +6,14 @@
 }
 
 .clock {
-  font-size: 200px;
-  color: $bright_magenta;
+  font-size: 100px;
+  .time {
+    color: $bright_magenta;
+  }
+  .date {
+    color: $bright_blue;
+  }
 }
+
 
 // vim:sw=2

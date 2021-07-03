@@ -2,15 +2,28 @@
 
   <definitions>
     <def name="clock">
-      <box>
-        {{ time }}
+      <box orientation = "v">
+	<box class="date">
+	  {{ weekday }} {{ date }}
+	</box>
+	<box class="time">
+	  {{ time }}
+	</box>
       </box>
     </def>
   </definitions>
 
   <variables>
     <script-var name="time" interval = "1s">
-      date "+%T"
+      date +%T
+    </script-var>
+
+    <script-var name="date" interval = "1s">
+      date -I
+    </script-var>
+
+    <script-var name="weekday" interval = "1s">
+      date +%a
     </script-var>
   </variables>
 
@@ -24,7 +37,7 @@
     </window>
 
     <window name="clock" class="clock">
-      <geometry anchor="top left" x="25%" y="25%" width="50%" height="50%"/>
+      <geometry anchor="top left" x="25%" y="35%" width="50%" height="25%"/>
       <widget>
 	<clock/>
       </widget>
