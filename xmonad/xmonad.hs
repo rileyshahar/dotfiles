@@ -88,7 +88,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_k), windows W.focusUp)                                         -- move focus to prev window
     , ((modm, xK_h), windows W.focusMaster)                                     -- move focus to master window
 
-    ]
+    ] ++
+
+    ---------------------
+    -- Workspace Navigation
+    -- mod-[1..9], Switch to workspace N
+    -- mod-shift-[1..9], Move client to workspace N
+    [((m .|. modm, k), windows $ f i)
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
 
 
 ------------------------------------------------------------------------
