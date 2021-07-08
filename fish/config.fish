@@ -126,9 +126,9 @@ end
 
 
 ## Event Hooks
-function _ring_bell_after_cmd --on-event fish_postexec -d "Ring the bell after every command execution"
-    printf "\a"
-end
+# function _ring_bell_after_cmd --on-event fish_postexec -d "Ring the bell after every command execution"
+#     printf "\a"
+# end
 
 function cpu-usage -d "Get the current cpu usage"
     # primarily for the tmux status bar
