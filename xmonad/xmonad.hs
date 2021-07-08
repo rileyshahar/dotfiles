@@ -13,6 +13,24 @@ import qualified Data.Map        as M
 -- Style
 -- colors (managed by cac)
 -- __cac:start
+background = "#1a1b26"
+foreground = "#a9b1d6"
+dim_black = "#06080a"
+dim_red = "#e06c75"
+dim_green = "#98c379"
+dim_yellow = "#d19a66"
+dim_blue = "#7aa2f7"
+dim_magenta = "#ad8ee6"
+dim_cyan = "#56bdb8"
+dim_white = "#abb2bf"
+bright_black = "#24283b"
+bright_red = "#f7768e"
+bright_green = "#9ece6a"
+bright_yellow = "#e0af68"
+bright_blue = "#61afef"
+bright_magenta = "#f6bdff"
+bright_cyan = "#50c3bd"
+bright_white = "#ffffff"
 -- __cac:end
 
 -- window border
