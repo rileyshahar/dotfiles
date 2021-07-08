@@ -3,6 +3,7 @@ import XMonad.Config.Desktop
 import XMonad.Layout.Spacing
 import XMonad.Util.SpawnOnce
 import XMonad.Util.NamedScratchpad
+import Graphics.X11.ExtraTypes.XF86
 import Data.Monoid
 import System.Exit
 
@@ -107,15 +108,26 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_k), windows W.focusUp)                                         -- move focus to prev window
     , ((modm, xK_h), windows W.focusMaster)                                     -- move focus to master window
 
-    ] ++
-
     ---------------------
     -- Workspace Navigation
     -- mod-[1..9], Switch to workspace N
     -- mod-shift-[1..9], Move client to workspace N
+    ] ++
     [((m .|. modm, k), windows $ f i)
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+
+    ++ [
+
+    ---------------------
+    -- Audio Control
+
+    ((0, xF86XK_AudioRaiseVolume), spawn "pulseaudio-ctl up"),                  -- raise volume
+    ((0, xF86XK_AudioLowerVolume), spawn "pulseaudio-ctl down"),                -- lower volume
+    ((0, xF86XK_AudioMute),        spawn "pulseaudio-ctl mute")                 -- mute
+
+    ]
+
 
 
 ------------------------------------------------------------------------

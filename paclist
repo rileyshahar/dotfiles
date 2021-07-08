@@ -10,6 +10,8 @@ neovim-nightly-bin
 nerd-fonts-meslo
 networkmanager
 picom
+pulseaudio
+pulseaudio-ctl
 python
 rofi
 sudo
