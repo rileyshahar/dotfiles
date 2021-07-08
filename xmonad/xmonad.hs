@@ -52,15 +52,16 @@ restartXmonad   = "xmonad --recompile; xmonad --restart"                  -- res
 setWallpaper    = "feh --no-fehbg --bg-scale $DOTFILES_DIR/wallpaper.jpg" -- set wallpaper
 startCompositor = "picom &"                                               -- start picom
 widgetDaemon    = "eww daemon"                                            -- start eww daemon
-topCommand      = "btm"                                                   -- system monitor
+topCommand      = "btm --battery"                                         -- system monitor
 toggleDashboard = "eww close dash || eww open dash"                       -- toggle dashboard
+monitorSetup    = "xrandr --output eDP-1 --auto --output DP-3 --auto --left-of eDP-1"
 
 
 ------------------------------------------------------------------------
 -- Scratchpads
 scratchpads = [
     NS "term" "kitty --title scratchpad" (title =? "scratchpad") floatingRect,
-    NS "top" ("kitty --class " ++ topCommand ++ " " ++ topCommand) (className =? topCommand) floatingRect
+    NS "top" ("kitty --class " ++ "top" ++ " " ++ topCommand) (className =? "top") floatingRect
     ] where
       floatingRect = customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)
 
@@ -132,6 +133,7 @@ myLayout = tiled ||| Mirror tiled ||| Full
 ------------------------------------------------------------------------
 -- Startup hook
 myStartupHook = do
+    spawnOnce monitorSetup
     spawnOnce setWallpaper
     spawnOnce startCompositor
     spawnOnce widgetDaemon
