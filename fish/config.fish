@@ -15,6 +15,8 @@ set -x FZF_DEFAULT_COMMAND "rg --files --hidden"
 
 set -x BAT_THEME TwoDark
 
+set -x GPG_TTY (tty)
+
 set -x DOTFILES_DIR $HOME/dotfiles
 
 # please respect xdg specs

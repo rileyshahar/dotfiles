@@ -2,7 +2,7 @@
 [user]
   name = Riley Shahar
   email = riley.shahar@gmail.com
-  signingkey = 7EAC08241471FBB2412AB3E88CBFA12E8F6C31DF
+  signingkey = C2DD9AF59D31DFC2
 
 [core]
   pager = delta
@@ -24,7 +24,7 @@
   diffFilter = delta --color-only
 
 [gpg]
-  program = gpg2
+  program = gpg
 
 [tag]
   forceSignAnnotated = true
