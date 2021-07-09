@@ -5,6 +5,7 @@ import XMonad.Util.SpawnOnce
 import XMonad.Util.NamedScratchpad
 import Graphics.X11.ExtraTypes.XF86
 import Data.Monoid
+import Data.Maybe
 import System.Exit
 
 import qualified XMonad.StackSet as W
@@ -107,6 +108,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_j), windows W.focusDown)                                       -- move focus to next window
     , ((modm, xK_k), windows W.focusUp)                                         -- move focus to prev window
     , ((modm, xK_h), windows W.focusMaster)                                     -- move focus to master window
+    , ((modm, xK_f), windows mkpip )
 
     ---------------------
     -- Workspace Navigation
@@ -128,6 +130,16 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     ]
 
+
+------------------------------------------------------------------------
+-- Picture in Picture
+mkpip ws = maybe ws (\w -> W.float w rect ws) (W.peek ws)
+  where
+     rect = W.RationalRect x y w h
+     w    = 1 / 4
+     h    = 1 / 4
+     x    = 1 - w - 1 / 100
+     y    = 1 - h - 1 / 100
 
 
 ------------------------------------------------------------------------
