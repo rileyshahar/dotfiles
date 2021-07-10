@@ -110,8 +110,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Window Navigation
     , ((modm, xK_j), windows W.focusDown)                                       -- move focus to next window
     , ((modm, xK_k), windows W.focusUp)                                         -- move focus to prev window
-    , ((modm, xK_h), windows W.focusMaster)                                     -- move focus to master window
-    , ((modm, xK_f), windows mkpip )
+    , ((modm, xK_p), windows mkpip )                                            -- move focused window to PiP
+    , ((modm, xK_h), windows W.swapMaster)                                      -- promote focused window to master
 
     ---------------------
     -- Workspace Navigation
@@ -132,7 +132,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, xF86XK_AudioRaiseVolume), spawn "pulseaudio-ctl up")                 -- raise volume
     , ((0, xF86XK_AudioLowerVolume), spawn "pulseaudio-ctl down")               -- lower volume
     , ((0, xF86XK_AudioMute),        spawn "pulseaudio-ctl mute")               -- mute
-    , ((0, xF86XK_AudioPlay),        spawn "playerctl play-pause")              -- toggle autio
+    , ((0, xF86XK_AudioPlay),        spawn "playerctl play-pause")              -- toggle audio
+    , ((0, xF86XK_AudioNext),        spawn "playerctl next")                    -- next song
+    , ((0, xF86XK_AudioPrev),        spawn "playerctl previous")                -- next song
 
     ]
 
