@@ -16,6 +16,7 @@ pulseaudio
 pulseaudio-ctl
 python
 redshift
+ripgrep
 rofi
 scrot
 sudo
