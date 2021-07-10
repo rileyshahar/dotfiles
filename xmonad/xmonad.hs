@@ -56,7 +56,6 @@ setWallpaper    = "feh --no-fehbg --bg-scale $DOTFILES_DIR/wallpaper.jpg" -- set
 startCompositor = "picom &"                                               -- start picom
 widgetDaemon    = "eww daemon"                                            -- start eww daemon
 topCommand      = "btm --battery"                                         -- system monitor
-toggleDashboard = "eww close dash || eww open dash"                       -- toggle dashboard
 monitorSetup    = "xrandr --output eDP1 --auto --output DP3 --auto --left-of eDP1"
 
 
@@ -88,7 +87,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
                             namedScratchpadAction scratchpads "term")           -- scratchpad terminal
     , ((modm, xK_m), namedScratchpadAction scratchpads "top")                   -- system monitor
     , ((modm, xK_space), spawn menu)                                            -- menu
-    , ((modm, xK_period), spawn (toggleWidget "dash"))                          -- dashboard
+    , ((modm, xK_period), spawn (toggleWidget "battery"))                 -- dashboard
     , ((modm, xK_slash), spawn (toggleWidget "clock"))                          -- clock
 
     ---------------------

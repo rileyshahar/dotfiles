@@ -11,6 +11,12 @@
 	</box>
       </box>
     </def>
+
+    <def name="battery">
+      <box class="battery">
+	{{ battery }}
+      </box>
+    </def>
   </definitions>
 
   <variables>
@@ -25,14 +31,18 @@
     <script-var name="weekday" interval = "1s">
       date +%a
     </script-var>
+
+    <script-var name="battery" interval = "1s">
+      acpi | cut -d "," -f2
+    </script-var>
   </variables>
 
   <windows>
-    <window name="dash">
+    <window name="battery">
       <geometry anchor="top left" x="43%" y="50%" width="14%" height="20px"/>
       <reserve side="left" distance="50px"/>
       <widget>
-	<clock/>
+	<battery/>
       </widget>
     </window>
 

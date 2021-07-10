@@ -21,11 +21,18 @@ $bright_white: #ffffff;
 
 *{
   all: unset;
+  background: $background;
+  border-radius: 10;
+  font-size: 50px;
 }
 
 .clock {
-  font-size: 100px;
   color: $bright_magenta;
+  border-radius: 10;
+}
+
+.battery {
+  color: $bright_blue;
 }
 
 
