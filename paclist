@@ -14,6 +14,7 @@ playerctl
 pulseaudio
 pulseaudio-ctl
 python
+redshift
 rofi
 scrot
 sudo
