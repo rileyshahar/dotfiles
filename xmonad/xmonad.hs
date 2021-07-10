@@ -59,6 +59,7 @@ startCompositor = "picom &"                                               -- sta
 widgetDaemon    = "eww daemon"                                            -- start eww daemon
 topCommand      = "btm --battery"                                         -- system monitor
 monitorSetup    = "xrandr --output eDP1 --auto --output DP3 --auto --left-of eDP1"
+takeScreenshot  = "scrot $HOME/screenshots/%Y-%m-%d-%T.png"               -- screenshot
 
 
 ------------------------------------------------------------------------
@@ -135,6 +136,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, xF86XK_AudioPlay),        spawn "playerctl play-pause")              -- toggle audio
     , ((0, xF86XK_AudioNext),        spawn "playerctl next")                    -- next song
     , ((0, xF86XK_AudioPrev),        spawn "playerctl previous")                -- next song
+
+    ---------------------
+    -- Misc
+    , ((0, xK_Print), spawn takeScreenshot)                                     -- take screenshot
 
     ]
 
