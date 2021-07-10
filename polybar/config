@@ -75,4 +75,11 @@ type = internal/xworkspaces
 label-active-foreground = ${colors.bright_magenta}
 label-empty =
 
+; I can't quite get this to work in a satisfying way, unfortunately
+[module/cava]
+type = custom/script
+tail = true
+exec = polybar-cava
+format-foreground = ${colors.bright_blue}
+
 ; vim:ft=dosini
