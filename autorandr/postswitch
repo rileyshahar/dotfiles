@@ -1,0 +1,3 @@
+#!/bin/bash
+
+feh --bg-scale $DOTFILES_DIR/wallpaper.jpg
