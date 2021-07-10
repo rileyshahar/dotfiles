@@ -51,7 +51,10 @@ label-empty =
 type = internal/battery
 format-full = "<ramp-capacity> <label-full>"
 format-charging = "<ramp-capacity> <label-charging>"
+label-charging-foreground = ${colors.bright_green}
+
 format-discharging = "<ramp-capacity> <label-discharging>"
+
 ramp-capacity-0 = " "
 ramp-capacity-1 = " "
 ramp-capacity-2 = " "
