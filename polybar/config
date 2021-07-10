@@ -1,8 +1,61 @@
-[bar/main]
+[colors]
+; __cac:start
+background = #991a1b26
+foreground = #a9b1d6
+dim_black = #06080a
+dim_red = #e06c75
+dim_green = #98c379
+dim_yellow = #d19a66
+dim_blue = #7aa2f7
+dim_magenta = #ad8ee6
+dim_cyan = #56bdb8
+dim_white = #abb2bf
+bright_black = #24283b
+bright_red = #f7768e
+bright_green = #9ece6a
+bright_yellow = #e0af68
+bright_blue = #61afef
+bright_magenta = #f6bdff
+bright_cyan = #50c3bd
+bright_white = #ffffff
+; __cac:end
+
+[bar/time]
 monitor = ${env:MONITOR:}
-modules-right = date
+modules-right = date time
+modules-left = workspaces
 bottom = true
+
+font-0 = Lato
+
+; spaces at beginning and end of bar
+padding = 2
+
+offset-y = 5
+offset-x = 10
+
+; this makes the width 100% - 20px
+width = 100%:-20
+height = 40
+
+background = ${colors.background}
+foreground = ${colors.foreground}
 
 [module/date]
 type = internal/date
-date = %Y-%m-%d%
+date = %a %Y-%m-%d%
+label = %date%
+label-foreground = ${colors.dim_magenta}
+
+[module/time]
+type = internal/date
+time = %H:%M:%S
+label = "  %time%"
+label-foreground = ${colors.bright_magenta}
+
+[module/workspaces]
+type = internal/xworkspaces
+label-active-foreground = ${colors.bright_magenta}
+label-empty =
+
+; vim:ft=dosini

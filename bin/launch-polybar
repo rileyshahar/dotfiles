@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BAR="main"
+BAR="time"
 
 # Terminate already running bar instances
 killall -q polybar

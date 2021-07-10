@@ -225,3 +225,26 @@ class EWW(ColorFormatter):
     @classmethod
     def post_format_hook(_):
         os.system("eww reload")
+
+
+class Polybar(ColorFormatter):
+
+    color_fmt = "{name} = #{col_hex}"
+    config_file = CONFIG_HOME + "/polybar/config"
+    color_names = INTERNAL_COLOR_NAMES
+
+    # the background transparency as a percentage
+    transparency = 99
+
+    # overridden to allow adding transparency to the background
+    @classmethod
+    def process_colorfmt(cls):
+        out = ""
+        for name, col_hex in colors.items():
+            if name == "background":
+                col_hex = str(cls.transparency) + col_hex
+
+            out = out + \
+                cls.color_fmt.format(
+                    name=cls.color_names[name], col_hex=col_hex) + "\n"
+        return out
