@@ -1,5 +1,7 @@
 import XMonad
+import XMonad.Actions.CycleWS
 import XMonad.Config.Desktop
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.Spacing
 import XMonad.Util.SpawnOnce
 import XMonad.Util.NamedScratchpad
@@ -119,16 +121,18 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [((m .|. modm, k), windows $ f i)
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
-
     ++ [
+
+    ((modm, xK_Right), nextWS)                                       -- move to next workspace
+    , ((modm, xK_Left), prevWS)                                     -- move to prev workspace
 
     ---------------------
     -- Audio Control
 
-    ((0, xF86XK_AudioRaiseVolume), spawn "pulseaudio-ctl up"),                  -- raise volume
-    ((0, xF86XK_AudioLowerVolume), spawn "pulseaudio-ctl down"),                -- lower volume
-    ((0, xF86XK_AudioMute),        spawn "pulseaudio-ctl mute"),                -- mute
-    ((0, xF86XK_AudioPlay),        spawn "playerctl play-pause")                -- toggle autio
+    , ((0, xF86XK_AudioRaiseVolume), spawn "pulseaudio-ctl up")                 -- raise volume
+    , ((0, xF86XK_AudioLowerVolume), spawn "pulseaudio-ctl down")               -- lower volume
+    , ((0, xF86XK_AudioMute),        spawn "pulseaudio-ctl mute")               -- mute
+    , ((0, xF86XK_AudioPlay),        spawn "playerctl play-pause")              -- toggle autio
 
     ]
 
@@ -170,7 +174,7 @@ myStartupHook = do
 
 main = xmonad defaults
 
-defaults = desktopConfig {
+defaults = ewmh $ desktopConfig {
         -- simple stuff
         terminal            = myTerminal,
         borderWidth         = myBorderWidth,
@@ -185,7 +189,8 @@ defaults = desktopConfig {
         -- hooks, layouts
         layoutHook          = myLayout,
         startupHook         = myStartupHook,
-        manageHook          = namedScratchpadManageHook scratchpads
+        manageHook          = namedScratchpadManageHook scratchpads,
+        handleEventHook     = ewmhDesktopsEventHook
     }
 
 -- vim:expandtab:sw=6:ts=6
