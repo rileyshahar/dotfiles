@@ -131,14 +131,16 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_Left), prevWS)                                     -- move to prev workspace
 
     ---------------------
-    -- Audio Control
+    -- System Control
 
-    , ((0, xF86XK_AudioRaiseVolume), spawn "pulseaudio-ctl up")                 -- raise volume
-    , ((0, xF86XK_AudioLowerVolume), spawn "pulseaudio-ctl down")               -- lower volume
-    , ((0, xF86XK_AudioMute),        spawn "pulseaudio-ctl mute")               -- mute
-    , ((0, xF86XK_AudioPlay),        spawn "playerctl play-pause")              -- toggle audio
-    , ((0, xF86XK_AudioNext),        spawn "playerctl next")                    -- next song
-    , ((0, xF86XK_AudioPrev),        spawn "playerctl previous")                -- next song
+    , ((0, xF86XK_AudioRaiseVolume),  spawn "pulseaudio-ctl up")                -- raise volume
+    , ((0, xF86XK_AudioLowerVolume),  spawn "pulseaudio-ctl down")              -- lower volume
+    , ((0, xF86XK_AudioMute),         spawn "pulseaudio-ctl mute")              -- mute
+    , ((0, xF86XK_AudioPlay),         spawn "playerctl play-pause")             -- toggle audio
+    , ((0, xF86XK_AudioNext),         spawn "playerctl next")                   -- next song
+    , ((0, xF86XK_AudioPrev),         spawn "playerctl previous")               -- next song
+    , ((0, xF86XK_MonBrightnessUp),   spawn "brightnessctl set +5%")            -- raise brightness
+    , ((0, xF86XK_MonBrightnessDown), spawn "brightnessctl set 5%-")            -- lower brightness
 
     ---------------------
     -- Misc
