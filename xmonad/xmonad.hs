@@ -208,7 +208,7 @@ defaults = desktopConfig {
         manageHook          = myManageHook
                               <+> manageHook desktopConfig
                               <+> namedScratchpadManageHook scratchpads,
-        handleEventHook     = ewmhDesktopsEventHook
+        logHook             = ewmhDesktopsLogHookCustom namedScratchpadFilterOutWorkspace
     }
 
 -- vim:expandtab:sw=6:ts=6
