@@ -1,0 +1,109 @@
+/**
+ * @name inherit
+ * @description A simple theme managed by cac.
+ * @author Riley Shahar
+ * @version 1
+*/
+
+
+@import url('https://clearvision.gitlab.io/v6/main.css');
+
+
+:root {
+  /* __cac:start */
+  --background: #1a1b26;
+  --foreground: #a9b1d6;
+  --dim_black: #06080a;
+  --dim_red: #e06c75;
+  --dim_green: #98c379;
+  --dim_yellow: #d19a66;
+  --dim_blue: #7aa2f7;
+  --dim_magenta: #ad8ee6;
+  --dim_cyan: #56bdb8;
+  --dim_white: #abb2bf;
+  --bright_black: #24283b;
+  --bright_red: #f7768e;
+  --bright_green: #9ece6a;
+  --bright_yellow: #e0af68;
+  --bright_blue: #61afef;
+  --bright_magenta: #f6bdff;
+  --bright_cyan: #50c3bd;
+  --bright_white: #ffffff;
+  /* __cac:end */
+  --main-color: var(--dim_magenta);
+  --hover-color: var(--dim_magenta);
+  --success-color: var(--bright_green);
+  --danger-color: var(--bright_red);
+  --url-color: var(--bright_blue);
+
+  --background-image: transparent;
+  --background-shading: 0%;
+  --background-position: center;
+  --background-size: cover;
+  --background-repeat: no-repeat;
+  --background-attachment: fixed;
+  --background-brightness: 116%;
+  --background-contrast: 100%;
+  --background-saturation: 100%;
+  --background-grayscale: 0%;
+  --background-invert: 0%;
+  --background-blur: 0px;
+  --background-overlay: var(--background);
+
+  --user-popout-image: transparent;
+  --user-popout-position: center;
+  --user-popout-size: cover;
+  --user-popout-repeat: no-repeat;
+  --user-popout-attachment: fixed;
+  --user-popout-brightness: 100%;
+  --user-popout-contrast: 100%;
+  --user-popout-saturation: 100%;
+  --user-popout-grayscale: 0%;
+  --user-popout-invert: 0%;
+  --user-popout-blur: 18px;
+
+  --user-modal-image: transparent;
+  --user-modal-position: center;
+  --user-modal-size: cover;
+  --user-modal-repeat: no-repeat;
+  --user-modal-attachment: fixed;
+  --user-modal-brightness: 100%;
+  --user-modal-contrast: 100%;
+  --user-modal-saturation: 100%;
+  --user-modal-grayscale: 0%;
+  --user-modal-invert: 0%;
+  --user-modal-blur: 3px;
+
+  --home-icon: transparent;
+  --home-position: center;
+  --home-size: 40px;
+
+  --channel-unread: var(--dim_blue);
+  --channel-color: var(--dim_white);
+
+  --online-color: var(--bright_green);
+  --idle-color: var(--bright_yellow);
+  --dnd-color: var(--bright_red);
+  --streaming-color: var(--dim_magenta);
+  --offline-color: var(--dim_black);
+  --main-font: Lato;
+  --code-font: MesloLGS Nerd Font;
+  --channels-width: 220px;
+  --members-width: 240px;
+  --backdrop-overlay: var(--background);
+  --backdrop-image: var(--background-image);
+  --backdrop-position: var(--background-position);
+  --backdrop-size: var(--background-size);
+  --backdrop-repeat: var(--background-repeat);
+  --backdrop-attachment: var(--background-attachment);
+  --backdrop-brightness: var(--background-brightness);
+  --backdrop-contrast: var(--background-contrast);
+  --backdrop-saturation: var(--background-saturation);
+  --backdrop-invert: var(--background-invert);
+  --backdrop-grayscale: var(--background-grayscale);
+  --backdrop-sepia: var(--background-sepia);
+  --backdrop-blur: var(--background-blur);
+  --bd-blue: var(--main-color);
+  --bd-blue-hover: var(--hover-color);
+  --bd-blue-active: var(--hover-color);
+}

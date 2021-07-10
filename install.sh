@@ -117,6 +117,9 @@ echo "installing packages; this make take a while."
 mkdir -p $HOME/.local/share/xmonad  # this is a trick to force xmonad to not use the base directory
 yay -S --noconfirm --needed - <$HOME/dotfiles/paclist > /dev/null
 
+echo "installing betterdiscord"
+betterdiscordctl install
+
 echo "symlinking configs"
 DOTFILES_DIR="$HOME/dotfiles"
 CONFIG_HOME="$HOME/.config"
@@ -131,6 +134,7 @@ ln -sv "$DOTFILES_DIR/kitty" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/cac" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/picom" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/eww" "$CONFIG_HOME" > /dev/null
+ln -sv "$DOTFILES_DIR/discord/themes" "$CONFIG_HOME/BetterDiscord" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/init.lua" "$CONFIG_HOME/nvim" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/lua/" "$CONFIG_HOME/nvim" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/snippets/" "$CONFIG_HOME/nvim" > /dev/null

@@ -227,6 +227,13 @@ class EWW(ColorFormatter):
         os.system("eww reload")
 
 
+class BetterDiscord(ColorFormatter):
+
+    color_fmt = "  --{name}: #{col_hex};"
+    config_file = CONFIG_HOME + "/BetterDiscord/themes/inherit.theme.css"
+    color_names = INTERNAL_COLOR_NAMES
+
+
 class Polybar(ColorFormatter):
 
     color_fmt = "{name} = #{col_hex}"
