@@ -10,6 +10,7 @@ neovim-nightly-bin
 nerd-fonts-meslo
 networkmanager
 picom
+playerctl
 pulseaudio
 pulseaudio-ctl
 python

@@ -56,7 +56,7 @@ startCompositor = "picom &"                                               -- sta
 widgetDaemon    = "eww daemon"                                            -- start eww daemon
 topCommand      = "btm --battery"                                         -- system monitor
 toggleDashboard = "eww close dash || eww open dash"                       -- toggle dashboard
-monitorSetup    = "xrandr --output eDP-1 --auto --output DP-3 --auto --left-of eDP-1"
+monitorSetup    = "xrandr --output eDP1 --auto --output DP3 --auto --left-of eDP1"
 
 
 ------------------------------------------------------------------------
@@ -126,7 +126,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     ((0, xF86XK_AudioRaiseVolume), spawn "pulseaudio-ctl up"),                  -- raise volume
     ((0, xF86XK_AudioLowerVolume), spawn "pulseaudio-ctl down"),                -- lower volume
-    ((0, xF86XK_AudioMute),        spawn "pulseaudio-ctl mute")                 -- mute
+    ((0, xF86XK_AudioMute),        spawn "pulseaudio-ctl mute"),                -- mute
+    ((0, xF86XK_AudioPlay),        spawn "playerctl play-pause")                -- toggle autio
 
     ]
 
