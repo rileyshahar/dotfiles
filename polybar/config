@@ -1,0 +1,8 @@
+[bar/main]
+monitor = ${env:MONITOR:}
+modules-right = date
+bottom = true
+
+[module/date]
+type = internal/date
+date = %Y-%m-%d%

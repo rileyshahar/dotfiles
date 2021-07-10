@@ -2,6 +2,7 @@ import XMonad
 import XMonad.Actions.CycleWS
 import XMonad.Config.Desktop
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Spacing
 import XMonad.Util.SpawnOnce
 import XMonad.Util.NamedScratchpad
@@ -60,6 +61,7 @@ widgetDaemon    = "eww daemon"                                            -- sta
 topCommand      = "btm --battery"                                         -- system monitor
 monitorSetup    = "xrandr --output eDP1 --auto --output DP3 --auto --left-of eDP1"
 takeScreenshot  = "scrot $HOME/screenshots/%Y-%m-%d-%T.png"               -- screenshot
+statusBar       = "launch-polybar"                                        -- script in $DOTFILES_DIR/bin
 
 
 ------------------------------------------------------------------------
@@ -157,7 +159,7 @@ mkpip ws = maybe ws (\w -> W.float w rect ws) (W.peek ws)
 
 ------------------------------------------------------------------------
 -- Layouts
-myLayout = tiled ||| Mirror tiled ||| Full
+myLayout = avoidStruts $ desktopLayoutModifiers $ tiled ||| Mirror tiled ||| Full
   where
      tiled   = gaps $ Tall nmaster delta ratio
      gaps    = spacing gapSize
@@ -174,14 +176,21 @@ myStartupHook = do
     spawnOnce setWallpaper
     spawnOnce startCompositor
     spawnOnce widgetDaemon
+    spawnOnce statusBar
+
+
+------------------------------------------------------------------------
+-- Manage hook
+myManageHook = composeAll
+  [ className =? "polybar" --> doFloat ]
 
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
-main = xmonad defaults
+main = xmonad $ docks $ ewmh defaults
 
-defaults = ewmh $ desktopConfig {
+defaults = desktopConfig {
         -- simple stuff
         terminal            = myTerminal,
         borderWidth         = myBorderWidth,
@@ -196,7 +205,9 @@ defaults = ewmh $ desktopConfig {
         -- hooks, layouts
         layoutHook          = myLayout,
         startupHook         = myStartupHook,
-        manageHook          = namedScratchpadManageHook scratchpads,
+        manageHook          = myManageHook
+                              <+> manageHook desktopConfig
+                              <+> namedScratchpadManageHook scratchpads,
         handleEventHook     = ewmhDesktopsEventHook
     }
 
