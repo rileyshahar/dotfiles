@@ -154,7 +154,7 @@ mkpip ws = maybe ws (\w -> W.float w rect ws) (W.peek ws)
 
 ------------------------------------------------------------------------
 -- Layouts
-myLayout = avoidStruts $ desktopLayoutModifiers $ tiled ||| Mirror tiled ||| Full
+myLayout = avoidStruts $ desktopLayoutModifiers $ tiled ||| Full
   where
      tiled   = gaps $ Tall nmaster delta ratio
      gaps    = spacing gapSize
