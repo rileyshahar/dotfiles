@@ -23,9 +23,10 @@ bright_white = #ffffff
 [bar/time]
 monitor = ${env:MONITOR:}
 modules-left = workspaces battery cpu gpu network
-modules-right = music audio brightness date time
+modules-right = bluetooth audio brightness date time
+modules-center = music
 bottom = true
-module-margin = 2
+module-margin = 1
 
 font-0 = MesloLGS Nerd Font
 
@@ -49,36 +50,35 @@ label-empty =
 
 [module/battery]
 type = internal/battery
-format-full = "<ramp-capacity> <label-full>"
 format-charging = "<ramp-capacity> <label-charging>"
-label-charging-foreground = ${colors.bright_green}
-label-full-foreground = ${colors.bright_green}
-label-discharging-foreground = ${colors.bright_yellow}
-
+format-full = "<ramp-capacity> <label-full>"
 format-discharging = "<ramp-capacity> <label-discharging>"
+
+label-charging-foreground = ${colors.dim_magenta}
+label-full-foreground = ${colors.dim_magenta}
+label-discharging-foreground = ${colors.dim_magenta}
+
+format-charging-foreground = ${colors.dim_magenta}
+format-full-foreground = ${colors.dim_magenta}
+format-discharging-foreground = ${colors.dim_magenta}
 
 ramp-capacity-0 = " "
 ramp-capacity-1 = " "
 ramp-capacity-2 = " "
 ramp-capacity-3 = " "
 ramp-capacity-4 = " "
-ramp-capacity-0-foreground = ${colors.bright_red}
-ramp-capacity-1-foreground = ${colors.dim_yellow}
-ramp-capacity-2-foreground = ${colors.bright_yellow}
-ramp-capacity-3-foreground = ${colors.dim_green}
-ramp-capacity-4-foreground = ${colors.bright_green}
 
 [module/cpu]
 type = internal/cpu
 format = " <label>"
-label-foreground = ${colors.bright_yellow}
-format-foreground = ${colors.bright_yellow}
+label-foreground = ${colors.bright_blue}
+format-foreground = ${colors.bright_blue}
 
 [module/gpu]
 type = custom/script
 format = " <label>"
-label-foreground = ${colors.bright_blue}
-format-foreground = ${colors.bright_blue}
+label-foreground = ${colors.bright_yellow}
+format-foreground = ${colors.bright_yellow}
 
 exec = nvidia-smi | grep Default | sed 's:.*\(\w%\).*:\1:'
 
@@ -87,22 +87,31 @@ type = internal/network
 interface = wlp0s20f3
 label-connected = %essid%
 format-connected = "<ramp-signal> <label-connected>"
-label-connected-foreground = ${colors.dim_magenta}
-format-connected-foreground = ${colors.dim_magenta}
+label-connected-foreground = ${colors.bright_green}
+format-connected-foreground = ${colors.bright_green}
 
 ramp-signal-0 = "直"
 ramp-signal-3 = " "
 format-disconnected = "睊"
 format-disconnected-foreground = ${colors.bright_red}
 
-;; middle split
+;; first split
 
 [module/music]
 type = custom/script
 format = "ﱘ <label>"
-label-foreground = ${colors.dim_magenta}
-format-foreground = ${colors.dim_magenta}
+label-foreground = ${colors.bright_magenta}
+format-foreground = ${colors.bright_magenta}
 exec = "current-track"
+
+;; second split
+
+[module/bluetooth]
+type = custom/script
+exec = polybar-bluetoothctl
+tail = true
+click-left = polybar-bluetoothctl --toggle &
+format-foreground = ${colors.dim_magenta}
 
 [module/brightness]
 type = internal/backlight
