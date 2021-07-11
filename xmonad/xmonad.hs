@@ -61,7 +61,7 @@ topCommand      = "btm --battery"                                         -- sys
 monitorSetup    = "xrandr --output eDP1 --auto --output DP3 --auto --left-of eDP1"
 takeScreenshot  = "scrot $HOME/screenshots/%Y-%m-%d-%T.png"               -- screenshot
 statusBar       = "launch-polybar"                                        -- script in $DOTFILES_DIR/bin
-fluxCommand     = "redshift &"                                            -- remove blue light at night
+fluxCommand     = "redshift -l 37:-122 &"                                 -- remove blue light at night
 
 
 ------------------------------------------------------------------------
