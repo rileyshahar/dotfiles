@@ -234,6 +234,14 @@ class BetterDiscord(ColorFormatter):
     color_names = INTERNAL_COLOR_NAMES
 
 
+class Telegram(ColorFormatter):
+
+    color_fmt = "{name}: #{col_hex};"
+    config_file = CONFIG_HOME + "/telegram/cac.tdesktop-theme"
+    color_names = {key: "COLOR_" + value
+                   .upper()
+                   for key, value in INTERNAL_COLOR_NAMES.items()}
+
 class Polybar(ColorFormatter):
 
     color_fmt = "{name} = #{col_hex}"
