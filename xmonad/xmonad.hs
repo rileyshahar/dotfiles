@@ -57,7 +57,6 @@ menu            = "rofi -modi drun,run -show drun"                        -- sta
 restartXmonad   = "xmonad --recompile; xmonad --restart"                  -- restart xmonad
 setWallpaper    = "feh --no-fehbg --bg-scale $DOTFILES_DIR/wallpaper.jpg" -- set wallpaper
 startCompositor = "picom &"                                               -- start picom
-widgetDaemon    = "eww daemon"                                            -- start eww daemon
 topCommand      = "btm --battery"                                         -- system monitor
 monitorSetup    = "xrandr --output eDP1 --auto --output DP3 --auto --left-of eDP1"
 takeScreenshot  = "scrot $HOME/screenshots/%Y-%m-%d-%T.png"               -- screenshot
@@ -75,11 +74,6 @@ scratchpads = [
 
 
 ------------------------------------------------------------------------
--- Widgets
-toggleWidget widget = "eww close " ++ widget ++ " || eww open " ++ widget
-
-
-------------------------------------------------------------------------
 -- Key bindings
 myModMask       = mod1Mask -- left option; mod4Mask for super key
 
@@ -93,8 +87,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
                             namedScratchpadAction scratchpads "term")           -- scratchpad terminal
     , ((modm, xK_m), namedScratchpadAction scratchpads "top")                   -- system monitor
     , ((modm, xK_space), spawn menu)                                            -- menu
-    , ((modm, xK_period), spawn (toggleWidget "battery"))                 -- dashboard
-    , ((modm, xK_slash), spawn (toggleWidget "clock"))                          -- clock
 
     ---------------------
     -- Troubleshooting
@@ -178,7 +170,6 @@ myStartupHook = do
     spawnOnce monitorSetup
     spawnOnce setWallpaper
     spawnOnce startCompositor
-    spawnOnce widgetDaemon
     spawnOnce statusBar
     spawnOnce fluxCommand
 
