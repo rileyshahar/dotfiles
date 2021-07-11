@@ -69,13 +69,13 @@ ramp-capacity-4-foreground = ${colors.bright_green}
 [module/cpu]
 type = internal/cpu
 format = " <label>"
-label-foreground = ${colors.foreground}
+label-foreground = ${colors.bright_yellow}
 format-foreground = ${colors.bright_yellow}
 
 [module/gpu]
 type = custom/script
 format = " <label>"
-label-foreground = ${colors.foreground}
+label-foreground = ${colors.dim_magenta}
 format-foreground = ${colors.dim_magenta}
 
 exec = nvidia-smi | grep Default | sed 's:.*\(\w%\).*:\1:'
@@ -85,7 +85,7 @@ type = internal/network
 interface = wlp0s20f3
 label-connected = %essid%
 format-connected = "<ramp-signal> <label-connected>"
-label-connected-foreground = ${colors.foreground}
+label-connected-foreground = ${colors.bright_blue}
 format-connected-foreground = ${colors.bright_blue}
 
 ramp-signal-0 = "直"
@@ -98,7 +98,7 @@ format-disconnected-foreground = ${colors.bright_red}
 [module/music]
 type = custom/script
 format = "ﱘ <label>"
-label-foreground = ${colors.foreground}
+label-foreground = ${colors.bright_magenta}
 format-foreground = ${colors.bright_magenta}
 exec = "current-track"
 
@@ -106,7 +106,7 @@ exec = "current-track"
 type = internal/backlight
 card = intel_backlight
 format = " <label>"
-label-foreground = ${colors.foreground}
+label-foreground = ${colors.bright_yellow}
 format-foreground = ${colors.bright_yellow}
 
 [module/audio]
@@ -117,6 +117,7 @@ label-muted-foreground = ${colors.dim_red}
 ramp-volume-0 = 
 ramp-volume-1 = 墳
 ramp-volume-2 = 
+label-volume-foreground = ${colors.bright_blue}
 ramp-volume-0-foreground = ${colors.bright_blue}
 ramp-volume-1-foreground = ${colors.bright_blue}
 ramp-volume-2-foreground = ${colors.bright_blue}
@@ -126,15 +127,15 @@ type = internal/date
 date = %a %Y-%m-%d%
 label = %date%
 format = " <label>"
-label-foreground = ${colors.foreground}
-format-foreground = ${colors.dim_magenta}
+label-foreground = ${colors.bright_green}
+format-foreground = ${colors.bright_green}
 
 [module/time]
 type = internal/date
 time = %H:%M:%S
 label = %time%
 format = " <label>"
-label-foreground = ${colors.foreground}
+label-foreground = ${colors.bright_magenta}
 format-foreground = ${colors.bright_magenta}
 
 
