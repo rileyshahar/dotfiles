@@ -133,7 +133,7 @@ ln -sv "$DOTFILES_DIR/X11" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/kitty" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/cac" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/picom" "$CONFIG_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/eww" "$CONFIG_HOME" > /dev/null
+ln -sv "$DOTFILES_DIR/mpv" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/discord/themes" "$CONFIG_HOME/BetterDiscord" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/init.lua" "$CONFIG_HOME/nvim" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/lua/" "$CONFIG_HOME/nvim" > /dev/null
