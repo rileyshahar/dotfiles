@@ -98,6 +98,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Layout
     , ((modm, xK_semicolon), sendMessage NextLayout)                            -- rotate to next layout
     , ((modm .|. shiftMask, xK_semicolon), setLayout $ XMonad.layoutHook conf)  -- reset to default layout
+    , ((modm .|. shiftMask, xK_h), sendMessage Shrink)
+    , ((modm .|. shiftMask, xK_l), sendMessage Expand)
     , ((modm, xK_t), withFocused $ windows . W.sink)                            -- force window to tile
     , ((modm, xK_g), sequence_
               [toggleScreenSpacingEnabled, toggleWindowSpacingEnabled])         -- toggle gaps
