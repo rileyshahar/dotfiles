@@ -99,6 +99,7 @@ format-disconnected-foreground = ${colors.bright_red}
 
 [module/music]
 type = custom/script
+label = "%output:0:60:...%"
 format = "ﱘ <label>"
 label-foreground = ${colors.bright_magenta}
 format-foreground = ${colors.bright_magenta}
