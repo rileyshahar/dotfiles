@@ -3,6 +3,6 @@
 set -e
 
 TITLE=$(playerctl metadata title 2>&1)
-ARTIST=$(playerctl metadata artist)
+ARTIST=$(playerctl metadata artist 2>&1)
 
 echo "$TITLE - $ARTIST"
