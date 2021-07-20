@@ -5,6 +5,7 @@
 import argparse
 import os
 import json
+from math import ceil
 
 
 START_MARKER = "__cac:start"
@@ -83,6 +84,7 @@ class ColorFormatter:
         out = ""
         try:
             with open(cls.config_file, "r") as f:
+                print(3)
                 while (line := f.readline()) and START_MARKER not in line:
                     out = out + line
                 if not line:
@@ -90,8 +92,10 @@ class ColorFormatter:
                         f"could not find the start marker: {START_MARKER}")
                 out = out + line
                 out = out + cls.process_colorfmt()
-                while END_MARKER not in (line := f.readline()):
+                print(4)
+                while (line := f.readline()) and END_MARKER not in line:
                     pass
+                print(5)
                 if not line:
                     raise CacError(
                         f"could not find the end marker: {END_MARKER}")
@@ -262,4 +266,46 @@ class Polybar(ColorFormatter):
             out = out + \
                 cls.color_fmt.format(
                     name=cls.color_names[name], col_hex=col_hex) + "\n"
+        return out
+
+class Rofi(ColorFormatter):
+
+    color_fmt = "\t{name}: #{col_hex};"
+    config_file = CONFIG_HOME + "/rofi/cac.rasi"
+
+    # .rasi files don't let us use _s in variable names
+    color_names = {key: value.replace("_", "")
+                   for key, value in INTERNAL_COLOR_NAMES.items()}
+
+    # the background transparency as a percentage
+    transparency = 2
+
+    @classmethod
+    # returns the hex string corresponding to the class's transparency value
+    def process_transparency(cls):
+        # rasi wants opacity, not transparency, so we take the inverse
+        opacity = 1 - cls.transparency / 100
+
+        # convert to a value out of 255 since that's the max for a 2-bit hex value
+        # ceil since hex only takes an integer
+        # take the index since hex adds "0x" to the start
+        hex_str = hex(ceil(opacity * 255))[2:]
+
+        # pad the string with an optional zero
+        return hex_str.ljust(2, "0")
+
+
+    # overridden to allow adding transparency to the background
+    @classmethod
+    def process_colorfmt(cls):
+        print(1)
+        out = ""
+        for name, col_hex in colors.items():
+            if name == "background":
+                col_hex = col_hex + cls.process_transparency()
+
+            out = out + \
+                cls.color_fmt.format(
+                    name=cls.color_names[name], col_hex=col_hex) + "\n"
+        print(2)
         return out
