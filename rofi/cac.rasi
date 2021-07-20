@@ -2,7 +2,7 @@
 
 * {
         /* __cac:start */
-	background: #1a1b26fa;
+	background: #1a1b26;
 	foreground: #a9b1d6;
 	dimblack: #06080a;
 	dimred: #e06c75;
