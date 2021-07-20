@@ -1,3 +1,0 @@
-[submodule "surf"]
-	path = surf/build
-	url = git@github.com:nihilistkitten/surf.git
