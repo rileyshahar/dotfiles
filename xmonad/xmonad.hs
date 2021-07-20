@@ -1,5 +1,6 @@
 import XMonad
 import XMonad.Actions.CycleWS
+import XMonad.Actions.CopyWindow
 import XMonad.Config.Desktop
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
@@ -101,7 +102,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_semicolon), setLayout $ XMonad.layoutHook conf)  -- reset to default layout
     , ((modm .|. shiftMask, xK_h), sendMessage Shrink)
     , ((modm .|. shiftMask, xK_l), sendMessage Expand)
-    , ((modm, xK_t), withFocused $ windows . W.sink)                            -- force window to tile
+    , ((modm, xK_t), sequence_
+              [withFocused $ windows . W.sink, killAllOtherCopies])             -- force window to tile
+                                                                                -- kill other copies for pip
     , ((modm, xK_g), sequence_
               [toggleScreenSpacingEnabled, toggleWindowSpacingEnabled])         -- toggle gaps
 
@@ -146,7 +149,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 ------------------------------------------------------------------------
 -- Picture in Picture
-mkpip ws = maybe ws (\w -> W.float w rect ws) (W.peek ws)
+mkpip ws = copyToAll (maybe ws (\w -> W.float w rect ws) (W.peek ws))
   where
      rect = W.RationalRect x y w h
      w    = 1 / 4
