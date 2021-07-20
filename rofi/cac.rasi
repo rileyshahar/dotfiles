@@ -41,7 +41,7 @@ mainbox {
 	spacing: 30px;
 	/*margin: 20%;*/
 	padding: 30px 0;
-	border: 1px;
+	border: 2px;
 	border-color: @dimmagenta;
 }
 
