@@ -62,6 +62,7 @@ monitorSetup    = "xrandr --output eDP1 --auto --output DP3 --auto --left-of eDP
 takeScreenshot  = "scrot $HOME/screenshots/%Y-%m-%d-%T.png"               -- screenshot
 statusBar       = "launch-polybar"                                        -- script in $DOTFILES_DIR/bin
 fluxCommand     = "redshift -l 37:-122 &"                                 -- remove blue light at night
+customKeybord   = "xmodmap $XDG_CONFIG_HOME/X11/xmodmap"                  -- modify the keyboard setup
 
 
 ------------------------------------------------------------------------
@@ -174,6 +175,7 @@ myStartupHook = do
     spawnOnce startCompositor
     spawnOnce statusBar
     spawnOnce fluxCommand
+    spawnOnce customKeybord
 
 
 ------------------------------------------------------------------------
