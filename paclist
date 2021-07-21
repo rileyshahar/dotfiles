@@ -9,6 +9,7 @@ bottom-bin
 brightnessctl
 devour
 discord
+efm-langserver
 eww-git
 exa
 feh
@@ -33,6 +34,7 @@ procs
 pulseaudio
 pulseaudio-ctl
 python
+python-language-server
 qutebrowser
 r
 redshift

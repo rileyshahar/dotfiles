@@ -114,6 +114,7 @@ nvim_lsp.rust_analyzer.setup {
 
 local luafmt = require "efm/luafmt"
 local prettier = require "efm/prettier"
+local black = require "efm/black"
 local remove_whitespace = require "efm/remove-whitespace"
 -- https://github.com/lukas-reineke/dotfiles/blob/master/vim/lua/lsp.lua
 nvim_lsp.efm.setup {
@@ -129,6 +130,7 @@ nvim_lsp.efm.setup {
             scss = {prettier},
             css = {prettier},
             markdown = {prettier},
+            python = {black},
             ["="] = {remove_whitespace}
         }
     }
