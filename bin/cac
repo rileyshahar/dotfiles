@@ -251,7 +251,7 @@ class Polybar(ColorFormatter):
     color_names = INTERNAL_COLOR_NAMES
 
     # the background transparency as a percentage
-    transparency = 80
+    transparency = 88
 
     # overridden to allow adding transparency to the background
     @classmethod
