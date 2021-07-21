@@ -231,7 +231,7 @@ class EWW(ColorFormatter):
 class BetterDiscord(ColorFormatter):
 
     color_fmt = "  --{name}: #{col_hex};"
-    config_file = CONFIG_HOME + "/BetterDiscord/themes/inherit.theme.css"
+    config_file = CONFIG_HOME + "/BetterDiscord/themes/cac.theme.css"
     color_names = INTERNAL_COLOR_NAMES
 
 
