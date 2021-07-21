@@ -1,8 +1,41 @@
 #!/bin/sh
 
-set -e
+no_song_msg="no song :("
 
-TITLE=$(playerctl metadata title 2>&1)
-ARTIST=$(playerctl metadata artist 2>&1)
+playing_player=""
+paused_player=""
+for player in $(playerctl metadata --list-all)
+do
+  case $(playerctl status -p $player) in
 
-echo "$TITLE - $ARTIST"
+    Playing)
+      playing_player=$player
+      break
+      ;;
+
+    Paused)
+      if [ -z "$paused_player" ]; then
+        paused_player=$player
+      fi
+      ;;
+
+  esac
+done
+
+player=$playing_player
+
+if [ -z "$playing_player" ]; then
+  player=$paused_player
+fi
+
+if [ -z "$player" ]; then
+  # there is no playing or paused player
+  echo $no_song_msg
+  exit
+fi
+
+
+title=$(playerctl metadata -p $player title 2>/dev/null || echo "Unknown")
+artist=$(playerctl metadata -p $player artist 2>/dev/null || echo "Unknown")
+
+echo "$title - $artist"

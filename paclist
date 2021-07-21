@@ -20,6 +20,8 @@ git-delta
 github-cli
 hyperfine
 kitty
+mpv
+mpv-mpris
 mypy
 neovim
 nerd-fonts-meslo
