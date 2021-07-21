@@ -1,0 +1,24 @@
+* {
+        /* __cac:start */
+	background: #1a1b26;
+	foreground: #a9b1d6;
+	dimblack: #06080a;
+	dimred: #e06c75;
+	dimgreen: #98c379;
+	dimyellow: #d19a66;
+	dimblue: #7aa2f7;
+	dimmagenta: #ad8ee6;
+	dimcyan: #56bdb8;
+	dimwhite: #abb2bf;
+	brightblack: #24283b;
+	brightred: #f7768e;
+	brightgreen: #9ece6a;
+	brightyellow: #e0af68;
+	brightblue: #61afef;
+	brightmagenta: #f6bdff;
+	brightcyan: #50c3bd;
+	brightwhite: #ffffff;
+        /* __cac:end */
+}
+
+/* vim:ft=css

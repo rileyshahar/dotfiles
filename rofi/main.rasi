@@ -1,54 +1,3 @@
-/* based on the theme https://raw.githubusercontent.com/davatorium/rofi-themes/master/User%20Themes/material.rasi */
-
-* {
-        /* __cac:start */
-	background: #1a1b26;
-	foreground: #a9b1d6;
-	dimblack: #06080a;
-	dimred: #e06c75;
-	dimgreen: #98c379;
-	dimyellow: #d19a66;
-	dimblue: #7aa2f7;
-	dimmagenta: #ad8ee6;
-	dimcyan: #56bdb8;
-	dimwhite: #abb2bf;
-	brightblack: #24283b;
-	brightred: #f7768e;
-	brightgreen: #9ece6a;
-	brightyellow: #e0af68;
-	brightblue: #61afef;
-	brightmagenta: #f6bdff;
-	brightcyan: #50c3bd;
-	brightwhite: #ffffff;
-        /* __cac:end */
-
-	/*dimmagenta: #00BCD4;*/
-
-	spacing: 0;
-	background-color: transparent;
-
-	font: "Roboto Mono 13";
-}
-
-window {
-	transparency: "real";
-	/*fullscreen: true;*/
-	background-color: @background;
-}
-
-mainbox {
-	children: [inputbar, message, mode-switcher, listview];
-	spacing: 30px;
-	/*margin: 20%;*/
-	padding: 30px 0;
-	border: 2px;
-	border-color: @dimmagenta;
-}
-
-inputbar {
-	padding: 0 30px;
-	children: [prompt, textbox-prompt-colon, entry, case-indicator];
-}
 
 prompt {
 	text-color: @dimmagenta;
@@ -56,8 +5,8 @@ prompt {
 
 textbox-prompt-colon {
 	expand: false;
-	str: ":";
-	margin: 0 1ch 0 0;
+	str: ": ";
+	margin: 0 0 0 0;
 	text-color: @dimmagenta;
 }
 

@@ -1,0 +1,34 @@
+/* based on the theme https://raw.githubusercontent.com/davatorium/rofi-themes/master/User%20Themes/material.rasi */
+
+@import "cac"
+@import "main"
+
+* {
+	spacing: 0;
+	background-color: transparent;
+	font: "Roboto Mono 13";
+}
+
+window {
+        background-color: @background;
+	transparency: "real";
+        anchor:     north;
+        location:   north;
+        width:      100%;
+        padding:    4px;
+        children:   [ horibox ];
+}
+
+horibox {
+        orientation: horizontal;
+        children:   [ prompt, textbox-prompt-colon, entry, listview ];
+}
+
+listview {
+        layout:     horizontal;
+        spacing:    5px;
+        lines:      100;
+}
+
+
+/* vim:ft=css

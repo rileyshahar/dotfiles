@@ -272,7 +272,7 @@ class Polybar(ColorFormatter):
 class Rofi(ColorFormatter):
 
     color_fmt = "\t{name}: #{col_hex};"
-    config_file = CONFIG_HOME + "/rofi/cac.rasi"
+    config_file = CONFIG_HOME + "/rofi/themes/cac.rasi"
 
     # .rasi files don't let us use _s in variable names
     color_names = {

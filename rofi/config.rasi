@@ -55,7 +55,7 @@ configuration {
 /*	window-format: "{w}    {c}   {t}";*/
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
-        theme: "cac";
+        theme: "center";
 /*	color-normal: ;*/
 /*	color-urgent: ;*/
 /*	color-active: ;*/
