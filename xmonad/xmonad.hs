@@ -4,7 +4,6 @@ import XMonad.Actions.CopyWindow
 import XMonad.Config.Desktop
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
-import XMonad.Layout.Spacing
 import XMonad.Util.SpawnOnce
 import XMonad.Util.NamedScratchpad
 import Graphics.X11.ExtraTypes.XF86
@@ -105,8 +104,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_t), sequence_
               [withFocused $ windows . W.sink, killAllOtherCopies])             -- force window to tile
                                                                                 -- kill other copies for pip
-    , ((modm, xK_g), sequence_
-              [toggleScreenSpacingEnabled, toggleWindowSpacingEnabled])         -- toggle gaps
 
     ---------------------
     -- Window Navigation
@@ -162,8 +159,7 @@ mkpip ws = copyToAll (maybe ws (\w -> W.float w rect ws) (W.peek ws))
 -- Layouts
 myLayout = avoidStruts $ desktopLayoutModifiers $ tiled ||| Full
   where
-     tiled   = gaps $ Tall nmaster delta ratio
-     gaps    = spacing gapSize
+     tiled   = Tall nmaster delta ratio
      nmaster = 1                                   -- number of windows in master pane
      ratio   = toRational (2/(1 + sqrt 5::Double)) -- proportion of screen occupied by master pane
      delta   = 3/100                               -- percent of screen to increment when resizing master pane

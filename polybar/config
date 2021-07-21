@@ -1,6 +1,6 @@
 [colors]
 ; __cac:start
-background = #991a1b26
+background = #801a1b26
 foreground = #a9b1d6
 dim_black = #06080a
 dim_red = #e06c75
@@ -33,11 +33,8 @@ font-0 = MesloLGS Nerd Font
 ; spaces at beginning and end of bar
 padding = 2
 
-offset-y = 5
-offset-x = 10
 
 ; this makes the width 100% - 20px
-width = 100%:-20
 height = 40
 
 background = ${colors.background}
