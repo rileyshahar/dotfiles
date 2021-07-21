@@ -36,6 +36,7 @@ paq "ray-x/lsp_signature.nvim"
 
 -- appearance
 paq "ghifarit53/tokyonight-vim"
+paq "ap/vim-css-color"
 
 -- git
 paq "lewis6991/gitsigns.nvim"
