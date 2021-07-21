@@ -1,12 +1,45 @@
+/* based on the theme https://raw.githubusercontent.com/davatorium/rofi-themes/master/User%20Themes/material.rasi */
 
-prompt {
+configuration {
+	display-drun: "";
+	drun-display-format: "{name}";
+}
+
+@import "cac.rasi"
+
+* {
+	spacing: 0;
+	background-color: transparent;
+	font: "MesloLGS Nerd Font 13";
+}
+
+window {
+	background-color: @background;
+	transparency: "real";
+        width: 40%;
+}
+
+mainbox {
+	children: [inputbar, message, listview];
+	spacing: 30px;
+	padding: 20px 0;
+}
+
+inputbar {
+	margin: 0 22px;
+	padding: 10px 8px;
+	background-color: @brightblack;
+	children: [prompt, textbox-prompt-space, entry, case-indicator];
+}
+
+textbox-prompt-space {
+	expand: false;
+	str: " ";
+	margin: 0 0 0 0;
 	text-color: @dimmagenta;
 }
 
-textbox-prompt-colon {
-	expand: false;
-	str: ": ";
-	margin: 0 0 0 0;
+prompt {
 	text-color: @dimmagenta;
 }
 
@@ -43,7 +76,7 @@ scrollbar {
 	background-color: @brightblack;
 	handle-color: @dimmagenta;
 	handle-width: 10px;
-	border: 0 1px;
+	border: 1px 1px;
 	border-color: @dimmagenta;
 	margin: 0 0 0 20px;
 }
