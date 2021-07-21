@@ -33,6 +33,7 @@ procs
 pulseaudio
 pulseaudio-ctl
 python
+qutebrowser
 r
 redshift
 ripgrep

@@ -136,6 +136,7 @@ ln -sv "$DOTFILES_DIR/picom" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/mpv" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/fontconfig" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/rofi" "$CONFIG_HOME" > /dev/null
+ln -sv "$DOTFILES_DIR/qutebrowser" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/discord/themes" "$CONFIG_HOME/BetterDiscord" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/init.lua" "$CONFIG_HOME/nvim" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim/lua/" "$CONFIG_HOME/nvim" > /dev/null

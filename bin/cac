@@ -11,12 +11,13 @@ from math import ceil
 START_MARKER = "__cac:start"
 END_MARKER = "__cac:end"
 
-CONFIG_HOME = os.getenv(
-    "XDG_CONFIG_HOME", default=f"{os.getenv('HOME')}/.config")
+CONFIG_HOME = os.getenv("XDG_CONFIG_HOME", default=f"{os.getenv('HOME')}/.config")
 
-parser = argparse.ArgumentParser(description="cac adjusts colorschemes:\
+parser = argparse.ArgumentParser(
+    description="cac adjusts colorschemes:\
     download a colorscheme JSON from https://terminal.sexy, place it in\
-    $XDG_CONFIG_HOME/cac, and run cac.")
+    $XDG_CONFIG_HOME/cac, and run cac."
+)
 parser.add_argument(
     "scheme",
     default=None,
@@ -37,7 +38,6 @@ try:
     scheme = json.load(open(scheme_loc))
 except FileNotFoundError:
     print(f"No colorscheme found at {scheme_loc}.")
-    quit(1)
 
 colors["background"] = scheme["background"][1:]
 colors["foreground"] = scheme["foreground"][1:]
@@ -84,38 +84,34 @@ class ColorFormatter:
         out = ""
         try:
             with open(cls.config_file, "r") as f:
-                print(3)
                 while (line := f.readline()) and START_MARKER not in line:
                     out = out + line
                 if not line:
-                    raise CacError(
-                        f"could not find the start marker: {START_MARKER}")
+                    raise CacError(f"could not find the start marker: {START_MARKER}")
                 out = out + line
                 out = out + cls.process_colorfmt()
-                print(4)
                 while (line := f.readline()) and END_MARKER not in line:
                     pass
-                print(5)
                 if not line:
-                    raise CacError(
-                        f"could not find the end marker: {END_MARKER}")
+                    raise CacError(f"could not find the end marker: {END_MARKER}")
                 out = out + line
-                while (line := f.readline()):
+                while line := f.readline():
                     out = out + line
             with open(cls.config_file, "w") as f:
                 f.write(out)
         except FileNotFoundError:
-            raise CacError(
-                f"could not find the config file: {cls.config_file}")
+            raise CacError(f"could not find the config file: {cls.config_file}")
         return True
 
     @classmethod
     def process_colorfmt(cls):
         out = ""
         for name, col_hex in colors.items():
-            out = out + \
-                cls.color_fmt.format(
-                    name=cls.color_names[name], col_hex=col_hex) + "\n"
+            out = (
+                out
+                + cls.color_fmt.format(name=cls.color_names[name], col_hex=col_hex)
+                + "\n"
+            )
         return out
 
     def __init_subclass__(cls):
@@ -201,17 +197,18 @@ class XResources(ColorFormatter):
 
 class Alacritty(ColorFormatter):
 
-    color_fmt = "{name}: \"0x{col_hex}\""
+    color_fmt = '{name}: "0x{col_hex}"'
     config_file = CONFIG_HOME + "/alacritty/alacritty.yml"
-    color_names = {key: " " * 4 + value
-                   .replace("dim_", "normal:\n      ")
-                   .replace("bright_", "bright:\n      ")
-                   for key, value in INTERNAL_COLOR_NAMES.items()}
+    color_names = {
+        key: " " * 4
+        + value.replace("dim_", "normal:\n      ").replace("bright_", "bright:\n      ")
+        for key, value in INTERNAL_COLOR_NAMES.items()
+    }
 
 
 class XMonad(ColorFormatter):
 
-    color_fmt = "{name} = \"#{col_hex}\""
+    color_fmt = '{name} = "#{col_hex}"'
     config_file = CONFIG_HOME + "/xmonad/xmonad.hs"
     color_names = INTERNAL_COLOR_NAMES
 
@@ -242,9 +239,10 @@ class Telegram(ColorFormatter):
 
     color_fmt = "{name}: #{col_hex};"
     config_file = CONFIG_HOME + "/telegram/cac.tdesktop-theme"
-    color_names = {key: "COLOR_" + value
-                   .upper()
-                   for key, value in INTERNAL_COLOR_NAMES.items()}
+    color_names = {
+        key: "COLOR_" + value.upper() for key, value in INTERNAL_COLOR_NAMES.items()
+    }
+
 
 class Polybar(ColorFormatter):
 
@@ -263,10 +261,13 @@ class Polybar(ColorFormatter):
             if name == "background":
                 col_hex = str(cls.transparency) + col_hex
 
-            out = out + \
-                cls.color_fmt.format(
-                    name=cls.color_names[name], col_hex=col_hex) + "\n"
+            out = (
+                out
+                + cls.color_fmt.format(name=cls.color_names[name], col_hex=col_hex)
+                + "\n"
+            )
         return out
+
 
 class Rofi(ColorFormatter):
 
@@ -274,5 +275,13 @@ class Rofi(ColorFormatter):
     config_file = CONFIG_HOME + "/rofi/cac.rasi"
 
     # .rasi files don't let us use _s in variable names
-    color_names = {key: value.replace("_", "")
-                   for key, value in INTERNAL_COLOR_NAMES.items()}
+    color_names = {
+        key: value.replace("_", "") for key, value in INTERNAL_COLOR_NAMES.items()
+    }
+
+
+class QuteBrowser(ColorFormatter):
+
+    color_fmt = '\t"{name}": "#{col_hex}",'
+    config_file = CONFIG_HOME + "/qutebrowser/config.py"
+    color_names = INTERNAL_COLOR_NAMES
