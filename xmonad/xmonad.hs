@@ -140,6 +140,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     ---------------------
     -- Misc
     , ((0, xK_Print), spawn takeScreenshot)                                     -- take screenshot
+    , ((modm, xK_b), spawn statusBar)                                           -- respawn status bar
 
     ]
 
