@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+
+create_session() {
+  tmux new-session -s _default\; source-file $XDG_CONFIG_HOME/tmux/default.tmux
+}
+
+tmux has-session -t _default >/dev/null 2>&1 || create_session
+tmux a -t _default

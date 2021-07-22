@@ -285,3 +285,10 @@ class QuteBrowser(ColorFormatter):
     color_fmt = '\t"{name}": "#{col_hex}",'
     config_file = CONFIG_HOME + "/qutebrowser/config.py"
     color_names = INTERNAL_COLOR_NAMES
+
+
+class Tmux(ColorFormatter):
+
+    color_fmt = '{name}="#{col_hex}"'
+    config_file = CONFIG_HOME + "/tmux/tmux.conf"
+    color_names = INTERNAL_COLOR_NAMES
