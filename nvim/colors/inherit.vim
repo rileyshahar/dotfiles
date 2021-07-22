@@ -210,4 +210,9 @@ call s:set_colors("Ignore", s:dim, s:bg, "")
 call s:set_colors("Todo", s:black, s:yellow, "")
 hi! link Error     ErrorMsg
 
+" diff
+call s:set_colors("DiffAdd", s:green, s:bg, "")
+call s:set_colors("DiffChange", s:blue, s:bg, "")
+call s:set_colors("DiffDelete", s:red, s:bg, "")
+
 " vim: fdm=marker:sw=2:sts=2:et
