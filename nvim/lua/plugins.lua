@@ -9,7 +9,7 @@ paq "nvim-lua/plenary.nvim"
 
 -- misc
 paq "b3nj5m1n/kommentary" -- comment plugin
-paq "christoomey/vim-tmux-navigator" -- tmux split navigation
+paq "knubie/vim-kitty-navigator" -- tmux split navigation
 paq "tpope/vim-repeat" -- repeat plugin commands
 paq "jiangmiao/auto-pairs" -- autoclose brackets
 paq "tpope/vim-surround" -- quote manipulation

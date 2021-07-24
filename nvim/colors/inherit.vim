@@ -153,8 +153,6 @@ call s:set_colors("ModeMsg", s:fg, s:bg, "bold")
 call s:set_colors("MoreMsg", s:blue, s:bg, "bold")
 call s:set_colors("NonText", s:dim, s:none, "")
 call s:set_colors("Normal", s:fg, s:bg, "")
-call s:set_colors("NormalNC", s:fg, s:black, "")
-call s:set_colors("NormalNC", s:fg, s:dim, "")
 call s:set_colors("Pmenu", s:fg, s:dim, "")
 call s:set_colors("PmenuSel", s:bg, s:blue, "") " todo
 call s:set_colors("PmenuSbar", s:fg, s:dim, "")
@@ -195,6 +193,8 @@ call s:set_colors("StatusLineDark", s:fg, s:bg, "")
 
 " syntax
 call s:set_colors("Comment", s:dimmagenta, s:bg, "italic")
+call s:set_colors("SpecialComment", s:dimmagenta, s:bg, "italic")
+call s:set_colors("RustComment", s:dimmagenta, s:bg, "italic")
 call s:set_colors("Constant", s:dimyellow, s:bg, "")
 call s:set_colors("String", s:green, s:bg, "")
 call s:set_colors("Character", s:green, s:bg, "")
