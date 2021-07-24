@@ -1,0 +1,10 @@
+swipe:
+  3:
+    right:
+      update:
+        command: "wmh ws p"
+        interval: 3
+    left:
+      update:
+        command: "wmh ws n"
+        interval: 3

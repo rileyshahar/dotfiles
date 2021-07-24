@@ -1,0 +1,55 @@
+#!/bin/bash
+# wmh: window manager help. wrapper around wmctrl.
+
+# https://askubuntu.com/questions/5229/how-can-i-bind-a-key-to-cycle-between-workspaces
+
+if ! [ -x /usr/bin/wmctrl ]; then
+  echo 1>&2 "wmctrl not executable"
+  exit 127
+fi
+
+workspace() {
+  total=$(wmctrl -d | wc -l)
+  current=$(wmctrl -d | sed -n 's/^\([0-9]\+\) *\*.*/\1/p')
+
+  if [ -z "$total" ] || [ -z "$current" ]; then
+    echo 1>&2 "$0: Could not obtain workspace information!"
+    exit 1
+  fi
+
+  case $1 in
+    next | n )
+      target=$(($current+1))
+      if (( $target == $total )); then
+	target=0
+      fi
+      ;;
+
+    previous | prev | p )
+      target=$(($current-1))
+      if (( $target < 0 )); then
+	target=$(($total-1))
+      fi
+      ;;
+
+    *)
+      echo 1>&2 "invalid window command: $1"
+      exit 1
+      ;;
+  esac
+
+  wmctrl -s $target
+
+}
+
+case $1 in
+  workspace | ws )
+    workspace $2
+    ;;
+
+  *)
+    echo 1>&2 "invalid command: $1"
+    ;;
+esac
+
+# vim:sw=2

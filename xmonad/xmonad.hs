@@ -1,5 +1,4 @@
 import XMonad
-import XMonad.Actions.CycleWS
 import XMonad.Actions.CopyWindow
 import XMonad.Config.Desktop
 import XMonad.Hooks.EwmhDesktops
@@ -63,6 +62,12 @@ takeScreenshot  = "scrot $HOME/screenshots/%Y-%m-%d-%T.png"               -- scr
 statusBar       = "launch-polybar"                                        -- script in $DOTFILES_DIR/bin
 fluxCommand     = "redshift -l 37:-122 &"                                 -- remove blue light at night
 customKeybord   = "xmodmap $XDG_CONFIG_HOME/X11/xmodmap"                  -- modify the keyboard setup
+gestureControl  = "fusuma &"                                              -- start the gesture control daemon
+
+-- workspace control
+-- using these instead of native behavior to allow more fine-grained control via the ewmh maange hook and the script
+workspaceNext   = "wmh ws n"                                              -- next workspace
+workspacePrev   = "wmh ws p"                                              -- previous workspace
 
 
 ------------------------------------------------------------------------
@@ -99,13 +104,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Layout
     , ((modm, xK_semicolon), sendMessage NextLayout)                            -- rotate to next layout
     , ((modm .|. shiftMask, xK_semicolon), setLayout $ XMonad.layoutHook conf)  -- reset to default layout
-    , ((modm .|. shiftMask, xK_h), sendMessage Shrink)
-    , ((modm .|. shiftMask, xK_l), sendMessage Expand)
+    , ((modm .|. shiftMask, xK_Left), sendMessage Shrink)
+    , ((modm .|. shiftMask, xK_Right), sendMessage Expand)
     , ((modm, xK_t), sequence_
               [withFocused $ windows . W.sink, killAllOtherCopies])             -- force window to tile
                                                                                 -- kill other copies for pip
 
-    ---------------------
+    --------------------
     -- Window Navigation
     , ((modm, xK_j), windows W.focusDown)                                       -- move focus to next window
     , ((modm, xK_k), windows W.focusUp)                                         -- move focus to prev window
@@ -122,8 +127,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++ [
 
-    ((modm, xK_Right), nextWS)                                       -- move to next workspace
-    , ((modm, xK_Left), prevWS)                                     -- move to prev workspace
+    ((modm, xK_Right), spawn workspaceNext)                                     -- move to next workspace
+    , ((modm, xK_Left), spawn workspacePrev)                                    -- move to prev workspace
+    , ((modm .|. shiftMask, xK_l), spawn workspaceNext)                         -- move to next workspace
+    , ((modm .|. shiftMask, xK_h), spawn workspacePrev)                         -- move to prev workspace
 
     ---------------------
     -- System Control
@@ -176,6 +183,7 @@ myStartupHook = do
     spawnOnce statusBar
     spawnOnce fluxCommand
     spawnOnce customKeybord
+    spawnOnce gestureControl
 
 
 ------------------------------------------------------------------------
