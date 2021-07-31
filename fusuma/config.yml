@@ -8,3 +8,5 @@ swipe:
       update:
         command: "wmh ws n"
         interval: 3
+    down:
+      command: "launcher"

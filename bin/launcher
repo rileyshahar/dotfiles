@@ -1,9 +1,3 @@
 #!/usr/bin/env sh
-# based on https://github.com/adi1090x/rofi/blob/ca36b28e4e3b92252f0172bb5fbdb0c0013cd3eb/1080p/launchers/slate/launcher.sh
 
-theme="slate_full"
-
-styles=($(ls -p --hide="colors.rasi" $dir/styles))
-color="${styles[$(( $RANDOM % 20 ))]}"
-
-rofi -no-lazy-grab -show drun -modi drun -theme "$theme"
+rofi -modi drun,run -show drun -theme launcher
