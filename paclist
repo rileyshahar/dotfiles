@@ -1,6 +1,7 @@
 ack
 acpi
 autorandr
+beautyline
 betterdiscordctl
 blueman
 bluez
@@ -9,6 +10,7 @@ bottom-bin
 brightnessctl
 devour
 discord
+dunst
 efm-langserver
 eww-git
 exa

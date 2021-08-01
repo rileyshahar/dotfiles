@@ -1,0 +1,30 @@
+#!/bin/bash
+# dnd: polybar dnd management
+
+# https://askubuntu.com/questions/5229/how-can-i-bind-a-key-to-cycle-between-workspaces
+
+if ! [ -x /usr/bin/dunstctl ]; then
+  echo 1>&2 "dunstctl not executable"
+  exit 127
+fi
+
+dnd_toggle() {
+  dunstctl set-paused toggle
+}
+
+dnd_print() {
+  if [[ $(dunstctl is-paused) == "true" ]]; then
+    echo " "
+  else
+    echo " $(dunstctl count displayed)"
+  fi
+}
+
+case "$1" in
+    --toggle)
+        dnd_toggle
+        ;;
+    *)
+        dnd_print
+        ;;
+esac

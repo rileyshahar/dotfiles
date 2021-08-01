@@ -292,3 +292,10 @@ class Tmux(ColorFormatter):
     color_fmt = '{name}="#{col_hex}"'
     config_file = CONFIG_HOME + "/tmux/tmux.conf"
     color_names = INTERNAL_COLOR_NAMES
+
+
+class Dunst(ColorFormatter):
+
+    color_fmt = '  {name} = "#{col_hex}"'
+    config_file = CONFIG_HOME + "/dunst/dunstrc"
+    color_names = INTERNAL_COLOR_NAMES

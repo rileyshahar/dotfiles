@@ -63,6 +63,7 @@ statusBar       = "launch-polybar"                                        -- scr
 fluxCommand     = "redshift -l 37:-122 &"                                 -- remove blue light at night
 customKeybord   = "xmodmap $XDG_CONFIG_HOME/X11/xmodmap"                  -- modify the keyboard setup
 gestureControl  = "fusuma &"                                              -- start the gesture control daemon
+notifications   = "dunst &"                                               -- start the notification daemon
 
 -- workspace control
 -- using these instead of native behavior to allow more fine-grained control via the ewmh maange hook and the script
@@ -148,6 +149,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Misc
     , ((0, xK_Print), spawn takeScreenshot)                                     -- take screenshot
     , ((modm, xK_b), spawn statusBar)                                           -- respawn status bar
+    , ((modm, xK_period), spawn "dunstctl close")                               -- close notifications
+    , ((modm .|. shiftMask, xK_period), spawn "dunstctl close-all")             -- close all notifications
+    , ((modm, xK_comma), spawn "dunstctl action 0")                             -- perform action from top notification
+    , ((modm .|. shiftMask, xK_comma), spawn "dunstctl context")                -- open context menu for all notifications
+
 
     ]
 
@@ -184,6 +190,7 @@ myStartupHook = do
     spawnOnce fluxCommand
     spawnOnce customKeybord
     spawnOnce gestureControl
+    spawnOnce notifications
 
 
 ------------------------------------------------------------------------

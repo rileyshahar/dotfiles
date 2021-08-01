@@ -23,7 +23,7 @@ bright_white = #ffffff
 [bar/time]
 monitor = ${env:MONITOR:}
 modules-left = workspaces battery cpu gpu network
-modules-right = bluetooth audio brightness date time
+modules-right = bluetooth audio brightness date time notifications
 modules-center = music
 bottom = true
 module-margin = 1
@@ -145,6 +145,13 @@ format = " <label>"
 label-foreground = ${colors.bright_magenta}
 format-foreground = ${colors.bright_magenta}
 
+[module/notifications]
+type = custom/script
+exec = polybar-dnd
+click-left = polybar-dnd --toggle &
+format-foreground = ${colors.foreground}
+interval = 0.2
+
 
 ; I can't quite get this to work in a satisfying way, unfortunately
 [module/cava]
@@ -152,5 +159,6 @@ type = custom/script
 tail = true
 exec = polybar-cava
 format-foreground = ${colors.bright_blue}
+
 
 ; vim:ft=dosini
