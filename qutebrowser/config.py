@@ -38,6 +38,9 @@ cac = {
 ## set darkmode
 config.set("colors.webpage.darkmode.enabled", True)
 
+## set smooth scroll
+config.set("scrolling.smooth", True)
+
 ## keybinds
 config.bind("m", "hint links spawn --detach mpv {hint-url}")  # open link in mpv
 
