@@ -1,0 +1,4 @@
+#!/bin/sh
+# a thin wrapper around rofi-calc
+
+rofi -show calc -modi calc -no-show-match -no-sort -theme calc -terse | xclip -sel clip

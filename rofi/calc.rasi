@@ -1,0 +1,50 @@
+
+@import "cac.rasi"
+
+* {
+	spacing: 0;
+	background-color: transparent;
+	font: "MesloLGS Nerd Font 13";
+        color: @foreground;
+        width: 30%;
+}
+
+window {
+	background-color: @background;
+	transparency: "real";
+}
+
+mainbox {
+	children: [inputbar, message, listview];
+	spacing: 30px;
+	padding: 20px 0;
+}
+
+inputbar {
+	margin: 0 22px;
+	padding: 10px 8px;
+	background-color: @brightblack;
+	children: [entry];
+}
+
+message {
+	margin: 0 10px 0 30px;
+}
+
+textbox {
+        color: @brightblue;
+	font: "MesloLGS Nerd Font 16";
+}
+
+listview {
+	margin: 0 10px 0 30px;
+        font-size: 200px;
+}
+
+element selected {
+        color: @dimmagenta;
+}
+
+
+
+/* vim:ft=css
