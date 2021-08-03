@@ -14,24 +14,24 @@
 ## https://github.com/Linuus/cac-qutebrowser/blob/c7f89c0991bdb8e02ede67356355cd9ae891d2be/cac-qutebrowser.py
 cac = {
     # __cac:start
-	"background": "#1a1b26",
-	"foreground": "#a9b1d6",
-	"dim_black": "#06080a",
-	"dim_red": "#e06c75",
-	"dim_green": "#98c379",
-	"dim_yellow": "#d19a66",
-	"dim_blue": "#7aa2f7",
-	"dim_magenta": "#ad8ee6",
-	"dim_cyan": "#56bdb8",
-	"dim_white": "#abb2bf",
-	"bright_black": "#24283b",
-	"bright_red": "#f7768e",
-	"bright_green": "#9ece6a",
-	"bright_yellow": "#e0af68",
-	"bright_blue": "#61afef",
-	"bright_magenta": "#f6bdff",
-	"bright_cyan": "#50c3bd",
-	"bright_white": "#ffffff",
+    "background": "#1a1b26",
+    "foreground": "#a9b1d6",
+    "dim_black": "#06080a",
+    "dim_red": "#e06c75",
+    "dim_green": "#98c379",
+    "dim_yellow": "#d19a66",
+    "dim_blue": "#7aa2f7",
+    "dim_magenta": "#ad8ee6",
+    "dim_cyan": "#56bdb8",
+    "dim_white": "#abb2bf",
+    "bright_black": "#24283b",
+    "bright_red": "#f7768e",
+    "bright_green": "#9ece6a",
+    "bright_yellow": "#e0af68",
+    "bright_blue": "#61afef",
+    "bright_magenta": "#f6bdff",
+    "bright_cyan": "#50c3bd",
+    "bright_white": "#ffffff",
     # __cac:end
 }
 
@@ -314,15 +314,23 @@ c.colors.statusbar.url.warn.fg = cac["bright_yellow"]
 
 ## Background color of the tab bar.
 ## Type: QtColor
-c.colors.tabs.bar.bg = cac["dim_white"]
+c.colors.tabs.bar.bg = cac["bright_black"]
 
 ## Background color of unselected even tabs.
 ## Type: QtColor
-c.colors.tabs.even.bg = cac["dim_white"]
+c.colors.tabs.even.bg = cac["bright_black"]
 
 ## Foreground color of unselected even tabs.
 ## Type: QtColor
-c.colors.tabs.even.fg = cac["dim_white"]
+c.colors.tabs.even.fg = cac["foreground"]
+
+## Background color of unselected odd tabs.
+## Type: QtColor
+c.colors.tabs.odd.bg = cac["bright_black"]
+
+## Foreground color of unselected odd tabs.
+## Type: QtColor
+c.colors.tabs.odd.fg = cac["foreground"]
 
 ## Color for the tab indicator on errors.
 ## Type: QtColor
@@ -345,29 +353,21 @@ c.colors.tabs.indicator.error = cac["bright_red"]
 ##   - none: Don't show a gradient.
 c.colors.tabs.indicator.system = "none"
 
-## Background color of unselected odd tabs.
-## Type: QtColor
-c.colors.tabs.odd.bg = cac["dim_white"]
-
-## Foreground color of unselected odd tabs.
-## Type: QtColor
-c.colors.tabs.odd.fg = cac["dim_white"]
-
 # ## Background color of selected even tabs.
 # ## Type: QtColor
-c.colors.tabs.selected.even.bg = cac["background"]
+c.colors.tabs.selected.even.bg = cac["bright_red"]
 
 # ## Foreground color of selected even tabs.
 # ## Type: QtColor
-c.colors.tabs.selected.even.fg = cac["dim_white"]
+c.colors.tabs.selected.even.fg = cac["bright_black"]
 
 # ## Background color of selected odd tabs.
 # ## Type: QtColor
-c.colors.tabs.selected.odd.bg = cac["background"]
+c.colors.tabs.selected.odd.bg = cac["bright_red"]
 
 # ## Foreground color of selected odd tabs.
 # ## Type: QtColor
-c.colors.tabs.selected.odd.fg = cac["dim_white"]
+c.colors.tabs.selected.odd.fg = cac["bright_black"]
 
 
 ### Things I haven't changed
