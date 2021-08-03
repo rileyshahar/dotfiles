@@ -43,7 +43,7 @@
 
 
   ### Text ###
-  font = MesloLGS Nerd Font
+  font = Lato
   line_height = 0
 
   markup = full
