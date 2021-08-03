@@ -27,6 +27,7 @@
   monitor = 0
   follow = keyboard
 
+  transparency = 10
   geometry = "300-6-46"
   indicate_hidden = yes
   shrink = no
