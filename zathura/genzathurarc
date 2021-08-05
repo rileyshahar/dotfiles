@@ -1,0 +1,59 @@
+#!/bin/bash
+# generates a zathurarc file
+# necessary because the zathurarc format doesn't support color variables
+
+# __cac:start
+background="#1a1b26"
+foreground="#a9b1d6"
+dim_black="#06080a"
+dim_red="#e06c75"
+dim_green="#98c379"
+dim_yellow="#d19a66"
+dim_blue="#7aa2f7"
+dim_magenta="#ad8ee6"
+dim_cyan="#56bdb8"
+dim_white="#abb2bf"
+bright_black="#24283b"
+bright_red="#f7768e"
+bright_green="#9ece6a"
+bright_yellow="#e0af68"
+bright_blue="#61afef"
+bright_magenta="#f6bdff"
+bright_cyan="#50c3bd"
+bright_white="#ffffff"
+# __cac:end
+
+config="${XDG_CONFIG_HOME:-$HOME/.config}/zathura/zathurarc"
+
+rm $config
+
+cat << CONF > $config
+set recolor "true"
+set completion-bg "$background"
+set completion-fg "$foreground"
+set completion-group-bg "$background"
+set completion-group-fg "$bright_blue"
+set completion-highlight-bg "$foreground"
+set completion-highlight-fg "$background"
+set recolor-lightcolor "$background"
+set recolor-darkcolor "$foreground"
+set default-bg "$background"
+set inputbar-bg "$background"
+set inputbar-fg "$foreground"
+set notification-bg "$background"
+set notification-fg "$foreground"
+set notification-error-bg "$background"
+set notification-error-fg "$bright_red"
+set notification-warning-bg "$background"
+set notification-warning-fg "$dim_yellow"
+set statusbar-bg "$background"
+set statusbar-fg "$foreground"
+set index-bg "$background"
+set index-fg "$foreground"
+set index-active-bg "$foreground"
+set index-active-fg "$background"
+set render-loading-bg "$background"
+set render-loading-fg "$foreground"
+set selection-clipboard clipboard
+set guioptions none
+CONF

@@ -62,5 +62,7 @@ xorg
 xorg-xinit
 yamllint
 youtube-dl
+zathura
+zathura-pdf-mupdf
 zoom
 zoxide

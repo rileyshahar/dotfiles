@@ -299,3 +299,14 @@ class Dunst(ColorFormatter):
     color_fmt = '  {name} = "#{col_hex}"'
     config_file = CONFIG_HOME + "/dunst/dunstrc"
     color_names = INTERNAL_COLOR_NAMES
+
+
+class Zathura(ColorFormatter):
+    color_fmt = '{name}="#{col_hex}"'
+    config_file = CONFIG_HOME + "/zathura/genzathurarc"
+    color_name = INTERNAL_COLOR_NAMES
+    color_names = INTERNAL_COLOR_NAMES
+
+    @classmethod
+    def post_format_hook(cls):
+        os.system(f"bash {CONFIG_HOME}/zathura/genzathurarc")
