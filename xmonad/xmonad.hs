@@ -148,14 +148,16 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, xF86XK_MonBrightnessDown), spawn "brightnessctl set 5%-")            -- lower brightness
 
     ---------------------
+    -- Notificatoins
+    , ((modm, xK_period), spawn "dunstctl close")                               -- close notifications
+    , ((modm .|. shiftMask, xK_period), spawn "dunstctl close-all")             -- close all notifications
+    , ((modm, xK_comma), spawn "dunstctl action 0; dunstctl close")                             -- perform action from top notification
+    , ((modm .|. shiftMask, xK_comma), spawn "dunstctl context")                -- open context menu for all notifications
+
+    ---------------------
     -- Misc
     , ((0, xK_Print), spawn takeScreenshot)                                     -- take screenshot
     , ((modm, xK_b), spawn statusBar)                                           -- respawn status bar
-    , ((modm, xK_period), spawn "dunstctl close")                               -- close notifications
-    , ((modm .|. shiftMask, xK_period), spawn "dunstctl close-all")             -- close all notifications
-    , ((modm, xK_comma), spawn "dunstctl action 0")                             -- perform action from top notification
-    , ((modm .|. shiftMask, xK_comma), spawn "dunstctl context")                -- open context menu for all notifications
-
 
     ]
 
