@@ -1,0 +1,129 @@
+#!/bin/bash
+# handles screenshotting (wrapper around maim)
+
+if ! [ -x /usr/bin/maim ]; then
+  echo 1>&2 "maim not executable"
+  exit 127
+fi
+
+maim_flags="--hidecursor --capturebackground"
+
+# selections
+fullscreen="maim $maim_flags"
+window="maim $maim_flags -s"
+drag_selection="maim $maim_flags -st 9999999"
+
+# modifiers
+
+# outputs
+copy="| xclip -selection clipboard -t image/png"
+save() {
+  echo "> $@"
+}
+
+
+print_help() {
+  echo -e \\n"screenshot - wrapper around maim"\\n
+
+  echo -e "USAGE"
+  echo -e "      screenshot [-h] [-s selection] [-m modifier]* [-o output] [-f filename]"\\n
+
+  echo -e "OPTIONS"
+  echo    "      All flags are optional."
+  echo    "      -s  Sets the selection method."
+  echo    "      -m  Adds a modifier. May be repeated; modifiers do not necessarily commute."
+  echo    "      -o  Sets the output method."
+  echo    "      -f  Sets the file to save to. Defaults to ~/screenshots/%Y-%m-%d-%H:%M:%S."
+  echo -e "      -h  Displays this help message, then exits."\\n
+
+  echo -e "SELECTIONS"
+  echo    "      screenshot supports the following selection methods. Default is f."
+  echo    "      f   Capture the full screen."
+  echo    "      w   Click on a window to select it, or drag to make a selection."
+  echo -e "      s   Drag to make a selection."\\n
+
+  echo -e "MODIFIERS"
+  echo -e "      screenshot currently supports no modifiers, but some are planned."\\n
+
+  echo -e "OUTPUTS"
+  echo    "      screenshot supports the following output methods. Default is c."
+  echo    "      c   Copy the image to the system clipboard. Relies on xclip."
+  echo    "      s   Save the image to the disk."
+}
+
+
+screenshot_dir="$HOME/screenshots"
+filename="$screenshot_dir/$(date +%Y-%m-%d-%H:%M:%S).png"
+
+selection=""
+modifiers=()
+output=""
+while getopts "hs:m:o:f:" opt; do
+  case "$opt" in
+    h)
+      # displays help
+      print_help
+      exit 0
+      ;;
+
+    s)
+      # sets the selection
+      selection=$OPTARG
+      ;;
+
+    m)
+      # adds a modifier
+      modifiers+=($OPTARG)
+      ;;
+
+    o)
+      # sets the output method
+      output=$OPTARG
+      ;;
+
+    f)
+      # sets the output filename
+      filename=$OPTARG
+  esac
+done
+
+
+case "$selection" in
+  f|"")
+    selection=$fullscreen
+    ;;
+
+  w)
+    selection=$window
+    ;;
+
+  s)
+    selection=$drag_selection
+    ;;
+
+  *)
+    echo 1>&2 "invalid selection method chosen"
+    print_help
+    exit 1
+    ;;
+esac
+
+
+case "$output" in
+  c|"")
+    output=$copy
+    ;;
+
+  s|"")
+    output=$(save $filename)
+    ;;
+
+  *)
+    echo 1>&2 "invalid output method chosen"
+    print_help
+    exit 1
+    ;;
+esac
+
+
+eval "$selection ${modifiers[@]} $output"

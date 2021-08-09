@@ -22,6 +22,7 @@ git-delta
 github-cli
 hyperfine
 kitty
+maim
 mpv
 mpv-mpris
 mypy
@@ -46,7 +47,6 @@ ripgrep
 rofi
 rofi-calc
 rofi-dmenu
-scrot
 sd
 slack-desktop
 spotify

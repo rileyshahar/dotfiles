@@ -59,7 +59,6 @@ setWallpaper    = "feh --no-fehbg --bg-scale $DOTFILES_DIR/wallpaper.jpg" -- set
 startCompositor = "picom &"                                               -- start picom
 topCommand      = "btm --battery"                                         -- system monitor
 monitorSetup    = "xrandr --output eDP1 --auto --output DP3 --auto --left-of eDP1"
-takeScreenshot  = "scrot $HOME/screenshots/%Y-%m-%d-%T.png"               -- screenshot
 statusBar       = "launch-polybar"                                        -- script in $DOTFILES_DIR/bin
 fluxCommand     = "redshift -l 37:-122 &"                                 -- remove blue light at night
 customKeybord   = "xmodmap $XDG_CONFIG_HOME/X11/xmodmap"                  -- modify the keyboard setup
@@ -155,8 +154,14 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_comma), spawn "dunstctl context")                -- open context menu for all notifications
 
     ---------------------
+    -- Screenshots
+    , ((0, xK_Print), spawn "screenshot")                                       -- copy whole desktop to clipboard
+    , ((0 .|. shiftMask, xK_Print), spawn "screenshot -o s")                    -- save whole desktop to file
+    , ((modm, xK_Print), spawn "screenshot -s w")                               -- copy selection to clipboard
+    , ((modm .|. shiftMask, xK_Print), spawn "screenshot -s w -o s")            -- save selection to file
+
+    ---------------------
     -- Misc
-    , ((0, xK_Print), spawn takeScreenshot)                                     -- take screenshot
     , ((modm, xK_b), spawn statusBar)                                           -- respawn status bar
 
     ]
