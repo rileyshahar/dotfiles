@@ -283,7 +283,7 @@ class Rofi(ColorFormatter):
 
 class QuteBrowser(ColorFormatter):
 
-    color_fmt = '\t"{name}": "#{col_hex}",'
+    color_fmt = '    "{name}": "#{col_hex}",'
     config_file = CONFIG_HOME + "/qutebrowser/config.py"
     color_names = INTERNAL_COLOR_NAMES
 
