@@ -1,6 +1,9 @@
+[settings]
+pseudo-transparency = false
+
 [colors]
 ; __cac:start
-background = #881a1b26
+background = #cd1a1b26
 foreground = #a9b1d6
 dim_black = #06080a
 dim_red = #e06c75

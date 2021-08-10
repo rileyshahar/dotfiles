@@ -251,15 +251,16 @@ class Polybar(ColorFormatter):
     color_names = INTERNAL_COLOR_NAMES
 
     # the background transparency as a percentage
-    transparency = 88
+    transparency = 80
 
     # overridden to allow adding transparency to the background
     @classmethod
     def process_colorfmt(cls):
+        transparency = str(hex(ceil(cls.transparency * 256 / 100)))[2:]
         out = ""
         for name, col_hex in colors.items():
             if name == "background":
-                col_hex = str(cls.transparency) + col_hex
+                col_hex = transparency + col_hex
 
             out = (
                 out
@@ -297,18 +298,36 @@ class Tmux(ColorFormatter):
 class Dunst(ColorFormatter):
     color_fmt = '{name}="#{col_hex}"'
     config_file = CONFIG_HOME + "/dunst/gendunstrc"
-    color_name = INTERNAL_COLOR_NAMES
     color_names = INTERNAL_COLOR_NAMES
 
     @classmethod
     def post_format_hook(cls):
         os.system(f"bash {CONFIG_HOME}/dunst/gendunstrc")
 
+    # the background transparency as a percentage
+    transparency = 80
+
+    # overridden to allow adding transparency to the background
+    @classmethod
+    def process_colorfmt(cls):
+        transparency = str(hex(ceil(cls.transparency * 256 / 100)))[2:]
+        out = ""
+        for name, col_hex in colors.items():
+            if name == "background":
+                col_hex = transparency + col_hex
+
+            out = (
+                out
+                + cls.color_fmt.format(name=cls.color_names[name], col_hex=col_hex)
+                + "\n"
+            )
+        return out
+
+
 
 class Zathura(ColorFormatter):
     color_fmt = '{name}="#{col_hex}"'
     config_file = CONFIG_HOME + "/zathura/genzathurarc"
-    color_name = INTERNAL_COLOR_NAMES
     color_names = INTERNAL_COLOR_NAMES
 
     @classmethod

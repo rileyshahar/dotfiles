@@ -3,7 +3,7 @@
 # necessary because the dunstrc format doesn't support color variables
 
 # __cac:start
-background="#1a1b26"
+background="#cd1a1b26"
 foreground="#a9b1d6"
 dim_black="#06080a"
 dim_red="#e06c75"
