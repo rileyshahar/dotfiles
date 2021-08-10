@@ -1,5 +1,5 @@
 [settings]
-pseudo-transparency = false
+pseudo-transparency = true
 
 [colors]
 ; __cac:start
