@@ -1,3 +1,33 @@
+#!/bin/bash
+# generates a dunstrc file
+# necessary because the dunstrc format doesn't support color variables
+
+# __cac:start
+background="#1a1b26"
+foreground="#a9b1d6"
+dim_black="#06080a"
+dim_red="#e06c75"
+dim_green="#98c379"
+dim_yellow="#d19a66"
+dim_blue="#7aa2f7"
+dim_magenta="#ad8ee6"
+dim_cyan="#56bdb8"
+dim_white="#abb2bf"
+bright_black="#24283b"
+bright_red="#f7768e"
+bright_green="#9ece6a"
+bright_yellow="#e0af68"
+bright_blue="#61afef"
+bright_magenta="#f6bdff"
+bright_cyan="#50c3bd"
+bright_white="#ffffff"
+# __cac:end
+
+config="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/dunstrc"
+
+rm $config
+
+cat << CONF > $config
 [global]
   ### Display ###
   monitor = 0
@@ -59,7 +89,7 @@
 
   ### Misc/Advanced ###
   dmenu = /usr/bin/dmenu dunst:
-  browser = google-chrome-stable
+  browser = $BROWSER
   always_run_script = true
   title = Dunst
   class = Dunst
@@ -74,19 +104,19 @@
   context = ctrl+shift+period
 
 [urgency_low]
-  foreground = "#a9b1d6"
-  background = "#1a1b26"
-  frame_color = "#1a1b26"
+  foreground = "$foreground"
+  background = "$background"
+  frame_color = "$background"
 
 [urgency_normal]
-  foreground = "#a9b1d6"
-  background = "#1a1b26"
-  frame_color = "#1a1b26"
+  foreground = "$foreground"
+  background = "$background"
+  frame_color = "$background"
 
 [urgency_critical]
-  background = "#1a1b26"
-  foreground = "#a9b1d6"
-  frame_color = "#f7768e"
+  background = "$background"
+  foreground = "$foreground"
+  frame_color = "$bright_red"
 
 [spotify]
   appname = "Spotify"  # using appname is bad practice, but spotify doesn't give us a desktop entry
@@ -94,3 +124,4 @@
   script = "spotify-notification"
 
 # vim:ft=cfg
+CONF

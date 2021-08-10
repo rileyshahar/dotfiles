@@ -1,0 +1,8 @@
+#!/bin/bash
+# intercepts spotify notifications via dunst and adds an action to skip
+
+action=$(dunstify "$2" "$3" -u "$5" -h string:x-dunst-stack-tag:test "Now Playing" -i gnome-music --action="default,Skip")
+
+if [ $action == "default" ]; then
+  playerctl next
+fi
