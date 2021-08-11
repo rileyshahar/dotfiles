@@ -42,8 +42,22 @@ config.set("colors.webpage.darkmode.enabled", True)
 config.set("scrolling.smooth", True)
 
 ## keybinds
-config.bind("m", "hint links spawn --detach mpv {hint-url}")  # open link in mpv
+# misc
 config.bind("~", "spawn --userscript password_fill")  # fill password from gnu pass
+
+# history
+config.bind("H", "back")
+config.bind("<Ctrl-O>", "back")
+config.bind("L", "forward")
+config.bind("<Ctrl-I>", "forward")
+
+# tab navigation
+config.bind("h", "tab-prev")  # previous
+config.bind("l", "tab-next")  # next
+
+# scroll
+config.bind("K", "scroll-page 0 -0.5")
+config.bind("J", "scroll-page 0 0.5")
 
 ## Background color of the completion widget category headers.
 ## Type: QssColor
@@ -111,7 +125,7 @@ c.colors.downloads.error.bg = cac["bright_red"]
 
 ## Foreground color for downloads with errors.
 ## Type: QtColor
-c.colors.downloads.error.fg = cac["dim_white"]
+c.colors.downloads.error.fg = cac["background"]
 
 ## Color gradient stop for download backgrounds.
 ## Type: QtColor
@@ -161,7 +175,7 @@ c.colors.messages.error.border = cac["bright_red"]
 
 ## Foreground color of an error message.
 ## Type: QssColor
-c.colors.messages.error.fg = cac["dim_white"]
+c.colors.messages.error.fg = cac["background"]
 
 ## Background color of an info message.
 ## Type: QssColor
