@@ -43,22 +43,7 @@ config.set("scrolling.smooth", True)
 
 ## keybinds
 config.bind("m", "hint links spawn --detach mpv {hint-url}")  # open link in mpv
-
-from qutebrowser.api import interceptor
-
-# Youtube adblock
-def filter_yt(info: interceptor.Request):
-    """Block the given request if necessary."""
-    url = info.request_url
-    if (
-        url.host() == "www.youtube.com"
-        and url.path() == "/get_video_info"
-        and "&adformat=" in url.query()
-    ):
-        info.block()
-
-
-interceptor.register(filter_yt)
+config.bind("~", "spawn --userscript password_fill")  # fill password from gnu pass
 
 ## Background color of the completion widget category headers.
 ## Type: QssColor

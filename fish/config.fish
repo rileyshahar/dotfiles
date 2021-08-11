@@ -1,7 +1,7 @@
 ### ENVIRONMENT VARIABLES
 set -x VISUAL nvim
 set -x EDITOR $VISUAL
-set -x BROWSER "google-chrome-stable"
+set -x BROWSER "qutebrowser"
 set -x LANG "en_US.UTF-8"
 set -x MANPAGER "nvim -c 'set ft=man' -"
 

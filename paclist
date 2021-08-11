@@ -39,6 +39,7 @@ procs
 pulseaudio
 pulseaudio-ctl
 python
+python-adblock
 python-language-server
 qutebrowser
 r
