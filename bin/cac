@@ -304,25 +304,6 @@ class Dunst(ColorFormatter):
     def post_format_hook(cls):
         os.system(f"bash {CONFIG_HOME}/dunst/gendunstrc")
 
-    # the background transparency as a percentage
-    transparency = 80
-
-    # overridden to allow adding transparency to the background
-    @classmethod
-    def process_colorfmt(cls):
-        transparency = str(hex(ceil(cls.transparency * 256 / 100)))[2:]
-        out = ""
-        for name, col_hex in colors.items():
-            if name == "background":
-                col_hex = transparency + col_hex
-
-            out = (
-                out
-                + cls.color_fmt.format(name=cls.color_names[name], col_hex=col_hex)
-                + "\n"
-            )
-        return out
-
 
 
 class Zathura(ColorFormatter):
