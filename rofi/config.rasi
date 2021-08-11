@@ -38,7 +38,7 @@ configuration {
 /*	parse-known-hosts: true;*/
 /*	combi-modi: "window,run";*/
 	matching: "fuzzy";
-	sort-method: "fzf";
+	sorting-method: "fzf";
 /*	tokenize: true;*/
 /*	m: "-5";*/
 /*	line-margin: 2;*/
