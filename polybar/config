@@ -113,11 +113,12 @@ click-left = polybar-bluetoothctl --toggle &
 format-foreground = ${colors.dim_magenta}
 
 [module/brightness]
-type = internal/backlight
-card = intel_backlight
-format = " <label>"
-label-foreground = ${colors.bright_yellow}
+type = custom/script
+exec = echo $(( $(brightnessctl get) * 100 / $(brightnessctl max)))
+format = " <label>%"
 format-foreground = ${colors.bright_yellow}
+click-left = pkill -USR1 redshift
+interval = 0.1
 
 [module/audio]
 type = internal/pulseaudio
