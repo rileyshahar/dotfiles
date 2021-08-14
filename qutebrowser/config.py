@@ -376,3 +376,6 @@ c.colors.tabs.selected.odd.bg = cac["bright_red"]
 # ## Foreground color of selected odd tabs.
 # ## Type: QtColor
 c.colors.tabs.selected.odd.fg = cac["bright_black"]
+
+# ## Background color of builtin webpages.
+c.colors.webpage.bg = cac["background"]
