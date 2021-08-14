@@ -43,6 +43,20 @@ config.bind(
 # downloads
 config.set("downloads.location.directory", "$HOME/downloads")
 
+# autosave session on quit
+config.set("auto_save.session", True)
+
+# search engines
+config.set(
+    "url.searchengines",
+    {
+        "DEFAULT": "https://www.google.com/search?hl=en&q={}",
+        "ar": "https://wiki.archlinux.org/?search={}",
+        "zlib": "https://b-ok.org/s/{}",
+        "r": "https://reddit.com/r/{}",
+    },
+)
+
 
 ### COLORS
 cac = {
