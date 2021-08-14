@@ -8,3 +8,4 @@ conf.d
 Session.vim
 xmonad/xmonad.hi
 xmonad/xmonad.o
+qutebrowser/autoconfig.yml
