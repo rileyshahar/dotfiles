@@ -14,6 +14,7 @@ config.set("fonts.default_size", "12pt")
 
 # misc
 config.bind("~", "spawn --userscript password_fill")  # fill password from gnu pass
+config.bind("gi", "devtools")  # this is unbound because we bound w to popout
 
 # history
 config.bind("H", "back")
