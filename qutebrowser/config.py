@@ -14,13 +14,11 @@ config.set("fonts.default_size", "12pt")
 
 # misc
 config.bind("~", "spawn --userscript password_fill")  # fill password from gnu pass
-config.bind("gi", "devtools")  # this is unbound because we bound w to popout
+config.bind("<Ctrl-i>", "devtools")  # this is unbound because we bound w to popout
 
 # history
 config.bind("H", "back")
-config.bind("<Ctrl-O>", "back")
 config.bind("L", "forward")
-config.bind("<Ctrl-I>", "forward")
 
 # tab navigation
 config.bind("h", "tab-prev")  # previous
