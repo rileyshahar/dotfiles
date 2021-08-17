@@ -72,7 +72,7 @@ fn.sign_define("LspDiagnosticsSignError", {text = "", numhl = "LspDiagnosticsDef
 fn.sign_define("LspDiagnosticsSignHint", {text = "", numhl = "LspDiagnosticsDefaultHint"})
 
 -- specific language servers
-nvim_lsp.pyls.setup {}
+nvim_lsp.pylsp.setup {}
 nvim_lsp.clangd.setup {}
 nvim_lsp.texlab.setup {
     settings = {
