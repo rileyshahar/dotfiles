@@ -53,6 +53,7 @@ config.set(
         "ar": "https://wiki.archlinux.org/?search={}",
         "zlib": "https://b-ok.org/s/{}",
         "r": "https://reddit.com/r/{}",
+        "yt": "https://www.youtube.com/results?search_query={}"
     },
 )
 
