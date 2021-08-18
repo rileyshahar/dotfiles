@@ -115,14 +115,18 @@ nvim_lsp.rust_analyzer.setup {
 local luafmt = require "efm/luafmt"
 local prettier = require "efm/prettier"
 local black = require "efm/black"
+local shellcheck = require "efm/shellcheck"
 local remove_whitespace = require "efm/remove-whitespace"
 -- https://github.com/lukas-reineke/dotfiles/blob/master/vim/lua/lsp.lua
 nvim_lsp.efm.setup {
+    filetypes = {"*"},
     init_options = {documentFormatting = true},
     settings = {
         rootMarkers = {".git/"},
         languages = {
             -- todo: luacheck
+            sh = {shellcheck},
+            fish = {shellcheck},
             lua = {luafmt},
             yaml = {prettier},
             json = {prettier},

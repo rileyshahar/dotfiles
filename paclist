@@ -49,6 +49,7 @@ rofi
 rofi-calc
 rofi-dmenu
 sd
+shellcheck
 slack-desktop
 spotify
 steam
