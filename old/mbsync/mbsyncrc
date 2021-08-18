@@ -1,0 +1,44 @@
+IMAPAccount personal
+Host imap.gmail.com
+User riley.shahar@gmail.com
+PassCmd "pass show Email/google.com/accounts.google.com/riley.shahar | head -n1" 
+SSLType IMAPS
+AuthMechs LOGIN
+
+IMAPStore personal-remote
+Account personal
+
+MaildirStore personal-local
+Subfolders Verbatim
+Path ~/.mail/personal/
+Inbox ~/.mail/personal/inbox
+
+Channel personal
+Far :personal-remote:
+Near :personal-local:
+Patterns *
+Create Both
+SyncState *
+
+
+IMAPAccount school
+Host imap.gmail.com
+User rileyshahar@reed.edu
+PassCmd "pass show idp.reed.edu | head -n1" 
+SSLType IMAPS
+AuthMechs LOGIN
+
+IMAPStore school-remote
+Account school
+
+MaildirStore school-local
+Subfolders Verbatim
+Path ~/.mail/school/
+Inbox ~/.mail/school/inbox
+
+Channel school
+Far :school-remote:
+Near :school-local:
+Patterns *
+Create Both
+SyncState *

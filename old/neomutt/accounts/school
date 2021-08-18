@@ -1,0 +1,12 @@
+# vim:ft=neomuttrc
+
+set folder = "~/.mail/school"
+set from = "rileyshahar@reed.edu"
+
+set smtp_url = "smtp://rileyshahar%40reed.edu@smtp.gmail.com:587"
+set smtp_pass = "`pass show idp.reed.edu | head -n1`"
+
+set spoolfile = +inbox
+set postponed = +drafts
+set trash = +trash
+set record = +sent

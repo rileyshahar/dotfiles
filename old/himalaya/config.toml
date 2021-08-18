@@ -1,0 +1,21 @@
+name = "Riley Shahar"
+downloads-dir = "/home/riley/downloads"
+default-page-size = 50
+signature = """
+Riley Shahar
+Reed College '24
+"""
+
+[gmail]
+default = true
+email = "riley.shahar@gmail.com"
+
+imap-host = "imap.gmail.com"
+imap-port = 993
+imap-login = "riley.shahar@gmail.com"
+imap-passwd-cmd = "pass show Email/google.com/accounts.google.com/riley.shahar | head -n1"
+
+smtp-host = "smtp.gmail.com"
+smtp-port = 465
+smtp-login = "riley.shahar@gmail.com"
+smtp-passwd-cmd = "pass show Email/google.com/accounts.google.com/riley.shahar | head -n1"

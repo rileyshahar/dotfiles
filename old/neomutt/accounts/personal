@@ -1,0 +1,12 @@
+# vim:ft=neomuttrc
+
+set folder = "~/.mail/personal"
+set from = "riley.shahar@gmail.com"
+
+set smtp_url = "smtp://riley.shahar@smtp.gmail.com:587"
+set smtp_pass = "`pass show Email/google.com/accounts.google.com/riley.shahar | head -n1`"
+
+set spoolfile = +inbox
+set postponed = +drafts
+set trash = +trash
+set record = +sent

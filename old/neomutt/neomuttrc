@@ -1,0 +1,36 @@
+source $XDG_CONFIG_HOME/neomutt/colors
+# source $XDG_CONFIG_HOME/neomutt/mappings
+
+source ~/.config/neomutt/accounts/personal
+folder-hook personal "source $XDG_CONFIG_HOME/neomutt/accounts/personal"
+
+source ~/.config/neomutt/accounts/school
+folder-hook school "source $XDG_CONFIG_HOME/neomutt/accounts/school"
+
+
+named-mailboxes personal =../personal/inbox school =../school/inbox sent =sent
+
+bind index,pager B sidebar-toggle-visible
+bind index \Cp sidebar-prev
+bind index \Cn sidebar-next
+bind index \Co sidebar-open
+
+
+macro index o "<shell-escape>mbsync -c $XDG_CONFIG_HOME/mbsync/mbsyncrc -a<enter>" "sync mail"
+
+macro index 1 "<change-folder>personal<enter>"
+macro index 2 "<change-folder>school<enter>"
+
+
+set sort = threads
+unset help
+
+
+set sidebar_format = "%D (%N)"
+set index_format = "%2C %D %-15.15L %s"
+set date_format = "%b %d %H:%M"
+
+
+set my_name = "Riley Shahar"
+set realname = "Riley Shahar"
+set header_cache = "$XDG_CACHE_HOME/neomutt"
