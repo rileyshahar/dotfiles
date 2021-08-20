@@ -53,6 +53,7 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 myTerminal      = "kitty -1 --listen-on unix:@mykitty"                    -- start terminal
 myBrowser       = "$BROWSER"                                              -- start browser
 menu            = "launcher"                                              -- start rofi
+passwordCtrl    = "rofi-pass"                                             -- start rofi-pass
 calc            = "calc"                                                  -- run calculator
 restartXmonad   = "xmonad --recompile; xmonad --restart"                  -- restart xmonad
 setWallpaper    = "feh --no-fehbg --bg-scale $DOTFILES_DIR/wallpaper.jpg" -- set wallpaper
@@ -94,6 +95,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
                             namedScratchpadAction scratchpads "term")           -- scratchpad terminal
     , ((modm, xK_m), namedScratchpadAction scratchpads "top")                   -- system monitor
     , ((modm, xK_space), spawn menu)                                            -- menu
+    , ((modm .|. shiftMask, xK_space), spawn passwordCtrl)                      -- menu
     , ((modm, xK_c), spawn calc)                                                -- calc
 
     ---------------------
