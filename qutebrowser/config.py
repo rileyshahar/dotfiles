@@ -39,6 +39,9 @@ config.bind(
     "config-cycle statusbar.show always never;; config-cycle tabs.show always never",
 )
 
+config.set("url.start_pages", "file:///home/riley/dotfiles/startpage/index.html")
+config.set("url.default_page", "file:///home/riley/dotfiles/startpage/index.html")
+
 # downloads
 config.set("downloads.location.directory", "$HOME/downloads")
 
@@ -53,7 +56,7 @@ config.set(
         "ar": "https://wiki.archlinux.org/?search={}",
         "zlib": "https://b-ok.org/s/{}",
         "r": "https://reddit.com/r/{}",
-        "yt": "https://www.youtube.com/results?search_query={}"
+        "yt": "https://www.youtube.com/results?search_query={}",
     },
 )
 
