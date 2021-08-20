@@ -21,11 +21,13 @@ git
 git-delta
 github-cli
 hyperfine
+isync
 kitty
 maim
 mpv
 mpv-mpris
 mypy
+neomutt
 neovim
 nerd-fonts-meslo
 networkmanager
