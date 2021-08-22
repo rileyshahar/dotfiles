@@ -40,5 +40,8 @@ vim.wo.foldenable = true -- enable folding
 vim.o.foldlevelstart = 1 -- default level to start folding at
 vim.wo.foldmethod = "syntax" -- method to fold on (treesitter?)
 
+-- goyo
+map("<leader>g", "<cmd>Goyo<cr>")
+
 -- undo
 cmd "set undofile" -- persistent undo
