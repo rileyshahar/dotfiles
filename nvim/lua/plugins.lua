@@ -18,6 +18,8 @@ paq "simnalamburt/vim-mundo" -- undo tree viewer
 paq "machakann/vim-highlightedyank" -- highlight yanked text
 paq "christoomey/vim-sort-motion" -- sort easily
 paq "unblevable/quick-scope" -- easier inline navigation
+
+-- writing
 paq "junegunn/goyo.vim" -- distraction-free writing
 
 -- completion
