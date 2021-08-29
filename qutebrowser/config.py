@@ -395,4 +395,4 @@ c.colors.tabs.selected.odd.bg = cac["bright_red"]
 c.colors.tabs.selected.odd.fg = cac["bright_black"]
 
 # ## Background color of builtin webpages.
-c.colors.webpage.bg = cac["background"]
+# c.colors.webpage.bg = cac["background"]
