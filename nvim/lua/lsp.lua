@@ -119,7 +119,18 @@ local shellcheck = require "efm/shellcheck"
 local remove_whitespace = require "efm/remove-whitespace"
 -- https://github.com/lukas-reineke/dotfiles/blob/master/vim/lua/lsp.lua
 nvim_lsp.efm.setup {
-    filetypes = {"*"},
+    filetypes = {
+	"sh",
+	"fish",
+	"lua",
+	"yaml",
+	"json",
+	"html",
+	"scss",
+	"css",
+	"markdown",
+	"python"
+    },
     init_options = {documentFormatting = true},
     settings = {
         rootMarkers = {".git/"},
@@ -134,8 +145,7 @@ nvim_lsp.efm.setup {
             scss = {prettier},
             css = {prettier},
             markdown = {prettier},
-            python = {black},
-            ["="] = {remove_whitespace}
+            python = {black}
         }
     }
 }
