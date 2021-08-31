@@ -10,8 +10,15 @@ configuration {
 * {
 	spacing: 0;
 	background-color: transparent;
+        color: @foregroud;
 	font: "MesloLGS Nerd Font 13";
 }
+
+element-text {
+      background-color: inherit;
+      text-color:       inherit;
+}
+
 
 window {
 	background-color: @background;
@@ -36,19 +43,19 @@ textbox-prompt-space {
 	expand: false;
 	str: " ";
 	margin: 0 0 0 0;
-	text-color: @dimmagenta;
+	color: @dimmagenta;
 }
 
 prompt {
-	text-color: @dimmagenta;
+	color: @dimmagenta;
 }
 
 entry {
-	text-color: @foreground;
+	color: @foreground;
 }
 
 case-indicator {
-	text-color: @brightred;
+	color: @brightred;
 }
 
 mode-switcher, message {
@@ -58,13 +65,13 @@ mode-switcher, message {
 
 button, textbox {
 	background-color: @brightblack;
-	text-color: @foreground;
+	color: @foreground;
 	padding: 5px;
 }
 
 button selected {
 	background-color: @dimmagenta;
-        text-color: @background;
+        color: @background;
 }
 
 listview {
@@ -84,15 +91,17 @@ scrollbar {
 element {
 	padding: 5px;
 	highlight: bold underline;
+        color: @foreground;
 }
 
 element normal {
 	background-color: transparent;
+        color: @foreground;
 }
 
 element selected {
 	background-color: @dimmagenta;
-        text-color: @background;
+        color: @background;
 }
 
 element alternate {
@@ -100,15 +109,15 @@ element alternate {
 }
 
 element normal normal, element alternate normal {
-	text-color: @foreground;
+	color: @foreground;
 }
 
 element normal urgent, element selected urgent, element alternate urgent {
-	text-color: @brightred;
+	color: @brightred;
 }
 
 element normal active, element selected active, element alternate active {
-	text-color: @brightgreen;
+	color: @brightgreen;
 }
 
 /* vim:ft=css
