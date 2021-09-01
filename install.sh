@@ -137,12 +137,8 @@ ln -sv "$DOTFILES_DIR/fontconfig" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/rofi" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/qutebrowser" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/dunst" "$CONFIG_HOME" > /dev/null
+ln -sv "$DOTFILES_DIR/nvim" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/discord/themes" "$CONFIG_HOME/BetterDiscord" > /dev/null
-ln -sv "$DOTFILES_DIR/nvim/init.lua" "$CONFIG_HOME/nvim" > /dev/null
-ln -sv "$DOTFILES_DIR/nvim/lua/" "$CONFIG_HOME/nvim" > /dev/null
-ln -sv "$DOTFILES_DIR/nvim/snippets/" "$CONFIG_HOME/nvim" > /dev/null
-ln -sv "$DOTFILES_DIR/nvim/ftplugin/" "$CONFIG_HOME/nvim" > /dev/null
-ln -sv "$DOTFILES_DIR/nvim/colors/" "$CONFIG_HOME/nvim" > /dev/null
 
 echo "enabling networkmanager"
 sudo systemctl enable NetworkManager > /dev/null
