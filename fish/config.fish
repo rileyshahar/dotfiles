@@ -90,7 +90,7 @@ function mkdir-cd -d "Get git untracked files"
 end
 
 function move-last-download -d "Moves up the directory tree to find a git repo"
-    mv ~/Downloads/(ls -t -A ~/Downloads/ | head -1) .
+    mv ~/downloads/(ls -t -A ~/downloads/ | head -1) .
 end
 
 function fancy-help -d "Wrapper for help utilities"
