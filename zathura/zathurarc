@@ -25,4 +25,3 @@ set index-active-fg "#1a1b26"
 set render-loading-bg "#1a1b26"
 set render-loading-fg "#a9b1d6"
 set selection-clipboard clipboard
-set guioptions none

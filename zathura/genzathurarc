@@ -55,5 +55,4 @@ set index-active-fg "$background"
 set render-loading-bg "$background"
 set render-loading-fg "$foreground"
 set selection-clipboard clipboard
-set guioptions none
 CONF
