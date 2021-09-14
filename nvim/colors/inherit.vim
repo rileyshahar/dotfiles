@@ -191,6 +191,10 @@ call s:set_colors("StatusShell", s:dim, s:yellow, "")
 call s:set_colors("StatusNone", s:dim, s:dimtwo, "")
 call s:set_colors("StatusLineDark", s:fg, s:bg, "")
 
+call s:set_colors("LspDiagnosticsDefaultError", s:red, s:none, "underline")
+call s:set_colors("LspDiagnosticsDefaultWarning", s:yellow, s:none, "")
+call s:set_colors("LspDiagnosticsDefaultInformation", s:blue, s:none, "")
+
 " syntax
 call s:set_colors("Comment", s:dimmagenta, s:bg, "italic")
 call s:set_colors("SpecialComment", s:dimmagenta, s:bg, "italic")
