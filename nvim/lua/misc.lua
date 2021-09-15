@@ -42,7 +42,7 @@ vim.wo.foldmethod = "syntax" -- method to fold on (treesitter?)
 
 -- goyo
 map("<leader>g", "<cmd>Goyo<cr>")
--- vim.o.mouse = "a"
+vim.o.mouse = "a"
 
 -- undo
 cmd "set undofile" -- persistent undo
