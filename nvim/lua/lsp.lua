@@ -58,7 +58,8 @@ nvim_lsp.util.default_config =
                 vim.lsp.diagnostic.on_publish_diagnostics,
                 {
                     -- disable virtual text
-                    virtual_text = false
+                    virtual_text = false,
+		    underline = true
                 }
             )
         },
@@ -120,16 +121,16 @@ local remove_whitespace = require "efm/remove-whitespace"
 -- https://github.com/lukas-reineke/dotfiles/blob/master/vim/lua/lsp.lua
 nvim_lsp.efm.setup {
     filetypes = {
-	"sh",
-	"fish",
-	"lua",
-	"yaml",
-	"json",
-	"html",
-	"scss",
-	"css",
-	"markdown",
-	"python"
+        "sh",
+        "fish",
+        "lua",
+        "yaml",
+        "json",
+        "html",
+        "scss",
+        "css",
+        "markdown",
+        "python"
     },
     init_options = {documentFormatting = true},
     settings = {
