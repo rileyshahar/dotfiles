@@ -45,7 +45,12 @@ myFocusedBorderColor = dim_magenta
 
 ------------------------------------------------------------------------
 -- Workspaces
-myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
+myExtraWSs   = []
+myWorkspaces = map show [1..9] ++ myExtraWSs
+
+-- remove workspaces from myExtraWSs
+-- filterOutExtraWorkspaces = filter (\(W.Workspace tag _ _) -> not (tag `elem` myExtraWSs))
+myWorkspaceFilter = namedScratchpadFilterOutWorkspace
 
 
 ------------------------------------------------------------------------
@@ -95,8 +100,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
                             namedScratchpadAction scratchpads "term")           -- scratchpad terminal
     , ((modm, xK_m), namedScratchpadAction scratchpads "top")                   -- system monitor
     , ((modm, xK_space), spawn menu)                                            -- menu
-    , ((modm .|. shiftMask, xK_space), spawn passwordCtrl)                      -- menu
-    , ((modm, xK_c), spawn calc)                                                -- calc
+    , ((modm .|. shiftMask, xK_space), spawn passwordCtrl)                      -- password menu
+    , ((modm .|. shiftMask, xK_c), spawn calc)                                  -- calc
 
     ---------------------
     -- Troubleshooting
@@ -233,7 +238,7 @@ defaults = desktopConfig {
         manageHook          = myManageHook
                               <+> manageHook desktopConfig
                               <+> namedScratchpadManageHook scratchpads,
-        logHook             = ewmhDesktopsLogHookCustom namedScratchpadFilterOutWorkspace
+        logHook             = ewmhDesktopsLogHookCustom myWorkspaceFilter
     }
 
 -- vim:expandtab:sw=6:ts=6
