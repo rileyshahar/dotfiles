@@ -56,7 +56,7 @@ set fish_color_autosuggestion brblack
 set fish_color_cancel -r
 
 # configure path
-set paths_to_add /usr/local/opt/python@3.8 /bin/usr/local/opt/ruby/bin $CARGO_HOME/bin /usr/local/opt/llvm/bin/ $XDG_DATA_HOME/bin $DOTFILES_DIR/bin
+set paths_to_add /usr/local/opt/python@3.8 /bin/usr/local/opt/ruby/bin $CARGO_HOME/bin /usr/local/opt/llvm/bin/ $XDG_DATA_HOME/bin $DOTFILES_DIR/bin $HOME/.local/bin
 
 for path in $paths_to_add
     contains $path $fish_user_paths; or set -Ua fish_user_paths $path

@@ -59,7 +59,7 @@ nvim_lsp.util.default_config =
                 {
                     -- disable virtual text
                     virtual_text = false,
-		    underline = true
+                    underline = true
                 }
             )
         },
@@ -73,13 +73,29 @@ fn.sign_define("LspDiagnosticsSignError", {text = "", numhl = "LspDiagnosticsDef
 fn.sign_define("LspDiagnosticsSignHint", {text = "", numhl = "LspDiagnosticsDefaultHint"})
 
 -- specific language servers
-nvim_lsp.pylsp.setup {}
 nvim_lsp.clangd.setup {}
 nvim_lsp.texlab.setup {
     settings = {
         latex = {
             lint = {
                 onSave = true
+            }
+        }
+    }
+}
+
+nvim_lsp.pylsp.setup {
+    settings = {
+        pylsp = {
+            plugins = {
+                pydocstyle = {
+                    enabled = true,
+                },
+                pylint = {
+                    enabled = true,
+                    executable = "pylint"
+                    -- args = {'--init-hook="import', "sys;", 'sys.path.append(\'.\')"'}
+                }
             }
         }
     }
