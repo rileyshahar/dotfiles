@@ -50,6 +50,9 @@ paq "nvim-telescope/telescope.nvim"
 -- tex
 paq "lervag/vimtex"
 
+-- python
+paq {"heavenshell/vim-pydocstring", run = "make install"}
+
 -- rust
 paq "mhinz/vim-crates"
 paq "mattn/webapi-vim" -- dependency
