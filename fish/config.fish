@@ -3,7 +3,7 @@ set -x VISUAL nvim
 set -x EDITOR $VISUAL
 set -x BROWSER "qutebrowser"
 set -x LANG "en_US.UTF-8"
-set -x MANPAGER "nvim -c 'set ft=man' -"
+set -x MANPAGER "nvim +Man!"
 
 set -x XDG_CACHE_HOME "$HOME/.cache"
 set -x XDG_CONFIG_HOME "$HOME/.config"
