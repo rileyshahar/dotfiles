@@ -57,6 +57,7 @@ config.set(
         "zlib": "https://b-ok.org/s/{}",
         "r": "https://reddit.com/r/{}",
         "yt": "https://www.youtube.com/results?search_query={}",
+        "pdb": "https://www.protondb.com/search?q={}",
     },
 )
 
