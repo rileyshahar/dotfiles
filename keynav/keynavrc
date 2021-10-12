@@ -1,0 +1,4 @@
+# vim:ft=conf
+
+alt+f start
+f grid 3x3,grid-nav on

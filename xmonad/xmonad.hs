@@ -70,6 +70,7 @@ fluxCommand     = "redshift -l 37:-122 -t 6500:1300 &"                    -- rem
 customKeybord   = "xmodmap $XDG_CONFIG_HOME/X11/xmodmap"                  -- modify the keyboard setup
 gestureControl  = "fusuma &"                                              -- start the gesture control daemon
 notifications   = "dunst &"                                               -- start the notification daemon
+pointerNav      = "keynav &"                                              -- move the points with the keyboard
 
 -- workspace control
 -- using these instead of native behavior to allow more fine-grained control via the ewmh maange hook and the script
@@ -207,6 +208,7 @@ myStartupHook = do
     spawnOnce customKeybord
     spawnOnce gestureControl
     spawnOnce notifications
+    spawnOnce pointerNav
 
 
 ------------------------------------------------------------------------

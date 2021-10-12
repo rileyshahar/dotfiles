@@ -138,6 +138,7 @@ ln -sv "$DOTFILES_DIR/rofi" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/qutebrowser" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/dunst" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim" "$CONFIG_HOME" > /dev/null
+ln -sv "$DOTFILES_DIR/keynav" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/discord/themes" "$CONFIG_HOME/BetterDiscord" > /dev/null
 
 echo "enabling networkmanager"

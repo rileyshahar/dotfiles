@@ -89,11 +89,12 @@ nvim_lsp.pylsp.setup {
         pylsp = {
             plugins = {
                 pydocstyle = {
-                    enabled = true,
+                    enabled = true
                 },
                 pylint = {
                     enabled = true,
-                    executable = "pylint"
+                    executable = "pylint",
+                    args = {"src", "tests"}
                     -- args = {'--init-hook="import', "sys;", 'sys.path.append(\'.\')"'}
                 }
             }

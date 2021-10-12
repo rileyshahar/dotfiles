@@ -22,6 +22,7 @@ git-delta
 github-cli
 hyperfine
 isync
+keynav
 kitty
 maim
 mpv
@@ -55,8 +56,8 @@ spotify
 steam
 sudo
 telegram-desktop
-ttf-lato
 tmux
+ttf-lato
 unzip
 xmonad
 xmonad-contrib
