@@ -52,7 +52,7 @@ set fish_color_selection --background=brblack  # todo
 set fish_color_search_match normal
 set fish_color_history_current normal
 set fish_color_operator cyan  # todo
-set fish_color_escape bryellow  # todo
+set fish_color_escape bryellow  # tod
 set fish_color_valid_path --underline
 set fish_color_autosuggestion brblack
 set fish_color_cancel -r
@@ -129,6 +129,13 @@ end
 
 
 # Event Hooks
+function fish_right_prompt -d "print the time"
+    if test (stty size | cut -d" " -f2) -gt 60
+        set_color bryellow
+        date '+%H:%M:%S'
+    end
+end
+
 function _handle_cmd_completion_in_inactive_window --on-event fish_postexec -a last_command -d "send a system notification when a command terminates"
 
     # store the previous status so we can return it at the end
