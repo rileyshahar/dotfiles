@@ -129,12 +129,12 @@ end
 
 
 # Event Hooks
-function fish_right_prompt -d "print the time"
-    if test (stty size | cut -d" " -f2) -gt 60
-        set_color bryellow
-        date '+%H:%M:%S'
-    end
-end
+# function fish_right_prompt -d "print the time"
+#     if test (stty size | cut -d" " -f2) -gt 60
+#         set_color bryellow
+#         date '+%H:%M:%S'
+#     end
+# end
 
 function _handle_cmd_completion_in_inactive_window --on-event fish_postexec -a last_command -d "send a system notification when a command terminates"
 
