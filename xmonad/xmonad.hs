@@ -55,7 +55,7 @@ myWorkspaceFilter = namedScratchpadFilterOutWorkspace
 
 ------------------------------------------------------------------------
 -- Shell commands
-myTerminal      = "kitty -1 --listen-on unix:@mykitty"                    -- start terminal
+myTerminal      = "kitty"                                                 -- start terminal
 myBrowser       = "$BROWSER"                                              -- start browser
 menu            = "launcher"                                              -- start rofi
 passwordCtrl    = "rofi-pass"                                             -- start rofi-pass

@@ -22,6 +22,7 @@ git-delta
 github-cli
 hyperfine
 isync
+jq
 keynav
 kitty
 maim

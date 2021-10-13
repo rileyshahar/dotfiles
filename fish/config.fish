@@ -1,6 +1,6 @@
 ### ENVIRONMENT VARIABLES
 set -x VISUAL nvim
-set -x EDITOR $VISUAL
+set -x EDITOR "$VISUAL"
 set -x BROWSER "qutebrowser"
 set -x LANG "en_US.UTF-8"
 set -x MANPAGER "nvim +Man!"
@@ -128,29 +128,33 @@ function bind_dollar
 end
 
 
-## Event Hooks
-# function _ring_bell_after_cmd --on-event fish_postexec -d "Ring the bell after every command execution"
-#     printf "\a"
-# end
+# Event Hooks
+function _handle_cmd_completion_in_inactive_window --on-event fish_postexec -a last_command -d "send a system notification when a command terminates"
 
-function cpu-usage -d "Get the current cpu usage"
-    # primarily for the tmux status bar
-    # from https://stackoverflow.com/questions/30855440/how-to-get-cpu-utilization-in-in-terminal-mac
+    # store the previous status so we can return it at the end
+    set prev_status $status
 
-    # the printf ensures we have only two places after the decimal
-    set ping (printf '%.2f%%' (top -l 1 | grep -E "^CPU" | grep -Eo '[^[:space:]]+%' | head -1 | sed s/\%/\/))
+    if status is-interactive; and test -n "$DISPLAY"; and test $TERM = "xterm-kitty"
 
-    # left-pad with a 0 if needed
-    if test 5 -eq ( string length $ping )
-        echo ( string join "" "0" $ping )
-    else
-        echo $ping
+        set window_number (kitty @ ls | jq .[0].platform_window_id)
+        if test $window_number -ne (xdotool getactivewindow)
+
+            if test $prev_status = 0
+                set message "Command `$last_command` exited successfully."
+                set urgency 0
+            else
+                set message "Command `$last_command` exited unsuccessfully."
+                set urgency 2
+            end
+
+            set action (dunstify -u $urgency (string split " " $last_command | head -1) $message --action="default,Switch to Window")
+
+            if test $action = "default"
+                xdotool windowactivate $window_number
+            end
+        end
     end
-
-end
-
-function ping-to-google -d "Get the ping to google"
-    ping -c 1 google.com | tail -1 | awk '{print $4}' | cut -d / -f 2 | cut -d '.' -f 1
+    return $prev_status
 end
 
 ### ABBREVIATIONS
