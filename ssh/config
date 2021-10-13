@@ -1,0 +1,13 @@
+AddKeysToAgent yes
+
+Host patty
+  User rileyshahar
+  Hostname patty.reed.edu
+
+Host me
+  User rileyshahar
+  Hostname nihilistkitten.me
+
+Host botc
+  User riley
+  Hostname 13.78.134.167

@@ -18,6 +18,8 @@ set -x BAT_THEME TwoDark
 
 set -x GPG_TTY (tty)
 
+set -x SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
+
 set -x DOTFILES_DIR $HOME/dotfiles
 
 # please respect xdg specs
