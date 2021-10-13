@@ -217,9 +217,9 @@ end
 
 abbr -a l $ls_function
 abbr -a ls $ls_function
-abbr -a ll $ls_function -l
+abbr -a ll $ls_function -lh
 abbr -a la $ls_function -a
-abbr -a lll $ls_function -al
+abbr -a lll $ls_function -alh
 
 # cat replacement
 if type -q bat
