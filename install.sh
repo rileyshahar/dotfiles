@@ -139,8 +139,9 @@ ln -sv "$DOTFILES_DIR/qutebrowser" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/dunst" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/nvim" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/keynav" "$CONFIG_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/systemd/" "$CONFIG_HOME/systemd/user"
-ln -sv "$DOTFILES_DIR/ssh/config" "$HOME/.ssh"
+ln -sv "$DOTFILES_DIR/anacron/" "$CONFIG_HOME" > /dev/null
+ln -sv "$DOTFILES_DIR/systemd/" "$CONFIG_HOME/systemd/user" > /dev/null
+ln -sv "$DOTFILES_DIR/ssh/config" "$HOME/.ssh" > /dev/null
 ln -sv "$DOTFILES_DIR/discord/themes" "$CONFIG_HOME/BetterDiscord" > /dev/null
 
 echo "enabling networkmanager"

@@ -71,6 +71,7 @@ customKeybord   = "xmodmap $XDG_CONFIG_HOME/X11/xmodmap"                  -- mod
 gestureControl  = "fusuma &"                                              -- start the gesture control daemon
 notifications   = "dunst &"                                               -- start the notification daemon
 pointerNav      = "keynav &"                                              -- move the points with the keyboard
+anacron         = "anacron -t $HOME/.config/anacron/anacrontab -S $HOME/.local/share/anacron"
 
 -- workspace control
 -- using these instead of native behavior to allow more fine-grained control via the ewmh maange hook and the script
@@ -209,6 +210,7 @@ myStartupHook = do
     spawnOnce gestureControl
     spawnOnce notifications
     spawnOnce pointerNav
+    spawnOnce anacron
 
 
 ------------------------------------------------------------------------

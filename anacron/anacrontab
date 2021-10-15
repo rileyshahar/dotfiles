@@ -1,0 +1,10 @@
+# vim:ft=conf
+
+SHELL=/bin/sh
+MAILTO=riley.shahar@gmail.com
+RANDOM_DELAY=0
+START_HOURS_RANGE=3-22
+
+
+# period        delay   job-id  command
+@daily          0       backup  $HOME/.config/tarsnap/tarsnap-backup.sh
