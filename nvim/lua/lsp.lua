@@ -93,8 +93,7 @@ nvim_lsp.pylsp.setup {
                 },
                 pylint = {
                     enabled = true,
-                    executable = "pylint",
-                    args = {"src", "tests"}
+                    executable = "pylint"
                     -- args = {'--init-hook="import', "sys;", 'sys.path.append(\'.\')"'}
                 }
             }
