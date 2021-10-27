@@ -169,8 +169,10 @@ abbr -a e $EDITOR
 
 # python
 abbr -a p python
+abbr -a ps poetry shell
+abbr -a pr poetry run
 abbr -a p3 python3
-abbr -a pt python -m pytest
+abbr -a pt poetry run python -m pytest
 
 # cargo
 abbr -a c cargo
@@ -194,18 +196,18 @@ abbr -a gll git log --stat-count=30
 abbr -a gu git_untracked
 abbr -a gd upto_git
 
-# tmux
-abbr -a te execute_for_all_panes
-abbr -a tz execute_for_all_panes z
-abbr -a rl tmux respawn-pane -k -c \'\#{pane_current_path}\'
-
 # misc
 abbr -a mc mkdir-cd
 abbr -a mld move-last-download
-abbr -a b brew
 abbr -a o open
 abbr -a h fancy-help
 abbr -a m man
+
+# kittens :)
+if type -q kitty and test $TERM = "xterm-kitty"
+    abbr -a icat "kitty +kitten icat"  # image viewer
+    abbr -a ssh "kitty +kitten ssh"    # ssh compatibility (https://sw.kovidgoyal.net/kitty/faq/#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer)
+end
 
 
 # ls replacement
@@ -231,14 +233,6 @@ end
 abbr -a bat $cat_function
 abbr -a cat $cat_function
 
-# ps replacement
-if type -q procs
-    set ps_function "procs --watch --tree"
-else
-    set ps_function ps
-end
-
-abbr -a ps $ps_function
 
 # top replacement
 if type -q btm
@@ -251,6 +245,7 @@ end
 
 abbr -a top $top_function
 abbr -a btm $top_function
+
 
 ### KEYBINDINGS
 fish_vi_key_bindings
