@@ -154,7 +154,7 @@ type = custom/script
 exec = polybar-dnd
 click-left = polybar-dnd --toggle &
 format-foreground = ${colors.foreground}
-interval = 0.2
+interval = 1
 
 
 ; I can't quite get this to work in a satisfying way, unfortunately

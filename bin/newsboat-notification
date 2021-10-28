@@ -1,0 +1,3 @@
+#!/bin/sh
+
+dunstify "newsboat" "$1"

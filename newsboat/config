@@ -1,0 +1,28 @@
+# general
+auto-reload yes
+reload-threads 100
+
+# notifications
+notify-program /home/riley/dotfiles/bin/newsboat-notification
+notify-format "%n new articles, %d total unread"
+
+# unbind keys
+unbind-key j
+unbind-key k
+unbind-key J
+unbind-key K
+
+# bind keys - vim style
+bind-key j down
+bind-key <c-n> down
+bind-key k up
+bind-key <c-p> up
+bind-key l open
+bind-key h quit
+
+# colors
+color listfocus           black   magenta
+color listnormal_unread   yellow  default
+color listfocus_unread    black   magenta
+color info                black   blue   bold
+color article             default default

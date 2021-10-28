@@ -72,6 +72,7 @@ gestureControl  = "fusuma &"                                              -- sta
 notifications   = "dunst &"                                               -- start the notification daemon
 pointerNav      = "keynav &"                                              -- move the points with the keyboard
 anacron         = "anacron -t $HOME/.config/anacron/anacrontab -S $HOME/.local/share/anacron"
+newsViewer      = "newsboat"                                              -- newsboat
 
 -- workspace control
 -- using these instead of native behavior to allow more fine-grained control via the ewmh maange hook and the script
@@ -83,7 +84,8 @@ workspacePrev   = "wmh ws p"                                              -- pre
 -- Scratchpads
 scratchpads = [
     NS "term" "kitty --title scratchpad" (title =? "scratchpad") floatingRect,
-    NS "top" ("kitty --class " ++ "top" ++ " " ++ topCommand) (className =? "top") floatingRect
+    NS "top" ("kitty --class " ++ "top" ++ " " ++ topCommand) (className =? "top") floatingRect,
+    NS "news" ("kitty --class " ++ "news" ++ " " ++ newsViewer) (className =? "news") floatingRect
     ] where
       floatingRect = customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)
 
@@ -102,6 +104,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
                             namedScratchpadAction scratchpads "term")           -- scratchpad terminal
     , ((modm, xK_m), namedScratchpadAction scratchpads "top")                   -- system monitor
     , ((modm, xK_space), spawn menu)                                            -- menu
+    , ((modm, xK_n), namedScratchpadAction scratchpads "news")                   -- news viewer
     , ((modm .|. shiftMask, xK_space), spawn passwordCtrl)                      -- password menu
     , ((modm .|. shiftMask, xK_c), spawn calc)                                  -- calc
 

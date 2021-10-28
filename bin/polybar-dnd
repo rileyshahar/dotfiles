@@ -16,7 +16,7 @@ dnd_print() {
   if [[ $(dunstctl is-paused) == "true" ]]; then
     echo " "
   else
-    echo " $(dunstctl count displayed)"
+    echo " "
   fi
 }
 
