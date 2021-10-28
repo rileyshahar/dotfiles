@@ -24,6 +24,7 @@ github-cli
 hyperfine
 isync
 jq
+just
 keynav
 kitty
 maim
@@ -37,6 +38,7 @@ networkmanager
 nvidia
 nvidia-prime
 pandoc
+pandoc-include-code
 picom
 playerctl
 polybar
@@ -58,9 +60,11 @@ spotify
 steam
 sudo
 telegram-desktop
+tldr
 tmux
 ttf-lato
 unzip
+vimv
 xmonad
 xmonad-contrib
 xorg

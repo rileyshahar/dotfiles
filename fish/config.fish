@@ -201,7 +201,8 @@ abbr -a mc mkdir-cd
 abbr -a mld move-last-download
 abbr -a o open
 abbr -a h fancy-help
-abbr -a m man
+abbr -a m make
+abbr -a j just
 
 # kittens :)
 if type -q kitty and test $TERM = "xterm-kitty"
