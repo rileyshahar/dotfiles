@@ -110,6 +110,17 @@ local function get_lsp_diagnostics(bufnr)
     return result
 end
 
+--[[
+local type_patterns = {"class", "function", "method", "struct", "enum", "interface", "module", "namespace"}
+local function treesitter()
+    local sl = require("nvim-treesitter").statusline {type_patterns = type_patterns}
+    if sl == nil then
+        return ""
+    end
+    return sl:match("(.*)%(")
+    -- return sl:sub(1, sl:match("%("))
+end ]]
+
 function status_line()
     local diagnostics = get_lsp_diagnostics()
     local mode = fn.mode()

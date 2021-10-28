@@ -12,7 +12,7 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 
 -- filetype support
-vim.o.filetype = "on" -- todo: we need indent/maybe ftplugin support (treesitter?)
+vim.o.filetype = "on"
 vim.o.syntax = "on" -- syntax highlighting
 
 -- misc

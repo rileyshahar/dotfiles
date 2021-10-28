@@ -41,6 +41,14 @@ paq "ray-x/lsp_signature.nvim"
 paq "ghifarit53/tokyonight-vim"
 paq "ap/vim-css-color"
 
+-- treesitter
+paq {
+    "nvim-treesitter/nvim-treesitter",
+    run = function()
+        cmd "TSUpdate"
+    end
+}
+
 -- git
 paq "lewis6991/gitsigns.nvim"
 
@@ -62,7 +70,12 @@ paq "rust-lang/rust.vim"
 paq "cespare/vim-toml"
 
 -- markdown
-paq "plasticboy/vim-markdown"
+-- paq "plasticboy/vim-markdown"
+paq "vim-pandoc/vim-pandoc"
+paq "vim-pandoc/vim-pandoc-syntax"
 
 -- fish
 paq "dag/vim-fish"
+
+-- pest/peg
+paq "pest-parser/pest.vim"
