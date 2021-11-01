@@ -170,8 +170,8 @@ call s:set_colors("TabLine", s:dimtwo, s:fg, "")
 call s:set_colors("TabLineFill", s:dim, s:fg, "")
 call s:set_colors("TabLineSel", s:black, s:red, "NONE") " todo
 call s:set_colors("Title", s:red, s:bg, "bold")
-call s:set_colors("Visual", s:bg, s:dimtwo, "")
-call s:set_colors("VisualNOS", s:bg, s:dimtwo, "underline")
+call s:set_colors("Visual", s:bg, s:dim, "")
+call s:set_colors("VisualNOS", s:bg, s:dim, "underline")
 call s:set_colors("WarningMsg", s:yellow, s:bg, "")
 call s:set_colors("Whitespace", s:dimtwo, s:bg, "")
 call s:set_colors("WildMenu", s:bg, s:blue, "") " todo
