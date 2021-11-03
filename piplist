@@ -1,5 +1,6 @@
 adblock
 black
+neovim
 poetry
 python-lsp-server[all]
 pyls-isort
