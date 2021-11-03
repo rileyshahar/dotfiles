@@ -135,7 +135,7 @@ endif
 
 "vim ui
 call s:set_colors("ColorColumn", s:fg, s:dim, "")
-call s:set_colors("Conceal", s:dim, s:none, "")
+call s:set_colors("Conceal", s:dimtwo, s:none, "")
 call s:set_colors("Cursor", s:dimtwo, s:none, "reverse")
 call s:set_colors("CursorLine", s:none, s:dim, "")
 call s:set_colors("Directory", s:dimgreen, s:none, "underline")

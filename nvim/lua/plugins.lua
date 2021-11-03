@@ -78,3 +78,6 @@ paq "dag/vim-fish"
 
 -- pest/peg
 paq "pest-parser/pest.vim"
+
+-- copilot
+-- paq "github/copilot.vim"
