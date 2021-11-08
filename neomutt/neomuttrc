@@ -17,6 +17,7 @@ bind index \Co sidebar-open
 
 
 macro index o "<shell-escape>mbsync -c $XDG_CONFIG_HOME/mbsync/mbsyncrc -a<enter>" "sync mail"
+macro index,pager A "<save-message>=Archive<enter>" "Archive Message"
 
 macro index 1 "<change-folder>personal<enter>"
 macro index 2 "<change-folder>school<enter>"
