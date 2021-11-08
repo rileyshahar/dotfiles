@@ -21,8 +21,10 @@ local on_attach = function(client, bufnr)
     lsp_map("gw", "vim.lsp.buf.workspace_symbol()") -- this doesn't work with telescope for some reason
 
     lsp_map("<leader>d", "vim.lsp.diagnostic.show_line_diagnostics()")
-    lsp_map("[d", "vim.lsp.diagnostic.goto_prev({ wrap = true })")
-    lsp_map("]d", "vim.lsp.diagnostic.goto_next({ wrap = true })")
+    lsp_map("[d", "vim.diagnostic.goto_prev({ wrap = true })")
+    lsp_map("]d", "vim.diagnostic.goto_next({ wrap = true })")
+    lsp_map("[e", "vim.diagnostic.goto_prev({ wrap = true, severity = vim.diagnostic.severity.ERROR })")
+    lsp_map("]e", "vim.diagnostic.goto_next({ wrap = true, severity = vim.diagnostic.severity.ERROR })")
     lsp_map("<leader>q", "vim.lsp.diagnostic.set_loclist()")
 
     lsp_map("g0", 'require("telescope.builtin").lsp_document_symbols()')
