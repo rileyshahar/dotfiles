@@ -69,9 +69,9 @@ paq "rust-lang/rust.vim"
 paq "cespare/vim-toml"
 
 -- markdown
--- paq "plasticboy/vim-markdown"
-paq "vim-pandoc/vim-pandoc"
-paq "vim-pandoc/vim-pandoc-syntax"
+--[[ paq "vim-pandoc/vim-pandoc"
+paq "vim-pandoc/vim-pandoc-syntax" ]]
+paq "plasticboy/vim-markdown"
 
 -- fish
 paq "dag/vim-fish"

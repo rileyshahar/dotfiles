@@ -158,7 +158,7 @@ call s:set_colors("PmenuSel", s:bg, s:blue, "") " todo
 call s:set_colors("PmenuSbar", s:fg, s:dim, "")
 call s:set_colors("PmenuThumb", s:fg, s:dimtwo, "")
 call s:set_colors("Question", s:yellow, s:bg, "")
-call s:set_colors("QuickFixLine", s:bg, s:blue, "") " todo
+call s:set_colors("QuickFixLine", s:fg, s:bg, "") " todo
 call s:set_colors("Search", s:bg, s:green, "") " todo
 call s:set_colors("SignColumn", s:dim, s:dim, "") " todo
 call s:set_colors("SpecialKey", s:dimtwo, s:bg, "")
