@@ -3,14 +3,22 @@
 .DS_Store
 
 
+### Perf
+perf.data
+perf.data.old
+flamegraph.svg
+
 ### Vim
 # Saved vim sessions
 Session.vim
 
 
 ### Python
+# Pycache
+__pycache__/
+
 # Python bytecode
-.pyc
+*.pyc
 
 # Mypy cache
 .mypy_cache
