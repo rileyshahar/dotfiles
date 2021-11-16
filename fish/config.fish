@@ -169,7 +169,6 @@ abbr -a e $EDITOR
 
 # python
 abbr -a p python
-abbr -a ps poetry shell
 abbr -a pr poetry run
 abbr -a p3 python3
 abbr -a pt poetry run python -m pytest
