@@ -73,6 +73,8 @@ notifications   = "dunst &"                                               -- sta
 pointerNav      = "keynav &"                                              -- move the points with the keyboard
 anacron         = "anacron -t $HOME/.config/anacron/anacrontab -S $HOME/.local/share/anacron"
 newsViewer      = "newsboat"                                              -- newsboat
+clipboard       = "rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
+clipboardD      = "greenclip daemon &"                                    -- greenclip
 
 -- workspace control
 -- using these instead of native behavior to allow more fine-grained control via the ewmh maange hook and the script
@@ -106,6 +108,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_space), spawn menu)                                            -- menu
     , ((modm, xK_n), namedScratchpadAction scratchpads "news")                   -- news viewer
     , ((modm .|. shiftMask, xK_space), spawn passwordCtrl)                      -- password menu
+    , ((modm, xK_c), spawn clipboard)                                           -- clipboard menu
     , ((modm .|. shiftMask, xK_c), spawn calc)                                  -- calc
 
     ---------------------
@@ -214,6 +217,7 @@ myStartupHook = do
     spawnOnce notifications
     spawnOnce pointerNav
     spawnOnce anacron
+    spawnOnce clipboardD
 
 
 ------------------------------------------------------------------------
