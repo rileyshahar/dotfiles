@@ -1,15 +1,15 @@
+import Data.Maybe
+import Data.Monoid
+import Graphics.X11.ExtraTypes.XF86
+import System.Exit
 import XMonad
 import XMonad.Actions.CopyWindow
 import XMonad.Config.Desktop
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
-import XMonad.Util.SpawnOnce
+-- import XMonad.Hooks.WindowSwallowing
 import XMonad.Util.NamedScratchpad
-import Graphics.X11.ExtraTypes.XF86
-import Data.Monoid
-import Data.Maybe
-import System.Exit
-
+import XMonad.Util.SpawnOnce
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
@@ -223,7 +223,15 @@ myStartupHook = do
 ------------------------------------------------------------------------
 -- Manage hook
 myManageHook = composeAll
-  [ className =? "polybar" --> doFloat ]
+  [ className =? "polybar" --> doFloat 
+  , manageHook desktopConfig
+  , namedScratchpadManageHook scratchpads
+  ]
+
+
+------------------------------------------------------------------------
+-- Event hook
+-- myHandleEventHook = swallowEventHook (className =? myTerminal) (return True)
 
 
 ------------------------------------------------------------------------
@@ -246,10 +254,9 @@ defaults = desktopConfig {
         -- hooks, layouts
         layoutHook          = myLayout,
         startupHook         = myStartupHook,
-        manageHook          = myManageHook
-                              <+> manageHook desktopConfig
-                              <+> namedScratchpadManageHook scratchpads,
+        manageHook          = myManageHook,
         logHook             = ewmhDesktopsLogHookCustom myWorkspaceFilter
+        -- handleEventHook     = myHandleEventHook
     }
 
 -- vim:expandtab:sw=6:ts=6
