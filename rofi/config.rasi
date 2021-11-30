@@ -56,7 +56,6 @@ configuration {
 /*	window-format: "{w}    {c}   {t}";*/
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
-        theme: "launcher";
 /*	color-normal: ;*/
 /*	color-urgent: ;*/
 /*	color-active: ;*/
@@ -74,7 +73,8 @@ configuration {
 /*	display-windowcd: ;*/
 /*	display-run: ;*/
 /*	display-ssh: ;*/
-/*	display-drun: ;*/
+	display-drun: "";
+	drun-display-format: "{name}";
 /*	display-combi: ;*/
 /*	display-keys: ;*/
 /*	display-file-browser: ;*/
@@ -151,6 +151,6 @@ configuration {
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
-
+@theme "launcher"
 
 /* vim:ft=css

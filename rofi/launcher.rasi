@@ -1,10 +1,5 @@
 /* based on the theme https://raw.githubusercontent.com/davatorium/rofi-themes/master/User%20Themes/material.rasi */
 
-configuration {
-	display-drun: "";
-	drun-display-format: "{name}";
-}
-
 @import "cac.rasi"
 
 * {
