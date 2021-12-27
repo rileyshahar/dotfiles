@@ -117,7 +117,8 @@ nvim_lsp.rust_analyzer.setup {
                 overrideCommand = {
                     "cargo",
                     "clippy",
-                    "--tests",
+                    "--all-targets",
+                    "--all-features",
                     "--message-format=json",
                     "--",
                     "-W",

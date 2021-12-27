@@ -175,7 +175,7 @@ abbr -a pt poetry run python -m pytest
 
 # cargo
 abbr -a c cargo
-abbr -a cc cargo clippy --tests -- -W clippy::nursery -W clippy::pedantic --verbose
+abbr -a cc cargo clippy --all-targets --all-features -- -W clippy::nursery -W clippy::pedantic --verbose
 abbr -a cdc cargo doc --no-deps --quiet
 abbr -a ct cargo test
 abbr -a cti cargo test -- --ignored
