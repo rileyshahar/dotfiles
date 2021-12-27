@@ -8,3 +8,4 @@ START_HOURS_RANGE=3-22
 
 # period        delay   job-id  command
 @daily          0       backup  $HOME/.config/tarsnap/tarsnap-backup.sh
+@daily          0       rustup  rustup update
