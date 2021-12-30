@@ -9,6 +9,7 @@ bluez
 bluez-utils
 bottom
 brightnessctl
+clang
 cronie
 devour
 discord
@@ -19,6 +20,7 @@ exa
 feh
 fish
 fzf
+gcc
 git
 git-delta
 github-cli
@@ -26,7 +28,6 @@ greenclip
 hyperfine
 isync
 jq
-just
 keynav
 kitty
 maim
@@ -51,6 +52,7 @@ pulseaudio-ctl
 python
 qutebrowser
 r
+r-readr
 redshift
 ripgrep
 rofi

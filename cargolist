@@ -1,0 +1,7 @@
+cargo-edit
+cargo-feature
+diesel_cli
+diesel_cli_ext
+flamegraph
+just
+trunk
