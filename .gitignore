@@ -1,4 +1,5 @@
 .DS_Store
+nvim/spell
 Brewfile.lock.json
 fish/completions
 fish/fish_variables
