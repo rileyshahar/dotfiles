@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 ## check EFI
 # ls /sys/firmware/efi/efivars
@@ -51,6 +51,8 @@
 #
 # echo "changing root"
 # arch-chroot /mnt
+
+set -euo pipefail
 
 echo "setting root password"
 passwd
@@ -110,22 +112,32 @@ cd ..
 rm -rf yay
 
 echo "downloading dotfiles"
-git clone --branch arch https://github.com/nihilistkitten/dotfiles > /dev/null
+git clone --recursive https://github.com/nihilistkitten/dotfiles > /dev/null
 
 echo "installing packages; this make take a while."
-# https://github.com/xmonad/xmonad/issues/71#issuecomment-330676459
-mkdir -p $HOME/.local/share/xmonad  # this is a trick to force xmonad to not use the base directory
+echo "installing aur packages"
 yay -S --noconfirm --needed - <$HOME/dotfiles/packages/paclist > /dev/null
-cat $HOME/dotfiles/packages/piplist | xargs pip install -U
-stack --resolver nightly install $(cat $HOME/dotfiles/packages/stacklist)
 
+echo "installing pip and pip packages"
+curl --proto '=https' --tlsv1.2 -sSf https://bootstrap.pypa.io/get-pip.py | python
+pip install $(cat $HOME/dotfiles/packages/piplist) -U > /dev/null
+
+echo "installing rustup, rust, and cargo packages"
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y --quiet > /dev/null
+cargo install $(cat $HOME/dotfiles/packages/piplist) > /dev/null
 
 echo "installing betterdiscord"
 betterdiscordctl install
 
+echo "installing xmonad"
+cd "$HOME"/dotfiles/xmonad
+stack install
+cd ~
+
 echo "symlinking configs"
 DOTFILES_DIR="$HOME/dotfiles"
 CONFIG_HOME="$HOME/.config"
+
 mkdir $CONFIG_HOME
 mkdir $CONFIG_HOME/nvim
 ln -sv "$DOTFILES_DIR/git" "$CONFIG_HOME" > /dev/null
