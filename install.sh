@@ -115,7 +115,10 @@ git clone --branch arch https://github.com/nihilistkitten/dotfiles > /dev/null
 echo "installing packages; this make take a while."
 # https://github.com/xmonad/xmonad/issues/71#issuecomment-330676459
 mkdir -p $HOME/.local/share/xmonad  # this is a trick to force xmonad to not use the base directory
-yay -S --noconfirm --needed - <$HOME/dotfiles/paclist > /dev/null
+yay -S --noconfirm --needed - <$HOME/dotfiles/packages/paclist > /dev/null
+cat $HOME/dotfiles/packages/piplist | xargs pip install -U
+stack --resolver nightly install $(cat $HOME/dotfiles/packages/stacklist)
+
 
 echo "installing betterdiscord"
 betterdiscordctl install

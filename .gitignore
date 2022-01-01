@@ -7,8 +7,8 @@ fish/functions
 base16/
 conf.d
 Session.vim
-xmonad/xmonad.hi
-xmonad/xmonad.o
+xmonad/.stack-work
+xmonad/stack.yaml.lock
 qutebrowser/autoconfig.yml
 qutebrowser/qsettings/QtProject.conf
 qutebrowser/bookmarks/urls

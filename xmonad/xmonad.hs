@@ -10,6 +10,7 @@ import XMonad.Hooks.ManageDocks
 -- import XMonad.Hooks.WindowSwallowing
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.SpawnOnce
+import XMonad.Util.WorkspaceCompare
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
@@ -42,7 +43,6 @@ myBorderWidth        = 0
 myNormalBorderColor  = dim_white
 myFocusedBorderColor = dim_magenta
 
-
 ------------------------------------------------------------------------
 -- Workspaces
 myExtraWSs   = []
@@ -50,7 +50,7 @@ myWorkspaces = map show [1..9] ++ myExtraWSs
 
 -- remove workspaces from myExtraWSs
 -- filterOutExtraWorkspaces = filter (\(W.Workspace tag _ _) -> not (tag `elem` myExtraWSs))
-myWorkspaceFilter = namedScratchpadFilterOutWorkspace
+myWorkspaceFilter = filterOutWs [scratchpadWorkspaceTag]
 
 
 ------------------------------------------------------------------------
@@ -237,7 +237,7 @@ myManageHook = composeAll
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
-main = xmonad $ docks $ ewmh defaults
+main = xmonad $ docks $ addEwmhWorkspaceSort (pure myWorkspaceFilter) . ewmh $ defaults
 
 defaults = desktopConfig {
         -- simple stuff
@@ -254,8 +254,7 @@ defaults = desktopConfig {
         -- hooks, layouts
         layoutHook          = myLayout,
         startupHook         = myStartupHook,
-        manageHook          = myManageHook,
-        logHook             = ewmhDesktopsLogHookCustom myWorkspaceFilter
+        manageHook          = myManageHook
         -- handleEventHook     = myHandleEventHook
     }
 

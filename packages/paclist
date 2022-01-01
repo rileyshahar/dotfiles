@@ -1,3 +1,4 @@
+stack
 ack
 acpi
 autorandr
@@ -49,7 +50,7 @@ polybar
 procs
 pulseaudio
 pulseaudio-ctl
-python
+python-pip
 qutebrowser
 r
 r-readr
