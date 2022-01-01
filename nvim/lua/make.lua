@@ -1,16 +1,16 @@
 -- modified from
 -- https://phelipetls.github.io/posts/async-make-in-nvim-with-lua/
-function make()
+function async_run(opt)
     local lines = {""}
     local winnr = vim.fn.win_getid()
     local bufnr = vim.api.nvim_win_get_buf(winnr)
 
-    local makeprg = vim.api.nvim_buf_get_option(bufnr, "makeprg")
-    if not makeprg then
+    local prg = vim.api.nvim_buf_get_option(bufnr, opt)
+    if not prg then
         return
     end
 
-    local cmd = vim.fn.expandcmd(makeprg)
+    local cmd = vim.fn.expandcmd(prg)
 
     local function on_write(_, data, _)
         if data then
@@ -40,4 +40,4 @@ end
 
 vim.bo.makeprg = "make"
 
-map_lua("<leader>m", "make()")
+map_lua("<leader>m", "async_run('makeprg')")

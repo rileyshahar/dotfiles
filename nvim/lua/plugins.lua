@@ -79,6 +79,9 @@ require "packer".startup(
 
         -- pest/peg
         use "pest-parser/pest.vim"
+
+        -- just
+        use "NoahTheDuke/vim-just"
     end
 )
 
