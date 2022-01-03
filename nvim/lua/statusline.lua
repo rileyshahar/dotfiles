@@ -97,14 +97,14 @@ end
 local function get_lsp_diagnostics(bufnr)
     local result = {}
     local levels = {
-        errors = "Error",
-        warnings = "Warning",
-        info = "Information",
-        hints = "Hint"
+        errors = vim.diagnostic.severity.ERROR,
+        warnings = vim.diagnostic.severity.WARN,
+        info = vim.diagnostic.severity.INFO,
+        hints = vim.diagnostic.severity.HINT
     }
 
     for k, level in pairs(levels) do
-        result[k] = vim.lsp.diagnostic.get_count(bufnr, level)
+        result[k] = #vim.diagnostic.get(bufnr, {severity = level})
     end
 
     return result
@@ -120,7 +120,6 @@ local function treesitter()
     return sl:match("(.*)%(")
     -- return sl:sub(1, sl:match("%("))
 end ]]
-
 function status_line()
     local diagnostics = get_lsp_diagnostics()
     local mode = fn.mode()
