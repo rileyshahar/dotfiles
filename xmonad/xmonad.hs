@@ -94,7 +94,7 @@ scratchpads = [
 
 ------------------------------------------------------------------------
 -- Key bindings
-myModMask       = mod4Mask -- super key; mod1Mask for option
+myModMask       = mod1Mask -- super key; mod1Mask for option
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
