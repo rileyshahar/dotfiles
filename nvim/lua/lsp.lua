@@ -148,7 +148,6 @@ nvim_lsp.efm.setup {
         "html",
         "scss",
         "css",
-        "markdown",
         "python"
     },
     init_options = {documentFormatting = true},
@@ -164,7 +163,6 @@ nvim_lsp.efm.setup {
             html = {prettier},
             scss = {prettier},
             css = {prettier},
-            markdown = {prettier},
             python = {black}
         }
     }
