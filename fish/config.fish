@@ -203,6 +203,7 @@ abbr -a o open
 abbr -a h fancy-help
 abbr -a m make
 abbr -a j just
+abbr -a t task
 
 # kittens :)
 if type -q kitty and test $TERM = "xterm-kitty"

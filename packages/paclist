@@ -1,4 +1,3 @@
-stack
 ack
 acpi
 autorandr
@@ -63,8 +62,10 @@ sd
 shellcheck
 slack-desktop
 spotify
+stack
 steam
 sudo
+task
 telegram-desktop
 tldr
 tmux
