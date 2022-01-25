@@ -1,0 +1,6 @@
+# template: letter
+# note that structured variables may be specified:
+metadata:
+  author:
+    - Riley Shahar
+  geometry: margin=1in

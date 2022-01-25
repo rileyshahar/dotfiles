@@ -137,9 +137,11 @@ cd ~
 echo "symlinking configs"
 DOTFILES_DIR="$HOME/dotfiles"
 CONFIG_HOME="$HOME/.config"
+DATA_HOME="$HOME/.local/share"
 
 mkdir $CONFIG_HOME
 mkdir $CONFIG_HOME/nvim
+ln -sv "$DOTFILES_DIR/pandoc" "$DATA_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/git" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/fish" "$CONFIG_HOME" > /dev/null
 ln -sv "$DOTFILES_DIR/xmonad" "$CONFIG_HOME" > /dev/null
