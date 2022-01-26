@@ -34,3 +34,6 @@ include dark-16.theme
 #include solarized-light-256.theme
 #include no-color.theme
 
+news.version=2.6.0
+context.reuna.read=proj:reuna
+context.reuna.write=proj:reuna +dnd
