@@ -67,11 +67,13 @@ steam
 sudo
 task
 telegram-desktop
+texlab
 tldr
 tmux
 ttf-lato
 unzip
 vimv
+vscode-langservers-extracted
 xmonad
 xmonad-contrib
 xorg

@@ -106,8 +106,23 @@ nvim_lsp.pylsp.setup {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-require "lspconfig".html.setup {
+nvim_lsp.html.setup {
     capabilities = capabilities
+}
+
+nvim_lsp.jsonls.setup {
+    capabilities = capabilities,
+    settings = {
+        json = {
+            schemas = {
+                {
+                    description = "5e Homebrew",
+                    fileMatch = {"*.homebrew.json"},
+                    url = "https://raw.githubusercontent.com/TheGiddyLimit/homebrew/master/_schema-fast/homebrew.json"
+                }
+            }
+        }
+    }
 }
 
 nvim_lsp.rust_analyzer.setup {
@@ -144,7 +159,6 @@ nvim_lsp.efm.setup {
         "fish",
         "lua",
         "yaml",
-        "json",
         "html",
         "scss",
         "css",
@@ -159,7 +173,6 @@ nvim_lsp.efm.setup {
             fish = {shellcheck},
             lua = {luafmt},
             yaml = {prettier},
-            json = {prettier},
             html = {prettier},
             scss = {prettier},
             css = {prettier},
