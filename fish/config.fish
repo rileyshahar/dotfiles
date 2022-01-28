@@ -196,6 +196,11 @@ abbr -a gll git log --stat-count=30
 abbr -a gu git_untracked
 abbr -a gd upto_git
 
+# taskwarrior
+abbr -a t task
+abbr -a to taskopen -c $XDG_CONFIG_HOME/task/taskopenrc
+abbr -a taskopen taskopen -c $XDG_CONFIG_HOME/task/taskopenrc
+
 # misc
 abbr -a mc mkdir-cd
 abbr -a mld move-last-download
@@ -203,7 +208,6 @@ abbr -a o open
 abbr -a h fancy-help
 abbr -a m make
 abbr -a j just
-abbr -a t task
 
 # kittens :)
 if type -q kitty and test $TERM = "xterm-kitty"
