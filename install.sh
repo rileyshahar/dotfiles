@@ -104,19 +104,19 @@ cd
 echo "installing packages: git, base-devel"
 sudo pacman -S git base-devel --noconfirm --needed > /dev/null
 
-echo "installing yay"
-git clone https://aur.archlinux.org/yay.git > /dev/null
-cd yay
+echo "installing paru"
+git clone https://aur.archlinux.org/paru.git > /dev/null
+cd paru
 makepkg -si --noconfirm --needed > /dev/null
 cd ..
-rm -rf yay
+rm -rf paru
 
 echo "downloading dotfiles"
 git clone --recursive https://github.com/nihilistkitten/dotfiles > /dev/null
 
 echo "installing packages; this make take a while."
 echo "installing aur packages"
-yay -S --noconfirm --needed - <$HOME/dotfiles/packages/paclist > /dev/null
+paru -S --noconfirm --needed - <$HOME/dotfiles/packages/paclist > /dev/null
 
 echo "installing pip and pip packages"
 curl --proto '=https' --tlsv1.2 -sSf https://bootstrap.pypa.io/get-pip.py | python

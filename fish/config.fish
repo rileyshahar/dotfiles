@@ -168,6 +168,8 @@ abbr -a o open
 abbr -a h fancy-help
 abbr -a m make
 abbr -a j just
+abbr -a i paru  # install
+abbr -a yay echo "type `i`"  # for muscle memory
 
 # kittens :)
 if type -q kitty and test $TERM = "xterm-kitty"
