@@ -244,7 +244,7 @@ c.colors.prompts.border = "1px solid " + cac["background"]
 
 # Foreground color for prompts.
 ## Type: QssColor
-c.colors.prompts.fg = cac["dim_white"]
+c.colors.prompts.fg = cac["foreground"]
 
 # Background color for the selected item in filename prompts.
 ## Type: QssColor
@@ -272,7 +272,7 @@ c.colors.statusbar.command.bg = cac["bright_black"]
 
 # Foreground color of the statusbar in command mode.
 ## Type: QssColor
-c.colors.statusbar.command.fg = cac["dim_white"]
+c.colors.statusbar.command.fg = cac["foreground"]
 
 # Background color of the statusbar in private browsing + command mode.
 ## Type: QssColor
