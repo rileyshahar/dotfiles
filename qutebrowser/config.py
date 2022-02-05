@@ -80,7 +80,7 @@ cac = {
     "dim_blue": "#7aa2f7",
     "dim_magenta": "#ad8ee6",
     "dim_cyan": "#56bdb8",
-    "dim_white": "#abb2bf",
+    "dim_white": "#545a75",
     "bright_black": "#24283b",
     "bright_red": "#f7768e",
     "bright_green": "#9ece6a",
@@ -88,7 +88,7 @@ cac = {
     "bright_blue": "#61afef",
     "bright_magenta": "#f6bdff",
     "bright_cyan": "#50c3bd",
-    "bright_white": "#ffffff",
+    "bright_white": "#a9b1d6",
     # __cac:end
 }
 

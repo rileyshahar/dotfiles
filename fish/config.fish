@@ -39,6 +39,8 @@ set -x STACK_ROOT "$XDG_DATA_HOME/stack"
 set pure_color_git_branch brgreen
 set pure_color_git_stash brgreen
 set pure_color_git_dirty brgreen
+set pure_color_mute white
+set pure_color_hostname cyan
 
 set fish_color_normal normal
 set fish_color_command magenta
@@ -55,7 +57,7 @@ set fish_color_history_current normal
 set fish_color_operator cyan  # todo
 set fish_color_escape bryellow  # tod
 set fish_color_valid_path --underline
-set fish_color_autosuggestion brblack
+set fish_color_autosuggestion white
 set fish_color_cancel -r
 
 # configure path

@@ -9,7 +9,7 @@
 	dimblue: #7aa2f7;
 	dimmagenta: #ad8ee6;
 	dimcyan: #56bdb8;
-	dimwhite: #abb2bf;
+	dimwhite: #545a75;
 	brightblack: #24283b;
 	brightred: #f7768e;
 	brightgreen: #9ece6a;
@@ -17,7 +17,7 @@
 	brightblue: #61afef;
 	brightmagenta: #f6bdff;
 	brightcyan: #50c3bd;
-	brightwhite: #ffffff;
+	brightwhite: #a9b1d6;
         /* __cac:end */
 }
 
