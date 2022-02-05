@@ -3,7 +3,8 @@ nvim/spell
 Brewfile.lock.json
 fish/completions
 fish/fish_variables
-fish/functions
+fish/functions/_*
+fish/functions/fish*
 base16/
 conf.d
 Session.vim

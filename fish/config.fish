@@ -67,48 +67,6 @@ for path in $paths_to_add
     contains $path $fish_user_paths; or set -Ua fish_user_paths $path
 end
 
-
-### FUNCTIONS
-## Utility functions
-function upto_git -d "Move up the directory tree to find a git repo"
-    # from https://github.com/jonhoo/configs/blob/master/shell/.config/fish/config.fish
-    while test $PWD != /
-        if test -d .git
-            break
-        end
-        cd ..
-    end
-end
-
-function git_untracked -d "Get git untracked files"
-    git ls-files --other --exclude-standard
-end
-
-function git_short_log -d "Get a short-form git log"
-    # from https://github.com/jan-warchol/sensible-dotfiles/blob/master/.gitconfig
-    git log --color=always --decorate --graph --date=relative \
-	--format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(dim)- %an, %ad%C(reset)'
-end
-
-function mkdir-cd -d "Get git untracked files"
-    mkdir $argv && cd $argv
-end
-
-function move-last-download -d "Moves up the directory tree to find a git repo"
-    mv ~/downloads/(ls -t -A ~/downloads/ | head -1) .
-end
-
-function fancy-help -d "Wrapper for help utilities"
-    tldr $argv
-    or man $argv
-end
-
-function system-notification -a body title subtitle -d "Send a system notification"
-    set -q subtitle[0]; or set subtitle ""
-    send-notification.js $body $title $subtitle
-end
-
-
 # make !! and !$ work
 function bind_bang
     switch (commandline -t)[-1]
@@ -130,14 +88,12 @@ function bind_dollar
     end
 end
 
-
-# Event Hooks
-# function fish_right_prompt -d "print the time"
-#     if test (stty size | cut -d" " -f2) -gt 60
-#         set_color bryellow
-#         date '+%H:%M:%S'
-#     end
-# end
+function fish_right_prompt -d "print the time"
+    if test (stty size | cut -d" " -f2) -gt 60
+        set_color bryellow
+        date '+%H:%M:%S'
+    end
+end
 
 function _handle_cmd_completion_in_inactive_window --on-event fish_postexec -a last_command -d "send a system notification when a command terminates"
 
@@ -193,9 +149,10 @@ abbr -a gp git push
 abbr -a gpp git push --force-with-lease # "push please"
 abbr -a gpl git pull --ff-only # don't pull if conflict
 abbr -a gpf git fetch\; and git reset --hard origin/\(git branch --show-current\) # "pull --force"
-abbr -a gls git_short_log
-abbr -a gll git log --stat-count=30
-abbr -a gu git_untracked
+abbr -a gll git log --stat-count=30  # git log long
+abbr -a gls git log --color=always --decorate --graph --date=relative \
+	--format=tformat:'\'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(dim)- %an, %ad%C(reset)\''  # git log short (https://github.com/jan-warchol/sensible-dotfiles/blob/master/.gitconfig)
+abbr -a gu git ls-files --other --exclude-standard # "git untracked"
 abbr -a gd upto_git
 
 # taskwarrior
@@ -205,7 +162,7 @@ abbr -a taskopen taskopen -c $XDG_CONFIG_HOME/task/taskopenrc
 
 # misc
 abbr -a mc mkdir-cd
-abbr -a mld move-last-download
+abbr -a mld mv "~/downloads/(ls -t -A ~/downloads/ | head -1)" .  # move last download
 abbr -a o open
 abbr -a h fancy-help
 abbr -a m make
