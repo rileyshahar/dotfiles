@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/home/riley/.local/share/nvim/site/pack/packer/start/buftabline.nvim",
     url = "https://github.com/jose-elias-alvarez/buftabline.nvim"
   },
+  ["copilot.vim"] = {
+    loaded = true,
+    path = "/home/riley/.local/share/nvim/site/pack/packer/start/copilot.vim",
+    url = "https://github.com/github/copilot.vim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/riley/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -183,6 +188,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/riley/.local/share/nvim/site/pack/packer/start/vim-highlightedyank",
     url = "https://github.com/machakann/vim-highlightedyank"
+  },
+  ["vim-just"] = {
+    loaded = true,
+    path = "/home/riley/.local/share/nvim/site/pack/packer/start/vim-just",
+    url = "https://github.com/NoahTheDuke/vim-just"
   },
   ["vim-kitty-navigator"] = {
     loaded = true,
