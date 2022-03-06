@@ -30,6 +30,7 @@ isync
 jq
 keynav
 kitty
+luacheck
 maim
 mpv
 mpv-mpris
@@ -46,6 +47,7 @@ pandoc-include-code
 picom
 playerctl
 polybar
+prettier
 procs
 pulseaudio
 pulseaudio-ctl
@@ -60,10 +62,12 @@ rofi-calc
 rofi-dmenu
 sd
 shellcheck
+shellharden
 slack-desktop
 spotify
 stack
 steam
+stylua
 sudo
 task
 taskopen
@@ -75,6 +79,7 @@ ttf-lato
 unzip
 vimv
 vscode-langservers-extracted
+write-good
 xmonad
 xmonad-contrib
 xorg

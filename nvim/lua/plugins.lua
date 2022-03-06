@@ -36,6 +36,7 @@ require "packer".startup(
         use "neovim/nvim-lspconfig"
         use "nvim-lua/lsp_extensions.nvim"
         use "ray-x/lsp_signature.nvim"
+        use "jose-elias-alvarez/null-ls.nvim"
 
         -- appearance
         use "ghifarit53/tokyonight-vim"
@@ -48,6 +49,7 @@ require "packer".startup(
                 cmd "TSUpdate"
             end
         }
+	use "lewis6991/spellsitter.nvim" -- spell check treesitter comments
 
         -- git
         use "lewis6991/gitsigns.nvim"

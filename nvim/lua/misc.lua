@@ -25,6 +25,7 @@ vim.wo.signcolumn = "yes" -- always show the signcolumn
 -- spacing
 vim.bo.expandtab = true -- turn tabs into spaces
 vim.bo.shiftwidth = 2 -- 2 length spaces by default
+vim.bo.tabstop = 2 -- make tabs appear as 2 spaces
 
 -- search
 vim.o.incsearch = true -- search while typing
@@ -45,4 +46,4 @@ map("<leader>g", "<cmd>Goyo<cr>")
 vim.o.mouse = "a"
 
 -- undo
-cmd "set undofile" -- persistent undo
+cmd("set undofile") -- persistent undo
