@@ -1,3 +1,3 @@
--- todo: keybinds
+-- TODO: keybinds
 
 require("gitsigns").setup()
