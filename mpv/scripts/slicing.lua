@@ -67,6 +67,8 @@ function get_csp()
         return "bt709"
     elseif csp == "smpte-240m" then
         return "smpte240m"
+    elseif csp == "rgb" then
+        return csp
     else
         local err = "Unknown colorspace: " .. csp
         osd(err)
