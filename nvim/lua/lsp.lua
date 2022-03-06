@@ -1,5 +1,4 @@
 require("fidget").setup({})
-
 local nvim_lsp = require("lspconfig")
 
 -- modified from https://github.com/neovim/nvim-rspconfig
@@ -31,10 +30,11 @@ local on_attach = function(client, bufnr)
 
 	lsp_map("g0", 'require("telescope.builtin").lsp_document_symbols()')
 	lsp_map("gr", 'require("telescope.builtin").lsp_references()')
+	lsp_map("<leader>t", 'require("telescope.builtin").diagnostics()')
 
 	-- rust-anayzer
 	-- todo: make this only a thing for rust
-	lsp_map("<leader>t", 'require("lsp_extensions").inlay_hints()')
+	lsp_map("<localleader>t", 'require("lsp_extensions").inlay_hints()')
 
 	-- rename if we have the capability
 	-- todo: make sure this is the right name
@@ -50,6 +50,10 @@ local on_attach = function(client, bufnr)
 		vim.cmd([[augroup END]])
 	end
 end
+
+nvim_lsp.util.default_config = vim.tbl_extend("force", nvim_lsp.util.default_config, {
+	on_attach = on_attach,
+})
 
 vim.diagnostic.config({
 	virtual_text = false,
@@ -141,6 +145,7 @@ local sources = {
 	null_ls.builtins.formatting.stylua,
 	null_ls.builtins.formatting.fish_indent,
 	null_ls.builtins.formatting.shellharden,
+	null_ls.builtins.diagnostics.checkmake, -- TODO: do we like this
 	null_ls.builtins.diagnostics.luacheck,
 	null_ls.builtins.diagnostics.write_good,
 	-- null_ls.builtins.code_actions.gitsigns,

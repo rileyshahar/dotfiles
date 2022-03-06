@@ -1,5 +1,6 @@
--- setup paq
+-- setup packer
 -- cmd "packadd packer.nvim" -- Load package
+-- TODO: run simple setup commands from here
 require("packer").startup(function()
 	use("wbthomason/packer.nvim")
 
@@ -36,7 +37,7 @@ require("packer").startup(function()
 	use("nvim-lua/lsp_extensions.nvim") -- inlay hints
 	use("ray-x/lsp_signature.nvim") -- signature while typing
 	use("jose-elias-alvarez/null-ls.nvim")
-	use("j-hui/fidget.nvim")
+	use("j-hui/fidget.nvim") -- lsp status indicator
 
 	-- appearance
 	use("ghifarit53/tokyonight-vim")
