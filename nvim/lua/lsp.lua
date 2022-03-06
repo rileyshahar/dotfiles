@@ -1,3 +1,5 @@
+require("fidget").setup({})
+
 local nvim_lsp = require("lspconfig")
 
 -- modified from https://github.com/neovim/nvim-rspconfig

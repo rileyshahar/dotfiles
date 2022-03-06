@@ -1,93 +1,92 @@
 -- setup paq
 -- cmd "packadd packer.nvim" -- Load package
-require "packer".startup(
-    function()
-        use "wbthomason/packer.nvim"
+require("packer").startup(function()
+	use("wbthomason/packer.nvim")
 
-        -- prereqs
-        use "nvim-lua/popup.nvim"
-        use "nvim-lua/plenary.nvim"
+	-- prereqs
+	use("nvim-lua/popup.nvim")
+	use("nvim-lua/plenary.nvim")
 
-        -- misc
-        use "b3nj5m1n/kommentary" -- comment plugin
-        use "knubie/vim-kitty-navigator" -- tmux split navigation
-        use "tpope/vim-repeat" -- repeat plugin commands
-        use "jiangmiao/auto-pairs" -- autoclose brackets
-        use "tpope/vim-surround" -- quote manipulation
-        use "tommcdo/vim-exchange" -- exchange text objects
-        use "simnalamburt/vim-mundo" -- undo tree viewer
-        use "machakann/vim-highlightedyank" -- highlight yanked text
-        use "christoomey/vim-sort-motion" -- sort easily
+	-- misc
+	use("b3nj5m1n/kommentary") -- comment plugin
+	use("knubie/vim-kitty-navigator") -- tmux split navigation
+	use("tpope/vim-repeat") -- repeat plugin commands
+	use("jiangmiao/auto-pairs") -- autoclose brackets
+	use("tpope/vim-surround") -- quote manipulation
+	use("tommcdo/vim-exchange") -- exchange text objects
+	use("simnalamburt/vim-mundo") -- undo tree viewer
+	use("machakann/vim-highlightedyank") -- highlight yanked text
+	use("christoomey/vim-sort-motion") -- sort easily
 
-        -- writing
-        use "junegunn/goyo.vim" -- distraction-free writing
+	-- writing
+	use("junegunn/goyo.vim") -- distraction-free writing
 
-        -- completion
-        use "hrsh7th/nvim-compe"
+	-- completion
+	use("hrsh7th/nvim-compe")
 
-        -- buffers
-        use "jose-elias-alvarez/buftabline.nvim"
+	-- buffers
+	use("jose-elias-alvarez/buftabline.nvim")
 
-        -- snippets
-        use "hrsh7th/vim-vsnip"
-        use "rafamadriz/friendly-snippets"
+	-- snippets
+	use("hrsh7th/vim-vsnip")
+	use("rafamadriz/friendly-snippets")
 
-        -- lsp
-        use "neovim/nvim-lspconfig"
-        use "nvim-lua/lsp_extensions.nvim"
-        use "ray-x/lsp_signature.nvim"
-        use "jose-elias-alvarez/null-ls.nvim"
+	-- lsp
+	use("neovim/nvim-lspconfig")
+	use("nvim-lua/lsp_extensions.nvim") -- inlay hints
+	use("ray-x/lsp_signature.nvim") -- signature while typing
+	use("jose-elias-alvarez/null-ls.nvim")
+	use("j-hui/fidget.nvim")
 
-        -- appearance
-        use "ghifarit53/tokyonight-vim"
-        use "ap/vim-css-color"
+	-- appearance
+	use("ghifarit53/tokyonight-vim")
+	use("ap/vim-css-color")
 
-        -- treesitter
-        use {
-            "nvim-treesitter/nvim-treesitter",
-            run = function()
-                cmd "TSUpdate"
-            end
-        }
-	use "lewis6991/spellsitter.nvim" -- spell check treesitter comments
+	-- treesitter
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = function()
+			cmd("TSUpdate")
+		end,
+	})
+	use("lewis6991/spellsitter.nvim") -- spell check treesitter comments
 
-        -- git
-        use "lewis6991/gitsigns.nvim"
+	-- git
+	use("lewis6991/gitsigns.nvim")
 
-        -- telescope
-        use "nvim-telescope/telescope.nvim"
+	-- telescope
+	use("nvim-telescope/telescope.nvim")
 
-        -- tex
-        use "lervag/vimtex"
+	-- tex
+	use("lervag/vimtex")
 
-        -- python
-        use {"heavenshell/vim-pydocstring", run = "make install"}
+	-- python
+	use({ "heavenshell/vim-pydocstring", run = "make install" })
 
-        -- rust
-        use "mhinz/vim-crates"
-        use "mattn/webapi-vim" -- dependency
-        use "rust-lang/rust.vim"
+	-- rust
+	use("mhinz/vim-crates")
+	use("mattn/webapi-vim") -- dependency
+	use("rust-lang/rust.vim")
 
-        -- toml
-        use "cespare/vim-toml"
+	-- toml
+	use("cespare/vim-toml")
 
-        -- markdown
-        --[[ use "vim-pandoc/vim-pandoc"
+	-- markdown
+	--[[ use "vim-pandoc/vim-pandoc"
         use "vim-pandoc/vim-pandoc-syntax" ]]
-        use "plasticboy/vim-markdown"
+	use("plasticboy/vim-markdown")
 
-        -- fish
-        use "dag/vim-fish"
+	-- fish
+	use("dag/vim-fish")
 
-        -- pest/peg
-        use "pest-parser/pest.vim"
+	-- pest/peg
+	use("pest-parser/pest.vim")
 
-        -- just
-        use "NoahTheDuke/vim-just"
+	-- just
+	use("NoahTheDuke/vim-just")
 
-        -- copilot
-        use "github/copilot.vim"
-    end
-)
+	-- copilot
+	use("github/copilot.vim")
+end)
 
 -- copilot

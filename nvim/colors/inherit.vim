@@ -151,7 +151,7 @@ call s:set_colors("CursorLineNr", s:fg, s:dimgrey, "")
 call s:set_colors("MatchParen", s:fg, s:dimblue, "") " todo
 call s:set_colors("ModeMsg", s:fg, s:bg, "bold")
 call s:set_colors("MoreMsg", s:blue, s:bg, "bold")
-call s:set_colors("NonText", s:dimgrey, s:none, "")
+call s:set_colors("NonText", s:grey, s:none, "")
 call s:set_colors("Normal", s:fg, s:bg, "")
 call s:set_colors("Pmenu", s:fg, s:dimgrey, "")
 call s:set_colors("PmenuSel", s:bg, s:blue, "") " todo
