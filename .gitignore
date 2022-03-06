@@ -1,5 +1,6 @@
 .DS_Store
 nvim/spell
+nvim/plugin/packer_compiled.lua
 Brewfile.lock.json
 fish/completions
 fish/fish_variables
