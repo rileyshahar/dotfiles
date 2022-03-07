@@ -6,6 +6,7 @@ fish/completions
 fish/fish_variables
 fish/functions/_*
 fish/functions/fish*
+!fish/functions/fish_title.fish
 base16/
 conf.d
 Session.vim
