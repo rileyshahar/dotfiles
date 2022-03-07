@@ -24,8 +24,8 @@ vim.wo.signcolumn = "yes" -- always show the signcolumn
 
 -- spacing
 vim.bo.expandtab = true -- turn tabs into spaces
-vim.bo.shiftwidth = 2 -- 2 length spaces by default
-vim.bo.tabstop = 2 -- make tabs appear as 2 spaces
+vim.o.shiftwidth = 2 -- 2 length spaces by default
+vim.o.tabstop = 2 -- make tabs appear as 2 spaces
 
 -- search
 vim.o.incsearch = true -- search while typing
@@ -47,3 +47,7 @@ vim.o.mouse = "a"
 
 -- undo
 cmd("set undofile") -- persistent undo
+
+-- copilot
+cmd([[ imap <silent><script><expr> <c-a> copilot#Accept("<c-a>") ]])
+vim.g.copilot_no_tab_map = true

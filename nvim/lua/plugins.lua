@@ -23,19 +23,26 @@ require("packer").startup(function()
 	use("junegunn/goyo.vim") -- distraction-free writing
 
 	-- completion
-	use("hrsh7th/nvim-compe")
+	use({
+		"hrsh7th/nvim-cmp",
+		requires = {
+			{ "hrsh7th/cmp-vsnip", requires = { "hrsh7th/vim-vsnip", "rafamadriz/friendly-snippets" } },
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-cmdline",
+			"petertriho/cmp-git",
+			"f3fora/cmp-spell",
+			"ray-x/cmp-treesitter",
+		},
+	})
 
 	-- buffers
 	use("jose-elias-alvarez/buftabline.nvim")
 
-	-- snippets
-	use("hrsh7th/vim-vsnip")
-	use("rafamadriz/friendly-snippets")
-
 	-- lsp
 	use("neovim/nvim-lspconfig")
 	use("nvim-lua/lsp_extensions.nvim") -- inlay hints
-	use("ray-x/lsp_signature.nvim") -- signature while typing
+	use("ray-x/lsp_signature.nvim") -- signature while typing TODO: remove border around floating window
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("j-hui/fidget.nvim") -- lsp status indicator
 
