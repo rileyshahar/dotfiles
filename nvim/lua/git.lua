@@ -1,5 +1,3 @@
--- TODO: keybinds
-
 require("gitsigns").setup({
 	preview_config = {
 		-- Options passed to nvim_open_win
