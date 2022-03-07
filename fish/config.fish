@@ -218,7 +218,7 @@ abbr -a btm $top_function
 ### KEYBINDINGS
 fish_vi_key_bindings
 bind -M insert -m default jk backward-char force-repaint
-bind -M insert \cf forward-char # this doesn't work by default for some reason
+bind insert \ca forward-char # this doesn't work by default for some reason
 bind -M insert \cs history-token-search-backward
 bind -M insert \cd history-token-search-forward
 bind -M insert \cp up-or-search
