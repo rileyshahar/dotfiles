@@ -44,10 +44,13 @@ local on_attach = function(client, bufnr)
 
 	-- bind formatting if we have the capability
 	if client.resolved_capabilities.document_formatting then
-		vim.cmd([[augroup Format]])
-		vim.cmd([[autocmd! * <buffer>]])
-		vim.cmd([[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]])
-		vim.cmd([[augroup END]])
+		vim.api.nvim_create_augroup("Format", { clear = true })
+		vim.api.nvim_create_autocmd("BufWritePost", {
+			group = "Format",
+			callback = function()
+				vim.lsp.buf.formatting()
+			end,
+		})
 	end
 end
 
