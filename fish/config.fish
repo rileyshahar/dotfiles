@@ -216,16 +216,12 @@ abbr -a btm $top_function
 
 
 ### KEYBINDINGS
-fish_vi_key_bindings
-bind -M insert -m default jk backward-char force-repaint
-bind insert \ca forward-char # this doesn't work by default for some reason
-bind -M insert \cs history-token-search-backward
-bind -M insert \cd history-token-search-forward
-bind -M insert \cp up-or-search
-bind -M insert \cn down-or-search
-bind -M insert \t complete
-bind -M insert ! bind_bang
-bind -M insert '$' bind_dollar
+bind \ca forward-char # this doesn't work by default for some reason
+bind \cs history-token-search-backward
+bind \cd history-token-search-forward
+bind \t complete
+bind ! bind_bang
+bind '$' bind_dollar
 
 ### Start x
 if status is-login
