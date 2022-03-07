@@ -1,7 +1,7 @@
 ### ENVIRONMENT VARIABLES
 set -x VISUAL nvim
 set -x EDITOR "$VISUAL"
-set -x BROWSER "qutebrowser"
+set -x BROWSER qutebrowser
 set -x LANG "en_US.UTF-8"
 set -x MANPAGER "nvim +Man!"
 
@@ -51,11 +51,11 @@ set fish_color_error red
 set fish_color_param blue
 set fish_color_comment brblack
 set fish_color_match normal
-set fish_color_selection --background=brblack  # todo
+set fish_color_selection --background=brblack # todo
 set fish_color_search_match normal
 set fish_color_history_current normal
-set fish_color_operator cyan  # todo
-set fish_color_escape bryellow  # tod
+set fish_color_operator cyan # todo
+set fish_color_escape bryellow # tod
 set fish_color_valid_path --underline
 set fish_color_autosuggestion white
 set fish_color_cancel -r
@@ -101,7 +101,7 @@ function _handle_cmd_completion_in_inactive_window --on-event fish_postexec -a l
     # store the previous status so we can return it at the end
     set prev_status $status
 
-    if status is-interactive; and test -n "$DISPLAY"; and test $TERM = "xterm-kitty"
+    if status is-interactive; and test -n "$DISPLAY"; and test $TERM = xterm-kitty
 
         set window_number (kitty @ ls | jq .[0].platform_window_id)
         if test $window_number -ne (xdotool getactivewindow)
@@ -116,7 +116,7 @@ function _handle_cmd_completion_in_inactive_window --on-event fish_postexec -a l
 
             set action (dunstify -u $urgency (string split " " $last_command | head -1) $message --action="default,Switch to Window")
 
-            if test $action = "default"
+            if test $action = default
                 xdotool windowactivate $window_number
             end
         end
@@ -150,9 +150,9 @@ abbr -a gp git push
 abbr -a gpp git push --force-with-lease # "push please"
 abbr -a gpl git pull --ff-only # don't pull if conflict
 abbr -a gpf git fetch\; and git reset --hard origin/\(git branch --show-current\) # "pull --force"
-abbr -a gll git log --stat-count=30  # git log long
+abbr -a gll git log --stat-count=30 # git log long
 abbr -a gls git log --color=always --decorate --graph --date=relative \
-	--format=tformat:'\'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(dim)- %an, %ad%C(reset)\''  # git log short (https://github.com/jan-warchol/sensible-dotfiles/blob/master/.gitconfig)
+    --format=tformat:'\'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(dim)- %an, %ad%C(reset)\'' # git log short (https://github.com/jan-warchol/sensible-dotfiles/blob/master/.gitconfig)
 abbr -a gu git ls-files --other --exclude-standard # "git untracked"
 abbr -a gd upto_git
 
@@ -163,18 +163,18 @@ abbr -a taskopen taskopen -c $XDG_CONFIG_HOME/task/taskopenrc
 
 # misc
 abbr -a mc mkdir-cd
-abbr -a mld mv "~/downloads/(ls -t -A ~/downloads/ | head -1)" .  # move last download
+abbr -a mld mv "~/downloads/(ls -t -A ~/downloads/ | head -1)" . # move last download
 abbr -a o open
 abbr -a h fancy-help
 abbr -a m make
 abbr -a j just
-abbr -a i paru  # install
-abbr -a yay echo "type `i`"  # for muscle memory
+abbr -a i paru # install
+abbr -a yay echo "type `i`" # for muscle memory
 
 # kittens :)
-if type -q kitty and test $TERM = "xterm-kitty"
-    abbr -a icat "kitty +kitten icat"  # image viewer
-    abbr -a ssh "kitty +kitten ssh"    # ssh compatibility (https://sw.kovidgoyal.net/kitty/faq/#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer)
+if type -q kitty and test $TERM = xterm-kitty
+    abbr -a icat "kitty +kitten icat" # image viewer
+    abbr -a ssh "kitty +kitten ssh" # ssh compatibility (https://sw.kovidgoyal.net/kitty/faq/#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer)
 end
 
 
