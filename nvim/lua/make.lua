@@ -36,4 +36,6 @@ end
 
 vim.bo.makeprg = "make"
 
-map_lua("<leader>m", "async_run('makeprg')")
+map("<leader>m", function()
+	async_run("makeprg")
+end)

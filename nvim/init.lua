@@ -10,12 +10,7 @@ function map(lhs, rhs, mode, opts)
 	if opts then
 		options = vim.tbl_extend("force", options, opts)
 	end
-	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-	--- vim.keymap.set(mode, lhs, rhs, options)
-end
-
-function map_lua(lhs, rhs, mode, opts)
-	map(lhs, "<cmd>lua " .. rhs .. "<cr>", mode, opts)
+	vim.keymap.set(mode, lhs, rhs, options) -- todo: use lua instead of vimscript where possible
 end
 
 -- set basics
@@ -34,7 +29,7 @@ require("git")
 require("lsp")
 require("make")
 require("misc")
-require("statusline")
+require("picker")
 require("snippets")
-require("telescope")
+require("statusline")
 require("treesitter")

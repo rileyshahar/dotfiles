@@ -1,0 +1,26 @@
+-- keybinds
+local telescope = require("telescope.builtin")
+
+map("<leader>ff", function()
+	telescope.find_files()
+end)
+map("<leader>fg", function()
+	telescope.live_grep()
+end)
+map("<leader>fs", function()
+	telescope.grep_string()
+end)
+map("<leader>fb", function()
+	telescope.buffers()
+end)
+map("<leader>fh", function()
+	telescope.help_tags()
+end)
+map("<leader>fr", function()
+	telescope.registers()
+end)
+map("<leader>fc", function()
+	telescope.git_bcommits()
+end)
+
+-- todo: github cli addon
