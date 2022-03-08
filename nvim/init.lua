@@ -10,7 +10,7 @@ function map(lhs, rhs, mode, opts)
 	if opts then
 		options = vim.tbl_extend("force", options, opts)
 	end
-	vim.keymap.set(mode, lhs, rhs, options) -- todo: use lua instead of vimscript where possible
+	vim.keymap.set(mode, lhs, rhs, options)
 end
 
 -- set basics

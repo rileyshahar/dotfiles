@@ -8,17 +8,17 @@ gitsigns.setup({
 })
 
 -- Navigation
-map("]c", "<cmd>Gitsigns next_hunk<CR>")
-map("[c", "<cmd>Gitsigns prev_hunk<CR>")
+map("]c", gitsigns.next_hunk)
+map("[c", gitsigns.prev_hunk)
 
 -- Actions
-map("<leader>hs", "<cmd>Gitsigns stage_hunk<cr>")
-map("<leader>hr", "<cmd>Gitsigns reset_hunk<cr>")
-map("<leader>hS", "<cmd>Gitsigns stage_buffer<cr>")
-map("<leader>hR", "<cmd>Gitsigns reset_buffer<cr>")
-map("<leader>hu", "<cmd>Gitsigns undo_stage_hunk<cr>")
-map("<leader>hp", "<cmd>Gitsigns preview_hunk<cr>")
+map("<leader>hs", gitsigns.stage_hunk)
+map("<leader>hr", gitsigns.reset_hunk)
+map("<leader>hS", gitsigns.stage_buffer)
+map("<leader>hR", gitsigns.reset_buffer)
+map("<leader>hu", gitsigns.undo_stage_hunk)
+map("<leader>hp", gitsigns.preview_hunk)
 map("<leader>hb", function()
 	gitsigns.blame_line({ full = true })
 end)
-map("<leader>hd", "<cmd>Gitsigns diffthis<cr>")
+map("<leader>hd", gitsigns.diffthis)
