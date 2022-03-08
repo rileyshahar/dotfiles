@@ -49,5 +49,5 @@ vim.o.mouse = "a"
 cmd("set undofile") -- persistent undo
 
 -- copilot
-cmd([[ imap <silent><script><expr> <c-a> copilot#Accept("<c-a>") ]])
+cmd([[ imap <silent><script><expr> <c-f> copilot#Accept("<c-f>") ]])
 vim.g.copilot_no_tab_map = true

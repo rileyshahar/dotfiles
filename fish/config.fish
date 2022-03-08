@@ -216,7 +216,6 @@ abbr -a btm $top_function
 
 
 ### KEYBINDINGS
-bind \ca forward-char # this doesn't work by default for some reason
 bind \cs history-token-search-backward
 bind \cd history-token-search-forward
 bind \t complete
