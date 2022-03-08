@@ -7,11 +7,12 @@ scroll="$(echo "$KITTY_PIPE_DATA" | cut -d: -f1)"
 cursor="$(echo "$KITTY_PIPE_DATA" | cut -d: -f2 | cut -d, -f2)"
 
 y=$(( scroll + cursor - 1 ))
+x=$(($(echo "$KITTY_PIPE_DATA" | cut -d: -f2 | cut -d, -f1) - 1))
 
 # write buffer to /tmp then open in terminal mode (for ansi color code support)
-nvim -u ~/.config/kitty/scrollback.vim \
-	-c "silent write! /tmp/kitty_scrollback_buffer | te cat /tmp/kitty_scrollback_buffer; sleep 1000" \
-	-c "normal ${y}j"
-	
+nvim -u ~/.config/kitty/scrollback.vim +Man! - \
+	-c "normal ${y}j" \
+	-c "normal ${x}l" \
+	-c "normal /"
 
 rm -f /tmp/kitty_scrollback_buffer
