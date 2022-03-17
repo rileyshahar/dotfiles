@@ -157,7 +157,6 @@ local sources = {
 	null_ls.builtins.formatting.stylua,
 	null_ls.builtins.formatting.fish_indent,
 	null_ls.builtins.formatting.shellharden,
-	null_ls.builtins.diagnostics.checkmake, -- TODO: do we like this
 	null_ls.builtins.diagnostics.selene, -- TODO: setup stdlib https://kampfkarren.github.io/selene/usage/std.html
 	-- null_ls.builtins.code_actions.gitsigns,
 
