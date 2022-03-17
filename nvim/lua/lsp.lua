@@ -3,7 +3,13 @@ local nvim_lsp = require("lspconfig")
 
 -- modified from https://github.com/neovim/nvim-rspconfig
 local on_attach = function(client, bufnr)
-	require("lsp_signature").on_attach()
+	require("lsp_signature").on_attach({
+		-- from lsp_signature config
+		bind = true,
+		handler_opts = {
+			border = "none",
+		},
+	}, bufnr)
 
 	local opts = { noremap = true, silent = false, buffer = bufnr }
 	local function lsp_map(lhs, rhs, mode)
