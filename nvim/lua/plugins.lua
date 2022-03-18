@@ -19,6 +19,10 @@ require("packer").startup(function()
 	use("machakann/vim-highlightedyank") -- highlight yanked text
 	use("christoomey/vim-sort-motion") -- sort easily
 
+	-- quickfix
+	use("kevinhwang91/nvim-bqf") -- better quickfix keybinds
+	use("https://gitlab.com/yorickpeterse/nvim-pqf.git")
+
 	-- writing
 	use("junegunn/goyo.vim") -- distraction-free writing
 

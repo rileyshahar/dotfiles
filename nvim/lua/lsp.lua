@@ -40,7 +40,7 @@ local on_attach = function(client, bufnr)
 	lsp_map("]e", function()
 		vim.diagnostic.goto_next({ wrap = true, severity = vim.diagnostic.severity.ERROR })
 	end)
-	lsp_map("<leader>q", vim.lsp.diagnostic.set_loclist)
+	lsp_map("<leader>q", vim.diagnostic.setloclist)
 
 	lsp_map("g0", require("telescope.builtin").lsp_document_symbols)
 	lsp_map("gr", require("telescope.builtin").lsp_references)
