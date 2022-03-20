@@ -1,4 +1,5 @@
 set linebreak
+set textwidth=80
 nnoremap j gj
 nnoremap k gk
 
