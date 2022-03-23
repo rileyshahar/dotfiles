@@ -10,8 +10,27 @@ local function typed(pos)
 	return sn(pos, fmt("{}: {}", { i(1, "foo"), i(2, "i32") }))
 end
 
--- expands to an arbitary number of comma-separated parameters
-local function params(pos)
+-- expands to an arbitary number of separated typed identifiers
+local function separated_typed(_, _, _, pos, sep, newl)
+	local recursive
+	if newl then
+		-- need to do this because we can't put newlines in the sep, it gives some low-level nvim/luasnip error
+		recursive = sn(
+			1,
+			-- note the intent on the second row, this is needed because recursive calls lose indent info
+			fmt(
+				[[
+		{}{}
+			{}
+		]],
+				{ d(1, separated_typed, {}, { user_args = { nil, sep, newl } }), t(sep), typed(2) }
+			)
+		)
+	else
+		-- recursively calling this snippet, separated by the separator
+		recursive = sn(1, { d(1, separated_typed, {}, { user_args = { nil, sep, newl } }), t(sep), typed(2) })
+	end
+
 	return sn(
 		-- set the jump position
 		pos,
@@ -20,8 +39,8 @@ local function params(pos)
 			-- no args
 			t(""),
 
-			-- recursively calling this snippet, separated by commas
-			sn(1, { d(1, params, {}), t(", "), typed(2) }),
+			-- recursive call
+			recursive,
 
 			-- one arg (or the final arg)
 			typed(2),
@@ -32,7 +51,7 @@ end
 return {
 	-- test
 	s(
-		"test",
+		{ trig = "test", name = "test", dscr = "A test case." },
 		fmt(
 			[[
 			#[test]
@@ -46,7 +65,7 @@ return {
 
 	-- test module
 	s(
-		"tm",
+		{ trig = "tm", name = "test module", dscr = "A test module." },
 		fmt(
 			[[
 		#[cfg(test)]
@@ -62,7 +81,11 @@ return {
 
 	-- function
 	s(
-		"fn",
+		{
+			trig = "fn",
+			name = "function",
+			dscr = { "A function.", "Cycle number of parameters or yes/no return value." },
+		},
 		fmt(
 			[[
 		fn {}({}){}{{
@@ -74,7 +97,7 @@ return {
 				i(1, "foo"),
 
 				-- params
-				params(2),
+				separated_typed(nil, nil, nil, 2, ", ", false),
 
 				-- return value
 				c(3, {
@@ -85,6 +108,18 @@ return {
 				-- body
 				i(4, "todo!();"),
 			}
+		)
+	),
+
+	s(
+		{ trig = "struct", name = "struct", dscr = { "A struct.", "Cycle number of fields." } },
+		fmt(
+			[[
+	struct {} {{
+		{}
+	}}
+	]],
+			{ i(1, "Foo"), separated_typed(nil, nil, nil, 2, ",", true) }
 		)
 	),
 }
