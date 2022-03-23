@@ -9,8 +9,14 @@ require("packer").startup(function()
 	use("nvim-lua/plenary.nvim")
 
 	-- misc
-	use("b3nj5m1n/kommentary") -- comment plugin
-	use("knubie/vim-kitty-navigator") -- tmux split navigation
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup({
+				ignore = "^$",
+			})
+		end,
+	})
 	use("tpope/vim-repeat") -- repeat plugin commands
 	use("jiangmiao/auto-pairs") -- autoclose brackets
 	use("tpope/vim-surround") -- quote manipulation

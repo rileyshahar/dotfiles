@@ -50,4 +50,4 @@ cmd("set undofile") -- persistent undo
 
 -- copilot
 -- cmd([[ imap <silent><script><expr> <c-f> copilot#Accept("<c-f>") ]])
-vim.g.copilot_no_tab_map = true
+-- vim.g.copilot_no_tab_map = true

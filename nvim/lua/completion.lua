@@ -3,6 +3,7 @@ vim.o.completeopt = "menu,menuone,noselect"
 local cmp = require("cmp")
 local ls = require("luasnip")
 
+-- todo: normal tab doesn't work inside snippet, maybe need to turn off history
 cmp.setup({
 	snippet = {
 		expand = function(args)
