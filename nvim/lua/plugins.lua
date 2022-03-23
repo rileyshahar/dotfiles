@@ -30,7 +30,7 @@ require("packer").startup(function()
 	use({
 		"hrsh7th/nvim-cmp",
 		requires = {
-			{ "hrsh7th/cmp-vsnip", requires = { "hrsh7th/vim-vsnip", "rafamadriz/friendly-snippets" } },
+			{ "saadparwaiz1/cmp_luasnip", requires = { "L3MON4D3/LuaSnip", "rafamadriz/friendly-snippets" } },
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-cmdline",

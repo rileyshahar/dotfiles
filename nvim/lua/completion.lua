@@ -1,28 +1,54 @@
 vim.o.completeopt = "menu,menuone,noselect"
 
 local cmp = require("cmp")
+local ls = require("luasnip")
 
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body)
+			require("luasnip").lsp_expand(args.body)
 		end,
+	},
+	sources = {
+		{ name = "luasnip" },
+		{ name = "nvim_lsp" },
+		{ name = "treesitter" },
+		{ name = "buffer" },
+		{ name = "path" },
+		{ name = "spell" },
 	},
 	mapping = {
 		["<C-p>"] = cmp.mapping.select_prev_item(),
 		["<C-n>"] = cmp.mapping.select_next_item(),
 		["<C-d>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-e>"] = cmp.mapping.close(),
-		["<Tab>"] = cmp.mapping.confirm({ select = true }),
-	},
-	sources = {
-		{ name = "vsnip" },
-		{ name = "nvim_lsp" },
-		{ name = "treesitter" },
-		{ name = "buffer" },
-		{ name = "path" },
-		{ name = "spell" },
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.confirm({ select = true })
+			elseif ls.expandable() then
+				ls.expand()
+			elseif ls.jumpable() then
+				ls.jump(1)
+			else
+				fallback()
+			end
+		end, {
+			"i",
+			"s",
+		}),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif ls.jumpable(-1) then
+				ls.jump(-1)
+			else
+				fallback()
+			end
+		end, {
+			"i",
+			"s",
+		}),
+		["<C-e>"] = cmp.mapping.abort(),
 	},
 })
 
