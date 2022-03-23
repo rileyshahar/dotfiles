@@ -29,6 +29,7 @@ set -x GNUPGHOME "$XDG_DATA_HOME/gnupg"
 set -x LESSHISTFILE "$XDG_DATA_HOME/less/history"
 set -x LESSKEY "$XDG_CONFIG_HOME/less/lesskey"
 set -x NODE_REPL_HISTORY "$XDG_DATA_HOME/node/repl_history"
+set -x PYENV_ROOT "$XDG_DATA_HOME/pyenv"
 set -x PYLINTHOME "$XDG_DATA_HOME"/pylint
 set -x RUSTUP_HOME "$XDG_DATA_HOME/rustup"
 set -x TERMINFO "$XDG_DATA_HOME/terminfo"
@@ -61,11 +62,7 @@ set fish_color_autosuggestion white
 set fish_color_cancel -r
 
 # configure path
-set paths_to_add /usr/local/opt/python@3.8 /bin/usr/local/opt/ruby/bin $CARGO_HOME/bin /usr/local/opt/llvm/bin/ $XDG_DATA_HOME/bin $DOTFILES_DIR/bin $HOME/.local/bin $XDG_DATA_HOME/gem/ruby/3.0.0/bin
-
-for path in $paths_to_add
-    contains $path $fish_user_paths; or set -Ua fish_user_paths $path
-end
+set fish_user_paths $PYENV_ROOT/shims /bin/usr/local/opt/ruby/bin $CARGO_HOME/bin /usr/local/opt/llvm/bin/ $XDG_DATA_HOME/bin $DOTFILES_DIR/bin $HOME/.local/bin $XDG_DATA_HOME/gem/ruby/3.0.0/bin
 
 # make !! and !$ work
 function bind_bang
@@ -221,6 +218,10 @@ bind \cd history-token-search-forward
 bind \t complete
 bind ! bind_bang
 bind '$' bind_dollar
+
+## sourcing stuff to make useful things work
+status is-login; and pyenv init --path | source
+status is-interactive; and pyenv init - | source
 
 ### Start x
 if status is-login

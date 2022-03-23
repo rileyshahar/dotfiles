@@ -50,6 +50,7 @@ prettier
 procs
 pulseaudio
 pulseaudio-ctl
+pyenv
 python-pip
 qutebrowser
 r
