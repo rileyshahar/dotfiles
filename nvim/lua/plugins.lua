@@ -98,7 +98,7 @@ require("packer").startup(function()
 	use("NoahTheDuke/vim-just")
 
 	-- copilot
-	use("github/copilot.vim")
+	-- use("github/copilot.vim")
 end)
 
 -- copilot

@@ -4,6 +4,7 @@ local cmp = require("cmp")
 local ls = require("luasnip")
 
 cmp.setup({
+	-- todo: appearance (lunar.nvim has ideas)
 	snippet = {
 		expand = function(args)
 			require("luasnip").lsp_expand(args.body)
