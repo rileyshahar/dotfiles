@@ -1,7 +1,5 @@
 local ls = require("luasnip")
 
--- local arg = sn(nil, { i(1, "bar"), t(": "), i(2, "i32") })
-
 -- empty or " -> {$pos:i32} "
 local function ret(pos) end
 
@@ -20,9 +18,9 @@ local function separated_typed(_, _, _, pos, sep, newl)
 			-- note the intent on the second row, this is needed because recursive calls lose indent info
 			fmt(
 				[[
-		{}{}
-			{}
-		]],
+			{}{}
+				{}
+			]],
 				{ d(1, separated_typed, {}, { user_args = { nil, sep, newl } }), t(sep), typed(2) }
 			)
 		)
@@ -58,7 +56,7 @@ return {
 			fn {}() {{
 				{}
 			}}
-		]],
+			]],
 			{ i(1, "it_works"), i(2, "assert!(true);") }
 		)
 	),
@@ -68,13 +66,13 @@ return {
 		{ trig = "tm", name = "test module", dscr = "A test module." },
 		fmt(
 			[[
-		#[cfg(test)]
-		mod {} {{
-			use super::*;
+			#[cfg(test)]
+			mod {} {{
+				use super::*;
 
-			{}
-		}}
-		]],
+				{}
+			}}
+			]],
 			{ i(1, "tests"), i(2) }
 		)
 	),
@@ -88,10 +86,10 @@ return {
 		},
 		fmt(
 			[[
-		fn {}({}){}{{
-			{}
-		}}
-		]],
+			fn {}({}){}{{
+				{}
+			}}
+			]],
 			{
 				-- fn name
 				i(1, "foo"),
@@ -115,10 +113,10 @@ return {
 		{ trig = "struct", name = "struct", dscr = { "A struct.", "Cycle number of fields." } },
 		fmt(
 			[[
-	struct {} {{
-		{}
-	}}
-	]],
+			struct {} {{
+				{}
+			}}
+			]],
 			{ i(1, "Foo"), separated_typed(nil, nil, nil, 2, ",", true) }
 		)
 	),
