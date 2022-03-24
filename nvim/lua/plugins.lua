@@ -11,14 +11,15 @@ require("packer").startup(function()
 	-- misc
 	use({
 		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup({
-				ignore = "^$",
-			})
-		end,
+		config = require("Comment").setup({
+			ignore = "^$",
+		}),
 	})
 	use("tpope/vim-repeat") -- repeat plugin commands
-	use("jiangmiao/auto-pairs") -- autoclose brackets
+	use({
+		"windwp/nvim-autopairs",
+		config = require("nvim-autopairs").setup(),
+	}) -- autoclose paired characters
 	use("tpope/vim-surround") -- quote manipulation
 	use("tommcdo/vim-exchange") -- exchange text objects
 	use("simnalamburt/vim-mundo") -- undo tree viewer
@@ -90,8 +91,8 @@ require("packer").startup(function()
 	use("cespare/vim-toml")
 
 	-- markdown
-	--[[ use "vim-pandoc/vim-pandoc"
-        use "vim-pandoc/vim-pandoc-syntax" ]]
+	-- use("vim-pandoc/vim-pandoc")
+	-- use("vim-pandoc/vim-pandoc-syntax")
 	use("plasticboy/vim-markdown")
 
 	-- fish

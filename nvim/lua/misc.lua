@@ -48,6 +48,13 @@ vim.o.mouse = "a"
 -- undo
 cmd("set undofile") -- persistent undo
 
+-- autopairs
+-- todo: fix
+local Rule = require("nvim-autopairs.rule")
+local npairs = require("nvim-autopairs")
+
+npairs.add_rule(Rule("$", "$", "markdown"))
+
 -- copilot
 -- cmd([[ imap <silent><script><expr> <c-f> copilot#Accept("<c-f>") ]])
 -- vim.g.copilot_no_tab_map = true
