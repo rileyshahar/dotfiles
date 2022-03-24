@@ -172,7 +172,9 @@ call s:set_colors("TabLineSel", s:black, s:red, "NONE") " todo
 call s:set_colors("Title", s:red, s:bg, "bold")
 call s:set_colors("Visual", s:bg, s:dimgrey, "")
 call s:set_colors("VisualNOS", s:bg, s:dimgrey, "underline")
+call s:set_colors("VertSplit", s:bg, s:bg, "")
 call s:set_colors("WarningMsg", s:yellow, s:bg, "")
+call s:set_colors("WinSeparator", s:bg, s:bg, "")
 call s:set_colors("Whitespace", s:grey, s:bg, "")
 call s:set_colors("WildMenu", s:bg, s:blue, "") " todo
 
