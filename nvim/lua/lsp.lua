@@ -164,11 +164,20 @@ local null_ls = require("null-ls")
 
 -- register any number of sources simultaneously
 local sources = {
+	-- js
 	null_ls.builtins.formatting.prettier,
-	null_ls.builtins.formatting.stylua,
+
+	-- shell
 	null_ls.builtins.formatting.fish_indent,
 	null_ls.builtins.formatting.shellharden,
+
+	-- lua
+	null_ls.builtins.formatting.stylua,
 	null_ls.builtins.diagnostics.selene, -- TODO: setup stdlib https://kampfkarren.github.io/selene/usage/std.html
+
+	-- c
+	null_ls.builtins.diagnostics.cppcheck,
+
 	-- null_ls.builtins.code_actions.gitsigns,
 
 	-- generic formatters create annoying format conflicts

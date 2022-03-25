@@ -11,6 +11,7 @@ bottom
 brightnessctl
 clang
 cronie
+cppcheck
 devour
 discord
 dunst
