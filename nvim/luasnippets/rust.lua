@@ -1,7 +1,5 @@
+-- selene: allow(unused_variable)
 local ls = require("luasnip")
-
--- empty or " -> {$pos:i32} "
-local function ret(pos) end
 
 -- "{$1:foo}: {$2:i32}"
 local function typed(pos)

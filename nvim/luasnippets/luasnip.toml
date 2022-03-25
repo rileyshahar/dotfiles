@@ -1,0 +1,99 @@
+# this is probably wrong in a million ways
+[selene]
+base = "lua51"
+
+[vim]
+any = true
+
+[[s.args]]
+type = "table"
+
+[[s.args]]
+type = "table"
+
+[[s.args]]
+type = "table"
+required = false
+
+[[t.args]]
+type = "any" # string or table
+
+[[i.args]]
+type = "number"
+
+[[i.args]]
+type = "string"
+required = false
+
+[[f.args]]
+type = "function"
+
+[[f.args]]
+type = "table"
+
+[[f.args]]
+type = "table"
+required = false
+
+[[c.args]]
+type = "number"
+
+[[c.args]]
+type = "table"
+
+[[c.args]]
+type = "table"
+required = false
+
+[[sn.args]]
+type = "any" # nil or number
+
+[[sn.args]]
+type = "table"
+
+[[isn.args]]
+type = "number"
+
+[[isn.args]]
+type = "table"
+
+[[isn.args]]
+type = "string"
+
+[[d.args]]
+type = "number"
+
+[[d.args]]
+type = "function"
+
+[[d.args]]
+type = "table"
+
+[[d.args]]
+type = "table"
+required = false
+
+[[r.args]]
+type = "number"
+
+[[r.args]]
+type = "string"
+
+[[r.args]]
+type = "table"
+required = false
+
+[[rep.args]]
+type = "number"
+
+[[fmt.args]]
+type = "string"
+
+[[fmt.args]]
+type = "table"
+
+[[p.args]]
+type = "function"
+
+[[p.args]]
+type = "string"
