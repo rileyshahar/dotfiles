@@ -75,7 +75,10 @@ require("packer").startup(function()
 	use("lewis6991/gitsigns.nvim")
 
 	-- telescope
-	use("nvim-telescope/telescope.nvim")
+	use({
+		"nvim-telescope/telescope.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+	})
 
 	-- tex
 	use("lervag/vimtex")

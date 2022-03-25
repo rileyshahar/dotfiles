@@ -11,14 +11,18 @@ gitsigns.setup({
 map("]c", gitsigns.next_hunk)
 map("[c", gitsigns.prev_hunk)
 
+local function git_map(lhs, rhs, mode, opts)
+	map(leaders.git .. lhs, rhs, mode, opts)
+end
+
 -- Actions
-map("<leader>hs", gitsigns.stage_hunk)
-map("<leader>hr", gitsigns.reset_hunk)
-map("<leader>hS", gitsigns.stage_buffer)
-map("<leader>hR", gitsigns.reset_buffer)
-map("<leader>hu", gitsigns.undo_stage_hunk)
-map("<leader>hp", gitsigns.preview_hunk)
-map("<leader>hb", function()
+git_map("s", gitsigns.stage_hunk)
+git_map("r", gitsigns.reset_hunk)
+git_map("S", gitsigns.stage_buffer)
+git_map("R", gitsigns.reset_buffer)
+git_map("u", gitsigns.undo_stage_hunk)
+git_map("p", gitsigns.preview_hunk)
+git_map("b", function()
 	gitsigns.blame_line({ full = true })
 end)
-map("<leader>hd", gitsigns.diffthis)
+git_map("d", gitsigns.diffthis)

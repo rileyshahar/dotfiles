@@ -6,3 +6,12 @@ any = true
 
 [map]
 any = true
+
+[leaders.finder]
+type = "string"
+
+[leaders.git]
+type = "string"
+
+[leaders.goto]
+type = "string"

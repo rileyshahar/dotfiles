@@ -1,8 +1,8 @@
 require("fidget").setup({})
 local nvim_lsp = require("lspconfig")
+local telescope = require("telescope.builtin")
 
--- modified from https://github.com/neovim/nvim-rspconfig
--- todo: standardize keybindings
+-- modified from https://github.com/neovim/nvim-lspconfig
 local on_attach = function(client, bufnr)
 	require("lsp_signature").on_attach({
 		-- from lsp_signature config
@@ -12,22 +12,33 @@ local on_attach = function(client, bufnr)
 		},
 	}, bufnr)
 
-	local opts = { noremap = true, silent = false, buffer = bufnr }
+	-- map wrapper which ensures buffer-locality
 	local function lsp_map(lhs, rhs, mode)
-		mode = mode or "n"
-		map(lhs, rhs, mode, opts)
+		map(lhs, rhs, mode, { buffer = bufnr })
 	end
 
-	lsp_map("ga", vim.lsp.buf.code_action)
-	lsp_map("ga", vim.lsp.buf.range_code_action, "v")
-	lsp_map("gD", vim.lsp.buf.declaration)
-	lsp_map("gd", vim.lsp.buf.definition)
-	lsp_map("K", vim.lsp.buf.hover)
-	lsp_map("gi", vim.lsp.buf.implementation)
-	lsp_map("<leader>k", vim.lsp.buf.signature_help)
-	lsp_map("gt", vim.lsp.buf.type_definition)
-	lsp_map("gw", vim.lsp.buf.workspace_symbol) -- this doesn't work with telescope for some reason
+	-- gotos
+	lsp_map(leaders.goto .. "D", vim.lsp.buf.declaration)
+	lsp_map(leaders.goto .. "d", vim.lsp.buf.definition)
+	lsp_map(leaders.goto .. "i", vim.lsp.buf.implementation)
+	lsp_map(leaders.goto .. "t", vim.lsp.buf.type_definition)
 
+	-- code actions
+	lsp_map("<leader>a", telescope.lsp_code_actions)
+	lsp_map("<leader>a", telescope.lsp_range_code_actions, "v")
+	lsp_map("<leader>rn", vim.lsp.buf.rename) -- not under capability gate so we get an error if we try to use
+
+	-- documentation
+	lsp_map("K", vim.lsp.buf.hover)
+	lsp_map("<leader>k", vim.lsp.buf.signature_help)
+
+	-- finders
+	lsp_map(leaders.finder .. "S", telescope.lsp_workspace_symbols)
+	lsp_map(leaders.finder .. "s", telescope.lsp_document_symbols)
+	lsp_map(leaders.finder .. "r", telescope.lsp_references)
+	lsp_map(leaders.finder .. "d", telescope.diagnostics) -- todo: do we want qflist or telescope
+
+	-- diagnostics
 	lsp_map("<leader>d", vim.diagnostic.open_float)
 	lsp_map("[d", function()
 		vim.diagnostic.goto_prev({ wrap = true })
@@ -41,31 +52,16 @@ local on_attach = function(client, bufnr)
 	lsp_map("]e", function()
 		vim.diagnostic.goto_next({ wrap = true, severity = vim.diagnostic.severity.ERROR })
 	end)
-	lsp_map("<leader>q", vim.diagnostic.setloclist)
-
-	lsp_map("g0", require("telescope.builtin").lsp_document_symbols)
-	lsp_map("gr", require("telescope.builtin").lsp_references)
-	lsp_map("<leader>t", require("telescope.builtin").diagnostics)
 
 	-- rust-anayzer
-	-- todo: make this only a thing for rust
 	lsp_map("<localleader>t", require("lsp_extensions").inlay_hints)
 
-	-- rename if we have the capability
-	-- todo: make sure this is the right name
-	if client.resolved_capabilities.rename then
-		lsp_map("<leader>rn", vim.lsp.buf.rename)
-	end
-
-	-- bind formatting if we have the capability
+	-- autoformat if we have the capability
 	if client.resolved_capabilities.document_formatting then
 		vim.api.nvim_create_augroup("Format", { clear = true })
 		vim.api.nvim_create_autocmd("BufWritePost", {
 			group = "Format",
-			callback = function()
-				-- needs to be a closure, not sure why
-				vim.lsp.buf.formatting()
-			end,
+			callback = vim.lsp.buf.formatting,
 		})
 	end
 end

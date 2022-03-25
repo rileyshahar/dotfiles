@@ -10,9 +10,15 @@ end
 
 -- set basics
 vim.g.mapleader = ","
+vim.g.maplocalleader = " "
 map("<space>", "<nop>", "n")
 map("<space>", "<nop>", "v")
-vim.cmd('let maplocalleader = "\\<space>"')
+
+leaders = {
+	finder = "<leader>f",
+	git = "<leader>h",
+  goto = "g",
+}
 
 require("plugins")
 
