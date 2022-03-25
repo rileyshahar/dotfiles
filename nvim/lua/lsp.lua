@@ -174,7 +174,7 @@ local sources = {
 	-- lua
 	null_ls.builtins.formatting.stylua,
 	null_ls.builtins.diagnostics.selene.with({
-		cwd = function(params)
+		cwd = function(_)
 			-- always run from the current directory
 			-- todo: traverse up to selene.toml
 			return vim.loop.cwd()

@@ -1,6 +1,7 @@
 -- setup packer
 -- cmd "packadd packer.nvim" -- Load package
 -- TODO: run simple setup commands from here
+--# selene: allow(undefined_variable)
 require("packer").startup(function()
 	use("wbthomason/packer.nvim")
 
@@ -107,5 +108,3 @@ require("packer").startup(function()
 	-- copilot
 	-- use("github/copilot.vim")
 end)
-
--- copilot

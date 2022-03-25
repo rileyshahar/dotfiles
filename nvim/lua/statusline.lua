@@ -1,5 +1,5 @@
 function gen_section(hl_string, items)
-	out = ""
+	local out = ""
 	for _, item in pairs(items) do
 		if item ~= "" then
 			if out == "" then
@@ -10,10 +10,6 @@ function gen_section(hl_string, items)
 		end
 	end
 	return hl_string .. out .. " "
-end
-
-local function highlight(group, fg, bg)
-	vim.cmd("highlight " .. group .. " guifg=" .. fg .. " guibg=" .. bg)
 end
 
 local emph_highlight = "%#StatusLine#"
@@ -86,7 +82,7 @@ function is_readonly()
 end
 
 function process_diagnostics(prefix, n, hl)
-	out = prefix .. n
+	local out = prefix .. n
 	if n > 0 then
 		return hl .. out .. dark_highlight
 	end
@@ -120,6 +116,8 @@ local function treesitter()
     return sl:match("(.*)%(")
     -- return sl:sub(1, sl:match("%("))
 end ]]
+
+-- selene: allow(unused_variable)
 function status_line()
 	local diagnostics = get_lsp_diagnostics()
 	local mode = vim.fn.mode()
