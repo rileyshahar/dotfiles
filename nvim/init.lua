@@ -1,8 +1,3 @@
--- useful aliases
-cmd = vim.cmd
-fn = vim.fn
-g = vim.g
-
 -- map function
 function map(lhs, rhs, mode, opts)
 	mode = mode or "n"
@@ -14,10 +9,10 @@ function map(lhs, rhs, mode, opts)
 end
 
 -- set basics
-g.mapleader = ","
+vim.g.mapleader = ","
 map("<space>", "<nop>", "n")
 map("<space>", "<nop>", "v")
-cmd('let maplocalleader = "\\<space>"')
+vim.cmd('let maplocalleader = "\\<space>"')
 
 require("plugins")
 

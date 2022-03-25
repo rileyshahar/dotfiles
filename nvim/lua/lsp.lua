@@ -82,10 +82,10 @@ vim.diagnostic.config({
 	virtual_text = false,
 })
 
-fn.sign_define("LspDiagnosticsSignInformation", { text = "", numhl = "LspDiagnosticsDefaultInformation" })
-fn.sign_define("LspDiagnosticsSignWarning", { text = "", numhl = "LspDiagnosticsDefaultWarning" })
-fn.sign_define("LspDiagnosticsSignError", { text = "", numhl = "LspDiagnosticsDefaultError" })
-fn.sign_define("LspDiagnosticsSignHint", { text = "", numhl = "LspDiagnosticsDefaultHint" })
+vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "", numhl = "LspDiagnosticsDefaultInformation" })
+vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "", numhl = "LspDiagnosticsDefaultWarning" })
+vim.fn.sign_define("LspDiagnosticsSignError", { text = "", numhl = "LspDiagnosticsDefaultError" })
+vim.fn.sign_define("LspDiagnosticsSignHint", { text = "", numhl = "LspDiagnosticsDefaultHint" })
 
 -- specific language servers
 nvim_lsp.clangd.setup({})
@@ -173,7 +173,13 @@ local sources = {
 
 	-- lua
 	null_ls.builtins.formatting.stylua,
-	null_ls.builtins.diagnostics.selene, -- TODO: setup stdlib https://kampfkarren.github.io/selene/usage/std.html
+	null_ls.builtins.diagnostics.selene.with({
+		cwd = function(params)
+			-- always run from the current directory
+			-- todo: traverse up to selene.toml
+			return vim.loop.cwd()
+		end,
+	}),
 
 	-- c
 	null_ls.builtins.diagnostics.cppcheck,

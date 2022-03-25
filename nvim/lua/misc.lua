@@ -46,7 +46,7 @@ map("<leader>g", "<cmd>Goyo<cr>")
 vim.o.mouse = "a"
 
 -- undo
-cmd("set undofile") -- persistent undo
+vim.cmd("set undofile") -- persistent undo
 
 -- autopairs
 -- todo: fix

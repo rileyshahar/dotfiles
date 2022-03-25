@@ -13,7 +13,7 @@ function gen_section(hl_string, items)
 end
 
 local function highlight(group, fg, bg)
-	cmd("highlight " .. group .. " guifg=" .. fg .. " guibg=" .. bg)
+	vim.cmd("highlight " .. group .. " guifg=" .. fg .. " guibg=" .. bg)
 end
 
 local emph_highlight = "%#StatusLine#"
@@ -122,7 +122,7 @@ local function treesitter()
 end ]]
 function status_line()
 	local diagnostics = get_lsp_diagnostics()
-	local mode = fn.mode()
+	local mode = vim.fn.mode()
 	local mg = get_mode_group(mode)
 	local accent_color = get_mode_group_color(mg)
 

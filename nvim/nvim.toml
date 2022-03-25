@@ -1,0 +1,8 @@
+[selene]
+base = "lua51"
+
+[vim]
+any = true
+
+[map]
+any = true
