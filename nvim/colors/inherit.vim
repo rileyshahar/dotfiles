@@ -154,7 +154,7 @@ call s:set_colors("MoreMsg", s:blue, s:bg, "bold")
 call s:set_colors("NonText", s:grey, s:none, "")
 call s:set_colors("Normal", s:fg, s:bg, "")
 call s:set_colors("Pmenu", s:fg, s:dimgrey, "")
-call s:set_colors("PmenuSel", s:bg, s:blue, "") " todo
+call s:set_colors("PmenuSel", s:black, s:blue, "") " todo
 call s:set_colors("PmenuSbar", s:fg, s:dimgrey, "")
 call s:set_colors("PmenuThumb", s:fg, s:grey, "")
 call s:set_colors("Question", s:yellow, s:bg, "")
@@ -176,7 +176,7 @@ call s:set_colors("VertSplit", s:bg, s:bg, "")
 call s:set_colors("WarningMsg", s:yellow, s:bg, "")
 call s:set_colors("WinSeparator", s:bg, s:bg, "")
 call s:set_colors("Whitespace", s:grey, s:bg, "")
-call s:set_colors("WildMenu", s:bg, s:blue, "") " todo
+call s:set_colors("WildMenu", s:black, s:blue, "") " todo
 
 " statusline
 " todo: there were better colors here, check old commits

@@ -2,6 +2,7 @@ require("fidget").setup({})
 local nvim_lsp = require("lspconfig")
 
 -- modified from https://github.com/neovim/nvim-rspconfig
+-- todo: standardize keybindings
 local on_attach = function(client, bufnr)
 	require("lsp_signature").on_attach({
 		-- from lsp_signature config

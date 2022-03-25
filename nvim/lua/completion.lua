@@ -10,13 +10,16 @@ cmp.setup({
 			require("luasnip").lsp_expand(args.body)
 		end,
 	},
+	experimental = {
+		ghost_text = { hl_group = "Conceal" },
+	},
 	sources = {
 		{ name = "luasnip" },
 		{ name = "nvim_lsp" },
 		{ name = "treesitter" },
-		{ name = "buffer" },
+		{ name = "buffer", keyword_length = 3 },
 		{ name = "path" },
-		{ name = "spell" },
+		{ name = "spell", keyword_length = 3 },
 	},
 	mapping = {
 		["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -52,51 +55,17 @@ cmp.setup({
 		["<C-e>"] = cmp.mapping.abort(),
 	},
 	formatting = {
-		fields = { "kind", "abbr", "menu" },
+		fields = { "abbr", "menu", "kind" },
 		format = function(entry, vim_item)
-			-- from https://github.com/LunarVim/LunarVim/blob/5c0ccff78f199c46aea47fa756e7c748477e5c65/lua/lvim/core/cmp.lua
 			local source_names = {
-				luasnip = "(Snippet)",
-				nvim_lsp = "(LSP)",
-				treesitter = "(TS)",
-				buffer = "(Buffer)",
-				path = "(Path)",
-				spell = "(Spell)",
+				luasnip = "[snip]",
+				nvim_lsp = "[lsp]",
+				treesitter = "[ts]",
+				buffer = "[buf]",
+				path = "[path]",
+				spell = "[spell]",
 			}
-			local kind_icons = {
-				Class = " ",
-				Color = " ",
-				Constant = "ﲀ ",
-				Constructor = " ",
-				Enum = "練",
-				EnumMember = " ",
-				Event = " ",
-				Field = " ",
-				File = "",
-				Folder = " ",
-				Function = " ",
-				Interface = "ﰮ ",
-				Keyword = " ",
-				Method = " ",
-				Module = " ",
-				Operator = "",
-				Property = " ",
-				Reference = " ",
-				Snippet = " ",
-				Struct = " ",
-				Text = " ",
-				TypeParameter = " ",
-				Unit = "塞",
-				Value = " ",
-				Variable = " ",
-			}
-			-- don't want duplicates unless it's a snippet
-			local duplicates = {
-				"luasnip",
-			}
-			vim_item.kind = kind_icons[vim_item.kind]
 			vim_item.menu = source_names[entry.source.name]
-			vim_item.dup = duplicates[entry.source.name] or 0
 			return vim_item
 		end,
 	},
