@@ -26,6 +26,7 @@ require("packer").startup(function()
 	use("simnalamburt/vim-mundo") -- undo tree viewer
 	use("machakann/vim-highlightedyank") -- highlight yanked text
 	use("christoomey/vim-sort-motion") -- sort easily
+	use({ "knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty/" }) -- kitty/vim window keybinds
 
 	-- quickfix
 	use("kevinhwang91/nvim-bqf") -- better quickfix keybinds

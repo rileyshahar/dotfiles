@@ -55,7 +55,7 @@ myWorkspaceFilter = filterOutWs [scratchpadWorkspaceTag]
 
 ------------------------------------------------------------------------
 -- Shell commands
-myTerminal      = "kitty"                                                 -- start terminal
+myTerminal      = "kitty -o allow_remote_control=yes --single-instance --listen-on unix:@mykitty"
 myBrowser       = "$BROWSER"                                              -- start browser
 menu            = "launcher"                                              -- start rofi
 passwordCtrl    = "rofi-pass"                                             -- start rofi-pass
