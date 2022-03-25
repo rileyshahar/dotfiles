@@ -14,6 +14,7 @@ cmp.setup({
 		ghost_text = { hl_group = "Conceal" },
 	},
 	sources = {
+		{ name = "cmp_git" },
 		{ name = "luasnip" },
 		{ name = "nvim_lsp" },
 		{ name = "treesitter" },
@@ -83,10 +84,6 @@ cmp.setup.cmdline("/", {
 	},
 })
 
-cmp.setup.filetype("gitcommit", {
-	sources = cmp.config.sources({
-		{ name = "cmp_git" },
-	}, {
-		{ name = "buffer" },
-	}),
+require("cmp_git").setup({
+	filetypes = { "gitcommit", "github" },
 })
