@@ -126,3 +126,13 @@ require("packer").startup(function()
 	-- copilot
 	-- use("github/copilot.vim")
 end)
+
+-- keybinds
+local function plugin_meta_map(lhs, rhs, mode, opts)
+	map(leaders.plugin_meta .. lhs, rhs, mode, opts)
+end
+
+plugin_meta_map("i", "<cmd>PackerInstall<cr>")
+plugin_meta_map("u", "<cmd>PackerUpdate<cr>")
+plugin_meta_map("s", "<cmd>PackerSync<cr>")
+plugin_meta_map("c", "<cmd>PackerClean<cr>")

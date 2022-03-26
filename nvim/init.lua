@@ -19,6 +19,7 @@ leaders = {
 	finder = "<leader>f",
 	git = "<leader>g",
   goto = "g",
+	plugin_meta = "<leader>p"
 }
 
 require("plugins")
