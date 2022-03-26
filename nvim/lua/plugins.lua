@@ -93,6 +93,7 @@ require("packer").startup(function()
 		requires = { "nvim-lua/plenary.nvim" },
 	})
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+	use({ "stevearc/dressing.nvim" })
 
 	-- tex
 	use("lervag/vimtex")

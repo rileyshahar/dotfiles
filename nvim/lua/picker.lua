@@ -49,5 +49,15 @@ edit_map("c", "$DOTFILES_DIR") -- edit config
 -- extensions
 telescope.load_extension("fzf")
 
+-- use telescope for vim.ui.select
+-- we want the cursor theme here, i think, because in general vim.ui.select is
+-- probably being called in contexts where we want to stay local to the cursor.
+-- just a guess about how it'll end up being used in our workflow.
+require("dressing").setup({
+	select = {
+		telescope = require("telescope.themes").get_cursor(),
+	},
+})
+
 -- todo: github cli addon
 -- todo: make highlight clearer

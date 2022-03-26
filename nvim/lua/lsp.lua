@@ -24,8 +24,8 @@ local on_attach = function(client, bufnr)
 	lsp_map(leaders.goto .. "t", vim.lsp.buf.type_definition)
 
 	-- code actions
-	lsp_map("<leader>a", telescope.lsp_code_actions)
-	lsp_map("<leader>a", telescope.lsp_range_code_actions, "v")
+	lsp_map("<leader>a", vim.lsp.buf.code_action)
+	lsp_map("<leader>a", vim.lsp.buf.range_code_action, "v")
 	lsp_map("<leader>rn", vim.lsp.buf.rename) -- not under capability gate so we get an error if we try to use
 	-- todo: rename in floating window
 
