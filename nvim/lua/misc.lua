@@ -42,7 +42,7 @@ vim.o.foldlevelstart = 1 -- default level to start folding at
 vim.wo.foldmethod = "syntax" -- method to fold on (treesitter?)
 
 -- goyo
-map("<leader>g", "<cmd>Goyo<cr>")
+map("<leader>z", "<cmd>Goyo<cr>")
 vim.o.mouse = "a"
 
 -- undo

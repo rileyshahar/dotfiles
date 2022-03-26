@@ -17,7 +17,7 @@ map("<space>", "<nop>", "v")
 leaders = {
 	edit = "<leader>e",
 	finder = "<leader>f",
-	git = "<leader>h",
+	git = "<leader>g",
   goto = "g",
 }
 

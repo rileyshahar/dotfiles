@@ -69,7 +69,20 @@ require("packer").startup(function()
 			vim.cmd("TSUpdate")
 		end,
 	})
-	use("lewis6991/spellsitter.nvim") -- spell check treesitter comments
+	use({
+		"lewis6991/spellsitter.nvim",
+		config = function()
+			require("spellsitter").setup()
+		end,
+	})
+	-- use({
+	-- 	-- dim non-current blocks
+	-- 	TODO: toesn't work
+	-- 	"folke/twilight.nvim",
+	-- 	config = function()
+	-- 		require("twilight").setup({})
+	-- 	end,
+	-- })
 
 	-- git
 	use("lewis6991/gitsigns.nvim")

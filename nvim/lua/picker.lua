@@ -35,8 +35,6 @@ find_map("b", builtins.buffers)
 find_map("h", builtins.help_tags)
 find_map("R", builtins.registers)
 find_map("k", builtins.keymaps)
-find_map("cc", builtins.git_commits) -- commits
-find_map("cb", builtins.git_bcommits) -- commits buffer
 
 local function edit_map(key, cwd)
 	map(leaders.edit .. key, function()
