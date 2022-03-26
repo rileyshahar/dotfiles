@@ -55,6 +55,10 @@ local npairs = require("nvim-autopairs")
 
 npairs.add_rule(Rule("$", "$", "markdown"))
 
+-- spell
+-- todo: make spellchecker work well
+map("z=", require("telescope.builtin").spell_suggest)
+
 -- copilot
 -- cmd([[ imap <silent><script><expr> <c-f> copilot#Accept("<c-f>") ]])
 -- vim.g.copilot_no_tab_map = true

@@ -8,13 +8,14 @@ function map(lhs, rhs, mode, opts)
 	vim.keymap.set(mode, lhs, rhs, options)
 end
 
--- set basics
+-- set leaders
 vim.g.mapleader = ","
 vim.g.maplocalleader = " "
 map("<space>", "<nop>", "n")
 map("<space>", "<nop>", "v")
 
 leaders = {
+	edit = "<leader>e",
 	finder = "<leader>f",
 	git = "<leader>h",
   goto = "g",

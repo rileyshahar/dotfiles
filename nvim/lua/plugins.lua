@@ -23,7 +23,6 @@ require("packer").startup(function()
 	}) -- autoclose paired characters
 	use("tpope/vim-surround") -- quote manipulation
 	use("tommcdo/vim-exchange") -- exchange text objects
-	use("simnalamburt/vim-mundo") -- undo tree viewer
 	use("machakann/vim-highlightedyank") -- highlight yanked text
 	use("christoomey/vim-sort-motion") -- sort easily
 	use({ "knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty/" }) -- kitty/vim window keybinds
@@ -67,7 +66,7 @@ require("packer").startup(function()
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = function()
-			cmd("TSUpdate")
+			vim.cmd("TSUpdate")
 		end,
 	})
 	use("lewis6991/spellsitter.nvim") -- spell check treesitter comments
@@ -80,6 +79,7 @@ require("packer").startup(function()
 		"nvim-telescope/telescope.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
 	})
+	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
 	-- tex
 	use("lervag/vimtex")
