@@ -44,6 +44,7 @@ require("packer").startup(function()
 			"hrsh7th/cmp-cmdline",
 			"petertriho/cmp-git",
 			"f3fora/cmp-spell",
+			"hrsh7th/cmp-path",
 			"ray-x/cmp-treesitter",
 		},
 	})
@@ -129,7 +130,19 @@ require("packer").startup(function()
 	use("NoahTheDuke/vim-just")
 
 	-- copilot
-	-- use("github/copilot.vim")
+	use({
+		"zbirenbaum/copilot.lua",
+		event = "InsertEnter",
+		config = function()
+			vim.schedule(function()
+				require("copilot")
+			end)
+		end,
+	})
+	use({
+		"zbirenbaum/copilot-cmp",
+		after = { "copilot.lua", "nvim-cmp" },
+	})
 end)
 
 -- keybinds
