@@ -53,11 +53,25 @@ vim.cmd("set undofile") -- persistent undo
 local Rule = require("nvim-autopairs.rule")
 local npairs = require("nvim-autopairs")
 
-npairs.add_rule(Rule("$", "$", "markdown"))
+-- npairs.add_rule(Rule("$", "$", "markdown"))
 
 -- spell
 -- todo: make spellchecker work well
 map("z=", require("telescope.builtin").spell_suggest)
+
+-- neogen
+map("<localleader>d", require("neogen").generate)
+require("neogen").setup({
+	enabled = true,
+	snippet_engine = "luasnip",
+	languages = {
+		python = {
+			template = {
+				annotation_convention = "numpydoc",
+			},
+		},
+	},
+})
 
 -- copilot
 -- cmd([[ imap <silent><script><expr> <c-f> copilot#Accept("<c-f>") ]])

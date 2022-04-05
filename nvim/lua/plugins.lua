@@ -75,6 +75,11 @@ require("packer").startup(function()
 			require("spellsitter").setup()
 		end,
 	})
+	use({
+		-- todo: setup
+		"danymat/neogen",
+		requires = "nvim-treesitter/nvim-treesitter",
+	})
 	-- use({
 	-- 	-- dim non-current blocks
 	-- 	TODO: toesn't work

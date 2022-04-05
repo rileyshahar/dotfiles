@@ -93,39 +93,40 @@ end
 #     end
 # end
 
-function _handle_cmd_completion_in_inactive_window --on-event fish_postexec -a last_command -d "send a system notification when a command terminates"
+# function _handle_cmd_completion_in_inactive_window --on-event fish_postexec -a last_command -d "send a system notification when a command terminates"
 
-    # store the previous status so we can return it at the end
-    set prev_status $status
+#     # store the previous status so we can return it at the end
+#     set prev_status $status
 
-    if status is-interactive; and test -n "$DISPLAY"; and test $TERM = xterm-kitty
+#     if status is-interactive; and test -n "$DISPLAY"; and test $TERM = xterm-kitty
 
-        set window_number (kitty @ ls | jq .[0].platform_window_id)
-        if test $window_number -ne (xdotool getactivewindow)
+#         set window_number (kitty @ ls | jq .[0].platform_window_id)
+#         if test $window_number -ne (xdotool getactivewindow)
 
-            if test $prev_status = 0
-                set message "Command `$last_command` exited successfully."
-                set urgency 0
-            else
-                set message "Command `$last_command` exited unsuccessfully."
-                set urgency 2
-            end
+#             if test $prev_status = 0
+#                 set message "Command `$last_command` exited successfully."
+#                 set urgency 0
+#             else
+#                 set message "Command `$last_command` exited unsuccessfully."
+#                 set urgency 2
+#             end
 
-            set action (dunstify -u $urgency (string split " " $last_command | head -1) $message --action="default,Switch to Window")
+#             set action (dunstify -u $urgency (string split " " $last_command | head -1) $message --action="default,Switch to Window")
 
-            if test $action = default
-                xdotool windowactivate $window_number
-            end
-        end
-    end
-    return $prev_status
-end
+#             if test $action = default
+#                 xdotool windowactivate $window_number
+#             end
+#         end
+#     end
+#     return $prev_status
+# end
 
 ### ABBREVIATIONS
 abbr -a e $EDITOR
 
 # python
 abbr -a p python
+abbr -a psh poetry shell
 abbr -a pr poetry run
 abbr -a p3 python3
 abbr -a pt poetry run python -m pytest

@@ -158,8 +158,8 @@ call s:set_colors("PmenuThumb", s:fg, s:grey, "")
 call s:set_colors("Question", s:yellow, s:bg, "")
 call s:set_colors("QuickFixLine", s:fg, s:bg, "") " todo
 call s:set_colors("Search", s:bg, s:green, "") " todo
-call s:set_colors("SighColumn", s:fg, s:bg, "")
-call s:set_colors("SignColumn", s:grey, s:dimgrey, "") " todo
+call s:set_colors("SignColumn", s:fg, s:bg, "")
+" call s:set_colors("SignColumn", s:grey, s:dimgrey, "") " todo
 call s:set_colors("SpecialKey", s:grey, s:bg, "")
 call s:set_colors("SpellBad", s:red, s:bg, "underline")
 call s:set_colors("SpellCap", s:yellow, s:bg, "underline")
