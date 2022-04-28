@@ -41,8 +41,7 @@ vim.wo.foldenable = true -- enable folding
 vim.o.foldlevelstart = 1 -- default level to start folding at
 vim.wo.foldmethod = "syntax" -- method to fold on (treesitter?)
 
--- goyo
-map("<leader>z", "<cmd>Goyo<cr>")
+-- mouse
 vim.o.mouse = "a"
 
 -- undo
@@ -50,8 +49,8 @@ vim.cmd("set undofile") -- persistent undo
 
 -- autopairs
 -- todo: fix
-local Rule = require("nvim-autopairs.rule")
-local npairs = require("nvim-autopairs")
+-- local Rule = require("nvim-autopairs.rule")
+-- local npairs = require("nvim-autopairs")
 
 -- npairs.add_rule(Rule("$", "$", "markdown"))
 
