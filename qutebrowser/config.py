@@ -15,6 +15,9 @@ config.set("fonts.default_size", "12pt")
 # adblock
 config.set("content.blocking.method", "both")
 
+# autoplay off
+config.set("content.autoplay", False)
+
 # misc
 # fill password from gnu pass
 config.bind("~", "spawn --userscript password_fill")
@@ -45,8 +48,7 @@ config.bind(
 )
 
 config.set("url.start_pages", "file:///home/riley/dotfiles/startpage/index.html")
-config.set("url.default_page",
-           "file:///home/riley/dotfiles/startpage/index.html")
+config.set("url.default_page", "file:///home/riley/dotfiles/startpage/index.html")
 
 # downloads
 config.set("downloads.location.directory", "$HOME/downloads")
