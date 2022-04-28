@@ -46,6 +46,7 @@ require("packer").startup(function()
 			"f3fora/cmp-spell",
 			"hrsh7th/cmp-path",
 			"ray-x/cmp-treesitter",
+			"lukas-reineke/cmp-under-comparator",
 		},
 	})
 
@@ -83,7 +84,7 @@ require("packer").startup(function()
 	})
 	-- use({
 	-- 	-- dim non-current blocks
-	-- 	TODO: toesn't work
+	-- 	-- TODO: toesn't work
 	-- 	"folke/twilight.nvim",
 	-- 	config = function()
 	-- 		require("twilight").setup({})

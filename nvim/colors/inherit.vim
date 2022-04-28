@@ -222,4 +222,22 @@ call s:set_colors("DiffAdd", s:green, s:bg, "")
 call s:set_colors("DiffChange", s:blue, s:bg, "")
 call s:set_colors("DiffDelete", s:red, s:bg, "")
 
+" cmp
+" TODO: probably more stuff
+" hi! link CmpItemAbbrDeprecated Conceal
+" hi! link CmpItemKindVariable Identifier
+" hi! link CmpItemKindInterface Identifier
+" hi! link CmpItemKindText String
+" hi! link CmpItemKindFunction Function
+" hi! link CmpItemKindMethod Method
+" hi! link CmpItemKindKeyword Keyword
+" hi! link CmpItemKindSnippet Special
+" hi! link CmpItemKindClass Type
+" hi! link CmpItemKindTypeParameter Type
+" hi! link CmpItemKindProperty 
+" hi! link CmpItemKindUnit guibg=NONE guifg=#D4D4D4
+
+" highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
+" highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
+
 " vim: fdm=marker:sw=2:sts=2:et

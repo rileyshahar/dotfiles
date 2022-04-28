@@ -2,6 +2,7 @@ vim.o.completeopt = "menu,menuone,noselect"
 
 local cmp = require("cmp")
 local ls = require("luasnip")
+local compare = cmp.config.compare
 
 -- todo: normal tab doesn't work inside snippet, maybe need to turn off history
 cmp.setup({
@@ -72,11 +73,26 @@ cmp.setup({
 			return vim_item
 		end,
 	},
+	-- TODO: is this order right / what do these all do? (just taken from reddit)
+	sorters = {
+		compare.offset,
+		compare.exact,
+		compare.score,
+		require("cmp-under-comparator").under,
+		compare.recently_used,
+		compare.locality,
+		compare.kind,
+		compare.sort_text,
+		compare.length,
+		compare.order,
+	},
 })
 
 cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
 		{ name = "cmdline" },
+		{ name = "path" },
 	},
 })
 
