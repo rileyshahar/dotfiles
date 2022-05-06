@@ -47,8 +47,13 @@ config.bind(
     "config-cycle statusbar.show always never;; config-cycle tabs.show always never",
 )
 
-config.set("url.start_pages", "file:///home/riley/dotfiles/startpage/index.html")
-config.set("url.default_page", "file:///home/riley/dotfiles/startpage/index.html")
+# start page
+# config.set("url.start_pages", "file:///home/riley/dotfiles/startpage/index.html")
+# config.set("url.default_page", "file:///home/riley/dotfiles/startpage/index.html")
+
+# video
+config.bind(">", "jseval document.querySelector('video').playbackRate += 0.5;")
+config.bind("<", "jseval document.querySelector('video').playbackRate -= 0.5;")
 
 # downloads
 config.set("downloads.location.directory", "$HOME/downloads")
