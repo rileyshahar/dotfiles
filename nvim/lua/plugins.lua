@@ -1,17 +1,3 @@
--- bootstrap packer
-local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-	packer_bootstrap = fn.system({
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		install_path,
-	})
-end
-
 --# selene: allow(undefined_variable)
 require("packer").startup(function()
 	use("wbthomason/packer.nvim")
@@ -23,14 +9,18 @@ require("packer").startup(function()
 	-- misc
 	use({
 		"numToStr/Comment.nvim",
-		config = require("Comment").setup({
-			ignore = "^$",
-		}),
+		config = function()
+			require("Comment").setup({
+				ignore = "^$",
+			})
+		end,
 	})
 	use("tpope/vim-repeat") -- repeat plugin commands
 	use({
 		"windwp/nvim-autopairs",
-		config = require("nvim-autopairs").setup(),
+		config = function()
+			require("nvim-autopairs").setup()
+		end,
 	}) -- autoclose paired characters
 	use("tpope/vim-surround") -- quote manipulation
 	use("tommcdo/vim-exchange") -- exchange text objects
