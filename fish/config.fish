@@ -221,8 +221,10 @@ bind ! bind_bang
 bind '$' bind_dollar
 
 ## sourcing stuff to make useful things work
-status is-login; and pyenv init --path | source
-status is-interactive; and pyenv init - | source
+if type -q pyenv
+    status is-login; and pyenv init --path | source
+    status is-interactive; and pyenv init - | source
+end
 
 ### Start x
 if status is-login
