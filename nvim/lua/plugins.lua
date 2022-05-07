@@ -42,62 +42,12 @@ require("packer").startup(function()
 		end,
 	})
 
-	-- completion
-	use({
-		"hrsh7th/nvim-cmp",
-		requires = {
-			{ "saadparwaiz1/cmp_luasnip", requires = { "L3MON4D3/LuaSnip", "rafamadriz/friendly-snippets" } },
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-cmdline",
-			"petertriho/cmp-git",
-			"f3fora/cmp-spell",
-			"hrsh7th/cmp-path",
-			"ray-x/cmp-treesitter",
-			"lukas-reineke/cmp-under-comparator",
-		},
-	})
-
 	-- buffers
 	use("jose-elias-alvarez/buftabline.nvim")
-
-	-- lsp
-	use("neovim/nvim-lspconfig")
-	use("nvim-lua/lsp_extensions.nvim") -- inlay hints
-	use("ray-x/lsp_signature.nvim") -- signature while typing
-	use("jose-elias-alvarez/null-ls.nvim")
-	use("j-hui/fidget.nvim") -- lsp status indicator
 
 	-- appearance
 	use("ghifarit53/tokyonight-vim")
 	use("ap/vim-css-color")
-
-	-- treesitter
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = function()
-			vim.cmd("TSUpdate")
-		end,
-	})
-	use({
-		"lewis6991/spellsitter.nvim",
-		config = function()
-			require("spellsitter").setup()
-		end,
-	})
-	use({
-		-- todo: setup
-		"danymat/neogen",
-		requires = "nvim-treesitter/nvim-treesitter",
-	})
-	-- use({
-	-- 	-- dim non-current blocks
-	-- 	-- TODO: toesn't work
-	-- 	"folke/twilight.nvim",
-	-- 	config = function()
-	-- 		require("twilight").setup({})
-	-- 	end,
-	-- })
 
 	-- git
 	use("lewis6991/gitsigns.nvim")
@@ -137,21 +87,6 @@ require("packer").startup(function()
 
 	-- just
 	use("NoahTheDuke/vim-just")
-
-	-- copilot
-	use({
-		"zbirenbaum/copilot.lua",
-		event = "InsertEnter",
-		config = function()
-			vim.schedule(function()
-				require("copilot")
-			end)
-		end,
-	})
-	use({
-		"zbirenbaum/copilot-cmp",
-		after = { "copilot.lua", "nvim-cmp" },
-	})
 
 	-- bootstrap
 	if packer_bootstrap then

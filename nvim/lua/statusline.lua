@@ -89,37 +89,8 @@ function process_diagnostics(prefix, n, hl)
 	return out
 end
 
--- from https://github.com/nvim-lua/lsp-status.nvim/blob/master/lua/lsp-status/diagnostics.lua
-local function get_lsp_diagnostics(bufnr)
-	local result = {}
-	local levels = {
-		errors = vim.diagnostic.severity.ERROR,
-		warnings = vim.diagnostic.severity.WARN,
-		info = vim.diagnostic.severity.INFO,
-		hints = vim.diagnostic.severity.HINT,
-	}
-
-	for k, level in pairs(levels) do
-		result[k] = #vim.diagnostic.get(bufnr, { severity = level })
-	end
-
-	return result
-end
-
---[[
-local type_patterns = {"class", "function", "method", "struct", "enum", "interface", "module", "namespace"}
-local function treesitter()
-    local sl = require("nvim-treesitter").statusline {type_patterns = type_patterns}
-    if sl == nil then
-        return ""
-    end
-    return sl:match("(.*)%(")
-    -- return sl:sub(1, sl:match("%("))
-end ]]
-
 -- selene: allow(unused_variable)
 function status_line()
-	local diagnostics = get_lsp_diagnostics()
 	local mode = vim.fn.mode()
 	local mg = get_mode_group(mode)
 	local accent_color = get_mode_group_color(mg)
@@ -127,11 +98,6 @@ function status_line()
 	return table.concat({
 		gen_section(accent_color, { get_mode_group_display_name(mg) }),
 		gen_section(emph_highlight, { is_readonly(), "%t", is_modified() }),
-		gen_section(dark_highlight, {
-			process_diagnostics("E:", diagnostics.errors, "%#LspDiagnosticsDefaultError#"),
-			process_diagnostics("W:", diagnostics.warnings, "%#LspDiagnosticsDefaultWarning#"),
-			process_diagnostics("I:", diagnostics.info, "%#LspDiagnosticsDefaultInformation#"),
-		}),
 		"%=",
 		gen_section(dark_highlight, {
 			vim.b.gitsigns_status,
