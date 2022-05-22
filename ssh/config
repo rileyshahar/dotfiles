@@ -11,3 +11,7 @@ Host me
 Host botc
   User riley
   Hostname 13.78.134.167
+
+Host hopper
+	User riley
+	Hostname 138.68.250.22
