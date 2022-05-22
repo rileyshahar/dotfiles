@@ -58,11 +58,12 @@ local on_attach = function(client, bufnr)
 	lsp_map("<localleader>t", require("lsp_extensions").inlay_hints)
 
 	-- autoformat if we have the capability
-	if client.resolved_capabilities.document_formatting then
+  -- todo: capabilities issue? not formatting at all
+	if client.server_capabilities.documentFormattingProvider then
 		vim.api.nvim_create_augroup("Format", { clear = true })
 		vim.api.nvim_create_autocmd("BufWritePost", {
 			group = "Format",
-			callback = vim.lsp.buf.formatting,
+			callback = function() vim.lsp.buf.format { async = true } end,
 		})
 	end
 end
@@ -102,11 +103,6 @@ nvim_lsp.pylsp.setup({
 			plugins = {
 				pydocstyle = {
 					enabled = true,
-				},
-				pylint = {
-					enabled = true,
-					executable = "pylint",
-					-- args = {'--init-hook="import', "sys;", 'sys.path.append(\'.\')"'}
 				},
 			},
 		},
@@ -181,6 +177,10 @@ local sources = {
 	-- c
 	null_ls.builtins.diagnostics.cppcheck,
 
+	-- python
+  -- using pylint by itself instead of through lsp because the lsp was bugging
+  -- and not running lints at all under poetry virtualenvs
+	null_ls.builtins.diagnostics.pylint,
 	-- null_ls.builtins.code_actions.gitsigns,
 
 	-- generic formatters create annoying format conflicts

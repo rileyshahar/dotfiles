@@ -113,9 +113,6 @@ require("packer").startup(function()
 	-- tex
 	use("lervag/vimtex")
 
-	-- python
-	use({ "heavenshell/vim-pydocstring", run = "make install" })
-
 	-- rust
 	use("mhinz/vim-crates")
 	use("mattn/webapi-vim") -- dependency
