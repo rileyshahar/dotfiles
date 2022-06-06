@@ -63,7 +63,6 @@ require("packer").startup(function()
 
 	-- lsp
 	use("neovim/nvim-lspconfig")
-	use("nvim-lua/lsp_extensions.nvim") -- inlay hints
 	use("ray-x/lsp_signature.nvim") -- signature while typing
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("j-hui/fidget.nvim") -- lsp status indicator

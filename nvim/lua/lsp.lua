@@ -54,9 +54,6 @@ local on_attach = function(client, bufnr)
 		vim.diagnostic.goto_next({ wrap = true, severity = vim.diagnostic.severity.ERROR })
 	end)
 
-	-- rust-anayzer
-	lsp_map("<localleader>t", require("lsp_extensions").inlay_hints)
-
 	-- autoformat if we have the capability
   -- todo: capabilities issue? not formatting at all
 	if client.server_capabilities.documentFormattingProvider then
