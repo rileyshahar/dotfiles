@@ -19,7 +19,7 @@ cmp.setup({
 		{ name = "luasnip" },
 		{ name = "nvim_lsp" },
 		{ name = "treesitter" },
-		-- { name = "copilot" },
+		{ name = "copilot" },
 		{ name = "buffer", keyword_length = 3 },
 		{ name = "path" },
 		{ name = "spell", keyword_length = 3 },
