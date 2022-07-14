@@ -22,7 +22,7 @@ require("packer").startup(function()
 			require("nvim-autopairs").setup()
 		end,
 	}) -- autoclose paired characters
-	use("tpope/vim-surround") -- quote manipulation
+	use("kylechui/nvim-surround") -- quote manipulation
 	use("tommcdo/vim-exchange") -- exchange text objects
 	use("machakann/vim-highlightedyank") -- highlight yanked text
 	use("christoomey/vim-sort-motion") -- sort easily

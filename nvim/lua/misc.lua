@@ -14,6 +14,7 @@ vim.wo.relativenumber = true
 -- filetype support
 vim.o.filetype = "on"
 vim.o.syntax = "on" -- syntax highlighting
+vim.o.do_filetype_lua = true
 
 -- misc
 vim.o.showmatch = true -- highlight matching brackets
@@ -46,6 +47,27 @@ vim.o.mouse = "a"
 
 -- undo
 vim.cmd("set undofile") -- persistent undo
+
+-- surround
+require("nvim-surround").setup({})
+
+-- from https://github.com/kylechui/nvim-surround/discussions/53
+-- automatically insert markdown links
+--
+-- not sure why we can't put this in a ftplugin file; neither `markdown.vim`
+-- nor `markdown.lua` seem to work
+require("nvim-surround").buffer_setup({
+	delimiters = {
+		pairs = {
+			["l"] = function()
+				return {
+					"[",
+					"](" .. string.gmatch(vim.fn.getreg("+"), "[^\n]+")() .. ")",
+				}
+			end,
+		},
+	},
+})
 
 -- autopairs
 -- todo: fix
