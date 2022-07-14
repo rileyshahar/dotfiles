@@ -51,24 +51,6 @@ vim.cmd("set undofile") -- persistent undo
 -- surround
 require("nvim-surround").setup({})
 
--- from https://github.com/kylechui/nvim-surround/discussions/53
--- automatically insert markdown links
---
--- not sure why we can't put this in a ftplugin file; neither `markdown.vim`
--- nor `markdown.lua` seem to work
-require("nvim-surround").buffer_setup({
-	delimiters = {
-		pairs = {
-			["l"] = function()
-				return {
-					"[",
-					"](" .. string.gmatch(vim.fn.getreg("+"), "[^\n]+")() .. ")",
-				}
-			end,
-		},
-	},
-})
-
 -- autopairs
 -- todo: fix
 -- local Rule = require("nvim-autopairs.rule")

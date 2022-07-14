@@ -1,0 +1,38 @@
+name: Release
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10
+
+      - name: Install poetry
+        run: pip install poetry
+
+      - name: Generate lockfile
+        run: poetry lock
+
+      - name: Install nox
+        run: pip install nox nox-poetry
+
+      - name: Run nox
+        run: nox --python 3.10
+
+      - name: Build
+        run: poetry build
+
+      - name: Publish
+        env:
+          PYPI_TOKEN: ${{ '{{ secrets.PYPI_TOKEN }}' }}
+        run: |
+          poetry publish --username __token__ --password $PYPI_TOKEN

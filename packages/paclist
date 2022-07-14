@@ -9,8 +9,8 @@ bluez-utils
 bottom
 brightnessctl
 clang
-cronie
 cppcheck
+cronie
 devour
 discord
 dunst
@@ -51,6 +51,7 @@ procs
 pulseaudio
 pulseaudio-ctl
 pyenv
+python-cookiecutter
 python-pip
 qutebrowser
 r

@@ -1,0 +1,66 @@
+[tool.poetry]
+name = "{{ cookiecutter.name }}"
+version = "{{ cookiecutter.version }}"
+description = "{{ cookiecutter.description }}"
+authors = ["Riley Shahar <riley.shahar@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/nihilistkitten/{{ cookiecutter.name }}"
+repository = "https://github.com/nihilistkitten/{{ cookiecutter.name }}"
+documentation = "https://{{ cookiecutter.name }}.readthedocs.io"
+
+[tool.poetry.dependencies]
+python = "^3.10.0"
+
+[tool.poetry.dev-dependencies]
+black = "^22.6.0"
+codecov = "^2.1.12"
+coverage = {extras = ["toml"], version = "^5.5"}
+flake8 = "^4.0.1"
+flake8-black = "^0.3.3"
+flake8-bugbear = "^22.7.1"
+mypy = "^0.961"
+mypy-ls = "^0.5.1"
+myst-parser = "^0.18.0"
+nox = "^2022.1.7"
+nox-poetry = "^1.0.1"
+pydocstyle = "^6.1.1"
+pylint = "^2.14.4"
+pyls-flake8 = "^0.4.0"
+pyls-isort = "^0.2.2"
+pytest = "^7.1.2"
+pytest-cov = "^3.0.0"
+python-lsp-black = "^1.2.1"
+python-lsp-server = {extras = ["mccabe", "pydocstyle", "flake8"], version = "^1.5.0"}
+sphinx = "^5.0.2"
+sphinx-autodoc-typehints = "^1.18.3"
+sphinx-rtd-theme = "^1.0.0"
+
+[tool.coverage.paths]
+source = ["src", "*/site-packages"]
+
+[tool.coverage.run]
+branch = true
+source = ["{{ cookiecutter.name }}"]
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.mypy]
+mypy_path = "src"
+strict = true
+warn_unused_ignores = false
+
+[tool.pylint.MASTER]
+disable = ["no-else-return"]
+
+[tool.pylint.format]
+max-line-length = 88
+good-names = ["i", "j", "k", "s", "x", "y", "_"]
+
+[tool.pydocstyle]
+convention = "numpy"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

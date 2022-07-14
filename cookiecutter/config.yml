@@ -1,0 +1,2 @@
+cookiecutters_dir: $XDG_CONFIG_HOME/cookiecutter/
+replay_dir: ~$XDG_CACHE_HOME/cookiecutter/

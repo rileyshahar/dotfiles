@@ -25,6 +25,7 @@ set -x DOTFILES_DIR $HOME/dotfiles
 # please respect xdg specs
 set -x ATOMHOME "$XDG_DATA_HOME/atom"
 set -x CARGO_HOME "$XDG_DATA_HOME/cargo"
+set -x COOKIECUTTER_CONFIG "$XDG_CONFIG_HOME/cookiecutter/config.yml"
 set -x GNUPGHOME "$XDG_DATA_HOME/gnupg"
 set -x LESSHISTFILE "$XDG_DATA_HOME/less/history"
 set -x LESSKEY "$XDG_CONFIG_HOME/less/lesskey"
