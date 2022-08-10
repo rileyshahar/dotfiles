@@ -33,14 +33,8 @@ require("packer").startup(function()
 	use("kevinhwang91/nvim-bqf") -- better quickfix keybinds
 	use("https://gitlab.com/yorickpeterse/nvim-pqf.git")
 
-	-- writing
-	use({
-		"junegunn/goyo.vim",
-		-- distraction-free writing
-		config = function()
-			map("<leader>z", "<cmd>Goyo<cr>")
-		end,
-	})
+	-- distraction-free writing
+	use("Pocco81/true-zen.nvim")
 
 	-- completion
 	use({

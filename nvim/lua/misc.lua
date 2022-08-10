@@ -76,6 +76,29 @@ require("neogen").setup({
 	},
 })
 
+-- true zen
+require("true-zen").setup({
+	modes = {
+		ataraxis = {
+			minimum_writing_area = {
+				-- minimum size of main window
+				-- not sure why this needs to be 82 instead of 80
+				width = 82,
+			},
+			quit_untoggles = true, -- type :q or :qa to quit Ataraxis mode
+			padding = { -- padding windows
+				-- lots of padding, min width is the same as the markdown text wrap level
+				left = 1000,
+				right = 1000,
+			},
+		},
+	},
+	-- your config goes here
+	-- or just leave it empty :)
+})
+map(leaders.ui .. "z", "<cmd>TZAtaraxis<cr>")
+map(leaders.ui .. "m", "<cmd>TZMinimalist<cr>")
+
 -- copilot
 -- cmd([[ imap <silent><script><expr> <c-f> copilot#Accept("<c-f>") ]])
 -- vim.g.copilot_no_tab_map = true
