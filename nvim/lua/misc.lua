@@ -6,6 +6,7 @@ map(";", ":") -- don't type shift
 map(";", ":", "v")
 map("\\", ",") -- we remapped , and ;
 map("<c-\\>", ";")
+map("Q", "gqip")
 
 -- line numbering
 vim.wo.number = true

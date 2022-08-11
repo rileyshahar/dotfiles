@@ -22,6 +22,8 @@ function async_run(opt)
 		if status ~= 0 then
 			local message = table.concat(lines, "\\n")
 			vim.cmd('echo "' .. message .. '"')
+		else
+			vim.cmd('echo "made successfully"')
 		end
 	end
 
