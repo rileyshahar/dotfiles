@@ -4,6 +4,8 @@ bind h tabprev
 bind l tabnext
 bind H back
 bind L forward
+bind --mode=input <c-n> focusinput -n 
+bind --mode=input <c-p> focusinput -N 
 
 set editorcmd kitty nvim %f '+normal!%lGzv%c|'
 set smoothscroll true
