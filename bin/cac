@@ -3,10 +3,9 @@
 # cac: adjust colorschemes automatically
 
 import argparse
-import os
 import json
+import os
 from math import ceil
-
 
 START_MARKER = "__cac:start"
 END_MARKER = "__cac:end"
@@ -180,6 +179,7 @@ class Kitty(ColorFormatter):
     config_file = CONFIG_HOME + "/kitty/kitty.conf"
     color_names = NUMBERED_COLOR_NAMES
 
+
 class XResources(ColorFormatter):
 
     color_fmt = "*{name}: #{col_hex}"
@@ -285,7 +285,6 @@ class QuteBrowser(ColorFormatter):
 
 
 class Tmux(ColorFormatter):
-
     color_fmt = '{name}="#{col_hex}"'
     config_file = CONFIG_HOME + "/tmux/tmux.conf"
     color_names = INTERNAL_COLOR_NAMES
@@ -301,7 +300,6 @@ class Dunst(ColorFormatter):
         os.system(f"bash {CONFIG_HOME}/dunst/gendunstrc")
 
 
-
 class Zathura(ColorFormatter):
     color_fmt = '{name}="#{col_hex}"'
     config_file = CONFIG_HOME + "/zathura/genzathurarc"
@@ -310,3 +308,9 @@ class Zathura(ColorFormatter):
     @classmethod
     def post_format_hook(cls):
         os.system(f"bash {CONFIG_HOME}/zathura/genzathurarc")
+
+
+class Trydactyl(ColorFormatter):
+    color_fmt = "  --{name}: #{col_hex};"
+    config_file = CONFIG_HOME + "/tridactyl/themes/cac.css"
+    color_names = INTERNAL_COLOR_NAMES

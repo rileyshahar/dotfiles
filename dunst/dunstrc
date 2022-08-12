@@ -60,7 +60,7 @@
 
   ### Misc/Advanced ###
   dmenu = /usr/bin/dmenu dunst:
-  browser = qutebrowser
+  browser = firefox
   always_run_script = true
   title = Dunst
   class = Dunst
