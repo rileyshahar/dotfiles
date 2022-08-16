@@ -128,21 +128,6 @@ require("packer").startup(function()
 	-- just
 	use("NoahTheDuke/vim-just")
 
-	-- copilot
-	use({
-		"zbirenbaum/copilot.lua",
-		event = { "VimEnter" },
-		config = function()
-			vim.defer_fn(function()
-				require("copilot").setup()
-			end, 100)
-		end,
-	})
-	use({
-		"zbirenbaum/copilot-cmp",
-		after = { "copilot.lua", "nvim-cmp" },
-	})
-
 	-- bootstrap
 	if packer_bootstrap then
 		require("packer").sync()
