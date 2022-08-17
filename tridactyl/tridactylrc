@@ -9,3 +9,7 @@ bind --mode=input <c-p> focusinput -N
 
 set editorcmd kitty nvim %f '+normal!%lGzv%c|'
 set smoothscroll true
+
+set searchurls.r https://www.reddit.com/r/%s
+set searchurls.yt https://www.youtube.com/results?search_query=%s
+set searchurls.wiki https://en.wikipedia.org/wiki/%s
