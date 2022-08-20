@@ -1,0 +1,5 @@
+nnoremap "i" "\"
+nnoremap "Ir" "ir"
+nnoremap "Ic" "ic"
+
+set truncate
