@@ -127,10 +127,12 @@ abbr -a e $EDITOR
 
 # python
 abbr -a p python
+abbr -a po poetry
 abbr -a psh poetry shell
 abbr -a pr poetry run
 abbr -a p3 python3
 abbr -a pt poetry run python -m pytest
+abbr -a pn poetry run nox
 
 # cargo
 abbr -a c cargo
