@@ -128,6 +128,14 @@ require("packer").startup(function()
 	-- just
 	use("NoahTheDuke/vim-just")
 
+	-- mtg
+	use({
+		"yoshi1123/vim-mtg",
+		config = function()
+			vim.g.mtg_preview_show_price = true
+		end,
+	})
+
 	-- bootstrap
 	if packer_bootstrap then
 		require("packer").sync()
