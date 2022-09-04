@@ -1,4 +1,5 @@
 #!/bin/bash
 
 feh --bg-scale $DOTFILES_DIR/wallpaper.jpg
+xmodmap $XDG_CONFIG_HOME/X11/xmodmap
 launch-polybar
