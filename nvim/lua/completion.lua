@@ -15,6 +15,7 @@ cmp.setup({
 		ghost_text = { hl_group = "Conceal" },
 	},
 	sources = {
+		{ name = "neorg" },
 		{ name = "cmp_git" },
 		{ name = "luasnip" },
 		{ name = "nvim_lsp" },

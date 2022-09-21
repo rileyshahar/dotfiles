@@ -61,6 +61,16 @@ require("packer").startup(function()
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("j-hui/fidget.nvim") -- lsp status indicator
 
+	-- neorg
+	use({
+		"nvim-neorg/neorg",
+		tag = "*",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+	})
+
 	-- appearance
 	use("ghifarit53/tokyonight-vim")
 	use("ap/vim-css-color")
