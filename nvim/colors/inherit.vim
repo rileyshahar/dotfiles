@@ -222,6 +222,10 @@ call s:set_colors("DiffAdd", s:green, s:bg, "")
 call s:set_colors("DiffChange", s:blue, s:bg, "")
 call s:set_colors("DiffDelete", s:red, s:bg, "")
 
+" neorg
+hi! link @neorg.markup.inline_comment Comment
+hi! link @neorg.markup.inline_comment.delimiter Comment
+
 " cmp
 " TODO: probably more stuff
 " hi! link CmpItemAbbrDeprecated Conceal

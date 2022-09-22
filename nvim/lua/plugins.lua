@@ -81,6 +81,7 @@ require("packer").startup(function()
 		run = function()
 			vim.cmd("TSUpdate")
 		end,
+		-- commit = "088dfbc5",
 	})
 	use({
 		"lewis6991/spellsitter.nvim",
@@ -91,6 +92,10 @@ require("packer").startup(function()
 	use({
 		-- todo: setup
 		"danymat/neogen",
+		requires = "nvim-treesitter/nvim-treesitter",
+	})
+	use({
+		"nvim-treesitter/playground",
 		requires = "nvim-treesitter/nvim-treesitter",
 	})
 	-- use({
