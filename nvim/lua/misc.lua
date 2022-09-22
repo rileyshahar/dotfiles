@@ -52,6 +52,24 @@ vim.cmd("set undofile") -- persistent undo
 -- surround
 require("nvim-surround").setup({})
 
+-- substitute
+require("substitute").setup()
+
+-- -- register replace TODO: do we like this
+-- map("<leader>s", require("substitute").operator)
+-- map("<leader>ss", require("substitute").line)
+-- map("<leader>S", require("substitute").eol)
+-- map("<leader>s", require("substitute").visual, "x")
+
+-- exchange
+map("cx", require("substitute.exchange").operator)
+map("cxx", require("substitute.exchange").line)
+map("X", require("substitute.exchange").visual, "x")
+map("cxc", require("substitute.exchange").cancel)
+
+-- pounce
+map("s", "<cmd>Pounce<cr>")
+
 -- autopairs
 -- todo: fix
 -- local Rule = require("nvim-autopairs.rule")

@@ -23,11 +23,11 @@ require("packer").startup(function()
 		end,
 	}) -- autoclose paired characters
 	use("kylechui/nvim-surround") -- quote manipulation
-	use("tommcdo/vim-exchange") -- exchange text objects
+	use("gbprod/substitute.nvim") -- exchange plugin
 	use("machakann/vim-highlightedyank") -- highlight yanked text
-	use("christoomey/vim-sort-motion") -- sort easily
 	use({ "knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty/" }) -- kitty/vim window keybinds
 	use("rcarriga/nvim-notify") -- notification ui
+	use("rlane/pounce.nvim") -- motion plugin
 
 	-- quickfix
 	use("kevinhwang91/nvim-bqf") -- better quickfix keybinds
