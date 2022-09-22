@@ -55,17 +55,20 @@ require("nvim-surround").setup({})
 -- substitute
 require("substitute").setup()
 
--- register replace TODO: do we like this
-map("s", "<cmd>lua require('substitute').operator()<cr>")
-map("ss", "<cmd>lua require('substitute').line()<cr>")
-map("S", "<cmd>lua require('substitute').eol()<cr>")
-map("s", "<cmd>lua require('substitute').visual()<cr>", "x")
+-- -- register replace TODO: do we like this
+-- map("<leader>s", require("substitute").operator)
+-- map("<leader>ss", require("substitute").line)
+-- map("<leader>S", require("substitute").eol)
+-- map("<leader>s", require("substitute").visual, "x")
 
 -- exchange
-map("cx", "<cmd>lua require('substitute.exchange').operator()<cr>")
-map("cxx", "<cmd>lua require('substitute.exchange').line()<cr>")
-map("X", "<cmd>lua require('substitute.exchange').visual()<cr>", "x")
-map("cxc", "<cmd>lua require('substitute.exchange').cancel()<cr>")
+map("cx", require("substitute.exchange").operator)
+map("cxx", require("substitute.exchange").line)
+map("X", require("substitute.exchange").visual, "x")
+map("cxc", require("substitute.exchange").cancel)
+
+-- pounce
+map("s", "<cmd>Pounce<cr>")
 
 -- autopairs
 -- todo: fix
