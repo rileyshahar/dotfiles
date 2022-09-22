@@ -52,6 +52,21 @@ vim.cmd("set undofile") -- persistent undo
 -- surround
 require("nvim-surround").setup({})
 
+-- substitute
+require("substitute").setup()
+
+-- register replace TODO: do we like this
+map("s", "<cmd>lua require('substitute').operator()<cr>")
+map("ss", "<cmd>lua require('substitute').line()<cr>")
+map("S", "<cmd>lua require('substitute').eol()<cr>")
+map("s", "<cmd>lua require('substitute').visual()<cr>", "x")
+
+-- exchange
+map("cx", "<cmd>lua require('substitute.exchange').operator()<cr>")
+map("cxx", "<cmd>lua require('substitute.exchange').line()<cr>")
+map("X", "<cmd>lua require('substitute.exchange').visual()<cr>", "x")
+map("cxc", "<cmd>lua require('substitute.exchange').cancel()<cr>")
+
 -- autopairs
 -- todo: fix
 -- local Rule = require("nvim-autopairs.rule")

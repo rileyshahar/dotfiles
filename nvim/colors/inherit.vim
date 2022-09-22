@@ -222,9 +222,11 @@ call s:set_colors("DiffAdd", s:green, s:bg, "")
 call s:set_colors("DiffChange", s:blue, s:bg, "")
 call s:set_colors("DiffDelete", s:red, s:bg, "")
 
-" neorg
+" plugins
 hi! link @neorg.markup.inline_comment Comment
 hi! link @neorg.markup.inline_comment.delimiter Comment
+
+hi! link SubstituteExchange Visual
 
 " cmp
 " TODO: probably more stuff
