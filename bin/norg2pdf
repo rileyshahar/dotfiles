@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+neorg-pandoc "$1" | pandoc -d default -f json -o "$2"

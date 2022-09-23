@@ -68,7 +68,7 @@ map("X", require("substitute.exchange").visual, "x")
 map("cxc", require("substitute.exchange").cancel)
 
 -- pounce
-map("s", "<cmd>Pounce<cr>")
+map("<leader><leader>", "<cmd>Pounce<cr>")
 
 -- autopairs
 -- todo: fix
