@@ -5,8 +5,10 @@ require("packer").startup(function()
 	-- prereqs
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
+	use("tpope/vim-repeat") -- repeat plugin commands
+	use("rcarriga/nvim-notify") -- notification ui
 
-	-- misc
+	-- comment
 	use({
 		"numToStr/Comment.nvim",
 		config = function()
@@ -15,7 +17,8 @@ require("packer").startup(function()
 			})
 		end,
 	})
-	use("tpope/vim-repeat") -- repeat plugin commands
+
+	-- pairs
 	use({
 		"windwp/nvim-autopairs",
 		config = function()
@@ -23,12 +26,18 @@ require("packer").startup(function()
 		end,
 	}) -- autoclose paired characters
 	use("kylechui/nvim-surround") -- quote manipulation
+
+	-- editing
 	use("gbprod/substitute.nvim") -- exchange plugin
 	use("machakann/vim-highlightedyank") -- highlight yanked text
-	use({ "knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty/" }) -- kitty/vim window keybinds
-	use("rcarriga/nvim-notify") -- notification ui
-	use("rlane/pounce.nvim") -- motion plugin
 	use("monaqa/dial.nvim") -- increment/decrement
+
+	-- navigation/movement
+	use({ "knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty/" }) -- kitty/vim window keybinds
+	use("rlane/pounce.nvim") -- motion plugin
+	use("chaoren/vim-wordmotion") -- snake case word
+
+	-- fs
 	use("elihunter173/dirbuf.nvim") -- directory buffer
 
 	-- quickfix
