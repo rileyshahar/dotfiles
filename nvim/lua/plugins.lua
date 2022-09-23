@@ -28,6 +28,7 @@ require("packer").startup(function()
 	use({ "knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty/" }) -- kitty/vim window keybinds
 	use("rcarriga/nvim-notify") -- notification ui
 	use("rlane/pounce.nvim") -- motion plugin
+	use("monaqa/dial.nvim") -- increment/decrement
 
 	-- quickfix
 	use("kevinhwang91/nvim-bqf") -- better quickfix keybinds

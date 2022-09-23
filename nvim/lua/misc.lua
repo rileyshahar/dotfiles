@@ -52,16 +52,8 @@ vim.cmd("set undofile") -- persistent undo
 -- surround
 require("nvim-surround").setup({})
 
--- substitute
-require("substitute").setup()
-
--- -- register replace TODO: do we like this
--- map("<leader>s", require("substitute").operator)
--- map("<leader>ss", require("substitute").line)
--- map("<leader>S", require("substitute").eol)
--- map("<leader>s", require("substitute").visual, "x")
-
 -- exchange
+require("substitute").setup()
 map("cx", require("substitute.exchange").operator)
 map("cxx", require("substitute.exchange").line)
 map("X", require("substitute.exchange").visual, "x")
@@ -70,12 +62,13 @@ map("cxc", require("substitute.exchange").cancel)
 -- pounce
 map("<leader><leader>", "<cmd>Pounce<cr>")
 
--- autopairs
--- todo: fix
--- local Rule = require("nvim-autopairs.rule")
--- local npairs = require("nvim-autopairs")
-
--- npairs.add_rule(Rule("$", "$", "markdown"))
+-- dial
+map("<c-a>", require("dial.map").inc_normal())
+map("<c-x>", require("dial.map").dec_normal())
+map("<c-a>", require("dial.map").inc_visual(), "v")
+map("<c-x>", require("dial.map").dec_visual(), "v")
+map("g<c-a>", require("dial.map").inc_gvisual(), "v")
+map("g<c-x>", require("dial.map").dec_gvisual(), "v")
 
 -- spell
 -- todo: make spellchecker work well
