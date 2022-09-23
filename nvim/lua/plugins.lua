@@ -29,6 +29,7 @@ require("packer").startup(function()
 	use("rcarriga/nvim-notify") -- notification ui
 	use("rlane/pounce.nvim") -- motion plugin
 	use("monaqa/dial.nvim") -- increment/decrement
+	use("elihunter173/dirbuf.nvim") -- directory buffer
 
 	-- quickfix
 	use("kevinhwang91/nvim-bqf") -- better quickfix keybinds
@@ -55,6 +56,7 @@ require("packer").startup(function()
 
 	-- buffers
 	use("jose-elias-alvarez/buftabline.nvim")
+	use("ojroques/nvim-bufdel") -- delete
 
 	-- lsp
 	use("neovim/nvim-lspconfig")
