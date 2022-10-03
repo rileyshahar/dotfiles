@@ -155,7 +155,7 @@ local null_ls = require("null-ls")
 -- register any number of sources simultaneously
 local sources = {
 	-- js
-	null_ls.builtins.formatting.prettier,
+	-- null_ls.builtins.formatting.prettier,
 
 	-- shell
 	null_ls.builtins.formatting.fish_indent,
