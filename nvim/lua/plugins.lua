@@ -84,7 +84,6 @@ require("packer").startup(function()
 	})
 
 	-- appearance
-	use("ghifarit53/tokyonight-vim")
 	use("ap/vim-css-color")
 
 	-- treesitter
