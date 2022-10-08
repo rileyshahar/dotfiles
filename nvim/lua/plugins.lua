@@ -8,8 +8,8 @@ require("packer").startup(function()
 	use("tpope/vim-repeat") -- repeat plugin commands
 	use("rcarriga/nvim-notify") -- notification ui
 
-	-- comment
 	use({
+		-- comment
 		"numToStr/Comment.nvim",
 		config = function()
 			require("Comment").setup({
@@ -17,24 +17,56 @@ require("packer").startup(function()
 			})
 		end,
 	})
+	use({
+		-- manage todo comments
+		"Folke/todo-comments.nvim",
+		config = function()
+			require("todo-comments").setup()
+			map("]t", require("todo-comments").jump_next)
+			map("[t", require("todo-comments").jump_prev)
+			map(leaders.finder .. "t", "<cmd>TodoTelescope<cr>")
+		end,
+	})
 
 	-- pairs
 	use({
+		-- autoclose paired characters
 		"windwp/nvim-autopairs",
 		config = function()
 			require("nvim-autopairs").setup()
 		end,
-	}) -- autoclose paired characters
-	use("kylechui/nvim-surround") -- quote manipulation
+	})
+	use({
+		-- quote manipulation
+		"kylechui/nvim-surround",
+		config = function()
+			require("nvim-surround").setup()
+		end,
+	})
 
 	-- editing
-	use("gbprod/substitute.nvim") -- exchange plugin
+	use({
+		-- exchange plugin
+		"gbprod/substitute.nvim",
+		config = function()
+			require("substitute").setup()
+			map("cx", require("substitute.exchange").operator)
+			map("cxx", require("substitute.exchange").line)
+			map("X", require("substitute.exchange").visual, "x")
+			map("cxc", require("substitute.exchange").cancel)
+		end,
+	})
 	use("machakann/vim-highlightedyank") -- highlight yanked text
-	use("monaqa/dial.nvim") -- increment/decrement
 
 	-- navigation/movement
 	use({ "knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty/" }) -- kitty/vim window keybinds
-	use("rlane/pounce.nvim") -- motion plugin
+	use({
+		-- motion
+		"rlane/pounce.nvim",
+		config = function()
+			map("<leader><leader>", "<cmd>Pounce<cr>")
+		end,
+	})
 	use("chaoren/vim-wordmotion") -- snake case word
 
 	-- fs
@@ -45,7 +77,30 @@ require("packer").startup(function()
 	use("https://gitlab.com/yorickpeterse/nvim-pqf.git")
 
 	-- distraction-free writing
-	use("Pocco81/true-zen.nvim")
+	use({
+		"Pocco81/true-zen.nvim",
+		config = function()
+			require("true-zen").setup({
+				modes = {
+					ataraxis = {
+						minimum_writing_area = {
+							-- minimum size of main window
+							-- not sure why this needs to be 82 instead of 80
+							width = 82,
+						},
+						quit_untoggles = true, -- type :q or :qa to quit Ataraxis mode
+						padding = { -- padding windows
+							-- lots of padding, min width is the same as the markdown text wrap level
+							left = 1000,
+							right = 1000,
+						},
+					},
+				},
+			})
+			map(leaders.ui .. "z", "<cmd>TZAtaraxis<cr>")
+			map(leaders.ui .. "m", "<cmd>TZMinimalist<cr>")
+		end,
+	})
 
 	-- completion
 	use({
@@ -101,22 +156,28 @@ require("packer").startup(function()
 		end,
 	})
 	use({
-		-- todo: setup
+		-- TODO: setup
 		"danymat/neogen",
 		requires = "nvim-treesitter/nvim-treesitter",
+		config = function()
+			map("<localleader>d", require("neogen").generate)
+			require("neogen").setup({
+				enabled = true,
+				snippet_engine = "luasnip",
+				languages = {
+					python = {
+						template = {
+							annotation_convention = "numpydoc",
+						},
+					},
+				},
+			})
+		end,
 	})
 	use({
 		"nvim-treesitter/playground",
 		requires = "nvim-treesitter/nvim-treesitter",
 	})
-	-- use({
-	-- 	-- dim non-current blocks
-	-- 	-- TODO: toesn't work
-	-- 	"folke/twilight.nvim",
-	-- 	config = function()
-	-- 		require("twilight").setup({})
-	-- 	end,
-	-- })
 
 	-- git
 	use("lewis6991/gitsigns.nvim")
@@ -144,6 +205,14 @@ require("packer").startup(function()
 	-- use("vim-pandoc/vim-pandoc")
 	-- use("vim-pandoc/vim-pandoc-syntax")
 	use("plasticboy/vim-markdown")
+	-- use({
+	-- 	"edluffy/hologram.nvim",
+	-- 	config = function()
+	-- 		require("hologram").setup({
+	-- 			auto_display = true, -- WIP automatic markdown image display, may be prone to breaking
+	-- 		})
+	-- 	end,
+	-- })
 
 	-- fish
 	use("dag/vim-fish")

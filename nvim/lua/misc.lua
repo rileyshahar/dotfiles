@@ -1,4 +1,4 @@
--- todo: reorg this into other files
+-- TODO: reorg this into other files
 
 -- basic keybinds
 map("jk", "<esc>", "i") -- exit insert mode
@@ -13,8 +13,8 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 
 -- filetype support
-vim.o.filetype = "on"
-vim.o.syntax = "on" -- syntax highlighting
+vim.o.filetype = true
+vim.o.syntax = true -- syntax highlighting
 vim.o.do_filetype_lua = true
 
 -- misc
@@ -41,7 +41,10 @@ map("*", [[y/\V<C-R>"<CR>]], "v")
 -- folding
 vim.wo.foldenable = true -- enable folding
 vim.o.foldlevelstart = 1 -- default level to start folding at
-vim.wo.foldmethod = "syntax" -- method to fold on (treesitter?)
+
+-- TODO: do we like treesitter folding
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- mouse
 vim.o.mouse = "a"
@@ -49,64 +52,6 @@ vim.o.mouse = "a"
 -- undo
 vim.cmd("set undofile") -- persistent undo
 
--- surround
-require("nvim-surround").setup({})
-
--- exchange
-require("substitute").setup()
-map("cx", require("substitute.exchange").operator)
-map("cxx", require("substitute.exchange").line)
-map("X", require("substitute.exchange").visual, "x")
-map("cxc", require("substitute.exchange").cancel)
-
--- pounce
-map("<leader><leader>", "<cmd>Pounce<cr>")
-
--- dial
-map("<c-a>", require("dial.map").inc_normal())
-map("<c-x>", require("dial.map").dec_normal())
-map("<c-a>", require("dial.map").inc_visual(), "v")
-map("<c-x>", require("dial.map").dec_visual(), "v")
-map("g<c-a>", require("dial.map").inc_gvisual(), "v")
-map("g<c-x>", require("dial.map").dec_gvisual(), "v")
-
 -- spell
--- todo: make spellchecker work well
+-- TODO: make spellchecker work well
 map("z=", require("telescope.builtin").spell_suggest)
-
--- neogen
-map("<localleader>d", require("neogen").generate)
-require("neogen").setup({
-	enabled = true,
-	snippet_engine = "luasnip",
-	languages = {
-		python = {
-			template = {
-				annotation_convention = "numpydoc",
-			},
-		},
-	},
-})
-
--- true zen
-require("true-zen").setup({
-	modes = {
-		ataraxis = {
-			minimum_writing_area = {
-				-- minimum size of main window
-				-- not sure why this needs to be 82 instead of 80
-				width = 82,
-			},
-			quit_untoggles = true, -- type :q or :qa to quit Ataraxis mode
-			padding = { -- padding windows
-				-- lots of padding, min width is the same as the markdown text wrap level
-				left = 1000,
-				right = 1000,
-			},
-		},
-	},
-	-- your config goes here
-	-- or just leave it empty :)
-})
-map(leaders.ui .. "z", "<cmd>TZAtaraxis<cr>")
-map(leaders.ui .. "m", "<cmd>TZMinimalist<cr>")

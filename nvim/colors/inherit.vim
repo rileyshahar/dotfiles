@@ -144,31 +144,31 @@ call s:set_colors("ErrorMsg", s:red, s:none, "underline")
 call s:set_colors("FloatBorder", s:bg, s:bg, "")
 call s:set_colors("FoldColumn", s:grey, s:bg, "")
 call s:set_colors("Folded", s:grey, s:bg, "")
-call s:set_colors("IncSearch", s:black, s:red, "") " todo
+call s:set_colors("IncSearch", s:black, s:red, "") " TODO
 call s:set_colors("LineNr", s:grey, s:bg, "")
-call s:set_colors("MatchParen", s:fg, s:dimblue, "") " todo
+call s:set_colors("MatchParen", s:fg, s:dimblue, "") " TODO
 call s:set_colors("ModeMsg", s:fg, s:bg, "bold")
 call s:set_colors("MoreMsg", s:blue, s:bg, "bold")
 call s:set_colors("NonText", s:grey, s:none, "")
 call s:set_colors("Normal", s:fg, s:bg, "")
 call s:set_colors("Pmenu", s:fg, s:dimgrey, "")
 call s:set_colors("PmenuSbar", s:fg, s:dimgrey, "")
-call s:set_colors("PmenuSel", s:black, s:blue, "") " todo
+call s:set_colors("PmenuSel", s:black, s:blue, "") " TODO
 call s:set_colors("PmenuThumb", s:fg, s:grey, "")
 call s:set_colors("Question", s:yellow, s:bg, "")
-call s:set_colors("QuickFixLine", s:fg, s:bg, "") " todo
-call s:set_colors("Search", s:bg, s:green, "") " todo
+call s:set_colors("QuickFixLine", s:fg, s:bg, "") " TODO
+call s:set_colors("Search", s:bg, s:green, "") " TODO
 call s:set_colors("SignColumn", s:fg, s:bg, "")
-" call s:set_colors("SignColumn", s:grey, s:dimgrey, "") " todo
+" call s:set_colors("SignColumn", s:grey, s:dimgrey, "") " TODO
 call s:set_colors("SpecialKey", s:grey, s:bg, "")
 call s:set_colors("SpellBad", s:red, s:bg, "underline")
 call s:set_colors("SpellCap", s:yellow, s:bg, "underline")
 call s:set_colors("SpellLocal", s:blue, s:bg, "underline")
 call s:set_colors("SpellRare", s:dimmagenta, s:bg, "underline")
-call s:set_colors("Substitute", s:bg, s:red, "") " todo
+call s:set_colors("Substitute", s:bg, s:red, "") " TODO
 call s:set_colors("TabLine", s:grey, s:fg, "")
 call s:set_colors("TabLineFill", s:dimgrey, s:fg, "")
-call s:set_colors("TabLineSel", s:black, s:red, "NONE") " todo
+call s:set_colors("TabLineSel", s:black, s:red, "NONE") " TODO
 call s:set_colors("Title", s:red, s:bg, "bold")
 call s:set_colors("VertSplit", s:bg, s:bg, "")
 call s:set_colors("VertSplit", s:black, s:none, "")
@@ -176,11 +176,11 @@ call s:set_colors("Visual", s:bg, s:dimgrey, "")
 call s:set_colors("VisualNOS", s:bg, s:dimgrey, "underline")
 call s:set_colors("WarningMsg", s:yellow, s:bg, "")
 call s:set_colors("Whitespace", s:grey, s:bg, "")
-call s:set_colors("WildMenu", s:black, s:blue, "") " todo
+call s:set_colors("WildMenu", s:black, s:blue, "") " TODO
 call s:set_colors("WinSeparator", s:bg, s:bg, "")
 
 " statusline
-" todo: there were better colors here, check old commits
+" TODO: there were better colors here, check old commits
 call s:set_colors("StatusLine", s:fg, s:dimgrey, "NONE")
 call s:set_colors("StatusNormal", s:dimgrey, s:dimblue, "")
 call s:set_colors("StatusNop", s:dimgrey, s:dimyellow, "")
@@ -214,7 +214,7 @@ call s:set_colors("Special", s:cyan, s:bg, "")
 call s:set_colors("Delimiter", s:grey, s:bg, "")
 call s:set_colors("Underlined", s:dimblue, s:bg, "underline")
 call s:set_colors("Ignore", s:dimgrey, s:bg, "")
-call s:set_colors("Todo", s:black, s:yellow, "")
+call s:set_colors("TODO", s:black, s:yellow, "")
 hi! link Error     ErrorMsg
 
 " diff

@@ -59,5 +59,4 @@ require("dressing").setup({
 	},
 })
 
--- todo: github cli addon
--- todo: make highlight clearer
+-- TODO: github cli addon

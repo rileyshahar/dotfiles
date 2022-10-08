@@ -27,7 +27,6 @@ local on_attach = function(client, bufnr)
 	lsp_map("<leader>a", vim.lsp.buf.code_action)
 	lsp_map("<leader>a", vim.lsp.buf.range_code_action, "v")
 	lsp_map("<leader>rn", vim.lsp.buf.rename) -- not under capability gate so we get an error if we try to use
-	-- todo: rename in floating window
 
 	-- documentation
 	lsp_map("K", vim.lsp.buf.hover)
@@ -37,7 +36,7 @@ local on_attach = function(client, bufnr)
 	lsp_map(leaders.finder .. "S", telescope.lsp_workspace_symbols)
 	lsp_map(leaders.finder .. "s", telescope.lsp_document_symbols)
 	lsp_map(leaders.finder .. "r", telescope.lsp_references)
-	lsp_map(leaders.finder .. "d", telescope.diagnostics) -- todo: do we want qflist or telescope
+	lsp_map(leaders.finder .. "d", telescope.diagnostics) -- TODO: do we want qflist or telescope
 
 	-- diagnostics
 	lsp_map("<leader>d", vim.diagnostic.open_float)
@@ -55,7 +54,6 @@ local on_attach = function(client, bufnr)
 	end)
 
 	-- autoformat if we have the capability
-  -- todo: capabilities issue? not formatting at all
 	if client.server_capabilities.documentFormattingProvider then
 		vim.api.nvim_create_augroup("Format", { clear = true })
 		vim.api.nvim_create_autocmd("BufWritePost", {
@@ -166,7 +164,7 @@ local sources = {
 	null_ls.builtins.diagnostics.selene.with({
 		cwd = function(_)
 			-- always run from the current directory
-			-- todo: traverse up to selene.toml
+			-- TODO: traverse up to selene.toml
 			return vim.loop.cwd()
 		end,
 	}),
