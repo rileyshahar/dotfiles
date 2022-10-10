@@ -1,12 +1,10 @@
 swipe:
   3:
-    right:
-      update:
-        command: "wmh ws p"
-        interval: 3
     left:
-      update:
-        command: "wmh ws n"
-        interval: 3
+      command: "/home/riley/dotfiles/bin/wmh ws n"
+    right:
+      command: "/home/riley/dotfiles/bin/wmh ws p"
     down:
-      command: "launcher"
+      command: "swaymsg workspace "
+    up:
+      command: "swaymsg workspace "

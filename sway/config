@@ -48,21 +48,17 @@ output "*" bg "$DOTFILES_DIR/wallpaper.jpg" fill
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Input configuration
+# Read `man 5 sway-input` for more information about this section.
 input "type:keyboard" {
     xkb_file $XDG_CONFIG_HOME/sway/keymap.xkb
 }
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
+
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+    click_method clickfinger
+}
 
 ### Key bindings
 #
@@ -88,7 +84,7 @@ input "type:keyboard" {
     floating_modifier $mod normal
 
     # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+r reload
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -120,7 +116,10 @@ input "type:keyboard" {
 # Workspaces:
 #
     # Switch to workspace
-    bindsym $mod+0 workspace number 0
+    bindsym $mod+z workspace 
+    bindsym $mod+x workspace 
+    bindsym $mod+c workspace 
+
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
     bindsym $mod+3 workspace number 3
@@ -132,7 +131,10 @@ input "type:keyboard" {
     bindsym $mod+9 workspace number 9
 
     # Move focused container to workspace
-    bindsym $mod+Shift+0 move container to workspace number 0
+    bindsym $mod+Shift+z move container to workspace 
+    bindsym $mod+Shift+x move container to workspace 
+    bindsym $mod+Shift+c move container to workspace 
+
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
     bindsym $mod+Shift+3 move container to workspace number 3
@@ -142,8 +144,6 @@ input "type:keyboard" {
     bindsym $mod+Shift+7 move container to workspace number 7
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
 
 # Layout stuff:
 #
@@ -169,7 +169,7 @@ input "type:keyboard" {
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
-#
+
 # Scratchpad:
 #
     # Sway has a "scratchpad", which is a bag of holding for windows.
@@ -181,7 +181,7 @@ input "type:keyboard" {
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
-#
+
 # Resizing containers:
 #
 mode "resize" {
@@ -223,5 +223,9 @@ bar {
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
+
+default_border pixel 1
+
+exec wl-paste -t text --watch clipman store --no-persist
 
 include /etc/sway/config.d/*

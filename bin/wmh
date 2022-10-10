@@ -8,43 +8,81 @@ if ! [ -x /usr/bin/wmctrl ]; then
   exit 127
 fi
 
+next() {
+	case $1 in 
+		 )
+			target=""
+			;;
+
+		 )
+			target=""
+			;;
+
+		 )
+			target="1"
+			;;
+
+		* )
+			target=$(($current+1))
+			if (( $target == 10 )); then
+				target=""
+			fi
+			;;
+
+		esac
+
+	echo "$target"
+}
+
+prev() {
+	case $1 in 
+		 )
+			target="9"
+			;;
+
+		 )
+			target=""
+			;;
+
+		 )
+			target=""
+			;;
+
+		* )
+			target=$(($current-1))
+			if (( $target == 0 )); then
+				target=""
+			fi
+			;;
+
+		esac
+
+	echo "$target"
+}
+
 workspace() {
-  total=$(wmctrl -d | wc -l)
-  current=$(wmctrl -d | sed -n 's/^\([0-9]\+\) *\*.*/\1/p')
+	current=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused)' | jq -r '.current_workspace')
+	case $1 in
+		next | n )
+			target=$(next "$current")
+			;;
 
-  if [ -z "$total" ] || [ -z "$current" ]; then
-    echo 1>&2 "$0: Could not obtain workspace information!"
-    exit 1
-  fi
+		previous | prev | p )
+			target=$(prev "$current")
+			;;
 
-  case $1 in
-    next | n )
-      target=$(($current+1))
-      if (( $target == $total )); then
-	target=0
-      fi
-      ;;
+		*)
+			echo 1>&2 "invalid window command: $1"
+			exit 1
+			;;
+	esac
 
-    previous | prev | p )
-      target=$(($current-1))
-      if (( $target < 0 )); then
-	target=$(($total-1))
-      fi
-      ;;
-
-    *)
-      echo 1>&2 "invalid window command: $1"
-      exit 1
-      ;;
-  esac
-
-  wmctrl -s $target
-
+  swaymsg workspace "$target"
 }
 
 case $1 in
   workspace | ws )
-    workspace $2
+    workspace "$2"
     ;;
 
   *)

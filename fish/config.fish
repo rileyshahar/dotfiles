@@ -12,6 +12,8 @@ set -x XDG_DATA_HOME "$HOME/.local/share"
 set -x CPLUS_INCLUDE_PATH /usr/local/include
 set -x CMAKE_EXPORT_COMPILE_COMMANDS true
 
+set -x MOZ_ENABLE_WAYLAND 1
+
 set -x FZF_DEFAULT_COMMAND "rg --files --hidden"
 
 set -x BAT_THEME TwoDark
@@ -232,6 +234,7 @@ end
 ### Start x
 if status is-login
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-        exec startx "$XDG_CONFIG_HOME/X11/xinitrc" -- -keeptty
+        exec sway --unsupported-gpu
+        # exec startx "$XDG_CONFIG_HOME/X11/xinitrc" -- -keeptty
     end
 end

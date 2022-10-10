@@ -1,0 +1,12 @@
+[Unit]
+Description=Fusuma
+
+[Service]
+Type=simple
+Environment="DISPLAY=:0"
+ExecStart=/usr/bin/fusuma
+KillMode=process
+Restart=on-failure
+    
+[Install]
+WantedBy=default.target
