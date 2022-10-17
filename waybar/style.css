@@ -1,0 +1,34 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+
+		background-color: rgba(26, 27, 38, 0.55);
+}
+
+		
+#workspaces button {
+    padding: 0 5px;
+		background-color: rgba(26, 27, 38, 0.55);
+    color: #ffffff;
+    /* Use box-shadow instead of border so the text isn't offset */
+    /* box-shadow: inset 0 -3px transparent; */
+    /* Avoid rounded borders under each workspace name */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+#clock,
+#battery,
+#cpu,
+#pulseaudio
+{
+    padding: 0 10px;
+    color: #ffffff;
+		background-color: rgba(26, 27, 38, 0.55);
+}

@@ -12,6 +12,7 @@ set -x XDG_DATA_HOME "$HOME/.local/share"
 set -x CPLUS_INCLUDE_PATH /usr/local/include
 set -x CMAKE_EXPORT_COMPILE_COMMANDS true
 
+set -x KITTY_ENABLE_WAYLAND 1
 set -x MOZ_ENABLE_WAYLAND 1
 
 set -x FZF_DEFAULT_COMMAND "rg --files --hidden"

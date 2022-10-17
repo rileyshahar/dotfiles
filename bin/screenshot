@@ -6,17 +6,12 @@ if ! [ -x /usr/bin/maim ]; then
   exit 127
 fi
 
-maim_flags="--hidecursor --capturebackground"
-
 # selections
-fullscreen="maim $maim_flags"
-window="maim $maim_flags -s"
-drag_selection="maim $maim_flags -st 9999999"
-
-# modifiers
+fullscreen="grim -"
+drag_selection="grim -g \$(slurp) -"
 
 # outputs
-copy="| xclip -selection clipboard -t image/png"
+copy="| wl-copy"
 save() {
   echo "> $@"
 }
@@ -39,7 +34,6 @@ print_help() {
   echo -e "SELECTIONS"
   echo    "      screenshot supports the following selection methods. Default is f."
   echo    "      f   Capture the full screen."
-  echo    "      w   Click on a window to select it, or drag to make a selection."
   echo -e "      s   Drag to make a selection."\\n
 
   echo -e "MODIFIERS"
@@ -73,7 +67,7 @@ while getopts "hs:m:o:f:" opt; do
 
     m)
       # adds a modifier
-      modifiers+=($OPTARG)
+      modifiers+=("$OPTARG")
       ;;
 
     o)
@@ -84,17 +78,13 @@ while getopts "hs:m:o:f:" opt; do
     f)
       # sets the output filename
       filename=$OPTARG
-  esac
+  ;; esac
 done
 
 
 case "$selection" in
   f|"")
     selection=$fullscreen
-    ;;
-
-  w)
-    selection=$window
     ;;
 
   s)
@@ -115,7 +105,7 @@ case "$output" in
     ;;
 
   s|"")
-    output=$(save $filename)
+    output=$(save "$filename")
     ;;
 
   *)
@@ -126,4 +116,6 @@ case "$output" in
 esac
 
 
+
+echo "$selection ${modifiers[@]} $output"
 eval "$selection ${modifiers[@]} $output"
