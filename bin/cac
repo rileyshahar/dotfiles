@@ -314,3 +314,30 @@ class Trydactyl(ColorFormatter):
     color_fmt = "  --{name}: #{col_hex};"
     config_file = CONFIG_HOME + "/tridactyl/themes/cac.css"
     color_names = INTERNAL_COLOR_NAMES
+
+
+class Waybar(ColorFormatter):
+    color_fmt = "@define-color {name} #{col_hex};"
+    config_file = CONFIG_HOME + "/waybar/style.css"
+    # .css files don't let us use _s in variable names
+    color_names = {
+        key: value.replace("_", "-") for key, value in INTERNAL_COLOR_NAMES.items()
+    }
+
+    # # the background transparency as a percentage
+    # transparency = 80
+
+    # # overridden to allow adding transparency to the background
+    # @classmethod
+    # def process_colorfmt(cls):
+    #     out = ""
+    #     for name, col_hex in colors.items():
+    #         if name == "background":
+    #             # TODO: right now this is just a manual override
+    #             col_hex = "rgba(26, 27, 38, 0.8)"
+    #             fmt = cls.color_fmt.replace("#", "")
+    #         else:
+    #             fmt = cls.color_fmt
+
+    #         out = out + fmt.format(name=cls.color_names[name], col_hex=col_hex) + "\n"
+    #     return out
