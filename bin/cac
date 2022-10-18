@@ -341,3 +341,9 @@ class Waybar(ColorFormatter):
 
     #         out = out + fmt.format(name=cls.color_names[name], col_hex=col_hex) + "\n"
     #     return out
+
+
+# class Hyprland(ColorFormatter):
+#     color_fmt = "${name}=rgb({col_hex})"
+#     config_file = CONFIG_HOME + "/hypr/hyprland.conf"
+#     color_names = INTERNAL_COLOR_NAMES

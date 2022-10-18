@@ -19,9 +19,6 @@
   "sway/workspaces": {
     "all-outputs": true,
   },
-  // "wlr/workspaces": {
-  //     "sort-by-name": true
-  // },
   "cpu": {
     "format": " {usage}%",
     "tooltip": false,
