@@ -59,7 +59,6 @@ require("packer").startup(function()
 	use("machakann/vim-highlightedyank") -- highlight yanked text
 
 	-- navigation/movement
-	use({ "knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty/" }) -- kitty/vim window keybinds
 	use({
 		-- motion
 		"rlane/pounce.nvim",

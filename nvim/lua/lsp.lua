@@ -71,6 +71,7 @@ nvim_lsp.util.default_config = vim.tbl_extend("force", nvim_lsp.util.default_con
 })
 
 vim.diagnostic.config({
+	-- underline = false,
 	virtual_text = false,
 })
 

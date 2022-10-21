@@ -1,0 +1,90 @@
+{
+	"layer": "top",
+	"position": "bottom",
+	"height": 40,
+	"gtk-layer-shell": false,
+	"modules-left": [
+		"sway/workspaces",
+		"cpu",
+		"memory",
+		"battery",
+		"network",
+	],
+	"modules-right": [
+		"pulseaudio",
+		"backlight",
+		"clock#date",
+		"clock#time",
+	],
+	"sway/workspaces": {
+		"all-outputs": true,
+	},
+	"cpu": {
+		"format": " {usage}%",
+		"tooltip": false,
+		"on-click": "floating kitty btm"
+	},
+	"memory": {
+		"format": "徭 {}%"
+	},
+	"battery": {
+		"states": {
+			// "good": 95,
+			"warning": 30,
+			"critical": 10,
+		},
+		"format": "{icon}  {capacity}%",
+		"format-charging": "{icon}  {capacity}%",
+		"format-plugged": "{icon}  {capacity}%",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
+	},
+	"network": {
+		// "interface": "wlp2*", // (Optional) To force the use of this interface
+		"format-wifi": "{icon} {essid}",
+		"format-icons": [
+			" ",
+			"直"
+		],
+		"format-disconnected": "睊Disconnected",
+		"format-alt": "{ifname}: {ipaddr}/{cidr}"
+	},
+	"backlight": {
+		// "device": "acpi_video1",
+		"smooth-scrolling-threshold": 1,
+		"on-scroll-up": "brightnessctl set +5%",
+		"on-scroll-down": "brightnessctl set 5%-",
+	},
+	"pulseaudio": {
+		"smooth-scrolling-threshold": 2,
+		"scroll-step": 5,
+		"format": "{icon} {volume}%",
+		"format-muted": "{icon} 0%",
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": ""
+		},
+		"on-click": "pavucontrol"
+	},
+	"clock#date": {
+		"format": " {:%a %Y-%m-%d}",
+		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+		"interval": 1
+	},
+	"clock#time": {
+		"format": " {:%H:%M:%S}",
+		// "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+		"interval": 1
+	},
+}
+// vim:ft=json cms=//%s

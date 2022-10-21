@@ -1,0 +1,241 @@
+#!/usr/bin/env python
+"""Configuration for river."""
+# pylint:disable=invalid-name
+
+import os
+import subprocess
+from enum import Enum
+from typing import Iterable
+
+# __cac:start
+BACKGROUND = "0x1a1b26"
+FOREGROUND = "0xa9b1d6"
+DIM_BLACK = "0x06080a"
+DIM_RED = "0xe06c75"
+DIM_GREEN = "0x98c379"
+DIM_YELLOW = "0xd19a66"
+DIM_BLUE = "0x7aa2f7"
+DIM_MAGENTA = "0xad8ee6"
+DIM_CYAN = "0x56bdb8"
+DIM_WHITE = "0x545a75"
+BRIGHT_BLACK = "0x24283b"
+BRIGHT_RED = "0xf7768e"
+BRIGHT_GREEN = "0x9ece6a"
+BRIGHT_YELLOW = "0xe0af68"
+BRIGHT_BLUE = "0x61afef"
+BRIGHT_MAGENTA = "0xf6bdff"
+BRIGHT_CYAN = "0x50c3bd"
+BRIGHT_WHITE = "0xa9b1d6"
+# __cac:end
+
+TERM = "kitty"
+BROWSER = "firefox"
+LAUNCHER = "launcher"
+
+WALLPAPER = os.environ.get("DOTFILES_DIR") + "/wallpaper.jpg"
+
+APPS = {"Return": TERM, "Apostrophe": BROWSER, "Space": LAUNCHER}
+BINDS = {
+    # stack manipulation
+    "h": "zoom",
+    "j": "focus-view next",
+    "k": "focus-view previous",
+    "J": "swap next",
+    "K": "swap previous",
+    # layout commands
+    "H": 'send-layout-cmd rivertile "main-ratio +0.05"',
+    "L": 'send-layout-cmd rivertile "main-ratio -0.05"',
+    # basics
+    "Q": "close",
+}
+
+LAYOUT = "rivertile"
+LAYOUT_OPTS = "-outer-padding 0 -view-padding 0"
+
+DAEMONS = (f"{LAYOUT} {LAYOUT_OPTS}", "waybar", f"wbg {WALLPAPER}")
+
+
+class Tag(Enum):
+    """Tags are similar to workspaces but more flexible. You can assign views
+    multiple tags and focus multiple tags simultaneously. Bitfields are used to
+    describe sets of tags when interfacing with river. As such, the following
+    commands take a normal base 10 number as their argument but the semantics
+    are best understood in binary. The binary number 000000001 represents a set
+    containing only tag 1 while 100001101 repre‐ sents a set containing tags 1,
+    3, 4, and 9.
+
+    There are 32 total tags.
+    """
+
+    # Numbered Tags
+    One = 3
+    Two = 4
+    Three = 5
+    Four = 6
+    Five = 7
+    Six = 8
+    Seven = 9
+    Eight = 10
+    Nine = 11
+    Zero = 12
+
+    # App Tags
+    Term = 0
+    Browser = 1
+    Chat = 2
+
+    def bitmask(self) -> int:
+        """Get the bitmask for just this tag."""
+        return 2**self.value
+
+    def do_binds(self, key: str) -> None:
+        """Implement the keymaps for a single tag."""
+        bitmask = str(self.bitmask())
+        # use mod+key to set focus to just that tag
+        bind(key, "set-focused-tags " + bitmask)
+
+        # use mod+shift+key to assign the currently focused item to just that tag
+        bind(key, "set-view-tags " + bitmask, modifiers=(MOD, Modifier.Shift))
+
+        # use mod+ctrl+key to toggle focus of that tag
+        bind(key, "toggle-focused-tags " + bitmask, modifiers=(MOD, Modifier.Control))
+
+        # use mod+shift+ctrl+key to toggle focus of that tag
+        bind(
+            key,
+            "toggle-view-tags " + bitmask,
+            modifiers=(MOD, Modifier.Control, Modifier.Shift),
+        )
+
+
+TAG_KEYS = {
+    "1": Tag.One,
+    "2": Tag.Two,
+    "3": Tag.Three,
+    "4": Tag.Four,
+    "5": Tag.Five,
+    "6": Tag.Six,
+    "7": Tag.Seven,
+    "8": Tag.Eight,
+    "9": Tag.Nine,
+    "0": Tag.Zero,
+    "z": Tag.Term,
+    "x": Tag.Browser,
+    "c": Tag.Chat,
+}
+
+
+class Mode(Enum):
+    """The mapping modes.
+
+    Mappings are modal in river. Each mapping is associated with a mode and
+    is only active while in that mode. There are two special modes: "normal"
+    and "locked". The normal mode is the initial mode on startup. The locked
+    mode is automatically entered while an input inhibitor (such as a
+    lockscreen) is active. It cannot be entered or exited manually.
+    """
+
+    Normal = "normal"
+    Locked = "locked"
+
+
+class Modifier(Enum):
+    """The following modifiers are available for use in mappings:
+    - Shift
+    - Lock
+    - Control
+    - Mod1 (Alt)
+    - Mod2
+    - Mod3
+    - Mod4 (Super)
+    - Mod5
+    - None
+    """
+
+    Shift = "Shift"
+    Lock = "Lock"
+    Control = "Control"
+    Alt = "Alt"
+    Mod2 = "Mod2"
+    Mod3 = "Mod3"
+    Super = "Super"
+    Mod5 = "Mod5"
+    Empty = "None"
+
+
+MOD = Modifier.Super
+
+
+def run(command: str) -> None:
+    """Run the command."""
+    subprocess.run(command.split(" "), check=True)
+
+
+def riverctl(command: str) -> None:
+    """Run the command with riverctl."""
+    run("riverctl " + command)
+
+
+def bind(
+    key: str,
+    command: str,
+    release=False,
+    repeat=False,
+    mode=Mode.Normal,
+    modifiers: Iterable[Modifier] = (MOD,),
+):
+    """Run command when key is pressed while modifiers are down in mode."""
+    if release and repeat:
+        raise ValueError("cannot set release and repeat in a mapping")
+
+    mods = "+".join(modifier.value for modifier in modifiers)
+    cmd = f"map {mode.value} {mods} {key} {command}"
+
+    if key == "q":
+        print(cmd)
+
+    if release:
+        cmd += " -release"
+
+    if repeat:
+        cmd += " -repeat"
+
+    riverctl(cmd)
+
+
+def main():
+    # main binds
+    for key, command in BINDS.items():
+        modifiers = [MOD]
+        if len(key) == 1 and key.isupper():
+            key = key.lower()
+            modifiers.append(Modifier.Shift)
+
+        bind(key, command, modifiers=modifiers)
+
+    # app binds
+    for key, app in APPS.items():
+        bind(key, f'spawn "{app}"')
+
+    # tag binds
+    for key, tag in TAG_KEYS.items():
+        tag.do_binds(key)
+
+    # spawn initial commands
+    for daemon in DAEMONS:
+        subprocess.Popen(daemon.split(" "))
+
+    # set default layout
+    riverctl(f"default-layout {LAYOUT}")
+
+    # set natural scroll
+    riverctl("input 1267:12572:DLL0945:00_04F3:311C_Touchpad natural-scroll enable")
+
+    # no borders
+    riverctl("border-width 0")
+
+    # opacity
+
+
+if __name__ == "__main__":
+    main()

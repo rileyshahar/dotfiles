@@ -1,0 +1,4 @@
+-- cabal.project
+
+packages:
+  xmonad.cabal

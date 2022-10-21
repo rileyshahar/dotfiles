@@ -1,0 +1,95 @@
+name: Stack
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: Stack CI - Linux - ${{ matrix.resolver }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - resolver: lts-12
+            ghc: 8.4.4
+          - resolver: lts-14
+            ghc: 8.6.5
+          - resolver: lts-16
+            ghc: 8.8.4
+          - resolver: lts-17
+            ghc: 8.10.4
+          - resolver: lts-18
+            ghc: 8.10.7
+
+    steps:
+      - name: Clone project
+        uses: actions/checkout@v2
+
+      - name: Prepare apt sources
+        run: |
+          set -ex
+          sudo add-apt-repository -y ppa:hvr/ghc
+          sudo apt update -y
+
+      - name: Install C dependencies
+        run: |
+          set -ex
+          sudo apt install -y \
+            libx11-dev \
+            libxext-dev \
+            libxinerama-dev \
+            libxrandr-dev \
+            libxss-dev \
+            #
+
+      - name: Install GHC
+        # use system ghc (if available) in stack, don't waste GH Actions cache space
+        continue-on-error: true
+        run: |
+          set -ex
+          sudo apt install -y ghc-${{ matrix.ghc }}
+          echo /opt/ghc/${{ matrix.ghc }}/bin >> $GITHUB_PATH
+
+      - name: Refresh caches once a month
+        id: cache-date
+        # GHA writes caches on the first miss and then never updates them again;
+        # force updating the cache at least once a month
+        run: |
+          echo "::set-output name=date::$(date +%Y-%m)"
+
+      - name: Cache Haskell package metadata
+        uses: actions/cache@v2
+        with:
+          path: ~/.stack/pantry
+          key: stack-pantry-${{ runner.os }}-${{ steps.cache-date.outputs.date }}
+          restore-keys: |
+            stack-pantry-${{ runner.os }}-
+
+      - name: Cache Haskell dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.stack/*
+            !~/.stack/pantry
+            !~/.stack/programs
+          key: stack-${{ runner.os }}-${{ matrix.resolver }}-${{ steps.cache-date.outputs.date }}-${{ hashFiles('stack.yaml') }}-${{ hashFiles('*.cabal') }}
+          restore-keys: |
+            stack-${{ runner.os }}-${{ matrix.resolver }}-${{ steps.cache-date.outputs.date }}-${{ hashFiles('stack.yaml') }}-
+            stack-${{ runner.os }}-${{ matrix.resolver }}-${{ steps.cache-date.outputs.date }}-
+            stack-${{ runner.os }}-${{ matrix.resolver }}-
+
+      - name: Update hackage index
+        # always update index to prevent the shared ~/.stack/pantry cache from being empty
+        run: |
+          set -ex
+          stack update
+
+      - name: Build and test
+        run: |
+          set -ex
+          stack test \
+            --fast --no-terminal \
+            --resolver=${{ matrix.resolver }} --system-ghc \
+            --flag=xmonad:pedantic

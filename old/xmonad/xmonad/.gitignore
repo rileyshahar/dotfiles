@@ -1,0 +1,29 @@
+.hpc/
+*.hi
+*.o
+*.p_hi
+*.prof
+*.tix
+
+# editor temp files
+
+*#
+.#*
+*~
+.*.swp
+
+# TAGS files
+TAGS
+tags
+
+# stack artifacts
+/.stack-work/
+
+# cabal-install artifacts
+/.*.environment.*-*
+/.cabal-sandbox/
+/cabal.config
+/cabal.project.local
+/cabal.sandbox.config
+/dist-newstyle/
+/dist/

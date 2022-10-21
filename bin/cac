@@ -343,7 +343,26 @@ class Waybar(ColorFormatter):
     #     return out
 
 
-# class Hyprland(ColorFormatter):
-#     color_fmt = "${name}=rgb({col_hex})"
-#     config_file = CONFIG_HOME + "/hypr/hyprland.conf"
-#     color_names = INTERNAL_COLOR_NAMES
+class Foot(ColorFormatter):
+    color_fmt = "{name}={col_hex}"
+    config_file = CONFIG_HOME + "/foot/foot.ini"
+    color_names = {
+        "background": "background",
+        "foreground": "foreground",
+        "dim_black": "regular0",
+        "dim_red": "regular1",
+        "dim_green": "regular2",
+        "dim_yellow": "regular3",
+        "dim_blue": "regular4",
+        "dim_magenta": "regular5",
+        "dim_cyan": "regular6",
+        "dim_white": "regular7",
+        "bright_black": "bright0",
+        "bright_red": "bright1",
+        "bright_green": "bright2",
+        "bright_yellow": "bright3",
+        "bright_blue": "bright4",
+        "bright_magenta": "bright5",
+        "bright_cyan": "bright6",
+        "bright_white": "bright7",
+    }

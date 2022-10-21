@@ -1,0 +1,209 @@
+### Variables
+
+# logo key
+set $mod Mod4
+
+# home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $term kitty -o allow_remote_control=yes --single-instance --listen-on unix:@mykitty
+set $menu launcher
+set $browser firefox
+
+### UI
+output "*" bg "$DOTFILES_DIR/wallpaper.jpg" fill
+
+set $opacity 0.8
+for_window [app_id="kitty"] opacity $opacity
+for_window [app_id="zathura"] opacity $opacity
+
+### Input configuration
+# Read `man 5 sway-input` for more information about this section.
+input "type:keyboard" {
+    xkb_file $XDG_CONFIG_HOME/sway/keymap.xkb
+}
+
+input type:touchpad {
+    tap disabled
+    natural_scroll enabled
+    middle_emulation enabled
+    click_method clickfinger
+}
+
+### Key bindings
+
+## Apps
+# Start a terminal
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+Return exec "floating kitty"
+
+# Start a browser
+bindsym $mod+apostrophe exec $BROWSER
+
+## Kill focused window
+bindsym $mod+Shift+q kill
+
+## Start the launcher
+bindsym $mod+space exec $menu
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
+# Reload the configuration file
+bindsym $mod+Shift+r reload
+
+# Moving around:
+#
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# Workspaces:
+#
+# Switch to workspace
+bindsym $mod+z workspace 
+bindsym $mod+x workspace 
+bindsym $mod+c workspace 
+
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+
+# Move focused container to workspace
+bindsym $mod+Shift+z move container to workspace 
+bindsym $mod+Shift+x move container to workspace 
+bindsym $mod+Shift+c move container to workspace 
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+
+# Layout stuff:
+#
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+# Switch the current container between different layout styles
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+colon focus mode_toggle
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+
+# Scratchpad:
+#
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+# audio
+bindsym XF86AudioMute exec pulseaudio-ctl mute
+bindsym xF86AudioLowerVolume exec pulseaudio-ctl down
+bindsym xF86AudioRaiseVolume exec pulseaudio-ctl up
+bindsym xF86AudioPlay exec playerctl play-pause
+bindsym xF86AudioNext exec playerctl next
+bindsym xF86AudioPrev exec playerctl previous
+
+# brightness
+bindsym xF86MonBrightnessUp exec brightnessctl set "+5%"
+bindsym xF86MonBrightnessDown exec brightnessctl set "5%-"
+
+# screenshots
+# TODO	save to file, etc
+bindsym Print exec grimshot copy active
+bindsym $mod+Print exec grimshot copy area
+bindsym Shift+Print exec grimshot save active
+bindsym $mod+Shift+Print exec grimshot copy window
+
+# notifications
+bindsym $mod+period exec dunstctl close
+bindsym $mod+Shift+period exec dunstctl close-all
+bindsym $mod+comma exec dunstctl action 0; dunstctl close
+bindsym $mod+Shift+comma exec dunstctl context
+
+
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+mode "passthrough" {
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+p mode "passthrough"
+
+# statusbar
+bar swaybar_command waybar
+
+default_border none
+
+exec wl-paste -t text --watch clipman store --no-persist
+exec fusuma &
+exec gammashift &
+
+include /etc/sway/config.d/*

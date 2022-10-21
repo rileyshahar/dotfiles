@@ -25,6 +25,9 @@ set -x SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
 
 set -x DOTFILES_DIR $HOME/dotfiles
 
+# keymaps
+set -x XKB_DEFAULT_OPTIONS ctrl:nocaps,altwin:swap_alt_win
+
 # please respect xdg specs
 set -x ATOMHOME "$XDG_DATA_HOME/atom"
 set -x CARGO_HOME "$XDG_DATA_HOME/cargo"
@@ -176,10 +179,10 @@ abbr -a i paru # install
 abbr -a yay echo "type `i`" # for muscle memory
 
 # kittens :)
-if type -q kitty and test $TERM = xterm-kitty
-    abbr -a icat "kitty +kitten icat" # image viewer
-    abbr -a ssh "kitty +kitten ssh" # ssh compatibility (https://sw.kovidgoyal.net/kitty/faq/#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer)
-end
+# if type -q kitty and test $TERM = xterm-kitty
+#     abbr -a icat "kitty +kitten icat" # image viewer
+#     abbr -a ssh "kitty +kitten ssh" # ssh compatibility (https://sw.kovidgoyal.net/kitty/faq/#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer)
+# end
 
 
 # ls replacement
@@ -235,7 +238,8 @@ end
 ### Start x
 if status is-login
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-        exec sway --unsupported-gpu
+        exec qtile start -b wayland
+        # exec sway --unsupported-gpu
         # exec startx "$XDG_CONFIG_HOME/X11/xinitrc" -- -keeptty
     end
 end

@@ -1,0 +1,14 @@
+apt:
+  libx11-dev
+  libxext-dev
+  libxinerama-dev
+  libxrandr-dev
+  libxss-dev
+
+github-patches:
+  .github/workflows/haskell-ci-hackage.patch
+
+raw-project
+  optimization: False
+  package xmonad
+    flags: +pedantic
