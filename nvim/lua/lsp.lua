@@ -25,7 +25,7 @@ local on_attach = function(client, bufnr)
 
 	-- code actions
 	lsp_map("<leader>a", vim.lsp.buf.code_action)
-	lsp_map("<leader>a", vim.lsp.buf.range_code_action, "v")
+	lsp_map("<leader>a", vim.lsp.buf.code_action, "v")
 	lsp_map("<leader>rn", vim.lsp.buf.rename) -- not under capability gate so we get an error if we try to use
 
 	-- documentation
@@ -63,16 +63,16 @@ local on_attach = function(client, bufnr)
 	end
 end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 nvim_lsp.util.default_config = vim.tbl_extend("force", nvim_lsp.util.default_config, {
 	on_attach = on_attach,
-	capabilities = capabilities,
+	-- capabilities = capabilities,
 })
 
 vim.diagnostic.config({
-	-- underline = false,
-	virtual_text = false,
+	underline = false,
+	-- virtual_text = false,
 })
 
 vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "", numhl = "LspDiagnosticsDefaultInformation" })
