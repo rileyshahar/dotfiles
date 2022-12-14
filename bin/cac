@@ -343,6 +343,12 @@ class Waybar(ColorFormatter):
     #     return out
 
 
+class Qtile(ColorFormatter):
+    color_fmt = '    {name} = "{col_hex}"'
+    config_file = CONFIG_HOME + "/qtile/core/settings.py"
+    color_names = {key: value.upper() for key, value in INTERNAL_COLOR_NAMES.items()}
+
+
 class Foot(ColorFormatter):
     color_fmt = "{name}={col_hex}"
     config_file = CONFIG_HOME + "/foot/foot.ini"

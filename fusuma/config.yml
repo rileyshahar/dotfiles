@@ -1,10 +1,10 @@
 swipe:
   3:
     left:
-      command: "/home/riley/dotfiles/bin/wmh ws n"
+      command: "qtile cmd-obj -o screen -f next_group"
     right:
-      command: "/home/riley/dotfiles/bin/wmh ws p"
+      command: "qtile cmd-obj -o screen -f prev_group"
     down:
-      command: "swaymsg workspace "
+      command: "qtile cmd-obj -o screen -f toggle_group"
     up:
-      command: "swaymsg workspace "
+      command: "qtile cmd-obj -o screen -f toggle_group"

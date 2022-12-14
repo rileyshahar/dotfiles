@@ -1,9 +1,6 @@
 -- prettier colors
 vim.o.termguicolors = false
 
--- conceal
-vim.o.conceallevel = 2
-
 -- colorscheme
 vim.cmd("colorscheme inherit")
 

@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "qtconf"
+version = "0.1.0"
+description = ""
+authors = ["Riley Shahar <riley.shahar@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+qtile = "^0.22.1"
+
+[tool.poetry.dev-dependencies]
+black = "^22.10.0"
+flake8 = "^4.0.1"
+flake8-black = "^0.2.5"
+flake8-bugbear = "^21.11.29"
+mypy = "^0.971"
+mypy-ls = "^0.5.1"
+pydocstyle = "^6.1.1"
+pylint = "^2.15.5"
+pyls-flake8 = "^0.4.0"
+pyls-isort = "^0.2.2"
+python-lsp-black = "^1.2.1"
+python-lsp-server = {extras = ["mccabe", "pydocstyle"], version = "^1.5.0"}
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+mypy_path = "src"
+strict = true
+implicit_reexport = true
+warn_unused_ignores = false
+
+[tool.pylint.MASTER]
+disable = ["no-else-return"]
+
+[tool.pylint.format]
+max-line-length = 88
+good-names = ["i", "j", "k", "s", "x", "y", "_", "ui"]
+
+[tool.pydocstyle]
+convention = "numpy"
+
+[tool.isort]
+profile = "black"
