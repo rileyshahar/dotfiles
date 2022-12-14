@@ -35,6 +35,12 @@ keys = [
         Key([MOD], key, lazy.spawn(app), desc=f"launch {name}")
         for key, app, name in APPS
     ),
+    Key(
+        [MOD, "shift"],
+        "Return",
+        lazy.spawn("footclient --title=__float"),
+        desc="floating terminal",
+    ),
     # wm controls
     Key([MOD], "Semicolon", lazy.next_layout(), desc="toggle layouts"),
     Key([MOD, "shift"], "q", lazy.window.kill(), desc="kill window"),
