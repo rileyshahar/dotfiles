@@ -148,6 +148,14 @@ nvim_lsp.rust_analyzer.setup({
 	},
 })
 
+-- lean
+require('lean').setup{
+  abbreviations = { builtin = true },
+  lsp = { on_attach = on_attach },
+  lsp3 = { on_attach = on_attach },
+  mappings = true,
+}
+
 local null_ls = require("null-ls")
 
 -- register any number of sources simultaneously

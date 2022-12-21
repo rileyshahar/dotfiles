@@ -229,6 +229,9 @@ require("packer").startup(function()
 		run = "stack build",
 	})
 
+	-- lean
+	use({ "Julian/lean.nvim", requires = "andrewradev/switch.vim" })
+
 	-- mtg
 	use({
 		"yoshi1123/vim-mtg",
