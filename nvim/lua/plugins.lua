@@ -222,6 +222,13 @@ require("packer").startup(function()
 	-- just
 	use("NoahTheDuke/vim-just")
 
+	-- aga
+	use({
+		"isovector/cornelis",
+		requires = { "kana/vim-textobj-user", "neovimhaskell/nvim-hs.vim" },
+		run = "stack build",
+	})
+
 	-- mtg
 	use({
 		"yoshi1123/vim-mtg",
