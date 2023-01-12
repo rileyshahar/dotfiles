@@ -148,6 +148,7 @@ require("packer").startup(function()
 		end,
 		-- commit = "088dfbc5",
 	})
+	use("nvim-treesitter/nvim-treesitter-textobjects")
 	use({
 		"lewis6991/spellsitter.nvim",
 		config = function()

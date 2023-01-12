@@ -8,8 +8,8 @@ gitsigns.setup({
 })
 
 -- Navigation
-map("]c", gitsigns.next_hunk)
-map("[c", gitsigns.prev_hunk)
+map("]g", gitsigns.next_hunk)
+map("[g", gitsigns.prev_hunk)
 
 local function git_map(lhs, rhs, mode, opts)
 	map(leaders.git .. lhs, rhs, mode, opts)

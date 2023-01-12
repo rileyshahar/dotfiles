@@ -6,21 +6,21 @@ from .settings import APPS, MOD, TOP
 
 keys = [
     # change focus
+    Key([MOD], "h", lazy.layout.left(), desc="focus left"),
+    Key([MOD], "l", lazy.layout.right(), desc="focus right"),
+    Key([MOD], "j", lazy.layout.down(), desc="focus down"),
+    Key([MOD], "k", lazy.layout.up(), desc="focus up"),
     Key(["control"], "h", lazy.layout.left(), desc="focus left"),
     Key(["control"], "l", lazy.layout.right(), desc="focus right"),
     Key(["control"], "j", lazy.layout.down(), desc="focus down"),
     Key(["control"], "k", lazy.layout.up(), desc="focus up"),
     # change groups
     Key([MOD], "right", lazy.screen.next_group(), desc="next group"),
-    Key([MOD], "l", lazy.screen.next_group(), desc="next group"),
     Key([MOD], "left", lazy.screen.prev_group(), desc="previous group"),
-    Key([MOD], "h", lazy.screen.prev_group(), desc="previous group"),
     Key([MOD], "down", lazy.screen.toggle_group(), desc="toggle group"),
-    Key([MOD], "j", lazy.screen.toggle_group(), desc="toggle group"),
     Key(
         [MOD], "up", lazy.screen.toggle_group(), desc="toggle group"
     ),  # TODO: pick smth else?
-    Key([MOD], "k", lazy.screen.toggle_group(), desc="toggle group"),
     # move windows
     Key([MOD, "shift"], "h", lazy.layout.shuffle_left(), desc="move window left"),
     Key([MOD, "shift"], "l", lazy.layout.shuffle_right(), desc="move window right"),
@@ -80,6 +80,7 @@ keys = [
     ),
     Key([], "xF86AudioNext", lazy.spawn("playerctl next"), desc="next track"),
     Key([], "xF86AudioPrev", lazy.spawn("playerctl previous"), desc="previous track"),
+    Key([], "Print", lazy.spawn("grim ~/screenshot.png"), desc="screenshot"),
     # chords
     # KeyChord([MOD], "e", [Key([], "c", lazy.spawn(), desc="edit config")]),
     KeyChord([MOD], "b", [Key([], "c", lazy.spawn(TOP), desc="spawn top")], name="bar"),
