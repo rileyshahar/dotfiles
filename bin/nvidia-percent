@@ -1,2 +1,0 @@
-#!/bin/sh
-echo -n "$(nvidia-smi | grep Default | sed 's:.*\(\w%\).*:\1:')"

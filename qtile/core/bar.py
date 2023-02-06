@@ -46,7 +46,7 @@ screens = [
                 widget.GenPollText(
                     fmt=" {}",
                     update_interval=1,
-                    func=lambda: subprocess.check_output("nvidia-percent").decode(
+                    func=lambda: subprocess.check_output("statusbar-nvidia").decode(
                         "utf-8"
                     ),
                     foreground=COLORS.BRIGHT_CYAN,

@@ -1,0 +1,2 @@
+#!/bin/sh
+echo -n "$(nvidia-smi | grep Default | tr -s ' ' | cut -d ' ' -f5)"
