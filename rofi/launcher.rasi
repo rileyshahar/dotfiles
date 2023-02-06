@@ -6,7 +6,7 @@
 	spacing: 0;
 	background-color: transparent;
         color: @foregroud;
-	font: "MesloLGS Nerd Font 13";
+	font: "MesloLG S Nerd Font 13";
 }
 
 element-text {

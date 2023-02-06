@@ -12,7 +12,7 @@ from .settings import COLORS, TOP
 defaults = {
     "background": COLORS.BACKGROUND,
     "foreground": COLORS.FOREGROUND,
-    "font": "MesloLGS Nerd Font",
+    "font": "MesloLG S Nerd Font",
     "fontsize": 16,
     "padding": 8,
 }
@@ -75,7 +75,13 @@ screens = [
                     step=1,
                     scroll_interval=0.1,
                 ),
-                widget.PulseVolume(),  # TODO: make this work like waybar
+                widget.GenPollText(
+                    update_interval=1,
+                    func=lambda: subprocess.check_output("statusbar-pulse").decode(
+                        "utf-8"
+                    ),
+                    foreground=COLORS.BRIGHT_CYAN,
+                ),
                 widget.Clock(
                     fmt=" {}", format="%a %Y-%m-%d", foreground=COLORS.BRIGHT_GREEN
                 ),

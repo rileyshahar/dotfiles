@@ -1,0 +1,31 @@
+#!/bin/bash
+
+if ! [ -x /usr/bin/pactl ]; then
+  echo 1>&2 "pactl not executable"
+  exit 127
+fi
+
+if ! [ -x /usr/bin/pactl ]; then
+  echo 1>&2 "pactl not executable"
+  exit 127
+fi
+
+sink=$(pactl get-default-sink)
+
+
+
+if [[ "$sink" == *"bluez"* ]]; then
+  if [[ "$(pactl get-sink-mute @DEFAULT_SINK@)" == *"yes"* ]]; then
+    symbol="󰟎"
+  else
+    symbol="󰋋"
+  fi
+elif [[ "$(pactl get-sink-mute @DEFAULT_SINK@)" == *"yes"* ]]; then
+  symbol=""
+else
+  symbol=""
+fi
+
+vol="$(pactl get-sink-volume @DEFAULT_SINK@ | cut -d ' ' -f 6)"
+
+echo -n "$symbol $vol"

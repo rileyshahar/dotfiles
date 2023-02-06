@@ -31,7 +31,7 @@ modules-center = music
 bottom = true
 module-margin = 1
 
-font-0 = MesloLGS Nerd Font
+font-0 = MesloLG S Nerd Font
 
 ; spaces at beginning and end of bar
 padding = 2

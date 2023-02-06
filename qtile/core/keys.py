@@ -62,15 +62,23 @@ keys = [
         desc="lower brightness",
     ),
     # audio
-    Key([], "XF86AudioMute", lazy.spawn("pulseaudio-ctl mute"), desc="mute audio"),
+    Key(
+        [],
+        "XF86AudioMute",
+        lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"),
+        desc="mute audio",
+    ),
     Key(
         [],
         "xF86AudioLowerVolume",
-        lazy.spawn("pulseaudio-ctl down"),
+        lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%"),
         desc="lower volume",
     ),
     Key(
-        [], "xF86AudioRaiseVolume", lazy.spawn("pulseaudio-ctl up"), desc="raise volume"
+        [],
+        "xF86AudioRaiseVolume",
+        lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%"),
+        desc="raise volume",
     ),
     Key(
         [],

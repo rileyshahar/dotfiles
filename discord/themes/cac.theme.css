@@ -163,7 +163,7 @@
   --streaming-color: var(--dim_magenta);
   --offline-color: var(--dim_black);
   --main-font: Lato;
-  --code-font: MesloLGS Nerd Font;
+  --code-font: MesloLG S Nerd Font;
   --channels-width: 220px;
   --members-width: 240px;
   --backdrop-overlay: var(--background);
@@ -9606,7 +9606,7 @@ textarea::-webkit-scrollbar {
   --streaming-color: var(--dim_magenta);
   --offline-color: var(--dim_black);
   --main-font: Lato;
-  --code-font: MesloLGS Nerd Font;
+  --code-font: MesloLG S Nerd Font;
   --channels-width: 220px;
   --members-width: 240px;
   --backdrop-overlay: var(--background);

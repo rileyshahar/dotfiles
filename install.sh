@@ -59,9 +59,9 @@ passwd
 
 echo "adding new user"
 read -p "Enter new username: " username
-useradd -m $username
-passwd $username
-usermod -aG wheel $username
+useradd -m "$username"
+passwd "$username"
+usermod -aG wheel "$username"
 
 echo "synchronizing pacman databases"
 pacman -Sy
@@ -84,25 +84,30 @@ echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 
 echo "configuring hostname"
 read -p "Enter your desired hostname: " hostname
-echo $hostname >> /etc/hostname
+echo "$hostname" >> /etc/hostname
 echo "127.0.0.1\tlocalhost
 ::1\t\tlocalhost
 127.0.1.1\t$hostname.localdomain\t$hostname" >> /etc/hosts
+
+# if nvidia: add `ibt=off` to grub kernel comandline
 
 echo "setting up grub"
 fdisk -l
 read -p "Choose the EFI partition: " efi
 pacman -S grub efibootmgr --noconfirm --needed > /dev/null
 mkdir /boot/EFI
-mount ${efi} /boot/EFI > /dev/null
+mount "$efi" /boot/EFI > /dev/null
 grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=GRUB > /dev/null
 grub-mkconfig -o /boot/grub/grub.cfg > /dev/null
 
-su $username <<'EOSU'
+su "$username" <<'EOSU'
 cd
 
 echo "installing packages: git, base-devel"
 sudo pacman -S git base-devel --noconfirm --needed > /dev/null
+
+echo "installing rust"
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 echo "installing paru"
 git clone https://aur.archlinux.org/paru.git > /dev/null
@@ -124,15 +129,7 @@ pip install $(cat $HOME/dotfiles/packages/piplist) -U > /dev/null
 
 echo "installing rustup, rust, and cargo packages"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y --quiet > /dev/null
-cargo install $(cat $HOME/dotfiles/packages/piplist) > /dev/null
-
-echo "installing betterdiscord"
-betterdiscordctl install
-
-echo "installing xmonad"
-cd "$HOME"/dotfiles/xmonad
-stack install
-cd ~
+cargo install $(cat $HOME/dotfiles/packages/cargolist) > /dev/null
 
 echo "symlinking configs"
 DOTFILES_DIR="$HOME/dotfiles"
@@ -140,28 +137,28 @@ CONFIG_HOME="$HOME/.config"
 DATA_HOME="$HOME/.local/share"
 
 mkdir $CONFIG_HOME
-mkdir $CONFIG_HOME/nvim
-ln -sv "$DOTFILES_DIR/pandoc" "$DATA_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/git" "$CONFIG_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/fish" "$CONFIG_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/xmonad" "$CONFIG_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/X11" "$CONFIG_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/kitty" "$CONFIG_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/cac" "$CONFIG_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/picom" "$CONFIG_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/mpv" "$CONFIG_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/fontconfig" "$CONFIG_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/rofi" "$CONFIG_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/qutebrowser" "$CONFIG_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/dunst" "$CONFIG_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/nvim" "$CONFIG_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/keynav" "$CONFIG_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/anacron/" "$CONFIG_HOME" > /dev/null
-ln -sv "$DOTFILES_DIR/newsboat/" "$CONFIG_HOME" > /dev/null
 sudo ln -sv "$DOTFILES_DIR/cron/crontab" "/var/spool/cron/$(whoami)"
 ln -sv "$DOTFILES_DIR/systemd/" "$CONFIG_HOME/systemd/user" > /dev/null
-ln -sv "$DOTFILES_DIR/ssh/config" "$HOME/.ssh" > /dev/null
-ln -sv "$DOTFILES_DIR/discord/themes" "$CONFIG_HOME/BetterDiscord" > /dev/null
+
+ln -sv "$DOTFILES_DIR/anacron" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/cookiecutter" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/dunst" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/fish" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/fontconfig" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/foot" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/fusuma" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/gammastep" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/git" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/keynav" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/mpv" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/nvim" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/pandoc" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/qtile" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/ssh" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/tarsnap" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/tridactyl" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/wallpaper.jpg" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/zathura" "$CONFIG_HOME"
 
 echo "enabling networkmanager"
 sudo systemctl enable NetworkManager > /dev/null
@@ -184,4 +181,4 @@ sudo chsh -s $(which fish) $(whoami) > /dev/null
 echo "setting colorscheme to tokyonight"
 $DOTFILES_DIR/bin/cac tokyonight --no-reload > /dev/null
 
-EOSU
+# EOSU

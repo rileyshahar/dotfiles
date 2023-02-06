@@ -33,15 +33,16 @@ set -x ATOMHOME "$XDG_DATA_HOME/atom"
 set -x CARGO_HOME "$XDG_DATA_HOME/cargo"
 set -x COOKIECUTTER_CONFIG "$XDG_CONFIG_HOME/cookiecutter/config.yml"
 set -x GNUPGHOME "$XDG_DATA_HOME/gnupg"
+set -x GOPATH "$XDG_DATA_HOME/go"
 set -x LESSHISTFILE "$XDG_DATA_HOME/less/history"
 set -x LESSKEY "$XDG_CONFIG_HOME/less/lesskey"
 set -x NODE_REPL_HISTORY "$XDG_DATA_HOME/node/repl_history"
 set -x PYENV_ROOT "$XDG_DATA_HOME/pyenv"
 set -x PYLINTHOME "$XDG_DATA_HOME"/pylint
 set -x RUSTUP_HOME "$XDG_DATA_HOME/rustup"
+set -x STACK_ROOT "$XDG_DATA_HOME/stack"
 set -x TERMINFO "$XDG_DATA_HOME/terminfo"
 set -x TMUX_PLUGIN_MANAGER_PATH "$XDG_DATA_HOME/tmux/plugins"
-set -x STACK_ROOT "$XDG_DATA_HOME/stack"
 
 # fish colors (comments are base16 numbers)
 set pure_color_git_branch brgreen

@@ -2,7 +2,6 @@
 [user]
   name = Riley Shahar
   email = riley.shahar@gmail.com
-  signingkey = C2DD9AF59D31DFC2
 
 [core]
   pager = delta

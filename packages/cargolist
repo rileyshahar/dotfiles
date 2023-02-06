@@ -1,8 +1,5 @@
 bat
 cargo-feature
-diesel_cli
-diesel_cli_ext
+cargo-show-asm
 flamegraph
-just
 selene
-trunk
