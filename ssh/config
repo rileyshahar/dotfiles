@@ -15,3 +15,7 @@ Host botc
 Host hopper
 	User riley
 	Hostname 138.68.250.22
+
+Host ferris-v
+  User rileyshahar
+  Hostname ferris-v.reed.edu
