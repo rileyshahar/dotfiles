@@ -75,6 +75,7 @@ vscode-langservers-extracted
 wayland
 webcord
 wl-clipboard
+wlroots-nvidia
 write-good
 xorg
 yamllint
