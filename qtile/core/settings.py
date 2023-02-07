@@ -1,8 +1,14 @@
 """Easily configured settings."""
+from libqtile import qtile
 
 MOD = "MOD4"  # super
 # TERMINAL = "kitty -o allow_remote_control=yes --single-instance --listen-on unix:@mykitty"
-TERMINAL = "footclient"
+
+if qtile.core.name == "x11":  # type: ignore
+    TERMINAL = "kitty"
+elif qtile.core.name == "wayland":  # type: ignore
+    TERMINAL = "footclient"
+
 TOP = "footclient --title=__float btm"
 APPS = [
     ("Return", TERMINAL, "terminal"),
@@ -16,7 +22,7 @@ DAEMONS = (
     "foot --server",
     "gammastep",
     "fusuma",
-    "anacron -t $HOME/.config/anacron/anacrontab -S $HOME/.local/share/anacron"
+    "anacron -t $HOME/.config/anacron/anacrontab -S $HOME/.local/share/anacron",
 )
 
 

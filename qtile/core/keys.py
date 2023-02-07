@@ -45,7 +45,7 @@ keys = [
     Key([MOD], "Semicolon", lazy.next_layout(), desc="toggle layouts"),
     Key([MOD, "shift"], "q", lazy.window.kill(), desc="kill window"),
     Key([MOD, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
-    Key([MOD, "control", "shift"], "q", lazy.shutdown()),
+    Key([MOD, "control", "shift"], "q", lazy.shutdown(), desc="exit qtile"),
     Key([MOD, "shift"], "Space", lazy.spawncmd(), desc="launch the prompt widget"),
     # media keys
     # brightness
