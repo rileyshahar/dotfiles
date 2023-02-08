@@ -70,7 +70,7 @@ set fish_color_autosuggestion white
 set fish_color_cancel -r
 
 # configure path
-set fish_user_paths $PYENV_ROOT/shims /bin/usr/local/opt/ruby/bin $CARGO_HOME/bin /usr/local/opt/llvm/bin/ $XDG_DATA_HOME/bin $DOTFILES_DIR/bin $HOME/.local/bin $XDG_DATA_HOME/gem/ruby/3.0.0/bin
+set fish_user_paths $DOTFILES_DIR/bin $PYENV_ROOT/shims /bin/usr/local/opt/ruby/bin $CARGO_HOME/bin /usr/local/opt/llvm/bin/ $XDG_DATA_HOME/bin $HOME/.local/bin $XDG_DATA_HOME/gem/ruby/3.0.0/bin
 
 # make !! and !$ work
 function bind_bang
@@ -178,6 +178,7 @@ abbr -a m make
 abbr -a j just
 abbr -a i paru # install
 abbr -a yay echo "type `i`" # for muscle memory
+abbr -a ckc cookiecutter
 
 # kittens :)
 # if type -q kitty and test $TERM = xterm-kitty

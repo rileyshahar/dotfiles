@@ -1,2 +1,6 @@
 cookiecutters_dir: $XDG_CONFIG_HOME/cookiecutter/
-replay_dir: ~$XDG_CACHE_HOME/cookiecutter/
+replay_dir: $XDG_CACHE_HOME/cookiecutter/
+default_context:
+    full_name: "Riley Shahar"
+    author: "Riley Shahar"
+    email: "riley.shahar@gmail.com"

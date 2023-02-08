@@ -4,3 +4,6 @@ metadata:
   author:
     - Riley Shahar
   geometry: margin=1in
+
+include-in-header:
+  - /home/riley/.config/pandoc/header-include.tex

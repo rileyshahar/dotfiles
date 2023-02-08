@@ -1,0 +1,759 @@
+% IS THE COMMENT-OUT SYMBOL. EVERYTHING ON A LINE AFTER % WILL BE IGNORED. 
+
+%THE PREAMBLE STUFF -- FOR FORMATTING AND SETTING UP SHORTCUTS:
+\documentclass[11pt]{article
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+\usepackage{amsfonts, amscd, amssymb, amsthm, amsmath}
+\usepackage{pdfsync}%leaves makers for tex searching
+\usepackage{enumerate}
+
+%%%%% MARGINS %%%%% 
+\setlength{\topmargin}{1in} %top/bot margins
+\setlength{\oddsidemargin}{\topmargin} %sidemargins
+
+\setlength{\textheight}{11in} \setlength{\textwidth}{8.5in}
+\setlength{\hoffset}{-1in} \setlength{\voffset}{-1in} \setlength{\evensidemargin}{\oddsidemargin} \addtolength{\textheight}{-2 \topmargin}\addtolength{\textwidth}{-2\oddsidemargin}
+\setlength{\headheight}{0pt} \setlength{\headsep}{20pt} \setlength{\footskip}{20pt}
+\addtolength{\textheight}{-\footskip} \addtolength{\textheight}{-\headheight} \addtolength{\textheight}{-\headsep}
+
+
+
+%%%%% THEOREMS %%%%% 
+\theoremstyle{plain}
+	\newtheorem{thm}{Theorem}[section]
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+\theoremstyle{definition}
+	\newtheorem*{defn}{Definition}
+	\newtheorem{remark}[thm]{Remark}
+	\newtheorem{exercise}[thm]{Exercise}
+\theoremstyle{example}
+	\newtheorem{example}[thm]{Example}
+
+
+%%%%% PICTURES %%%%% 
+\usepackage{tikz}
+%\usepackage{epstopdf}
+%\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage[pdftex,bookmarks]{hyperref}
+
+\tikzstyle{V}=[draw, fill =black, circle, inner sep=0pt, minimum size=3pt]
+
+
+%PARTITIONS
+\newcounter{r}
+\newcommand\Part[1]{
+        \setcounter{r}{1}
+	 \foreach \x in {#1}{
+ 	{\ifnum\value{r}=1
+		\draw (0,\value{r}-1)--(\x,\value{r}-1); 
+		\fi}
+	\draw (0,\value{r}) to (\x,\value{r});
+   	\foreach \y in {0, ..., \x} {\draw (\y,\value{r})--(\y,\value{r}-1);}
+	\addtocounter{r}{1}
+ }}
+ \def\PartUNIT{.175}
+%Self-contained tikz images for \Part above. 
+\newcommand{\PART}[1]{
+\begin{matrix}
+\begin{tikzpicture}[xscale=\PartUNIT, yscale=-\PartUNIT] 
+	\Part{#1}
+\end{tikzpicture}
+\end{matrix}
+}
+
+
+	
+%%%%% COLOR  %%%%% 
+\usepackage{color}
+\newcommand{\NOTE}[1]{{\color{blue}#1}}
+
+
+%%%%% ALPHABETS %%%%% 
+\def\cA{\mathcal{A}}\def\cB{\mathcal{B}}\def\cC{\mathcal{C}}\def\cD{\mathcal{D}}\def\cE{\mathcal{E}}\def\cF{\mathcal{F}}\def\cG{\mathcal{G}}\def\cH{\mathcal{H}}\def\cI{\mathcal{I}}\def\cJ{\mathcal{J}}\def\cK{\mathcal{K}}\def\cL{\mathcal{L}}\def\cM{\mathcal{M}}\def\cN{\mathcal{N}}\def\cO{\mathcal{O}}\def\cP{\mathcal{P}}\def\cQ{\mathcal{Q}}\def\cR{\mathcal{R}}\def\cS{\mathcal{S}}\def\cT{\mathcal{T}}\def\cU{\mathcal{U}}\def\cV{\mathcal{V}}\def\cW{\mathcal{W}}\def\cX{\mathcal{X}}\def\cY{\mathcal{Y}}\def\cZ{\mathcal{Z}}
+
+\def\AA{\mathbb{A}} \def\BB{\mathbb{B}} \def\CC{\mathbb{C}} \def\DD{\mathbb{D}} \def\EE{\mathbb{E}} \def\FF{\mathbb{F}} \def\GG{\mathbb{G}} \def\HH{\mathbb{H}} \def\II{\mathbb{I}} \def\JJ{\mathbb{J}} \def\KK{\mathbb{K}} \def\LL{\mathbb{L}} \def\MM{\mathbb{M}} \def\NN{\mathbb{N}} \def\OO{\mathbb{O}} \def\PP{\mathbb{P}} \def\QQ{\mathbb{Q}} \def\RR{\mathbb{R}} \def\SS{\mathbb{S}} \def\TT{\mathbb{T}} \def\UU{\mathbb{U}} \def\VV{\mathbb{V}} \def\WW{\mathbb{W}} \def\XX{\mathbb{X}} \def\YY{\mathbb{Y}} \def\ZZ{\mathbb{Z}}  
+
+\def\fa{\mathfrak{a}} \def\fb{\mathfrak{b}} \def\fc{\mathfrak{c}} \def\fd{\mathfrak{d}} \def\fe{\mathfrak{e}} \def\ff{\mathfrak{f}} \def\fg{\mathfrak{g}} \def\fh{\mathfrak{h}} \def\fj{\mathfrak{j}} \def\fk{\mathfrak{k}} \def\fl{\mathfrak{l}} \def\fm{\mathfrak{m}} \def\fn{\mathfrak{n}} \def\fo{\mathfrak{o}} \def\fp{\mathfrak{p}} \def\fq{\mathfrak{q}} \def\fr{\mathfrak{r}} \def\fs{\mathfrak{s}} \def\ft{\mathfrak{t}} \def\fu{\mathfrak{u}} \def\fv{\mathfrak{v}} \def\fw{\mathfrak{w}} \def\fx{\mathfrak{x}} \def\fy{\mathfrak{y}} \def\fz{\mathfrak{z}}
+\def\fgl{\mathfrak{gl}}  \def\fsl{\mathfrak{sl}}  \def\fso{\mathfrak{so}}  \def\fsp{\mathfrak{sp}}  
+\def\GL{\mathrm{GL}} \def\SL{\mathrm{SL}}  \def\SP{\mathrm{SL}}
+
+
+
+%%%%% OTHER SYMBOLS %%%%% 
+\def\<{\langle} \def\>{\rangle}
+\def\ad{\mathrm{ad}} 
+\def\Alg{\mathrm{Alg}}
+\def\Aut{\mathrm{Aut}}
+\def\dim{\mathrm{dim}} 
+\def\End{\mathrm{End}} 
+\def\ev{\mathrm{ev}} 
+\def\half{\hbox{$\frac12$}}
+\def\Hom{\mathrm{Hom}} 
+\def\id{\mathrm{id}}
+\def\img{\mathrm{img}}
+\def\Ind{\mathrm{Ind}}
+\def\Irr{\mathrm{Irr}} 
+\def\ker{\mathrm{ker}}
+\def\Lie{\mathrm{Lie}}
+\def\normeq{\unlhd}
+\def\qtr{\mathrm{qtr}} 
+\def\rad{\mathrm{rad}} 
+\def\Res{\mathrm{Res}} 
+\def\tr{\mathrm{tr}} 
+\def\Tr{\mathrm{Tr}} 
+\def\vep{\varepsilon}
+\def\wt{\mathrm{wt}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%	HERE'S WHERE THE CONTENT STARTS %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\title{Sample \TeX\  file}
+\author{Zajj Daugherty}
+%\date{\today}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+
+
+\section{What is the partition algebra?}
+\noindent These are notes from a talk I gave in Melbourne for a group of undergraduates, Nov.\ 20, 2014. In particular, there are examples of how to use TikZ for graphs.
+
+
+\bigskip
+
+\subsection{Graphs and equivalence relations}
+
+A \emph{graph} is a set of (labeled) vertices with adjacency relations indicated by edges. For example, one graph on 7 vertices is
+\begin{equation}\label{eq:Graph1}
+	\begin{matrix}\begin{tikzpicture}
+			\node[V, label=above:{$1$}] (1) at (0,1){};
+			\node[V, label=above:{$2$}] (2) at (1,1){};
+			\node[V, label=below:{$3$}] (3) at (-.2,0){};
+			\node[V, label=below:{$4$}] (4) at (1.2,0){};
+			\node[V, label=above:{$5$}] (5) at (2,1){};
+			\node[V, label=below:{$6$}] (6) at (3,.5){};
+			\node[V, label=below:{$7$}] (7) at (2.2,0){};
+			\draw (1) to (2) to (3) to (1) (2) to (4) (5) to (7);
+		\end{tikzpicture}\end{matrix}.
+\end{equation}
+
+An \emph{equivalence relation}  is a binary relation $\sim$ on a set $X$ that is
+\begin{center}
+	\begin{tabular}{l@{\qquad}c}
+		\emph{reflexive},     & ($x \sim x$)                                   \\
+		\emph{symmetric}, and & ($x \sim y$ implies $y \sim x$)                \\
+		\emph{transitive}.    & ($x \sim y$ and $y \sim z$ implies $x \sim z$)
+	\end{tabular}
+\end{center}
+An \emph{equivalence class} is a maximal set of pairwise equivalent elements. Given an equivalence relation on a set $X$, the equivalence classes \emph{partition} the set $X$ (meaning that every element of $X$ is in exactly one class).
+
+\begin{example} Let $V$ be the set of vertices of a graph $G$. Then for $u, v\in V$,
+	$$u \sim v \quad \text{ if and only if there is a walk along edges from $u$ to $v$}$$
+	is an equivalence relation on $V$. The equivalence classes are the sets of vertices in the same connected components.
+
+	For example, in the graph \eqref{eq:Graph1}, $V = \{1,2,3,4,5,6,7\}$ and the equivalence classes are $\{1,2,3,4\}$, $\{5,7\}$, and $\{6\}$.
+\end{example}
+
+\begin{example}\label{ex:GraphEquiv} Let $\cG$ be the set of graphs with vertices $V$. Then for $G, H \in \cG$,
+	$$G \sim H \quad \text{ if and only if $G$ and $H$ have the same connected components}$$
+	is an equivalence relation on $\cG$. The equivalence classes are indexed by set partitions of $V$.
+
+	For example, in the graph \eqref{eq:Graph1} is equivalent to
+	$$
+		\begin{matrix}
+			\begin{tikzpicture}
+				\node[V, label=above:{$1$}] (1) at (0,1){};
+				\node[V, label=above:{$2$}] (2) at (1,1){};
+				\node[V, label=below:{$3$}] (3) at (-.2,0){};
+				\node[V, label=below:{$4$}] (4) at (1.2,0){};
+				\node[V, label=above:{$5$}] (5) at (2,1){};
+				\node[V, label=below:{$6$}] (6) at (3,.5){};
+				\node[V, label=below:{$7$}] (7) at (2.2,0){};
+				\draw (3) to (4) to (1) (4) to (2) (5) to (7);
+			\end{tikzpicture}
+		\end{matrix},
+		\qquad \text{ but not to} \qquad
+		\begin{matrix}
+			\begin{tikzpicture}
+				\node[V, label=above:{$1$}] (1) at (0,1){};
+				\node[V, label=above:{$2$}] (2) at (1,1){};
+				\node[V, label=below:{$3$}] (3) at (-.2,0){};
+				\node[V, label=below:{$4$}] (4) at (1.2,0){};
+				\node[V, label=above:{$5$}] (5) at (2,1){};
+				\node[V, label=below:{$6$}] (6) at (3,.5){};
+				\node[V, label=below:{$7$}] (7) at (2.2,0){};
+				\draw (3) to (4) to (1) (5) to (4) to (2) (5) to (7);
+			\end{tikzpicture}
+		\end{matrix}.
+	$$
+\end{example}
+
+\subsection{Diagrams and their compositions}
+
+Define a ($k$-)diagram as an equivalence class of graphs on vertices $V_k = \{1,2,\dots, k, -1, -2, \dots, -k\}$. For example, if $k=5$,
+$$
+	\begin{matrix}
+		\begin{tikzpicture}[scale=.75]
+			\foreach \x in {1,2,...,5}{
+			\node[V, label=above:{\tiny$\x$}] (t\x) at (\x,1){};
+			\node[V, label=below:{\tiny$\x'$}] (b\x) at (\x,0){};}
+			\draw (t1) to (b2) (b1) to [bend left] (b3) to (t2) (t4) to [bend right] (t5) (b4) to [bend left] (b5);
+		\end{tikzpicture}
+	\end{matrix}
+	=
+	\begin{matrix}
+		\begin{tikzpicture}[scale=.75]
+			\foreach \x in {1,2,...,5}{
+			\node[V, label=above:{\tiny$\x$}] (t\x) at (\x,1){};
+			\node[V, label=below:{\tiny$\x'$}] (b\x) at (\x,0){};}
+			\draw (t1) to (b2) (b1)  (b3) to (t2) to (b1) (t4) to [bend right] (t5) (b4) to [bend left] (b5);
+		\end{tikzpicture}
+	\end{matrix}
+	\qquad \begin{matrix}\text{ is the $5$-diagram indexed by the partition }\\ \{1, 2'\}, \{2,1',3'\}, \{3\}, \{4,5\}, \{4', 5'\}.\end{matrix}
+$$
+Let $D_k = \{ k\text{-diagrams}\}$.
+
+Define a multiplication
+\begin{align*}
+	\circ: D_k \times D_k & \to D_k               \\
+	(d_1, d_2)            & \mapsto d_1 \circ d_2
+\end{align*}
+by ``stack $d_1$ on top of $d_2$ and resolve connections."
+
+
+\begin{example}\label{ex:circ}
+	For example, let $k=3$, and let
+	$$
+		d_1 = \begin{matrix}
+			\begin{tikzpicture}[scale=.75]
+				\foreach \x in {1,2,3}{
+				\node[V, label=above:{\tiny$\x$}] (t\x) at (\x,1){};
+				\node[V, label=below:{\tiny$\x'$}] (b\x) at (\x,0){};}
+				\draw (t1) to (b1) to (b2) to (t1) (t2) to (t3);
+			\end{tikzpicture}
+		\end{matrix}, \qquad
+		d_2 = \begin{matrix}
+			\begin{tikzpicture}[scale=.75]
+				\foreach \x in {1,2,3}{
+				\node[V, label=above:{\tiny$\x$}] (t\x) at (\x,1){};
+				\node[V, label=below:{\tiny$\x'$}] (b\x) at (\x,0){};}
+				\draw (b1) to (b2) to (t2) to (b1) (b3) to (t3);
+			\end{tikzpicture}
+		\end{matrix}, \quad \text{ and } \quad
+		d_3 = \begin{matrix}
+			\begin{tikzpicture}[scale=.75]
+				\foreach \x in {1,2,3}{
+				\node[V, label=above:{\tiny$\x$}] (t\x) at (\x,1){};
+				\node[V, label=below:{\tiny$\x'$}] (b\x) at (\x,0){};}
+				\draw (t1) to (b1)  (b2) to (b3);
+			\end{tikzpicture}
+		\end{matrix}.$$
+	Then
+	$$
+		d_1 \circ d_2 = \begin{matrix}
+			\begin{tikzpicture}[scale=.75]
+				\foreach \x in {1,2,3}{
+				\node[V, label=above:{\tiny$\x$}] (tt\x) at (\x,2.5){};
+				\node[V] (tb\x) at (\x,1.5){};
+				\node[V] (t\x) at (\x,1){};
+				\node[V, label=below:{\tiny$\x'$}] (b\x) at (\x,0){};
+				\draw[red] (t\x) to (tb\x);}
+				\draw (tt1) to (tb1) to (tb2) to (tt1) (tt2) to (tt3);
+				\draw (b1) to (b2) to (t2) to (b1) (b3) to (t3);
+			\end{tikzpicture}
+		\end{matrix}
+		= \begin{matrix}
+			\begin{tikzpicture}[scale=.75]
+				\foreach \x in {1,2,3}{
+				\node[V, label=above:{\tiny$\x$}] (t\x) at (\x,1){};
+				\node[V, label=below:{\tiny$\x'$}] (b\x) at (\x,0){};}
+				\draw (t1) to (b1) to (b2) to (t1)  (t2) to (t3);
+			\end{tikzpicture}
+		\end{matrix}\quad \text{ and } \quad
+		d_1 \circ d_3 = \begin{matrix}
+			\begin{tikzpicture}[scale=.75]
+				\foreach \x in {1,2,3}{
+				\node[V, label=above:{\tiny$\x$}] (tt\x) at (\x,2.5){};
+				\node[V] (tb\x) at (\x,1.5){};
+				\node[V] (t\x) at (\x,1){};
+				\node[V, label=below:{\tiny$\x'$}] (b\x) at (\x,0){};
+				\draw[red] (t\x) to (tb\x);}
+				\draw (tt1) to (tb1) to (tb2) to (tt1) (tt2) to (tt3);
+				\draw (t1) to (b1)  (b2) to (b3);
+			\end{tikzpicture}
+		\end{matrix}
+		= \begin{matrix}
+			\begin{tikzpicture}[scale=.75]
+				\foreach \x in {1,2,3}{
+				\node[V, label=above:{\tiny$\x$}] (t\x) at (\x,1){};
+				\node[V, label=below:{\tiny$\x'$}] (b\x) at (\x,0){};}
+				\draw (t1) to (b1) (b2) to (b3)  (t2) to (t3);
+			\end{tikzpicture}
+		\end{matrix}.
+	$$
+\end{example}
+
+Things we might hope for in a multiplication:
+\begin{enumerate}
+	\item Well-defined? \\
+	      (Is the multiplication independent of the choice of graph representing the diagram? Yes: Check using equivalence relation features.)
+	\item Associative?\\
+	      (Is $d_1 \circ(d_2 \circ d_3) =  (d_1 \circ d_2) \circ d_3$? Yes: Draw some pictures, and use transitivity.)
+	\item Commutative? \\
+	      (No: Draw some pictures and decide)
+	\item Identity? \\
+	      (Yes: what is it?)
+	\item Inverses? \\
+	      (No: draw some pictures.)
+\end{enumerate}
+
+
+\subsection{The partition algebra}
+Let $n(d_1,d_2)$ be the number of connected components lost after resolving $d_1$ on top of $d_2$  down to $d_1 \circ d_2$. For example, with $d_1, d_2, d_3$ as in Example \ref{ex:circ},
+$$n(d_1, d_2) = 0 \qquad \text{ and } \qquad n(d_1, d_3) = 1.$$
+
+
+Let $\CC D_k$ be the vector space with basis $D_k$. For example, there are two 1-diagrams, so $\CC D_1 \cong \CC^2$. Fix $x \in \CC$. Define another multiplication, this time using $n$, by
+\begin{align}
+	\cdot: D_k \times D_k & \to \CC D_k	\nonumber                                 \\
+	(d_1, d_2)            & \mapsto x^{n(d_1, d_2)} d_1 \circ d_2, \label{eq:dot}
+\end{align}
+and extend linearly to $\CC D_k$ (i.e.\ use distributivity and linear scaling). For example, with $d_1, d_2, d_3$ as in Example \ref{ex:circ},
+$$d_1\cdot d_2 = x^0 (d_1 \circ d_2) =  \begin{matrix}
+		\begin{tikzpicture}[scale=.75]
+			\foreach \x in {1,2,3}{
+			\node[V, label=above:{\tiny$\x$}] (t\x) at (\x,1){};
+			\node[V, label=below:{\tiny$\x'$}] (b\x) at (\x,0){};}
+			\draw (t1) to (b1) to (b2) to (t1)  (t2) to (t3);
+		\end{tikzpicture}
+	\end{matrix}
+	\qquad \text{ and } \qquad
+	d_1 \cdot d_3 = x^1 (d_1 \circ d_3) = x \begin{matrix}
+		\begin{tikzpicture}[scale=.75]
+			\foreach \x in {1,2,3}{
+			\node[V, label=above:{\tiny$\x$}] (t\x) at (\x,1){};
+			\node[V, label=below:{\tiny$\x'$}] (b\x) at (\x,0){};}
+			\draw (t1) to (b1) (b2) to (b3)  (t2) to (t3);
+		\end{tikzpicture}
+	\end{matrix}.$$
+
+
+
+
+\begin{exercise}
+	Show
+	$$\left( 3 \begin{matrix}\begin{tikzpicture}[scale=.75]
+				\foreach \x in {1,2}{
+				\node[V, label=above:{\tiny$\x$}] (t\x) at (\x,1){};
+				\node[V, label=below:{\tiny$\x'$}] (b\x) at (\x,0){};}
+				\draw (t1) to (t2);
+			\end{tikzpicture}\end{matrix}
+		+ \sqrt{2} \begin{matrix}\begin{tikzpicture}[scale=.75]
+				\foreach \x in {1,2}{
+				\node[V, label=above:{\tiny$\x$}] (t\x) at (\x,1){};
+				\node[V, label=below:{\tiny$\x'$}] (b\x) at (\x,0){};}
+				\draw (t1) to (b1) (b2) to (t2);
+			\end{tikzpicture}\end{matrix}\right) \cdot
+		\left( \pi \begin{matrix}\begin{tikzpicture}[scale=.75]
+					\foreach \x in {1,2}{
+					\node[V, label=above:{\tiny$\x$}] (t\x) at (\x,1){};
+					\node[V, label=below:{\tiny$\x'$}] (b\x) at (\x,0){};}
+					\draw (b1) to (b2);
+				\end{tikzpicture}\end{matrix}
+		- 5 \begin{matrix}\begin{tikzpicture}[scale=.75]
+					\foreach \x in {1,2}{
+					\node[V, label=above:{\tiny$\x$}] (t\x) at (\x,1){};
+					\node[V, label=below:{\tiny$\x'$}] (b\x) at (\x,0){};}
+					\draw (t1) to (t2) (b1) to (b2);
+				\end{tikzpicture}\end{matrix}\right)
+		=
+		\pi \sqrt{-2}
+		\begin{matrix}\begin{tikzpicture}[scale=.75]
+				\foreach \x in {1,2}{
+				\node[V, label=above:{\tiny$\x$}] (t\x) at (\x,1){};
+				\node[V, label=below:{\tiny$\x'$}] (b\x) at (\x,0){};}
+				\draw  (b1) to (b2);
+			\end{tikzpicture}\end{matrix}
+		+
+		\left(3\pi x^2 - 15 x - 5 \sqrt{-2} \right)
+		\begin{matrix}\begin{tikzpicture}[scale=.75]
+				\foreach \x in {1,2}{
+				\node[V, label=above:{\tiny$\x$}] (t\x) at (\x,1){};
+				\node[V, label=below:{\tiny$\x'$}] (b\x) at (\x,0){};}
+				\draw (t1) to (t2) (b1) to (b2);
+			\end{tikzpicture}\end{matrix}.
+	$$
+\end{exercise}
+
+\bigskip
+
+An \emph{algebra} is a vector space equipped with a multiplication. The \emph{partition algebra} is
+$$P_k(x) = \CC D_k \text{ with the multiplication in \eqref{eq:dot}.}$$
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+\section{Combinatorial representation theory: the symmetric group}
+\noindent This section is taken from some notes I made for a graduate course on combinatorial representation theory. You can see examples of how to do partitions, and how to make new commands.
+
+\bigskip
+
+
+
+\emph{Combinatorial representation theory} is the study of representations of algebraic objects, using combinatorics to keep track of the relevant information. To see what I mean, let's take a look at the symmetric group.
+
+\subsection{The symmetric group}
+
+
+
+Let $F$ be your favorite field of characteristic 0.
+Recall that an \emph{algebra} $A$ over $F$ is a vector space over $F$ with an associative multiplication
+$$ A \otimes A \to A$$
+Here, the tensor product is over $F$, and just means that the multiplication is bilinear.
+Our favorite examples for a while will be
+\begin{enumerate}
+	\item Group algebras (today)
+	\item Enveloping algebras of Lie algebras (later)
+\end{enumerate}
+And our favorite field is $F = \CC$.
+
+The \emph{symmetric group} $S_k$ is the group of permutations of $\{1, \dots, k\}$. The \emph{group algebra} $\CC S_k$ is the vector space
+$$\CC S_k = \left \{ \sum_{\sigma \in S_k} c_\sigma \sigma ~|~ c_\sigma \in \CC \right\}$$
+with multiplication linear and associative by definition:
+$$ \left(\sum_{\sigma \in S_k} c_\sigma \sigma\right) \left( \sum_{\pi \in S_k} d_\pi \pi \right) = \sum_{\sigma, \pi \in G} (c_\sigma d_\pi) (\sigma \pi).$$
+
+\begin{example}
+	When $k = 3$,
+	$$S_3 = \{1, (12), (23), (123), (132), (13)\} = \<s_1 = (12), s_2=(23) ~|~ s_1^2 = s_2^2 = 1, s_1 s_2 s_1 = s_2 s_1 s_2\>.$$
+	So
+	$$ \CC S_3 = \{ c_1 + c_2(12) + c_3(23) + c_4(123) + c_5(132) + c_6(13) ~|~ c_i \in \CC\}$$
+	and, for example,
+	\begin{align*}
+		(2 + (12) ) (5(123) - (23) ) & = 10(123) - 2(23) + 5(12)(123) - (12)(23)                     \\
+		                             & = 10(123) - 2(23) + 5(23) - (123) = \fbox{$ 3(23) + 9(123)$}.\end{align*}
+\end{example}
+
+\subsection{Some representations}
+
+A \emph{homomorphism} is a structure-preserving map. A \emph{representation} of an $F$-algebra $A$ is a vector space $V$ over $F$, together with a homomorphism
+$$\rho: A \to \End(V) = \{ \text{ $F$-linear maps $V \to V$ } \}.$$
+The map (equipped with the vector space) is the representation; the vector space (equipped with the map) is called an $A$-\emph{module}.
+
+\begin{example} Favorite representation of $S_n$ is the permutation representation:
+	Let $V = \CC^k = \CC\{ v_1, \dots, v_k\}$. Define
+	$$\rho:S_k \to \GL_k(\CC) \qquad \text{ by } \qquad \rho(\sigma) v_i = v_{\sigma(i)}$$
+	$k=2$:
+
+	$$1 \mapsto \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}
+		\qquad
+		(12) \mapsto \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} $$
+
+
+	$$\rho(\CC S_2) = \left\{ \begin{pmatrix} a& b\\b& a \end{pmatrix}~\big|~ a, b \in \CC \right\}  \subset \End(\CC^2)$$
+
+
+	$k=3$:
+	$$\begin{array}{c@{\qquad}c@{\qquad}c}
+			1 \mapsto \begin{pmatrix} 1 & 0 & 0\\ 0 & 1 & 0 \\ 0 & 0 & 1\end{pmatrix}
+			 &
+			(12) \mapsto \begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}
+			 &
+			(23) \mapsto \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix} \\~\\
+			(123) \mapsto \begin{pmatrix} 0 & 0 & 1\\ 1 & 0 & 0 \\ 0 & 1 & 0\end{pmatrix}
+			 &
+			(132) \mapsto \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{pmatrix}
+			 &
+			(13) \mapsto \begin{pmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0 \end{pmatrix}\end{array}$$
+
+	$$\rho(\CC S_3) = \left\{
+		\begin{pmatrix}
+			a + c & b + e & d+ f  \\
+			b + d & a + f & c + e \\
+			e + f & c + d & a + b
+		\end{pmatrix}~\Big|~ a, b, c ,d, e, f \in \CC \right\}  \subset \End(\CC^3)$$
+
+\end{example}
+
+A representation/module $V$ is \emph{simple} or \emph{irreducible} if $V$ has no invariant subspaces.
+
+
+\begin{example} The permutation representation is not simple since
+	$v_1 + \cdots + v_k = (1, \dots, 1)$ is invariant, and so $T = \CC\{ (1, \dots, 1)\}$ is a submodule (called the \emph{trivial representation}).
+	However, the  trivial representation is one-dimensional, and so is clearly simple. Also, the orthogonal compliment of $T$, given by
+	$$S = \CC\{ v_2 - v_1, v_3 - v_1, \dots, v_k - v_1\}$$
+	is also simple (called the \emph{standard representation}). So $V$ \emph{decomposes} as
+	\begin{equation}\label{eq:PermDecomp} V = T \oplus S\end{equation}
+	by the change of basis
+	$$\{v_1, \dots, v_k \}  \to \{ v, w_2, \dots, w_k \} \qquad \text{where } v= v_1 + \cdots + v_k \text{ and } w_i = v_i - v_1.$$
+	New representation looks like
+	$$ \rho(\sigma) v = v,
+		\qquad \rho(\sigma) w_i = w_{\sigma(i)} - w_{\sigma(1)} \quad \text{ where } w_1 = 0.$$
+	For example, when $k=3$,
+	\newcommand\PermThreeDecomp[3]{
+		\begin{pmatrix}\begin{tikzpicture}[xscale=.5, yscale=-.5]
+				\draw[blue!70!black, fill=blue!10] (.5,.5)--(1.5,.5)--(1.5,1.5)--(.5,1.5)--(.5,.5);
+				\draw[green!70!black, fill=green!10] (1.5,1.5)--(3.5,1.5)--(3.5,3.5)--(1.5,3.5)--(1.5,1.5);
+				\foreach\x [count=\c from 1] in {#1}{\node at (\c, 1) {$\x$};}
+				\foreach\x [count=\c from 1] in {#2}{\node at (\c, 2) {$\x$};}
+				\foreach\x [count=\c from 1] in {#3}{\node at (\c, 3) {$\x$};}
+			\end{tikzpicture}\end{pmatrix}
+	}
+	$$\begin{array}{c@{\qquad}c@{\qquad}c}
+			1 \mapsto \PermThreeDecomp{1,0,0}{0,1,0}{0,0,1} &
+			(12) \mapsto \PermThreeDecomp{1, 0, 0}{0, -1, -1}{0, 0, 1}
+			                                                &
+			(23) \mapsto \PermThreeDecomp{1, 0, 0}{0, 0, 1}{0, 1, 0} \\~\\
+			(123) \mapsto \PermThreeDecomp{1, 0, 0}{0, -1, -1}{0, 1, 0}
+			                                                &
+			(132) \mapsto \PermThreeDecomp{1, 0, 0}{0, 0, 1}{0, -1, -1}
+			                                                &
+			(13) \mapsto \PermThreeDecomp{1, 0, 0}{ 0, 1, 0}{0, -1, -1}\end{array}$$
+	Notice, the vector space $\End(\CC^2)$ is four-dimensional,  and the four matrices
+	\newcommand\PermThreeStandard[2]{
+		\begin{pmatrix}\begin{tikzpicture}[xscale=.5, yscale=-.5]
+				\draw[green!70!black, fill=green!10] (.5,.5)--(2.5,.5)--(2.5,2.5)--(.5,2.5)--(.5,.5);
+				\foreach\x [count=\c from 1] in {#1}{\node at (\c, 1) {$\x$};}
+				\foreach\x [count=\c from 1] in {#2}{\node at (\c, 2) {$\x$};}
+			\end{tikzpicture}\end{pmatrix}
+	}
+	$$\begin{array}{c@{\quad}c@{\quad}c}
+			\rho_S (1) = \PermThreeStandard{1, 0}{0, 1},    &              &
+			\rho_S ((12)) = \PermThreeStandard{-1, -1}{0, 1},
+			\\
+			\rho_S ((23)) = \PermThreeStandard{0, 1}{1, 0}, & \text{ and } &
+			\rho_S ((132)) = \PermThreeStandard{0, 1}{-1, -1}\end{array}$$
+	are linearly independent, so $\rho_S(\CC S_3) = \End(\CC^2)$, and so (at least for $k=3$) $S$ is also simple! So the decomposition in \eqref{eq:PermDecomp} is complete.
+
+\end{example}
+
+
+
+
+An algebra is \emph{semisimple} if all of its modules decompose into the sum of simple modules. \\
+
+\begin{example} The group algebra of a group $G$ over a field $F$ is semisimple iff $\mathrm{char}(F)$ does not divide $|G|$. So group algebras over $\CC$ are all semisimple.
+\end{example}
+
+
+We like semisimple algebras because they are isomorphic to a direct sum over their simple modules of the ring of endomorphisms of those module (\emph{Artin-Wedderburn theorem}).
+$$A \cong \bigoplus_{V \in \hat{A}} \End(V)$$
+where $\hat{A}$ is the set of representative of $A$-modules.
+So studying a semisimple algebra is ``the same'' as studying its simple modules.
+
+
+\subsection{How combinatorics fits in}
+
+
+\begin{thm}
+	For a finite group $G$, the irreducible representations of $G$ are in bijection with its conjugacy classes.
+\end{thm}
+\begin{proof}{~}
+	\begin{enumerate}[(A)]
+		\item Show
+		      \begin{enumerate}[(1)]
+			      \item the class sums of $G$, given by
+			            $$\left\{ \sum_{h \in \cK} h ~|~ \cK \text{ is a conjugacy class of $G$ } \right\}$$
+			            form a basis for $Z(FG)$;
+			            \begin{enumerate}[Example:]
+				            \item $G = S_3$. The class sums are
+				                  $$1, \quad (12) + (23) + (13), \quad \text{ and } \quad (123) + (132)$$
+			            \end{enumerate}
+
+			      \item and $\dim(Z(FG)) = | \hat{G} | $ where $\hat{G}$ is an indexing set of the irreducible representations of $G$.
+
+		      \end{enumerate}
+
+		\item
+		      Use character theory. A \emph{character} $\chi$ of a group $G$ corresponding to a representation $\rho$ is a linear map
+		      $$\chi_\rho: G \to \CC \qquad \text{ defined by } \qquad \chi_\rho:g \to \tr(\rho(g)).$$
+
+
+
+		      \noindent Nice facts about characters:
+		      \begin{enumerate}[(1)]
+			      \item They're \emph{class functions} since
+			            $$\chi_\rho(h g h^{-1}) = \tr(\rho(h g h^{-1}) ) = \tr( \rho(h) \rho(g) \rho(h)^{-1}) = \tr(\rho(g)) = \chi_\rho(g).$$
+
+
+			            \noindent{\bf Example:} The character associated to the trivial representation of any group $G$ is $\chi_1 = 1$.
+
+			            \smallskip
+
+			            \noindent{\bf Example:}
+			            Let $\chi$ be the character associate to the standard representation of $S_3$. Then
+			            $$\chi (1) = 2, \qquad \chi((12)) = \chi((23)) =\chi((13)) = 0, \qquad \chi((123)) = \chi(132) = -1.$$
+
+			            \smallskip
+
+			      \item They satisfy nice relations like
+			            \begin{align*}
+				             & \chi_{\rho \oplus \psi} = \chi_\rho + \chi_\psi \\
+				             & \chi_{\rho \otimes \psi} = \chi_\rho \chi_\psi
+			            \end{align*}
+
+			      \item The characters associated to the irreducible representations form an orthonormal basis for the class functions on $G$. (This gives the bijection)
+		      \end{enumerate}
+		      Studying the representation theory of a group is ``the same'' as studying the character theory of that group.
+	\end{enumerate}
+
+	This is not a particularly satisfying bijection, either way. It doesn't say ``given representation $X$, here's conjugacy class $Y$, and vice versa.''
+\end{proof}
+
+
+
+Conjugacy classes of the symmetric group are given by cycle type. For example the conjugacy classes of $S_4$ are
+\begin{align*}
+	 & \{ 1 \} = \{(a)(b)(c)(d)\}                                                  \\
+	 & \{ (12), (13), (14), (23), (24), (34)\} = \{(ab)(c)(d)\}                    \\
+	 & \{(12)(34), (13)(24), (14)(23) \} = \{(ab)(cd) \}                           \\
+	 & \{(123), (124), (132), (134), (142), (143), (234), (243) \} = \{ (abc)(d)\} \\
+	 & \{ (1234), (1243), (1324), (1342), (1423), (1432) \} = \{ (abcd) \} .
+\end{align*}
+Cycle types of permutations of $k$ are in bijection with \emph{partitions} $\lambda \vdash k$:
+$$\lambda = (\lambda_1, \lambda_2, \dots) \quad \text{ with }  \lambda_1 \geq \lambda_2\geq  \dots, \quad \lambda_i \in \ZZ_{\geq 0}, \lambda_1 + \lambda_2 + \cdots = k.$$
+The cycle types and their corresponding partitions of 4 are
+$$\begin{array}{c@{\qquad}c@{\qquad}c@{\qquad}c@{\qquad}c}
+		(a)(b)(c)(d)      & (ab)(c)(d)     & (ab)(cd)    & (abc)(d)   & (abcd)   \\~ \\
+		(1, 1, 1, 1)      & (2, 1, 1)      & (2, 2)      & (3,1)      & (4)      \\~\\
+		\PART{1, 1, 1, 1} & \PART{2, 1, 1} & \PART{2, 2} & \PART{3,1} & \PART{4}
+	\end{array}$$
+where the picture is an up-left justified arrangement of boxes with $\lambda_i$ boxes in the $i$th row.
+
+The combinatorics goes way deep!
+\emph{Young's Lattice} is an infinite leveled labeled graph with vertices and edges as follows.
+\begin{enumerate}[\qquad\qquad]
+	\item[Vertices: ] Label vertices in label vertices on level $k$ with partitions of $k$.
+	\item[Edges: ] Draw and edge from a partition of $k$ to a partition of $k+1$ if they differ by a box.\end{enumerate}
+See Figure \ref{fig:Youngs-lattice}.
+
+\begin{figure}\caption{Young's lattice, levels $0$--$5$.}\label{fig:Youngs-lattice}
+	$$\begin{tikzpicture}[yscale=-1]
+			%Sets the coordinates for the partitions of 0 to 5:
+			\coordinate (00) at (-2,0); \coordinate (01) at (0,0);
+			\coordinate (10) at (-2,1); \coordinate (11) at (0,1);
+			\coordinate (20) at (-3,2); \coordinate (21) at (-1,2); \coordinate (22) at (1,2);
+			\coordinate (30) at (-4,3); \coordinate (31) at (-2,3); \coordinate (32) at (0,3); \coordinate (33) at (2,3);
+			\foreach \x in {0,1, ..., 5}{ \coordinate (4\x) at (-6 + 2*\x, 4.75);}
+			\foreach \x in {0,1, ..., 7}{ \coordinate (5\x) at (-8 + 2*\x, 6.5);}
+			\foreach \y in {0,1,..., 5} {\node at (\y0) { $\hat{S}_{\y}$:};}
+			%edges in lattice:
+			\begin{scope}[every node/.style={red, fill=white, inner sep=1.5pt}]
+				\draw (01) to node[midway] {\tiny $0$}
+				(11) to node[midway] {\tiny $1$}
+				(21)
+				(11) to node[midway] {\tiny -$1$}
+				(22)
+				(21) to node[midway] {\tiny $2$}
+				(31)
+				(21) to node[midway] {\tiny -$1$}
+				(32)
+				(22) to node[midway] {\tiny $1$}
+				(32)
+				(22) to node[midway] {\tiny -$2$}
+				(33)
+				(31) to node[midway] {\tiny $3$}
+				(41)
+				(31) to node[midway] {\tiny -$1$}
+				(42)
+				(32) to node[midway] {\tiny $2$}
+				(42)
+				(32) to node[midway] {\tiny $0$}
+				(43)
+				(32) to node[midway] {\tiny -$2$}
+				(44)
+				(33) to node[midway] {\tiny $1$}
+				(44)
+				(33) to node[midway] {\tiny -$3$}
+				(45)
+				(41) to node[midway] {\tiny $4$}
+				(51)
+				(41) to node[midway] {\tiny -$1$}
+				(52)
+				(42) to node[midway] {\tiny $3$}
+				(52)
+				(42) to node[midway] {\tiny $0$}
+				(53)
+				(42) to node[pos=.3] {\tiny -$2$}
+				(54)
+				(43) to node[pos=.3] {\tiny $2$}
+				(53)
+				(43) to node[pos=.3] {\tiny -$2$}
+				(55)
+				(44) to node[pos=.3] {\tiny $2$}
+				(54)
+				(44) to node[midway] {\tiny $0$}
+				(55)
+				(44) to node[midway] {\tiny -$3$}
+				(56)
+				(45) to node[midway] {\tiny $1$}
+				(56)
+				(45) to node[midway] {\tiny -$4$}
+				(57);
+			\end{scope}
+			%partitions in lattice:
+			\begin{scope}[every node/.style={fill=white, inner sep=2pt}]
+				\node at (01) {$\emptyset$};
+				\node at (11) {$\PART{1}$};
+				\node at (22) {$\PART{1,1}$};
+				\node at (21) {$\PART{2}$};
+				\node at (33) {$\PART{1,1,1}$};
+				\node at (32) {$\PART{2,1}$};
+				\node at (31) {$\PART{3}$};
+				\node at (45) {$\PART{1,1,1,1}$};
+				\node at (44) {$\PART{2,1,1}$};
+				\node at (43) {$\PART{2,2}$};
+				\node at (42) {$\PART{3,1}$};
+				\node at (41) {$\PART{4}$};
+				\node at (57) {$\PART{1,1,1,1,1}$};
+				\node at (56) {$\PART{2,1,1,1}$};
+				\node at (55) {$\PART{2,2,1}$};
+				\node at (54) {$\PART{3,1,1}$};
+				\node at (53) {$\PART{3,2}$};
+				\node at (52) {$\PART{4,1}$};
+				\node at (51) {$\PART{5}$};
+			\end{scope}
+		\end{tikzpicture}$$\end{figure}
+
+\bigskip
+
+\noindent Some combinatorial facts: (without proof)
+\begin{enumerate}[(1)]
+	\item The representations of $S_k$ are indexed by the partitions on level $k$.
+	\item The basis for the module corresponding to a partition $\lambda$ is indexed by downward-moving paths from $\emptyset$ to $\lambda$.
+	\item The representation is encoded combinatorially as well.
+	      Define the \emph{content} of a box $b$ in row $i$ and column $j$ of a partition as
+	      $$c(b) = j - i, \qquad \text{ the diagonal number of $b$.} $$
+	      Label each edge in the diagram by the content of the box added. The matrix entries for the transposition $(i ~ i+1)$ are functions of the values on the edges between levels $i-1$, $i$, and $i+1$.
+	\item If $S^\lambda$ is the module indexed by $\lambda$, then
+	      $$\Ind_{S_k}^{S_{k+1}} (S^\lambda) = \bigoplus_{\mu \vdash k+1 \atop \lambda \! - \! \mu} S^\mu
+		      \qquad \text{ and }
+		      \Res_{S_{k-1}}^{S_{k}} (S^\lambda) = \bigoplus_{\mu \vdash k-1 \atop \mu \! - \! \lambda} S^\mu
+	      $$
+	      (where $\Res_{S_{k-1}}^{S_{k}} (S^\lambda) $ means forget the action of elements not in $S_{k-1}$, and $\Ind_{S_k}^{S_{k+1}} (S^\lambda) = \CC S_{k_1} \otimes_{\CC S_k} S^\lambda$).
+\end{enumerate}
+
+
+
+\end{document}

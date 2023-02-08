@@ -1,4 +1,4 @@
 set shiftwidth=2
 
-let g:tex_flavor = "latex"
-let g:vimtex_view_method = "zathura"
+" from markdown, added -f markdown
+nmap <localleader>v <cmd>!open /tmp/%<.pdf<cr><cr>
