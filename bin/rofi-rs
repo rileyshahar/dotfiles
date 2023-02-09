@@ -4,6 +4,7 @@ set -euo pipefail
 
 opts="\
 std
+search
 Result
 Option
 Iterator
@@ -18,6 +19,7 @@ serde
 rand
 log
 regex
+nom
 parking_lot\
 "
 
