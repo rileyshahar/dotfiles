@@ -11,27 +11,9 @@ return {
          &= {} &&\text{{{}}}  \\
          &= {} &&\text{{{}}}
       \end{{align*}}
+			{}
       ]],
-			{ i(1), i(2), i(3), i(4), i(5), i(6), i(7) }
-		)
-	),
-	s(
-		{ trig = "doc", name = "document", dscr = "A document." },
-		fmt(
-			[[
-      \input{{~/.config/tex/header-include.tex}}
-      \title{{ {} }}
-      \author{{Riley Shahar}}
-      {}
-
-      \begin{{document}}
-      \maketitle
-
-      {}
-
-      \end{{document}}
-      ]],
-			{ i(1), c(2, { t("\\date{\\today}"), t("") }), i(0) }
+			{ i(1), i(2), i(3), i(4), i(5), i(6), i(7), i(0) }
 		)
 	),
 	s(
@@ -40,5 +22,17 @@ return {
 			"\\setcounter{tocdepth}{2}",
 			"\\tableofcontents",
 		})
+	),
+	s(
+		{ trig = "prob", name = "problem", dscr = "A problem." },
+		fmt(
+			[[
+		  \begin{{prob}}
+		    {}
+		  \end{{prob}}
+		  {}
+		  ]],
+			{ i(1), i(0) }
+		)
 	),
 }

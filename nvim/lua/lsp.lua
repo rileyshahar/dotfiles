@@ -83,7 +83,7 @@ vim.fn.sign_define("LspDiagnosticsSignHint", { text = "", numhl = "LspDiagnostic
 -- specific language servers
 nvim_lsp.clangd.setup({})
 nvim_lsp.texlab.setup({
-	filetypes = { "tex", "plaintex", "bib", "markdown" },
+	-- filetypes = { "tex", "plaintex", "bib", "markdown" },
 	settings = {
 		latex = {
 			lint = {
