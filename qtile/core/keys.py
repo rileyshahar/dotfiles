@@ -92,4 +92,10 @@ keys = [
     # chords
     # KeyChord([MOD], "e", [Key([], "c", lazy.spawn(), desc="edit config")]),
     KeyChord([MOD], "b", [Key([], "c", lazy.spawn(TOP), desc="spawn top")], name="bar"),
+    KeyChord(
+        [MOD],
+        "o",
+        [Key([], "r", lazy.spawn("rofi-rs"), desc="open rust docs")],
+        name="open",
+    ),
 ]

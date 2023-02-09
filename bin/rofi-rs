@@ -1,0 +1,123 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+opts="\
+std
+Result
+Option
+Iterator
+Vec
+itertools
+anyhow
+thiserror
+clap
+rayon
+tokio
+serde
+rand
+log
+regex
+parking_lot\
+"
+
+modules="\
+search
+assert_matches
+async_iter
+intrinsics
+simd
+alloc
+any
+arch
+array
+ascii
+backtrace
+borrow
+boxed
+cell
+char
+clone
+cmp
+collections
+convert
+default
+env
+error
+f32
+f64
+ffi
+fmt
+fs
+future
+hash
+hint
+io
+iter
+marker
+mem
+net
+num
+ops
+option
+os
+panic
+path
+pin
+prelude
+primitive
+process
+ptr
+rc
+result
+slice
+str
+string
+sync
+task
+thread
+time
+vec\
+"
+
+app=$(echo "$opts" | rofi -dmenu)
+case "$app" in
+
+std)
+  mod=$(echo "$modules" | rofi -dmenu)
+  if [[ $mod == "search" ]]; then
+    term=$(rofi -dmenu)
+    url="https://doc.rust-lang.org/stable/std/index.html?search=$term"
+  else
+    url="https://doc.rust-lang.org/stable/std/$mod/index.html"
+  fi
+  ;;
+
+search)
+  term=$(rofi -dmenu)
+  url="https://docs.rs/releases/search?query=$term"
+  ;;
+
+Vec)
+  url="https://doc.rust-lang.org/stable/std/result/enum.Vec.html"
+  ;;
+
+Result)
+  url="https://doc.rust-lang.org/stable/std/result/enum.Result.html"
+  ;;
+
+Option)
+  url="https://doc.rust-lang.org/stable/std/option/enum.Option.html"
+  ;;
+
+Iterator)
+  url="https://doc.rust-lang.org/std/iter/trait.Iterator.html"
+  ;;
+
+*)
+  url="https://docs.rs/$app"
+  ;;
+esac
+
+firefox "$url"
+qtile cmd-obj -o screen -f toggle_group -a 
