@@ -1,9 +1,13 @@
+% Originally adapted from Zajj Daugherty's template, https://people.reed.edu/~zdaugherty/index.html.
+
 \usepackage{amsfonts, amscd, amssymb, amsthm, amsmath}
 \usepackage{tikz-cd}
+\usepackage{mathtools}
 
 %% THEOREMS %%
 \theoremstyle{plain}
 \newtheorem{thm}{Theorem}[section] % reset counter every section
+\newtheorem{thm*}{Theorem} % no numbering
 \newtheorem{lemma}[thm]{Lemma} % use the same counter as theorem
 \newtheorem{prop}[thm]{Proposition} % ditto
 \newtheorem{cor}{Corollary}[thm] % reset for every theorem
@@ -75,3 +79,7 @@
 %% OTHER SYMBOLS %% 
 \DeclareMathOperator{\Map}{Map}
 \DeclareMathOperator{\id}{id}
+
+% https://tex.stackexchange.com/a/118217
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
