@@ -1,8 +1,19 @@
 """Keybinds."""
+from libqtile import qtile
 from libqtile.config import Key, KeyChord
 from libqtile.lazy import lazy
 
 from .settings import APPS, MOD, TOP
+
+if qtile.core.name == "x11":  # type: ignore
+    ctrl_keys = []
+elif qtile.core.name == "wayland":  # type: ignore
+    ctrl_keys = [
+        Key(["control"], "h", lazy.layout.left(), desc="focus left"),
+        Key(["control"], "l", lazy.layout.right(), desc="focus right"),
+        Key(["control"], "j", lazy.layout.down(), desc="focus down"),
+        Key(["control"], "k", lazy.layout.up(), desc="focus up"),
+    ]
 
 keys = [
     # change focus
@@ -10,10 +21,7 @@ keys = [
     Key([MOD], "l", lazy.layout.right(), desc="focus right"),
     Key([MOD], "j", lazy.layout.down(), desc="focus down"),
     Key([MOD], "k", lazy.layout.up(), desc="focus up"),
-    Key(["control"], "h", lazy.layout.left(), desc="focus left"),
-    Key(["control"], "l", lazy.layout.right(), desc="focus right"),
-    Key(["control"], "j", lazy.layout.down(), desc="focus down"),
-    Key(["control"], "k", lazy.layout.up(), desc="focus up"),
+    *ctrl_keys,
     # change groups
     Key([MOD], "right", lazy.screen.next_group(), desc="next group"),
     Key([MOD], "left", lazy.screen.prev_group(), desc="previous group"),

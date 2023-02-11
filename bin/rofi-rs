@@ -5,10 +5,10 @@ set -euo pipefail
 opts="\
 std
 search
-Result
-Option
-Iterator
-Vec
+result
+option
+iterator
+vec
 itertools
 anyhow
 thiserror
@@ -100,19 +100,19 @@ search)
   url="https://docs.rs/releases/search?query=$term"
   ;;
 
-Vec)
+vec)
   url="https://doc.rust-lang.org/stable/std/result/enum.Vec.html"
   ;;
 
-Result)
+result)
   url="https://doc.rust-lang.org/stable/std/result/enum.Result.html"
   ;;
 
-Option)
+option)
   url="https://doc.rust-lang.org/stable/std/option/enum.Option.html"
   ;;
 
-Iterator)
+iterator)
   url="https://doc.rust-lang.org/std/iter/trait.Iterator.html"
   ;;
 
