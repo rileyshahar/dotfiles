@@ -3,8 +3,9 @@
 set -euo pipefail
 
 opts="\
-std
 search
+std
+reference
 result
 option
 iterator
@@ -20,7 +21,8 @@ rand
 log
 regex
 nom
-parking_lot\
+parking_lot
+macro fragment specifiers\
 "
 
 modules="\
@@ -95,13 +97,21 @@ std)
   fi
   ;;
 
+reference)
+  url="https://doc.rust-lang.org/reference/"
+  ;;
+
 search)
   term=$(rofi -dmenu)
   url="https://docs.rs/releases/search?query=$term"
   ;;
 
+"macro fragment specifiers")
+  url="https://veykril.github.io/tlborm/decl-macros/macros-methodical.html#metavariables"
+  ;;
+
 vec)
-  url="https://doc.rust-lang.org/stable/std/result/enum.Vec.html"
+  url="https://doc.rust-lang.org/stable/std/vec/struct.Vec.html"
   ;;
 
 result)
