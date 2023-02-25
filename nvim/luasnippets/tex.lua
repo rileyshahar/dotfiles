@@ -35,4 +35,25 @@ return {
 			{ i(1), i(0) }
 		)
 	),
+	s(
+		{ trig = "sfn", name = "small function", dscr = "A small block function definition." },
+		fmt(
+			[[ $${} \colon {} &\to {};\quad {} &\mapsto {}$$ {}]],
+			{ i(1, "f"), i(2, "X"), i(3, "Y"), i(4, "x"), i(5, "y"), i(0) }
+		)
+	),
+
+	s(
+		{ trig = "fn", name = "function", dscr = "A block function definition." },
+		fmt(
+			[[
+      \begin{{align*}}
+        {} \colon &{} \to {}\\
+        &{} \mapsto {}
+      \end{{align*}}
+      {}
+      ]],
+			{ i(1, "f"), i(2, "X"), i(3, "Y"), i(4, "x"), i(5, "y"), i(0) }
+		)
+	),
 }
