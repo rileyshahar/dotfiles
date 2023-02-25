@@ -21,7 +21,11 @@ require("packer").startup(function()
 		-- manage todo comments
 		"Folke/todo-comments.nvim",
 		config = function()
-			require("todo-comments").setup()
+			require("todo-comments").setup({
+				search = {
+					pattern = [[\b(KEYWORDS)\b]],
+				},
+			})
 			map("]t", require("todo-comments").jump_next)
 			map("[t", require("todo-comments").jump_prev)
 			map(leaders.finder .. "t", "<cmd>TodoTelescope<cr>")
