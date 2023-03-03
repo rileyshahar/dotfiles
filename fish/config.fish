@@ -190,8 +190,10 @@ abbr -a ckc cookiecutter
 # ls replacement
 if type -q exa
     set ls_function exa
+    set ls_sort -lsold
 else
     set ls_function ls
+    set ls_sort -ltr
 end
 
 abbr -a l $ls_function
@@ -199,6 +201,7 @@ abbr -a ls $ls_function
 abbr -a ll $ls_function -lh
 abbr -a la $ls_function -a
 abbr -a lll $ls_function -alh
+abbr -a llt $ls_function $ls_sort
 
 # cat replacement
 if type -q bat
