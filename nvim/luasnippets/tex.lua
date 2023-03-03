@@ -38,7 +38,7 @@ return {
 	s(
 		{ trig = "sfn", name = "small function", dscr = "A small block function definition." },
 		fmt(
-			[[ $${} \colon {} &\to {};\quad {} &\mapsto {}$$ {}]],
+			[[ $${} \colon {} \to {};\quad {} \mapsto {}$$ {}]],
 			{ i(1, "f"), i(2, "X"), i(3, "Y"), i(4, "x"), i(5, "y"), i(0) }
 		)
 	),
@@ -48,8 +48,8 @@ return {
 		fmt(
 			[[
       \begin{{align*}}
-        {} \colon &{} \to {}\\
-        &{} \mapsto {}
+				{} \colon {} &\to {}\\
+				{} &\mapsto {}
       \end{{align*}}
       {}
       ]],
