@@ -70,6 +70,7 @@ telegram-desktop
 texlab
 texlive-most
 tldr
+tree
 ttf-lato
 ttf-liberation
 ttf-meslo-nerd
@@ -87,5 +88,6 @@ yamllint
 youtube-dl
 zathura
 zathura-pdf-mupdf
+zip
 zoom
 zoxide
