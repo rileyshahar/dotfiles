@@ -23,6 +23,7 @@ DAEMONS = (
     "gammastep",
     "fusuma",
     "anacron -t $HOME/.config/anacron/anacrontab -S $HOME/.local/share/anacron",
+    "dunst",
 )
 
 
