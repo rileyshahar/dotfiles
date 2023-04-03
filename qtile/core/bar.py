@@ -7,7 +7,7 @@ from libqtile.lazy import lazy
 
 from widgets import MyBattery
 
-from .settings import COLORS, TOP
+from .settings import COLORS, NIGHT_MODE, TOP
 
 defaults = {
     "background": COLORS.BACKGROUND,
@@ -72,6 +72,7 @@ screens = [
                     foreground=COLORS.BRIGHT_YELLOW,
                     update_interval=0.1,
                     change_command="brightnessctl set {0}%",
+                    mouse_callbacks={"Button1": lazy.spawn(NIGHT_MODE)},
                     step=1,
                     scroll_interval=0.1,
                 ),

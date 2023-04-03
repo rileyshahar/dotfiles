@@ -9,6 +9,8 @@ if not qtile or qtile.core.name == "wayland":  # type: ignore
 elif qtile.core.name == "x11":  # type: ignore
     TERMINAL = "kitty"
 
+NIGHT_MODE = "pkill -USR1 gammastep"
+
 TOP = "footclient --title=__float btm"
 APPS = [
     ("Return", TERMINAL, "terminal"),

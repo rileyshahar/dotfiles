@@ -3,7 +3,7 @@ from libqtile import qtile
 from libqtile.config import Key, KeyChord
 from libqtile.lazy import lazy
 
-from .settings import APPS, MOD, TOP
+from .settings import APPS, MOD, NIGHT_MODE, TOP
 
 if not qtile or qtile.core.name == "wayland":  # type: ignore
     ctrl_keys = [
@@ -135,7 +135,15 @@ keys = [
     ),
     # chords
     # KeyChord([MOD], "e", [Key([], "c", lazy.spawn(), desc="edit config")]),
-    KeyChord([MOD], "b", [Key([], "c", lazy.spawn(TOP), desc="spawn top")], name="bar"),
+    KeyChord(
+        [MOD],
+        "b",
+        [
+            Key([], "c", lazy.spawn(TOP), desc="spawn top"),
+            Key([], "b", lazy.spawn(NIGHT_MODE), desc="toggle night mode"),
+        ],
+        name="bar",
+    ),
     KeyChord(
         [MOD],
         "o",
