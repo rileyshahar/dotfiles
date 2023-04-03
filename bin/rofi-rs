@@ -131,5 +131,4 @@ iterator)
   ;;
 esac
 
-firefox "$url"
-qtile cmd-obj -o screen -f toggle_group -a 
+firefox --new-window "$url"

@@ -7,14 +7,27 @@ from .settings import COLORS
 layout_theme = {
     "border_width": 2,
     "margin": 8,
+}
+
+columns_theme = {
+    **layout_theme,
     "border_focus": COLORS.DIM_MAGENTA,
+    "border_focus_stack": COLORS.DIM_BLUE,
+    "border_normal": COLORS.BRIGHT_BLACK,
+    "border_normal_stack": COLORS.BRIGHT_BLACK,
+    "border_on_single": True,
+}
+
+max_theme = {
+    **layout_theme,
+    "border_focus": COLORS.DIM_BLUE,
     "border_normal": COLORS.BRIGHT_BLACK,
 }
 
 
 layouts = [
-    layout.MonadTall(**layout_theme),  # type: ignore
-    layout.Max(**layout_theme),  # type: ignore
+    layout.Columns(**columns_theme),  # type: ignore
+    layout.Max(**max_theme),  # type: ignore
 ]
 
 floating_layout = layout.Floating(

@@ -7,21 +7,45 @@ from .settings import APPS, MOD, NIGHT_MODE, TOP
 
 if not qtile or qtile.core.name == "wayland":  # type: ignore
     ctrl_keys = [
-        Key(["control"], "h", lazy.layout.left(), desc="focus left"),
-        Key(["control"], "l", lazy.layout.right(), desc="focus right"),
-        Key(["control"], "j", lazy.layout.down(), desc="focus down"),
-        Key(["control"], "k", lazy.layout.up(), desc="focus up"),
+        Key(["control"], "h", lazy.layout.left(), desc="left column"),
+        Key(["control"], "j", lazy.layout.down(), desc="next window"),
+        Key(["control"], "k", lazy.layout.up(), desc="previous window"),
+        Key(["control"], "l", lazy.layout.right(), desc="right column"),
     ]
 elif qtile.core.name == "x11":  # type: ignore
     ctrl_keys = []
 
 keys = [
     # change focus
-    Key([MOD], "h", lazy.layout.left(), desc="focus left"),
-    Key([MOD], "l", lazy.layout.right(), desc="focus right"),
-    Key([MOD], "j", lazy.layout.down(), desc="focus down"),
-    Key([MOD], "k", lazy.layout.up(), desc="focus up"),
+    Key([MOD], "h", lazy.layout.left(), desc="left column"),
+    Key([MOD], "j", lazy.layout.down(), desc="next window"),
+    Key([MOD], "k", lazy.layout.up(), desc="previous window"),
+    Key([MOD], "l", lazy.layout.right(), desc="right column"),
     *ctrl_keys,
+    # move windows
+    Key([MOD, "shift"], "h", lazy.layout.shuffle_left(), desc="move window left"),
+    Key([MOD, "shift"], "j", lazy.layout.shuffle_down(), desc="move window down"),
+    Key([MOD, "shift"], "k", lazy.layout.shuffle_up(), desc="move window up"),
+    Key([MOD, "shift"], "l", lazy.layout.shuffle_right(), desc="move window right"),
+    # resize windows
+    Key([MOD, "control"], "h", lazy.layout.grow_left(), desc="grow left"),
+    Key([MOD, "control"], "j", lazy.layout.grow_down(), desc="grow down"),
+    Key([MOD, "control"], "k", lazy.layout.grow_up(), desc="grow up"),
+    Key([MOD, "control"], "l", lazy.layout.grow_right(), desc="grow right"),
+    Key([MOD, "control"], "r", lazy.layout.normalize(), desc="reset sizes"),
+    # move columns
+    Key(
+        [MOD, "control", "shift"],
+        "h",
+        lazy.layout.swap_column_left(),
+        desc="move column left",
+    ),
+    Key(
+        [MOD, "control", "shift"],
+        "l",
+        lazy.layout.swap_column_right(),
+        desc="move column right",
+    ),
     # change groups
     Key([MOD], "right", lazy.screen.next_group(), desc="next group"),
     Key([MOD], "left", lazy.screen.prev_group(), desc="previous group"),
@@ -29,15 +53,6 @@ keys = [
     Key(
         [MOD], "up", lazy.screen.toggle_group(), desc="toggle group"
     ),  # TODO: pick smth else?
-    # move windows
-    Key([MOD, "shift"], "h", lazy.layout.shuffle_left(), desc="move window left"),
-    Key([MOD, "shift"], "l", lazy.layout.shuffle_right(), desc="move window right"),
-    Key([MOD, "shift"], "j", lazy.layout.shuffle_down(), desc="move window down"),
-    Key([MOD, "shift"], "k", lazy.layout.shuffle_up(), desc="move window up"),
-    # resize windows
-    Key([MOD, "control"], "k", lazy.layout.grow(), desc="grow window"),
-    Key([MOD, "control"], "j", lazy.layout.shrink(), desc="shrink window"),
-    Key([MOD, "control"], "r", lazy.layout.reset(), desc="reset sizes"),
     # apps
     *(
         Key([MOD], key, lazy.spawn(app), desc=f"launch {name}")
@@ -50,6 +65,7 @@ keys = [
         desc="floating terminal",
     ),
     # wm controls
+    Key([MOD], "Minus", lazy.layout.toggle_split(), desc="toggle column split"),
     Key([MOD], "Semicolon", lazy.next_layout(), desc="toggle layouts"),
     Key([MOD, "shift"], "q", lazy.window.kill(), desc="kill window"),
     Key([MOD, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
