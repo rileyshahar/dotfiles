@@ -4,10 +4,10 @@ from libqtile import qtile
 MOD = "MOD4"  # super
 # TERMINAL = "kitty -o allow_remote_control=yes --single-instance --listen-on unix:@mykitty"
 
-if qtile.core.name == "x11":  # type: ignore
-    TERMINAL = "kitty"
-elif qtile.core.name == "wayland":  # type: ignore
+if not qtile or qtile.core.name == "wayland":  # type: ignore
     TERMINAL = "footclient"
+elif qtile.core.name == "x11":  # type: ignore
+    TERMINAL = "kitty"
 
 TOP = "footclient --title=__float btm"
 APPS = [

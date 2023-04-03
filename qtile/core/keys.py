@@ -5,15 +5,15 @@ from libqtile.lazy import lazy
 
 from .settings import APPS, MOD, TOP
 
-if qtile.core.name == "x11":  # type: ignore
-    ctrl_keys = []
-elif qtile.core.name == "wayland":  # type: ignore
+if not qtile or qtile.core.name == "wayland":  # type: ignore
     ctrl_keys = [
         Key(["control"], "h", lazy.layout.left(), desc="focus left"),
         Key(["control"], "l", lazy.layout.right(), desc="focus right"),
         Key(["control"], "j", lazy.layout.down(), desc="focus down"),
         Key(["control"], "k", lazy.layout.up(), desc="focus up"),
     ]
+elif qtile.core.name == "x11":  # type: ignore
+    ctrl_keys = []
 
 keys = [
     # change focus
@@ -116,7 +116,23 @@ keys = [
     ),
     Key([], "xF86AudioNext", lazy.spawn("playerctl next"), desc="next track"),
     Key([], "xF86AudioPrev", lazy.spawn("playerctl previous"), desc="previous track"),
-    Key([], "Print", lazy.spawn("grim ~/screenshot.png"), desc="screenshot"),
+    # default: whole screen, copy to keyboard
+    # mod: custom selection
+    # shift: save to file
+    Key([], "Print", lazy.spawn("screenshot -s f -o c"), desc="copy full screen"),
+    Key([MOD], "Print", lazy.spawn("screenshot -s s -o c"), desc="copy selection"),
+    Key(
+        ["shift"],
+        "Print",
+        lazy.spawn("screenshot -s f -o s"),
+        desc="save screen to file",
+    ),
+    Key(
+        [MOD, "shift"],
+        "Print",
+        lazy.spawn("screenshot -s s -o s"),
+        desc="save selection to file",
+    ),
     # chords
     # KeyChord([MOD], "e", [Key([], "c", lazy.spawn(), desc="edit config")]),
     KeyChord([MOD], "b", [Key([], "c", lazy.spawn(TOP), desc="spawn top")], name="bar"),
