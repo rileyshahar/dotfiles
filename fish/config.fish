@@ -172,6 +172,7 @@ abbr -a taskopen taskopen -c $XDG_CONFIG_HOME/task/taskopenrc
 # misc
 abbr -a mc mkdir-cd
 abbr -a mld mv "~/downloads/(ls -t -A ~/downloads/ | head -1)" . # move last download
+abbr -a mls mv "~/screenshots/(ls -t -A ~/screenshots/ | head -1)" . # move last screenshot
 abbr -a o open
 abbr -a h fancy-help
 abbr -a m make
