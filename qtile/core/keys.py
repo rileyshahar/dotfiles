@@ -5,14 +5,14 @@ from libqtile.lazy import lazy
 
 from .settings import APPS, BAR_APPS, FLOAT_TERM, MOD
 
-if not qtile or qtile.core.name == "wayland":  # type: ignore
+if not qtile or qtile.core.name == "wayland":
     ctrl_keys = [
         Key(["control"], "h", lazy.layout.left(), desc="left column"),
         Key(["control"], "j", lazy.layout.down(), desc="next window"),
         Key(["control"], "k", lazy.layout.up(), desc="previous window"),
         Key(["control"], "l", lazy.layout.right(), desc="right column"),
     ]
-elif qtile.core.name == "x11":  # type: ignore
+elif qtile.core.name == "x11":
     ctrl_keys = []
 
 keys = [
