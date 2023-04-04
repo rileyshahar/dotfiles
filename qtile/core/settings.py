@@ -3,9 +3,9 @@ from libqtile import qtile
 
 MOD = "MOD4"  # super
 
-if not qtile or qtile.core.name == "wayland":  # type: ignore
+if not qtile or qtile.core.name == "wayland":
     TERMINAL = "footclient"
-elif qtile.core.name == "x11":  # type: ignore
+elif qtile.core.name == "x11":
     TERMINAL = "kitty"
 
 FLOAT_TERM = "footclient --title=__float"
