@@ -1,5 +1,7 @@
 colors cac
 
+unbind >>
+unbind <<
 bind h tabprev
 bind l tabnext
 bind H back
