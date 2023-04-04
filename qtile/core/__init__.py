@@ -2,12 +2,12 @@
 
 import core.hooks as hooks
 
-from .bar import defaults, screens
 from .groups import groups
 from .input import wl_input_rules
 from .keys import keys
 from .layouts import floating_layout, layouts
 from .mouse import mouse
+from .screens import defaults, screens
 
 widget_defaults = defaults.copy()
 extension_defaults = defaults.copy()
