@@ -1,10 +1,10 @@
 swipe:
   3:
     left:
-      command: "qtile cmd-obj -o screen -f next_group --args skip_empty"
+      command: "wtype -M win -P left -p left -m win"
     right:
-      command: "qtile cmd-obj -o screen -f prev_group --args skip_empty"
+      command: "wtype -M win -P right -p right -m win"
     down:
-      command: "qtile cmd-obj -o screen -f toggle_group"
+      command: "wtype -M win -P down -p down -m win"
     up:
-      command: "qtile cmd-obj -o screen -f toggle_group"
+      command: "wtype -M win -P up -p up -m win"

@@ -36,6 +36,7 @@ mpv-mpris
 mypy
 neovim-git
 networkmanager
+newsboat
 nvidia
 nvidia-prime
 openssh
@@ -83,6 +84,7 @@ wkhtmltopdf
 wl-clipboard
 wlroots-nvidia
 write-good
+wtype
 xorg
 yamllint
 youtube-dl
