@@ -19,7 +19,7 @@ def start_once() -> None:
 def new_client(window: Window) -> None:
     """Set transparency and floats for the correct windows."""
     if any(any(app in c for app in TRANSPARENT_CLASSES) for c in window.get_wm_class()):
-        window.cmd_opacity(0.9)
+        window.cmd_opacity(0.8)
 
     if window.name == "__float":
         window.cmd_enable_floating()
