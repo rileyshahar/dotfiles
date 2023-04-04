@@ -6,7 +6,7 @@ from .settings import COLORS
 
 layout_theme = {
     "border_width": 2,
-    "margin": 8,
+    "margin": 0,
 }
 
 NORMAL_COLOR = COLORS.BRIGHT_BLACK
