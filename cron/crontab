@@ -2,3 +2,15 @@ DISPLAY=":0.0"
 XAUTHORITY="/home/riley/.Xauthority"
 XDG_RUNTIME_DIR="/run/user/1000"
 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name command to be executed
+
+# use */N for every N unites
+
+*/10 *  *  *  * newsboat -x reload
