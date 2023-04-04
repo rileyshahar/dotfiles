@@ -1,9 +1,9 @@
 swipe:
   3:
     left:
-      command: "qtile cmd-obj -o screen -f next_group"
+      command: "qtile cmd-obj -o screen -f next_group --args skip_empty"
     right:
-      command: "qtile cmd-obj -o screen -f prev_group"
+      command: "qtile cmd-obj -o screen -f prev_group --args skip_empty"
     down:
       command: "qtile cmd-obj -o screen -f toggle_group"
     up:

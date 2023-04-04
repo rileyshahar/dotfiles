@@ -47,8 +47,8 @@ keys = [
         desc="move column right",
     ),
     # change groups
-    Key([MOD], "right", lazy.screen.next_group(), desc="next group"),
-    Key([MOD], "left", lazy.screen.prev_group(), desc="previous group"),
+    Key([MOD], "right", lazy.screen.next_group(skip_empty=True), desc="next group"),
+    Key([MOD], "left", lazy.screen.prev_group(skip_empty=True), desc="previous group"),
     Key([MOD], "down", lazy.screen.toggle_group(), desc="toggle group"),
     Key(
         [MOD], "up", lazy.screen.toggle_group(), desc="toggle group"
