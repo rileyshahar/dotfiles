@@ -3,7 +3,7 @@ from libqtile import qtile
 from libqtile.config import Key, KeyChord
 from libqtile.lazy import lazy
 
-from .settings import APPS, MOD, NIGHT_MODE, TOP
+from .settings import APPS, BAR_APPS, FLOAT_TERM, MOD
 
 if not qtile or qtile.core.name == "wayland":  # type: ignore
     ctrl_keys = [
@@ -57,11 +57,12 @@ keys = [
     *(
         Key([MOD], key, lazy.spawn(app), desc=f"launch {name}")
         for key, app, name in APPS
+        if key
     ),
     Key(
         [MOD, "shift"],
         "Return",
-        lazy.spawn("footclient --title=__float"),
+        lazy.spawn(FLOAT_TERM),
         desc="floating terminal",
     ),
     # wm controls
@@ -155,8 +156,8 @@ keys = [
         [MOD],
         "b",
         [
-            Key([], "c", lazy.spawn(TOP), desc="spawn top"),
-            Key([], "b", lazy.spawn(NIGHT_MODE), desc="toggle night mode"),
+            Key([], "c", lazy.spawn(BAR_APPS["cpu"]), desc="spawn top"),
+            Key([], "b", lazy.spawn(BAR_APPS["brightness"]), desc="toggle night mode"),
         ],
         name="bar",
     ),

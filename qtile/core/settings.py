@@ -2,20 +2,20 @@
 from libqtile import qtile
 
 MOD = "MOD4"  # super
-# TERMINAL = "kitty -o allow_remote_control=yes --single-instance --listen-on unix:@mykitty"
 
 if not qtile or qtile.core.name == "wayland":  # type: ignore
     TERMINAL = "footclient"
 elif qtile.core.name == "x11":  # type: ignore
     TERMINAL = "kitty"
 
-NIGHT_MODE = "pkill -USR1 gammastep"
+FLOAT_TERM = "footclient --title=__float"
+BAR_APPS = {"brightness": "pkill -USR1 gammastep", "cpu": FLOAT_TERM + " btm"}
 
-TOP = "footclient --title=__float btm"
 APPS = [
+    # (key, command, description)
+    # TODO: built-in prompt?
     ("Return", TERMINAL, "terminal"),
     ("Apostrophe", "firefox", "browser"),
-    # TODO: built-in prompt?
     ("Space", "launcher", "launcher"),
 ]
 

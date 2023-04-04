@@ -9,19 +9,29 @@ layout_theme = {
     "margin": 8,
 }
 
+NORMAL_COLOR = COLORS.BRIGHT_BLACK
+FOCUS_COLOR = COLORS.DIM_MAGENTA
+STACK_COLOR = COLORS.DIM_BLUE
+
 columns_theme = {
     **layout_theme,
-    "border_focus": COLORS.DIM_MAGENTA,
-    "border_focus_stack": COLORS.DIM_BLUE,
-    "border_normal": COLORS.BRIGHT_BLACK,
-    "border_normal_stack": COLORS.BRIGHT_BLACK,
+    "border_focus": FOCUS_COLOR,
+    "border_focus_stack": STACK_COLOR,
+    "border_normal": NORMAL_COLOR,
+    "border_normal_stack": NORMAL_COLOR,
     "border_on_single": True,
 }
 
 max_theme = {
     **layout_theme,
-    "border_focus": COLORS.DIM_BLUE,
-    "border_normal": COLORS.BRIGHT_BLACK,
+    "border_focus": STACK_COLOR,
+    "border_normal": NORMAL_COLOR,
+}
+
+float_theme = {
+    **layout_theme,
+    "border_normal": NORMAL_COLOR,
+    "border_focus": FOCUS_COLOR,
 }
 
 
@@ -49,5 +59,5 @@ floating_layout = layout.Floating(
         Match(title="branchdialog"),
         Match(title="pinentry"),
     ],
-    **layout_theme,
+    **float_theme,
 )
