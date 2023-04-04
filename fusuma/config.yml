@@ -1,9 +1,9 @@
 swipe:
   3:
     left:
-      command: "wtype -M win -P left -p left -m win"
-    right:
       command: "wtype -M win -P right -p right -m win"
+    right:
+      command: "wtype -M win -P left -p left -m win"
     down:
       command: "wtype -M win -P down -p down -m win"
     up:
