@@ -5,6 +5,9 @@
 \usepackage{mathtools}
 \usepackage{fancyhdr}
 \usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{capt-of}
+\usepackage{pifont}
 \usepackage[shortlabels]{enumitem}
 
 %% THEOREMS %%
@@ -86,3 +89,10 @@
 % https://tex.stackexchange.com/a/118217
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+% pandoc hack: https://stackoverflow.com/a/41005796
+\newcommand{\hideFromPandoc}[1]{#1}
+\hideFromPandoc{
+	\let\Begin\begin
+	\let\End\end
+}
