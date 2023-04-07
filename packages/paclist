@@ -3,6 +3,7 @@ ack
 acpi
 android-messages-desktop
 autorandr
+bc
 blueman
 bluez
 bluez-utils
@@ -23,7 +24,9 @@ gcc
 git
 git-delta
 github-cli
+gnuplot
 google-chrome
+graphviz
 hyperfine
 imv
 jq
