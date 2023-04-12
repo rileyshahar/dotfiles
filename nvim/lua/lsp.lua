@@ -128,6 +128,7 @@ nvim_lsp.jsonls.setup({
 })
 
 nvim_lsp.rust_analyzer.setup({
+  cmd = {"rustup", "run", "stable", "rust-analyzer"},
 	settings = {
 		["rust-analyzer"] = {
 			checkOnSave = {
