@@ -10,8 +10,8 @@ layout_theme = {
 }
 
 NORMAL_COLOR = COLORS.BRIGHT_BLACK
-FOCUS_COLOR = COLORS.DIM_MAGENTA
-STACK_COLOR = COLORS.DIM_BLUE
+FOCUS_COLOR = COLORS.DIM_BLUE
+STACK_COLOR = COLORS.DIM_MAGENTA
 
 columns_theme = {
     **layout_theme,
@@ -20,6 +20,7 @@ columns_theme = {
     "border_normal": NORMAL_COLOR,
     "border_normal_stack": NORMAL_COLOR,
     "border_on_single": True,
+    "split": False,
 }
 
 max_theme = {
