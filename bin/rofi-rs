@@ -131,4 +131,4 @@ iterator)
   ;;
 esac
 
-firefox --new-window "$url"
+firefox "$url"
