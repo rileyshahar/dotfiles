@@ -93,6 +93,12 @@ nvim_lsp.texlab.setup({
 	},
 })
 
+require("coq-lsp").setup({
+	-- lsp = {
+	-- 	on_attach = on_attach
+	-- }
+})
+
 nvim_lsp.pylsp.setup({
 	settings = {
 		pylsp = {

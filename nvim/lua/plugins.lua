@@ -227,7 +227,7 @@ require("packer").startup(function()
 	-- just
 	use("NoahTheDuke/vim-just")
 
-	-- aga
+	-- agda
 	use({
 		"isovector/cornelis",
 		requires = { "kana/vim-textobj-user", "neovimhaskell/nvim-hs.vim" },
@@ -236,6 +236,16 @@ require("packer").startup(function()
 
 	-- lean
 	use({ "Julian/lean.nvim", requires = "andrewradev/switch.vim" })
+
+	-- coq
+	use({
+		"whonore/Coqtail",
+		config = function()
+			vim.g.loaded_coqtail = 1
+			vim.g["coqtail#supported"] = 0
+		end,
+	})
+	use("tomtomjhj/coq-lsp.nvim")
 
 	-- mtg
 	use({
