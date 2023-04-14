@@ -17,5 +17,8 @@ screens = [
         wallpaper_mode="stretch",
         bottom=widgets,
     ),
-    Screen(),
+    Screen(
+        wallpaper="~/dotfiles/wallpaper.jpg",
+        wallpaper_mode="stretch",
+    ),
 ]

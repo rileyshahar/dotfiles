@@ -129,6 +129,7 @@ iterator)
 *)
   url="https://docs.rs/$app"
   ;;
+
 esac
 
-firefox "$url"
+"$BROWSER" "$url"

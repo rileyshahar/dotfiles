@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+page=$(rofi -dmenu)
+
+case $1 in
+
+wiki)
+	url="en.wikipedia.org/wiki/$page"
+	;;
+
+rust)
+	rofi-rs
+	exit
+	;;
+
+search)
+  url="google.com/search?q=$page"
+	;;
+
+*)
+	url=$page
+	;;
+
+esac
+
+"$BROWSER" "$url"

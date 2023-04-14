@@ -1,6 +1,9 @@
 """Keybinds."""
+from os import getenv
+
 from libqtile import qtile
 from libqtile.config import Key, KeyChord
+from libqtile.core.manager import Qtile
 from libqtile.lazy import lazy
 
 from .settings import APPS, BAR_APPS, FLOAT_TERM, MOD
@@ -14,6 +17,12 @@ if not qtile or qtile.core.name == "wayland":
     ]
 elif qtile.core.name == "x11":
     ctrl_keys = []
+
+
+def find_edit(mgr: Qtile, cwd: str) -> None:
+    """Return a function which edits a file in a floating terminal."""
+    mgr.cmd_spawn(f"rofi-find {cwd} '{FLOAT_TERM} nvim'")
+
 
 keys = [
     # change focus
@@ -164,7 +173,35 @@ keys = [
     KeyChord(
         [MOD],
         "o",
-        [Key([], "r", lazy.spawn("rofi-rs"), desc="open rust docs")],
+        [
+            Key([], "o", lazy.spawn("rofi-browser search"), desc="search on ddg"),
+            Key([], "r", lazy.spawn("rofi-rs"), desc="open rust docs"),
+            Key(
+                [],
+                "w",
+                lazy.spawn("rofi-browser wiki"),
+                desc="open wikipedia",
+            ),
+        ],
         name="open",
+    ),
+    KeyChord(
+        [MOD],
+        "e",
+        [
+            Key(
+                [],
+                "n",
+                lazy.function(find_edit, getenv("DOTFILES_DIR") + "/nvim"),
+                desc="edit neovim config",
+            ),
+            Key(
+                [],
+                "c",
+                lazy.function(find_edit, getenv("DOTFILES_DIR")),
+                desc="edit configs",
+            ),
+        ],
+        name="edit",
     ),
 ]

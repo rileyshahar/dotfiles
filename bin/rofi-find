@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+file=$(rg --files "$1" | rofi -dmenu)
+# have to keep this without quotes around the $2 so it can take multiple arguments
+$2 "$file"
