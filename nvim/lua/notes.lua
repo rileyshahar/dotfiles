@@ -8,7 +8,7 @@ require("neorg").setup({
 		["core.norg.dirman"] = {
 			config = {
 				workspaces = {
-					reuna = "~/notes/dnd/reuna/notes",
+					math = "~/notes/math",
 				},
 				autochdir = true,
 				index = "index.norg", -- The name of the main (root) .norg file

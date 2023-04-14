@@ -44,3 +44,5 @@ map("<leader>m", function()
 		return vim.api.nvim_buf_get_option(bufnr, "makeprg")
 	end)
 end)
+
+map("<leader>v", "<cmd>!open /tmp/%<.pdf<cr>")

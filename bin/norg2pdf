@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 set -euo pipefail
-neorg-pandoc "$1" | pandoc -d default -f json -o "$2"
+neorg-pandoc -f "$1" | pandoc -d default -f json -o "$2"
 
 # echo "nvim -c 'Neorg export to-file /tmp/$1' $1 --headless -R &"
 # nvim -c "Neorg export to-file /tmp/$1" "$1" -R --headless &
