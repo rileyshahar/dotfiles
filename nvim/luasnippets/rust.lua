@@ -4,7 +4,7 @@ local ls = require("luasnip")
 return {
 	-- test
 	s(
-		{ trig = "test", name = "test", dscr = "A test case." },
+		{ trig = "test", name = "test", dscr = "A test case.", priority = 2000 },
 		fmt(
 			[[
 			#[test]
@@ -18,7 +18,7 @@ return {
 
 	-- test module
 	s(
-		{ trig = "tm", name = "test module", dscr = "A test module." },
+		{ trig = "tm", name = "test module", dscr = "A test module.", priority = 2000 },
 		fmt(
 			[[
 			#[cfg(test)]

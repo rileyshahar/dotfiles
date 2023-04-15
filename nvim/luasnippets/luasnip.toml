@@ -97,3 +97,9 @@ type = "function"
 
 [[p.args]]
 type = "string"
+
+[[postfix.args]]
+type = "string"
+
+[[postfix.args]]
+type = "table"

@@ -2,14 +2,14 @@
 
 \usepackage{amsfonts, amscd, amssymb, amsthm, amsmath}
 \usepackage{
-	tikz-cd,
-	mathtools,
-	fancyhdr,
-	enumerate,
-	multicol,
 	capt-of,
+	enumerate,
+	fancyhdr,
+	mathtools,
+	multicol,
 	pifont,
-	tabularx
+	tabularx,
+	tikz-cd,
 }
 \usepackage[shortlabels]{enumitem}
 
@@ -25,10 +25,11 @@
 \newtheorem{ex}{Example}[section]
 
 \theoremstyle{definition}
-\newtheorem{defn}{Definition}
+\newtheorem{dfn}{Definition}
 
 \theoremstyle{remark}
 \newtheorem*{rmk}{Remark}
+\newtheorem*{notation}{Notation}
 
 %% ALPHABETS %%
 \def\cA{\mathcal{A}}
@@ -88,6 +89,8 @@
 %% OTHER SYMBOLS %% 
 \DeclareMathOperator{\Map}{Map}
 \DeclareMathOperator{\id}{id}
+
+\def\pathto{\rightsquigarrow}
 
 % https://tex.stackexchange.com/a/118217
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
