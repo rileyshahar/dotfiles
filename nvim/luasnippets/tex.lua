@@ -66,7 +66,7 @@ return {
 		)
 	),
 	s(
-		{ trig = "proof", name = "definition", dscr = "A definition.", priority = 2000 },
+		{ trig = "prf", name = "proof", dscr = "A proof.", priority = 2000 },
 		fmt(
 			[[
 		  \begin{{proof}}
