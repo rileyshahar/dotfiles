@@ -5,17 +5,22 @@
 	capt-of,
 	enumerate,
 	fancyhdr,
+	float,
+	hyperref,
 	mathtools,
 	multicol,
 	pifont,
 	tabularx,
 	tikz-cd,
 }
+\usepackage[nameinlink]{cleveref}
 \usepackage[shortlabels]{enumitem}
+\setlist[itemize]{noitemsep}
+\setlist[enumerate]{noitemsep}
 
 %% THEOREMS %%
 \theoremstyle{plain}
-\newtheorem{thm}{Theorem}%[section] % reset counter every section
+\newtheorem{thm}{Theorem}[section]
 \newtheorem{thm*}{Theorem} % no numbering
 \newtheorem{lemma}[thm]{Lemma} % use the same counter as theorem
 \newtheorem{prop}[thm]{Proposition} % ditto
@@ -25,7 +30,8 @@
 \newtheorem{ex}{Example}[section]
 
 \theoremstyle{definition}
-\newtheorem{dfn}{Definition}
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{dfn*}{Definition}
 
 \theoremstyle{remark}
 \newtheorem*{rmk}{Remark}

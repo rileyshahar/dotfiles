@@ -41,12 +41,16 @@ return {
 		{ trig = "thm", name = "theorem", dscr = "A theorem." },
 		fmt(
 			[[
-		  \begin{{thm}}\label{{{}}}
+			\begin{{{}}}\label{{{}}}
 		    {}
-		  \end{{thm}}
+		  \end{{{}}}
 		  {}
 		  ]],
-			{ i(1), i(2), i(0) }
+			{ c(1, {
+				t("thm"),
+				t("prop"),
+				t("cor"),
+			}), i(2), i(3), rep(1), i(0) }
 		)
 	),
 	s(
@@ -59,6 +63,18 @@ return {
 		  {}
 		  ]],
 			{ i(1), i(2), i(0) }
+		)
+	),
+	s(
+		{ trig = "proof", name = "definition", dscr = "A definition.", priority = 2000 },
+		fmt(
+			[[
+		  \begin{{proof}}
+		    {}
+		  \end{{proof}}
+		  {}
+		  ]],
+			{ i(1), i(0) }
 		)
 	),
 	s(
