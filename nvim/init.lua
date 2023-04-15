@@ -33,6 +33,7 @@ leaders = {
 	finder = "<leader>f",
 	git = "<leader>g",
   goto = "g",
+	make = "m",
 	plugin_meta = "<leader>p",
 	ui = "<leader>z"
 }

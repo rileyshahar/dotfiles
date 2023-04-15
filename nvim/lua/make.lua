@@ -39,15 +39,21 @@ end
 
 vim.bo.makeprg = "make"
 
-map("<leader>m", function()
+map(leaders.make .. "t", function()
 	async_run(function(bufnr)
 		return vim.api.nvim_buf_get_option(bufnr, "makeprg")
 	end)
 end)
 
-map("<localleader>m", function()
+map(leaders.make .. "m", function()
 	async_run(function(_)
 		return "make"
+	end)
+end)
+
+map(leaders.make .. "c", function()
+	async_run(function(_)
+		return "make clean"
 	end)
 end)
 
