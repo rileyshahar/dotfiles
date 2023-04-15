@@ -9,5 +9,3 @@ vim.cmd("syntax enable")
 
 -- make split borders blank
 vim.o.fillchars = "vert: ,vertleft: ,vertright: ,verthoriz: ,horiz: ,horizup: ,horizdown: "
-
-require("pqf").setup()

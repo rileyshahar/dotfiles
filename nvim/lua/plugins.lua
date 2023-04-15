@@ -1,4 +1,3 @@
---# selene: allow(undefined_variable)
 require("lazy").setup({
 	-- prereqs
 	"nvim-lua/popup.nvim",
@@ -9,54 +8,79 @@ require("lazy").setup({
 	{
 		-- comment
 		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup({
-				ignore = "^$",
-			})
-		end,
+		config = {
+			ignore = "^$",
+		},
 	},
 	{
 		-- manage todo comments
 		"Folke/todo-comments.nvim",
-		config = function()
-			require("todo-comments").setup({
-				search = {
-					pattern = [[\b(KEYWORDS)\b]],
-				},
-			})
-			map("]t", require("todo-comments").jump_next)
-			map("[t", require("todo-comments").jump_prev)
-			map(leaders.finder .. "t", "<cmd>TodoTelescope<cr>")
-		end,
+		config = {
+			search = {
+				pattern = [[\b(KEYWORDS)\b]],
+			},
+		},
+		keys = {
+			{
+				"]t",
+				function()
+					require("todo-comments").jump_next()
+				end,
+			},
+			{
+				"[t",
+				function()
+					require("todo-comments").jump_prev()
+				end,
+			},
+			{ leaders.finder .. "t", "<cmd>TodoTelescope<cr>" },
+		},
 	},
 
 	-- pairs
 	{
 		-- autoclose paired characters
 		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup()
-		end,
+		config = {},
 	},
 	{
 		-- quote manipulation
 		"kylechui/nvim-surround",
-		config = function()
-			require("nvim-surround").setup()
-		end,
+		config = {},
 	},
 
 	-- editing
 	{
 		-- exchange plugin
 		"gbprod/substitute.nvim",
-		config = function()
-			require("substitute").setup()
-			map("cx", require("substitute.exchange").operator)
-			map("cxx", require("substitute.exchange").line)
-			map("X", require("substitute.exchange").visual, "x")
-			map("cxc", require("substitute.exchange").cancel)
-		end,
+		config = {},
+		keys = {
+			{
+				"cx",
+				function()
+					require("substitute.exchange").operator()
+				end,
+			},
+			{
+				"cxx",
+				function()
+					require("substitute.exchange").line()
+				end,
+			},
+			{
+				"X",
+				function()
+					require("substitute.exchange").visual()
+				end,
+				"x",
+			},
+			{
+				"cxc",
+				function()
+					require("substitute.exchange").cancel()
+				end,
+			},
+		},
 	},
 	"machakann/vim-highlightedyank", -- highlight yanked text
 
@@ -64,9 +88,9 @@ require("lazy").setup({
 	{
 		-- motion
 		"rlane/pounce.nvim",
-		config = function()
-			map("<leader><leader>", "<cmd>Pounce<cr>")
-		end,
+		keys = {
+			{ "<leader><leader>", "<cmd>Pounce<cr>" },
+		},
 	},
 	"chaoren/vim-wordmotion", -- snake case word
 
@@ -75,32 +99,35 @@ require("lazy").setup({
 
 	-- quickfix
 	"kevinhwang91/nvim-bqf", -- better quickfix keybinds
-	"https://gitlab.com/yorickpeterse/nvim-pqf.git",
+	{
+		"https://gitlab.com/yorickpeterse/nvim-pqf.git",
+		config = {},
+	},
 
 	-- distraction-free writing
 	{
 		"Pocco81/true-zen.nvim",
-		config = function()
-			require("true-zen").setup({
-				modes = {
-					ataraxis = {
-						minimum_writing_area = {
-							-- minimum size of main window
-							-- not sure why this needs to be 82 instead of 80
-							width = 82,
-						},
-						quit_untoggles = true, -- type :q or :qa to quit Ataraxis mode
-						padding = { -- padding windows
-							-- lots of padding, min width is the same as the markdown text wrap level
-							left = 1000,
-							right = 1000,
-						},
+		config = {
+			modes = {
+				ataraxis = {
+					minimum_writing_area = {
+						-- minimum size of main window
+						-- not sure why this needs to be 82 instead of 80
+						width = 82,
+					},
+					quit_untoggles = true, -- type :q or :qa to quit Ataraxis mode
+					padding = { -- padding windows
+						-- lots of padding, min width is the same as the markdown text wrap level
+						left = 1000,
+						right = 1000,
 					},
 				},
-			})
-			map(leaders.ui .. "z", "<cmd>TZAtaraxis<cr>")
-			map(leaders.ui .. "m", "<cmd>TZMinimalist<cr>")
-		end,
+			},
+		},
+		keys = {
+			{ leaders.ui .. "z", "<cmd>TZAtaraxis<cr>" },
+			{ leaders.ui .. "m", "<cmd>TZMinimalist<cr>" },
+		},
 	},
 
 	-- completion
@@ -122,19 +149,18 @@ require("lazy").setup({
 	-- buffers
 	{
 		"jose-elias-alvarez/buftabline.nvim",
-		config = function()
-			require("buftabline").setup({})
-
-			-- change buffer
-			map("H", "<cmd>BufPrev<cr>")
-			map("L", "<cmd>BufNext<cr>")
-		end,
+		lazy = false, -- never lazy load
+		config = {},
+		keys = {
+			{ "H", "<cmd>BufPrev<cr>" },
+			{ "L", "<cmd>BufNext<cr>" },
+		},
 	},
 	{
 		"ojroques/nvim-bufdel",
-		config = function()
-			map("X", "<cmd>BufDel<cr>")
-		end,
+		keys = {
+			{ "X", "<cmd>BufDel<cr>" },
+		},
 	},
 
 	-- lsp
@@ -143,9 +169,7 @@ require("lazy").setup({
 	"jose-elias-alvarez/null-ls.nvim",
 	{
 		"j-hui/fidget.nvim",
-		config = function()
-			require("fidget").setup()
-		end,
+		config = {},
 	}, -- lsp status indicator
 
 	-- neorg
@@ -169,28 +193,31 @@ require("lazy").setup({
 	"nvim-treesitter/nvim-treesitter-textobjects",
 	{
 		"lewis6991/spellsitter.nvim",
-		config = function()
-			require("spellsitter").setup()
-		end,
+		config = {},
 	},
 	{
 		-- TODO: setup
 		"danymat/neogen",
 		dependencies = "nvim-treesitter/nvim-treesitter",
-		config = function()
-			map("<localleader>d", require("neogen").generate)
-			require("neogen").setup({
-				enabled = true,
-				snippet_engine = "luasnip",
-				languages = {
-					python = {
-						template = {
-							annotation_convention = "numpydoc",
-						},
+		config = {
+			enabled = true,
+			snippet_engine = "luasnip",
+			languages = {
+				python = {
+					template = {
+						annotation_convention = "numpydoc",
 					},
 				},
-			})
-		end,
+			},
+		},
+		keys = {
+			{
+				"<localleader>d",
+				function()
+					require("neogen").generate()
+				end,
+			},
+		},
 	},
 	{
 		"nvim-treesitter/playground",
