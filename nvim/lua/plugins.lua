@@ -1,14 +1,12 @@
 --# selene: allow(undefined_variable)
-require("packer").startup(function()
-	use("wbthomason/packer.nvim")
-
+require("lazy").setup({
 	-- prereqs
-	use("nvim-lua/popup.nvim")
-	use("nvim-lua/plenary.nvim")
-	use("tpope/vim-repeat") -- repeat plugin commands
-	use("rcarriga/nvim-notify") -- notification ui
+	"nvim-lua/popup.nvim",
+	"nvim-lua/plenary.nvim",
+	"tpope/vim-repeat", -- repeat plugin commands
+	"rcarriga/nvim-notify", -- notification ui
 
-	use({
+	{
 		-- comment
 		"numToStr/Comment.nvim",
 		config = function()
@@ -16,8 +14,8 @@ require("packer").startup(function()
 				ignore = "^$",
 			})
 		end,
-	})
-	use({
+	},
+	{
 		-- manage todo comments
 		"Folke/todo-comments.nvim",
 		config = function()
@@ -30,26 +28,26 @@ require("packer").startup(function()
 			map("[t", require("todo-comments").jump_prev)
 			map(leaders.finder .. "t", "<cmd>TodoTelescope<cr>")
 		end,
-	})
+	},
 
 	-- pairs
-	use({
+	{
 		-- autoclose paired characters
 		"windwp/nvim-autopairs",
 		config = function()
 			require("nvim-autopairs").setup()
 		end,
-	})
-	use({
+	},
+	{
 		-- quote manipulation
 		"kylechui/nvim-surround",
 		config = function()
 			require("nvim-surround").setup()
 		end,
-	})
+	},
 
 	-- editing
-	use({
+	{
 		-- exchange plugin
 		"gbprod/substitute.nvim",
 		config = function()
@@ -59,28 +57,28 @@ require("packer").startup(function()
 			map("X", require("substitute.exchange").visual, "x")
 			map("cxc", require("substitute.exchange").cancel)
 		end,
-	})
-	use("machakann/vim-highlightedyank") -- highlight yanked text
+	},
+	"machakann/vim-highlightedyank", -- highlight yanked text
 
 	-- navigation/movement
-	use({
+	{
 		-- motion
 		"rlane/pounce.nvim",
 		config = function()
 			map("<leader><leader>", "<cmd>Pounce<cr>")
 		end,
-	})
-	use("chaoren/vim-wordmotion") -- snake case word
+	},
+	"chaoren/vim-wordmotion", -- snake case word
 
 	-- fs
-	use("elihunter173/dirbuf.nvim") -- directory buffer
+	"elihunter173/dirbuf.nvim", -- directory buffer
 
 	-- quickfix
-	use("kevinhwang91/nvim-bqf") -- better quickfix keybinds
-	use("https://gitlab.com/yorickpeterse/nvim-pqf.git")
+	"kevinhwang91/nvim-bqf", -- better quickfix keybinds
+	"https://gitlab.com/yorickpeterse/nvim-pqf.git",
 
 	-- distraction-free writing
-	use({
+	{
 		"Pocco81/true-zen.nvim",
 		config = function()
 			require("true-zen").setup({
@@ -103,13 +101,13 @@ require("packer").startup(function()
 			map(leaders.ui .. "z", "<cmd>TZAtaraxis<cr>")
 			map(leaders.ui .. "m", "<cmd>TZMinimalist<cr>")
 		end,
-	})
+	},
 
 	-- completion
-	use({
+	{
 		"hrsh7th/nvim-cmp",
-		requires = {
-			{ "saadparwaiz1/cmp_luasnip", requires = { "L3MON4D3/LuaSnip", "rafamadriz/friendly-snippets" } },
+		dependencies = {
+			{ "saadparwaiz1/cmp_luasnip", dependencies = { "L3MON4D3/LuaSnip", "rafamadriz/friendly-snippets" } },
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-cmdline",
@@ -119,50 +117,66 @@ require("packer").startup(function()
 			"ray-x/cmp-treesitter",
 			"lukas-reineke/cmp-under-comparator",
 		},
-	})
+	},
 
 	-- buffers
-	use("jose-elias-alvarez/buftabline.nvim")
-	use("ojroques/nvim-bufdel") -- delete
+	{
+		"jose-elias-alvarez/buftabline.nvim",
+		config = function()
+			require("buftabline").setup({})
+
+			-- change buffer
+			map("H", "<cmd>BufPrev<cr>")
+			map("L", "<cmd>BufNext<cr>")
+		end,
+	},
+	{
+		"ojroques/nvim-bufdel",
+		config = function()
+			map("X", "<cmd>BufDel<cr>")
+		end,
+	},
 
 	-- lsp
-	use("neovim/nvim-lspconfig")
-	use("ray-x/lsp_signature.nvim") -- signature while typing
-	use("jose-elias-alvarez/null-ls.nvim")
-	use("j-hui/fidget.nvim") -- lsp status indicator
+	"neovim/nvim-lspconfig",
+	"ray-x/lsp_signature.nvim", -- signature while typing
+	"jose-elias-alvarez/null-ls.nvim",
+	{
+		"j-hui/fidget.nvim",
+		config = function()
+			require("fidget").setup()
+		end,
+	}, -- lsp status indicator
 
 	-- neorg
-	use({
+	{
 		"nvim-neorg/neorg",
-		tag = "*",
-		requires = {
+		build = ":Neorg sync-parsers",
+		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 		},
-	})
+	},
 
 	-- appearance
-	use("ap/vim-css-color")
+	"ap/vim-css-color",
 
 	-- treesitter
-	use({
+	{
 		"nvim-treesitter/nvim-treesitter",
-		run = function()
-			vim.cmd("TSUpdate")
-		end,
-		-- commit = "088dfbc5",
-	})
-	use("nvim-treesitter/nvim-treesitter-textobjects")
-	use({
+		build = ":TSUpdate",
+	},
+	"nvim-treesitter/nvim-treesitter-textobjects",
+	{
 		"lewis6991/spellsitter.nvim",
 		config = function()
 			require("spellsitter").setup()
 		end,
-	})
-	use({
+	},
+	{
 		-- TODO: setup
 		"danymat/neogen",
-		requires = "nvim-treesitter/nvim-treesitter",
+		dependencies = "nvim-treesitter/nvim-treesitter",
 		config = function()
 			map("<localleader>d", require("neogen").generate)
 			require("neogen").setup({
@@ -177,38 +191,38 @@ require("packer").startup(function()
 				},
 			})
 		end,
-	})
-	use({
+	},
+	{
 		"nvim-treesitter/playground",
-		requires = "nvim-treesitter/nvim-treesitter",
-	})
+		dependencies = "nvim-treesitter/nvim-treesitter",
+	},
 
 	-- git
-	use("lewis6991/gitsigns.nvim")
+	"lewis6991/gitsigns.nvim",
 
 	-- telescope
-	use({
+	{
 		"nvim-telescope/telescope.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-	})
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-	use({ "stevearc/dressing.nvim" })
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+	{ "stevearc/dressing.nvim" },
 
 	-- tex
-	use("lervag/vimtex")
+	"lervag/vimtex",
 
 	-- rust
-	use("mhinz/vim-crates")
-	use("mattn/webapi-vim") -- dependency
-	use("rust-lang/rust.vim")
+	"mhinz/vim-crates",
+	"mattn/webapi-vim", -- dependency
+	"rust-lang/rust.vim",
 
 	-- toml
-	use("cespare/vim-toml")
+	"cespare/vim-toml",
 
 	-- markdown
-	-- use("vim-pandoc/vim-pandoc")
-	-- use("vim-pandoc/vim-pandoc-syntax")
-	use("plasticboy/vim-markdown")
+	-- "vim-pandoc/vim-pandoc",
+	-- "vim-pandoc/vim-pandoc-syntax",
+	"plasticboy/vim-markdown",
 	-- use({
 	-- 	"edluffy/hologram.nvim",
 	-- 	config = function()
@@ -219,54 +233,49 @@ require("packer").startup(function()
 	-- })
 
 	-- fish
-	use("dag/vim-fish")
+	"dag/vim-fish",
 
 	-- pest/peg
-	use("pest-parser/pest.vim")
+	"pest-parser/pest.vim",
 
 	-- just
-	use("NoahTheDuke/vim-just")
+	"NoahTheDuke/vim-just",
 
 	-- agda
-	use({
+	{
 		"isovector/cornelis",
-		requires = { "kana/vim-textobj-user", "neovimhaskell/nvim-hs.vim" },
-		run = "stack build",
-	})
+		dependencies = { "kana/vim-textobj-user", "neovimhaskell/nvim-hs.vim" },
+		build = "stack build",
+	},
 
 	-- lean
-	use({ "Julian/lean.nvim", requires = "andrewradev/switch.vim" })
+	{ "Julian/lean.nvim", dependencies = "andrewradev/switch.vim" },
 
 	-- coq
-	use({
+	{
 		"whonore/Coqtail",
 		config = function()
 			vim.g.loaded_coqtail = 1
 			vim.g["coqtail#supported"] = 0
 		end,
-	})
-	use("tomtomjhj/coq-lsp.nvim")
+	},
+	"tomtomjhj/coq-lsp.nvim",
 
 	-- mtg
-	use({
+	{
 		"yoshi1123/vim-mtg",
 		config = function()
 			vim.g.mtg_preview_show_price = true
 		end,
-	})
-
-	-- bootstrap
-	if packer_bootstrap then
-		require("packer").sync()
-	end
-end)
+	},
+})
 
 -- keybinds
 local function plugin_meta_map(lhs, rhs, mode, opts)
 	map(leaders.plugin_meta .. lhs, rhs, mode, opts)
 end
 
-plugin_meta_map("i", "<cmd>PackerInstall<cr>")
-plugin_meta_map("u", "<cmd>PackerUpdate<cr>")
-plugin_meta_map("s", "<cmd>PackerSync<cr>")
-plugin_meta_map("c", "<cmd>PackerClean<cr>")
+plugin_meta_map("i", "<cmd>Lazy install<cr>")
+plugin_meta_map("u", "<cmd>Lazy update<cr>")
+plugin_meta_map("s", "<cmd>Lazy sync<cr>")
+plugin_meta_map("c", "<cmd>Lazy clean<cr>")

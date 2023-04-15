@@ -1,4 +1,3 @@
-require("fidget").setup({})
 local nvim_lsp = require("lspconfig")
 local telescope = require("telescope.builtin")
 
