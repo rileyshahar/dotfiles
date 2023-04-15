@@ -16,8 +16,8 @@ return {
 						workspaces = {
 							math = "~/notes/math",
 						},
-						autochdir = true,
 						index = "index.norg", -- The name of the main (root) .norg file
+						use_popup = false,
 					},
 				},
 				["core.norg.completion"] = {
