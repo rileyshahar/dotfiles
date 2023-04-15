@@ -14,14 +14,13 @@ return {
 	"nvim-lua/plenary.nvim",
 	"tpope/vim-repeat", -- repeat plugin commands
 	"rcarriga/nvim-notify", -- notification ui
-	"elihunter173/dirbuf.nvim", -- directory buffer
 	"lewis6991/gitsigns.nvim", -- git
 
 	-- quickfix
 	"kevinhwang91/nvim-bqf", -- better quickfix keybinds
 	{
 		"https://gitlab.com/yorickpeterse/nvim-pqf.git",
-		config = {},
+		config = true,
 	},
 
 	-- completion
@@ -44,18 +43,25 @@ return {
 	{
 		"jose-elias-alvarez/buftabline.nvim",
 		lazy = false, -- never lazy load
-		config = {},
+		config = true,
 		keys = {
 			{ "H", "<cmd>BufPrev<cr>" },
 			{ "L", "<cmd>BufNext<cr>" },
 		},
 	},
 	{
-		"ojroques/nvim-bufdel",
+		"stevearc/oil.nvim",
+		lazy = false, -- cant lazy load bc we need to be able to `nvim [dir]`
+		config = true,
 		keys = {
-			{ "<leader>x", "<cmd>BufDel<cr>" },
+			{
+				"-",
+				function()
+					require("oil").open()
+				end,
+			},
 		},
-	},
+	}, -- directory buffer
 
 	-- lsp
 	"neovim/nvim-lspconfig",
@@ -63,7 +69,7 @@ return {
 	"jose-elias-alvarez/null-ls.nvim",
 	{
 		"j-hui/fidget.nvim",
-		config = {},
+		config = true,
 	}, -- lsp status indicator
 
 	-- appearance
@@ -77,7 +83,7 @@ return {
 	"nvim-treesitter/nvim-treesitter-textobjects",
 	{
 		"lewis6991/spellsitter.nvim",
-		config = {},
+		config = true,
 	},
 	{
 		"nvim-treesitter/playground",

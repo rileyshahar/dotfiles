@@ -3,19 +3,19 @@ return {
 	{
 		-- autoclose paired characters
 		"windwp/nvim-autopairs",
-		config = {},
+		config = true,
 	},
 	{
 		-- quote manipulation
 		"kylechui/nvim-surround",
-		config = {},
+		config = true,
 	},
 
 	-- editing
 	{
 		-- exchange plugin
 		"gbprod/substitute.nvim",
-		config = {},
+		config = true,
 		keys = {
 			{
 				"cx",
