@@ -63,7 +63,6 @@ class CacError(Exception):
 
 
 class ColorFormatter:
-
     color_names = {}
     color_fmt = ""
     config_file = ""
@@ -181,7 +180,6 @@ class Kitty(ColorFormatter):
 
 
 class XResources(ColorFormatter):
-
     color_fmt = "*{name}: #{col_hex}"
     config_file = CONFIG_HOME + "/X11/xresources"
     color_names = NUMBERED_COLOR_NAMES
@@ -192,7 +190,6 @@ class XResources(ColorFormatter):
 
 
 class Alacritty(ColorFormatter):
-
     color_fmt = '{name}: "0x{col_hex}"'
     config_file = CONFIG_HOME + "/alacritty/alacritty.yml"
     color_names = {
@@ -203,7 +200,6 @@ class Alacritty(ColorFormatter):
 
 
 class XMonad(ColorFormatter):
-
     color_fmt = '{name} = "#{col_hex}"'
     config_file = CONFIG_HOME + "/xmonad/xmonad.hs"
     color_names = INTERNAL_COLOR_NAMES
@@ -214,7 +210,6 @@ class XMonad(ColorFormatter):
 
 
 class EWW(ColorFormatter):
-
     color_fmt = "${name}: #{col_hex};"
     config_file = CONFIG_HOME + "/eww/eww.scss"
     color_names = INTERNAL_COLOR_NAMES
@@ -225,14 +220,12 @@ class EWW(ColorFormatter):
 
 
 class BetterDiscord(ColorFormatter):
-
     color_fmt = "  --{name}: #{col_hex};"
     config_file = CONFIG_HOME + "/BetterDiscord/themes/cac.theme.css"
     color_names = INTERNAL_COLOR_NAMES
 
 
 class Telegram(ColorFormatter):
-
     color_fmt = "{name}: #{col_hex};"
     config_file = CONFIG_HOME + "/telegram/cac.tdesktop-theme"
     color_names = {
@@ -241,7 +234,6 @@ class Telegram(ColorFormatter):
 
 
 class Polybar(ColorFormatter):
-
     color_fmt = "{name} = #{col_hex}"
     config_file = CONFIG_HOME + "/polybar/config"
     color_names = INTERNAL_COLOR_NAMES
@@ -267,7 +259,6 @@ class Polybar(ColorFormatter):
 
 
 class Rofi(ColorFormatter):
-
     color_fmt = "\t{name}: #{col_hex};"
     config_file = CONFIG_HOME + "/rofi/themes/cac.rasi"
 
@@ -278,7 +269,6 @@ class Rofi(ColorFormatter):
 
 
 class QuteBrowser(ColorFormatter):
-
     color_fmt = '    "{name}": "#{col_hex}",'
     config_file = CONFIG_HOME + "/qutebrowser/config.py"
     color_names = INTERNAL_COLOR_NAMES
@@ -353,16 +343,16 @@ class Foot(ColorFormatter):
     color_fmt = "{name}={col_hex}"
     config_file = CONFIG_HOME + "/foot/foot.ini"
     color_names = {
-        "background": "background",
-        "foreground": "foreground",
-        "dim_black": "regular0",
-        "dim_red": "regular1",
-        "dim_green": "regular2",
-        "dim_yellow": "regular3",
-        "dim_blue": "regular4",
-        "dim_magenta": "regular5",
-        "dim_cyan": "regular6",
-        "dim_white": "regular7",
+        "background": "bg",
+        "foreground": "fg",
+        "dim_black": "black",
+        "dim_red": "dimred",
+        "dim_green": "dimgreen",
+        "dim_yellow": "dimyellow",
+        "dim_blue": "dimblue",
+        "dim_magenta": "dimmagenta",
+        "dim_cyan": "dimcyan",
+        "dim_white": "",
         "bright_black": "bright0",
         "bright_red": "bright1",
         "bright_green": "bright2",
@@ -372,3 +362,29 @@ class Foot(ColorFormatter):
         "bright_cyan": "bright6",
         "bright_white": "bright7",
     }
+
+
+class Nvim(ColorFormatter):
+    color_fmt = "let s:{name}='#{col_hex}'"
+    config_file = CONFIG_HOME + "/nvim/colors/cac.vim"
+    color_names = INTERNAL_COLOR_NAMES
+
+
+# let s:black        = 'Black'
+# let s:white        = 'White'
+# let s:fg           = 'White'
+# let s:grey         = 'LightGray'
+# let s:dimgrey      = 'LightGray'
+# let s:red          = 'DarkRed'
+# let s:green        = 'DarkGreen'
+# let s:yellow       = 'DarkYellow'
+# let s:blue         = 'DarkBlue'
+# let s:magenta      = 'DarkMagenta'
+# let s:cyan         = 'DarkCyan'
+# let s:dimred       = 'Red'
+# let s:dimgreen     = 'Green'
+# let s:dimyellow    = 'Yellow'
+# let s:dimblue      = 'Blue'
+# let s:dimmagenta   = 'Magenta'
+# let s:dimcyan      = 'Cyan'
+# let s:brightyellow = 'DarkYellow'

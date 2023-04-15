@@ -1,8 +1,8 @@
 -- prettier colors
-vim.o.termguicolors = false
+vim.o.termguicolors = true
 
 -- colorscheme
-vim.cmd("colorscheme inherit")
+vim.cmd("colorscheme cac")
 
 -- syntax highlighting
 vim.cmd("syntax enable")
