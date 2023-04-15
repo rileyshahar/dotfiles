@@ -90,8 +90,6 @@ return {
 		dependencies = "nvim-treesitter/nvim-treesitter",
 	},
 
-	-- git
-
 	-- telescope
 	{
 		"nvim-telescope/telescope.nvim",
@@ -100,10 +98,8 @@ return {
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	{ "stevearc/dressing.nvim" },
 
-	-- tex
+	-- filetypes
 	"lervag/vimtex",
-
-	-- rust
 	{
 		"mhinz/vim-crates",
 		dependencies = {
@@ -112,7 +108,7 @@ return {
 	},
 	"rust-lang/rust.vim",
 	"cespare/vim-toml",
-	"plasticboy/vim-markdown",
+	-- "plasticboy/vim-markdown",
 	"dag/vim-fish",
 	"pest-parser/pest.vim",
 	"NoahTheDuke/vim-just",

@@ -46,7 +46,6 @@
   "vim-fish": { "branch": "master", "commit": "50b95cbbcd09c046121367d49039710e9dc9c15f" },
   "vim-highlightedyank": { "branch": "master", "commit": "fa3f57b097e9521ce41a66b6c7cf5d9adea70ea3" },
   "vim-just": { "branch": "main", "commit": "b434b1b519579be119f4b394ad6872d2e1a110d9" },
-  "vim-markdown": { "branch": "master", "commit": "cc82d88e2a791f54d2b6e2b26e41f743351ac947" },
   "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
   "vim-toml": { "branch": "main", "commit": "d36caa6b1cf508a4df1c691f915572fc02143258" },
   "vim-wordmotion": { "branch": "master", "commit": "81d9bd298376ab0dc465c85d55afa4cb8d5f47a1" },
