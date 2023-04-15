@@ -189,73 +189,73 @@ class XResources(ColorFormatter):
         os.system(f"xrdb {cls.config_file}")
 
 
-class Alacritty(ColorFormatter):
-    color_fmt = '{name}: "0x{col_hex}"'
-    config_file = CONFIG_HOME + "/alacritty/alacritty.yml"
-    color_names = {
-        key: " " * 4
-        + value.replace("dim_", "normal:\n      ").replace("bright_", "bright:\n      ")
-        for key, value in INTERNAL_COLOR_NAMES.items()
-    }
+# class Alacritty(ColorFormatter):
+#     color_fmt = '{name}: "0x{col_hex}"'
+#     config_file = CONFIG_HOME + "/alacritty/alacritty.yml"
+#     color_names = {
+#         key: " " * 4
+#         + value.replace("dim_", "normal:\n      ").replace("bright_", "bright:\n      ")
+#         for key, value in INTERNAL_COLOR_NAMES.items()
+#     }
 
 
-class XMonad(ColorFormatter):
-    color_fmt = '{name} = "#{col_hex}"'
-    config_file = CONFIG_HOME + "/xmonad/xmonad.hs"
-    color_names = INTERNAL_COLOR_NAMES
+# class XMonad(ColorFormatter):
+#     color_fmt = '{name} = "#{col_hex}"'
+#     config_file = CONFIG_HOME + "/xmonad/xmonad.hs"
+#     color_names = INTERNAL_COLOR_NAMES
 
-    @classmethod
-    def post_format_hook(_):
-        os.system("xmonad --recompile; xmonad --restart")
-
-
-class EWW(ColorFormatter):
-    color_fmt = "${name}: #{col_hex};"
-    config_file = CONFIG_HOME + "/eww/eww.scss"
-    color_names = INTERNAL_COLOR_NAMES
-
-    @classmethod
-    def post_format_hook(_):
-        os.system("eww reload")
+#     @classmethod
+#     def post_format_hook(_):
+#         os.system("xmonad --recompile; xmonad --restart")
 
 
-class BetterDiscord(ColorFormatter):
-    color_fmt = "  --{name}: #{col_hex};"
-    config_file = CONFIG_HOME + "/BetterDiscord/themes/cac.theme.css"
-    color_names = INTERNAL_COLOR_NAMES
+# class EWW(ColorFormatter):
+#     color_fmt = "${name}: #{col_hex};"
+#     config_file = CONFIG_HOME + "/eww/eww.scss"
+#     color_names = INTERNAL_COLOR_NAMES
+
+#     @classmethod
+#     def post_format_hook(_):
+#         os.system("eww reload")
 
 
-class Telegram(ColorFormatter):
-    color_fmt = "{name}: #{col_hex};"
-    config_file = CONFIG_HOME + "/telegram/cac.tdesktop-theme"
-    color_names = {
-        key: "COLOR_" + value.upper() for key, value in INTERNAL_COLOR_NAMES.items()
-    }
+# class BetterDiscord(ColorFormatter):
+#     color_fmt = "  --{name}: #{col_hex};"
+#     config_file = CONFIG_HOME + "/BetterDiscord/themes/cac.theme.css"
+#     color_names = INTERNAL_COLOR_NAMES
 
 
-class Polybar(ColorFormatter):
-    color_fmt = "{name} = #{col_hex}"
-    config_file = CONFIG_HOME + "/polybar/config"
-    color_names = INTERNAL_COLOR_NAMES
+# class Telegram(ColorFormatter):
+#     color_fmt = "{name}: #{col_hex};"
+#     config_file = CONFIG_HOME + "/telegram/cac.tdesktop-theme"
+#     color_names = {
+#         key: "COLOR_" + value.upper() for key, value in INTERNAL_COLOR_NAMES.items()
+#     }
 
-    # the background transparency as a percentage
-    transparency = 80
 
-    # overridden to allow adding transparency to the background
-    @classmethod
-    def process_colorfmt(cls):
-        transparency = str(hex(ceil(cls.transparency * 256 / 100)))[2:]
-        out = ""
-        for name, col_hex in colors.items():
-            if name == "background":
-                col_hex = transparency + col_hex
+# class Polybar(ColorFormatter):
+#     color_fmt = "{name} = #{col_hex}"
+#     config_file = CONFIG_HOME + "/polybar/config"
+#     color_names = INTERNAL_COLOR_NAMES
 
-            out = (
-                out
-                + cls.color_fmt.format(name=cls.color_names[name], col_hex=col_hex)
-                + "\n"
-            )
-        return out
+#     # the background transparency as a percentage
+#     transparency = 80
+
+#     # overridden to allow adding transparency to the background
+#     @classmethod
+#     def process_colorfmt(cls):
+#         transparency = str(hex(ceil(cls.transparency * 256 / 100)))[2:]
+#         out = ""
+#         for name, col_hex in colors.items():
+#             if name == "background":
+#                 col_hex = transparency + col_hex
+
+#             out = (
+#                 out
+#                 + cls.color_fmt.format(name=cls.color_names[name], col_hex=col_hex)
+#                 + "\n"
+#             )
+#         return out
 
 
 class Rofi(ColorFormatter):
@@ -268,16 +268,16 @@ class Rofi(ColorFormatter):
     }
 
 
-class QuteBrowser(ColorFormatter):
-    color_fmt = '    "{name}": "#{col_hex}",'
-    config_file = CONFIG_HOME + "/qutebrowser/config.py"
-    color_names = INTERNAL_COLOR_NAMES
+# class QuteBrowser(ColorFormatter):
+#     color_fmt = '    "{name}": "#{col_hex}",'
+#     config_file = CONFIG_HOME + "/qutebrowser/config.py"
+#     color_names = INTERNAL_COLOR_NAMES
 
 
-class Tmux(ColorFormatter):
-    color_fmt = '{name}="#{col_hex}"'
-    config_file = CONFIG_HOME + "/tmux/tmux.conf"
-    color_names = INTERNAL_COLOR_NAMES
+# class Tmux(ColorFormatter):
+#     color_fmt = '{name}="#{col_hex}"'
+#     config_file = CONFIG_HOME + "/tmux/tmux.conf"
+#     color_names = INTERNAL_COLOR_NAMES
 
 
 class Dunst(ColorFormatter):
@@ -306,31 +306,31 @@ class Trydactyl(ColorFormatter):
     color_names = INTERNAL_COLOR_NAMES
 
 
-class Waybar(ColorFormatter):
-    color_fmt = "@define-color {name} #{col_hex};"
-    config_file = CONFIG_HOME + "/waybar/style.css"
-    # .css files don't let us use _s in variable names
-    color_names = {
-        key: value.replace("_", "-") for key, value in INTERNAL_COLOR_NAMES.items()
-    }
+# class Waybar(ColorFormatter):
+#     color_fmt = "@define-color {name} #{col_hex};"
+#     config_file = CONFIG_HOME + "/waybar/style.css"
+#     # .css files don't let us use _s in variable names
+#     color_names = {
+#         key: value.replace("_", "-") for key, value in INTERNAL_COLOR_NAMES.items()
+#     }
 
-    # # the background transparency as a percentage
-    # transparency = 80
+#     # # the background transparency as a percentage
+#     # transparency = 80
 
-    # # overridden to allow adding transparency to the background
-    # @classmethod
-    # def process_colorfmt(cls):
-    #     out = ""
-    #     for name, col_hex in colors.items():
-    #         if name == "background":
-    #             # TODO: right now this is just a manual override
-    #             col_hex = "rgba(26, 27, 38, 0.8)"
-    #             fmt = cls.color_fmt.replace("#", "")
-    #         else:
-    #             fmt = cls.color_fmt
+#     # # overridden to allow adding transparency to the background
+#     # @classmethod
+#     # def process_colorfmt(cls):
+#     #     out = ""
+#     #     for name, col_hex in colors.items():
+#     #         if name == "background":
+#     #             # TODO: right now this is just a manual override
+#     #             col_hex = "rgba(26, 27, 38, 0.8)"
+#     #             fmt = cls.color_fmt.replace("#", "")
+#     #         else:
+#     #             fmt = cls.color_fmt
 
-    #         out = out + fmt.format(name=cls.color_names[name], col_hex=col_hex) + "\n"
-    #     return out
+#     #         out = out + fmt.format(name=cls.color_names[name], col_hex=col_hex) + "\n"
+#     #     return out
 
 
 class Qtile(ColorFormatter):
@@ -343,16 +343,16 @@ class Foot(ColorFormatter):
     color_fmt = "{name}={col_hex}"
     config_file = CONFIG_HOME + "/foot/foot.ini"
     color_names = {
-        "background": "bg",
-        "foreground": "fg",
-        "dim_black": "black",
-        "dim_red": "dimred",
-        "dim_green": "dimgreen",
-        "dim_yellow": "dimyellow",
-        "dim_blue": "dimblue",
-        "dim_magenta": "dimmagenta",
-        "dim_cyan": "dimcyan",
-        "dim_white": "",
+        "background": "background",
+        "foreground": "foreground",
+        "dim_black": "regular0",
+        "dim_red": "regular1",
+        "dim_green": "regular2",
+        "dim_yellow": "regular3",
+        "dim_blue": "regular4",
+        "dim_magenta": "regular5",
+        "dim_cyan": "regular6",
+        "dim_white": "regular7",
         "bright_black": "bright0",
         "bright_red": "bright1",
         "bright_green": "bright2",

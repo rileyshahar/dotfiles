@@ -47,6 +47,7 @@ endfun
 let s:none         = 'NONE'
 
 " __cac:start
+let s:background='#1a1b26'
 let s:foreground='#a9b1d6'
 let s:dim_black='#06080a'
 let s:dim_red='#e06c75'
