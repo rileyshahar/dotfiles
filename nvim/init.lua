@@ -37,7 +37,7 @@ leaders = {
 	ui = "<leader>z"
 }
 
-require("plugins")
+require("lazy").setup("plugins")
 
 -- shell out to modules
 require("appearance")
@@ -46,7 +46,6 @@ require("git")
 require("lsp")
 require("make")
 require("misc")
-require("notes")
 require("picker")
 require("snippets")
 require("statusline")

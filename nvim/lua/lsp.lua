@@ -92,12 +92,6 @@ nvim_lsp.texlab.setup({
 	},
 })
 
-require("coq-lsp").setup({
-	-- lsp = {
-	-- 	on_attach = on_attach
-	-- }
-})
-
 nvim_lsp.pylsp.setup({
 	settings = {
 		pylsp = {
@@ -154,14 +148,6 @@ nvim_lsp.rust_analyzer.setup({
 		},
 	},
 })
-
--- lean
-require('lean').setup{
-  abbreviations = { builtin = true },
-  lsp = { on_attach = on_attach },
-  lsp3 = { on_attach = on_attach },
-  mappings = true,
-}
 
 local null_ls = require("null-ls")
 
