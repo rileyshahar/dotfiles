@@ -45,4 +45,10 @@ map("<leader>m", function()
 	end)
 end)
 
+map("<localleader>m", function()
+	async_run(function(_)
+		return "make"
+	end)
+end)
+
 map("<leader>v", "<cmd>!open /tmp/%<.pdf<cr>")
