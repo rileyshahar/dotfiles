@@ -17,6 +17,9 @@ vim.o.filetype = true
 vim.o.syntax = true -- syntax highlighting
 vim.o.do_filetype_lua = true
 
+-- textwrap
+vim.o.textwidth = 80
+
 -- misc
 vim.o.showmatch = true -- highlight matching brackets
 vim.o.hidden = true -- don't close buffers unnecessarily

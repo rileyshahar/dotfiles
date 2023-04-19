@@ -57,9 +57,9 @@ return {
 		{ trig = "dfn", name = "definition", dscr = "A definition." },
 		fmt(
 			[[
-		  \begin{{def}}[{}]
+		  \begin{{dfn}}[{}]
 		    {}
-		  \end{{def}}
+		  \end{{dfn}}
 		  {}
 		  ]],
 			{ i(1), i(2), i(0) }

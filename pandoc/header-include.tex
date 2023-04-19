@@ -12,6 +12,7 @@
 	pifont,
 	tabularx,
 	tikz-cd,
+	quiver,
 }
 \usepackage[nameinlink]{cleveref}
 \usepackage[shortlabels]{enumitem}
@@ -27,11 +28,11 @@
 \newtheorem{cor}{Corollary}[thm] % reset for every theorem
 \newtheorem{prob}{Problem}
 \newtheorem{prob_lemma}{Lemma}[prob]
-\newtheorem{ex}{Example}[section]
 
 \theoremstyle{definition}
 \newtheorem{dfn}{Definition}[section]
 \newtheorem{dfn*}{Definition}
+\newtheorem{ex}{Example}[section]
 
 \theoremstyle{remark}
 \newtheorem*{rmk}{Remark}
@@ -93,10 +94,16 @@
 \def\ZZ{\mathbb{Z}}
 
 %% OTHER SYMBOLS %% 
-\DeclareMathOperator{\Map}{Map}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Map}{Map}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
 
 \def\pathto{\rightsquigarrow}
+
+\newcommand{\catname}[1]{{\normalfont\mathbf{#1}}}
 
 % https://tex.stackexchange.com/a/118217
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
