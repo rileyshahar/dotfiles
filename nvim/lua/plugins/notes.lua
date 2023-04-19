@@ -11,7 +11,7 @@ return {
 				["core.defaults"] = {},
 				["core.export"] = {},
 				["core.export.markdown"] = {},
-				["core.norg.dirman"] = {
+				["core.dirman"] = {
 					config = {
 						workspaces = {
 							math = "~/notes/math",
@@ -20,12 +20,12 @@ return {
 						use_popup = false,
 					},
 				},
-				["core.norg.completion"] = {
+				["core.completion"] = {
 					config = {
 						engine = "nvim-cmp",
 					},
 				},
-				["core.norg.concealer"] = {
+				["core.concealer"] = {
 					config = {
 						icons = {
 							ordered = {
