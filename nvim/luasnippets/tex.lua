@@ -3,6 +3,36 @@ local ls = require("luasnip")
 
 return {
 	s(
+		{ trig = "beg", name = "environment", dscr = "Enclose an environment." },
+		fmt(
+			[[
+      \begin{{{}}}
+        {}
+      \end{{{}}}
+      ]],
+			{ i(1), i(0), rep(1) }
+		)
+	),
+	s(
+		{ trig = "cas", name = "cases", dscr = "Cases in math." },
+		fmt(
+			[[
+      \begin{{cases}}
+        {} & \text{{ if }}{} \\
+        {} & \text{{ if }}{}
+      \end{{cases}}
+      {}
+      ]],
+			{
+				i(1),
+				i(2),
+				i(3),
+				i(4),
+				i(0),
+			}
+		)
+	),
+	s(
 		{ trig = "tcp", name = "2-column proof", dscr = "A two-column proof." },
 		fmt(
 			[[
