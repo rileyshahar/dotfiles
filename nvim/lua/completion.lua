@@ -1,4 +1,4 @@
-vim.o.completeopt = "menu,menuone,noselect"
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 local cmp = require("cmp")
 local ls = require("luasnip")
@@ -19,7 +19,7 @@ cmp.setup({
 		{ name = "cmp_git" },
 		{ name = "luasnip" },
 		{ name = "nvim_lsp" },
-		{ name = "treesitter" },
+		-- { name = "treesitter" },
 		{ name = "buffer", keyword_length = 3 },
 		{ name = "path" },
 		{ name = "spell", keyword_length = 3 },
@@ -63,7 +63,7 @@ cmp.setup({
 			local source_names = {
 				luasnip = "[snip]",
 				nvim_lsp = "[lsp]",
-				treesitter = "[ts]",
+				-- treesitter = "[ts]",
 				buffer = "[buf]",
 				path = "[path]",
 				spell = "[spell]",
