@@ -87,12 +87,12 @@ return {
 		{ trig = "dfn", name = "definition", dscr = "A definition." },
 		fmt(
 			[[
-		  \begin{{dfn}}[{}]
+			\begin{{dfn}}[{}]\label{{{}}}
 		    {}
 		  \end{{dfn}}
 		  {}
 		  ]],
-			{ i(1), i(2), i(0) }
+			{ i(1), rep(1), i(2), i(0) }
 		)
 	),
 	s(
