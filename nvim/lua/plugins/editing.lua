@@ -18,6 +18,31 @@ return {
 		config = true,
 		keys = {
 			{
+				"s",
+				function()
+					require("substitute").operator()
+				end,
+			},
+			{
+				"ss",
+				function()
+					require("substitute").line()
+				end,
+			},
+			{
+				"S",
+				function()
+					require("substitute").eol()
+				end,
+			},
+			{
+				"S",
+				function()
+					require("substitute").visua()
+				end,
+				mode = "x",
+			},
+			{
 				"cx",
 				function()
 					require("substitute.exchange").operator()
