@@ -2,6 +2,7 @@ colors cac
 
 unbind >>
 unbind <<
+bind N tabpush
 bind h tabprev
 bind l tabnext
 bind H back

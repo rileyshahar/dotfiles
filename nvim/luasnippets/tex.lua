@@ -54,7 +54,7 @@ return {
 		})
 	),
 	s({ trig = "lab", name = "label", dscr = "A label." }, fmt("\\label{{{}}}", i(1))),
-	s({ trig = "ref", name = "reference", dscr = "A reference." }, fmt("\\ref{{{}}}", i(1))),
+	s({ trig = "ref", name = "reference", dscr = "A reference." }, fmt("\\Cref{{{}}}", i(1))),
 	s(
 		{ trig = "prob", name = "problem", dscr = "A problem." },
 		fmt(

@@ -6,14 +6,15 @@
 	enumerate,
 	fancyhdr,
 	float,
-	hyperref,
 	mathtools,
 	multicol,
+	natbib,
 	pifont,
 	tabularx,
 	tikz-cd,
 	quiver,
 }
+\usepackage[colorlinks=true, linkcolor=blue]{hyperref}
 \usepackage[nameinlink]{cleveref}
 \usepackage[shortlabels]{enumitem}
 \setlist[itemize]{noitemsep}
@@ -28,6 +29,7 @@
 \newtheorem{cor}{Corollary}[thm] % reset for every theorem
 \newtheorem{prob}{Problem}
 \newtheorem{prob_lemma}{Lemma}[prob]
+\newtheorem{exc}{Exercise}[section]
 
 \theoremstyle{definition}
 \newtheorem{dfn}{Definition}[section]
