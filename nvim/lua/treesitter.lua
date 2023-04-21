@@ -13,15 +13,14 @@ require("nvim-treesitter.configs").setup({
 
 			-- Automatically jump forward to textobj, similar to targets.vim
 			lookahead = true,
-
 			keymaps = {
 				-- You can use the capture groups defined in textobjects.scm
 				["af"] = "@function.outer",
 				["if"] = "@function.inner",
 				["ac"] = "@class.outer",
-				-- You can optionally set descriptions to the mappings (used in the desc parameter of
-				-- nvim_buf_set_keymap) which plugins like which-key display
-				["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+				["ic"] = "@class.inner",
+				["ab"] = "@block.outer",
+				["ib"] = "@block.inner",
 			},
 			-- You can choose the select mode (default is charwise 'v')
 			--
@@ -31,9 +30,9 @@ require("nvim-treesitter.configs").setup({
 			-- and should return the mode ('v', 'V', or '<c-v>') or a table
 			-- mapping query_strings to modes.
 			selection_modes = {
-				["@parameter.outer"] = "v", -- charwise
-				["@function.outer"] = "V", -- linewise
-				["@class.outer"] = "<c-v>", -- blockwise
+				-- ["@parameter.outer"] = "v", -- charwise
+				-- ["@function.outer"] = "V", -- linewise
+				-- ["@class.outer"] = "<c-v>", -- blockwise
 			},
 			-- If you set this to `true` (default is `false`) then any textobject is
 			-- extended to include preceding or succeeding whitespace. Succeeding
@@ -49,10 +48,10 @@ require("nvim-treesitter.configs").setup({
 		swap = {
 			enable = true,
 			swap_next = {
-				["]c"] = "@parameter.inner",
+				["]a"] = "@parameter.inner",
 			},
 			swap_previous = {
-				["[c"] = "@parameter.inner",
+				["[a"] = "@parameter.inner",
 			},
 		},
 		move = {
@@ -60,19 +59,19 @@ require("nvim-treesitter.configs").setup({
 			set_jumps = true, -- whether to set jumps in the jumplist
 			goto_next_start = {
 				["]f"] = "@function.outer",
-				["]]"] = { query = "@class.outer", desc = "Next class start" },
+				["]c"] = { query = "@class.outer", desc = "Next class start" },
 			},
 			goto_next_end = {
 				["]F"] = "@function.outer",
-				["]["] = "@class.outer",
+				["]C"] = "@class.outer",
 			},
 			goto_previous_start = {
 				["[f"] = "@function.outer",
-				["[["] = "@class.outer",
+				["[c"] = "@class.outer",
 			},
 			goto_previous_end = {
 				["[F"] = "@function.outer",
-				["[]"] = "@class.outer",
+				["[C"] = "@class.outer",
 			},
 		},
 	},
