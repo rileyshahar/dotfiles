@@ -18,25 +18,25 @@ return {
 		config = true,
 		keys = {
 			{
-				"s",
+				"<leader>s",
 				function()
 					require("substitute").operator()
 				end,
 			},
 			{
-				"ss",
+				"<leader>ss",
 				function()
 					require("substitute").line()
 				end,
 			},
 			{
-				"S",
+				"<leader>S",
 				function()
 					require("substitute").eol()
 				end,
 			},
 			{
-				"S",
+				"<leader>S",
 				function()
 					require("substitute").visua()
 				end,
