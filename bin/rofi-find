@@ -9,4 +9,4 @@ function sedPath {
 
 # have to keep this without quotes around the so it can take multiple arguments
 file=$((rg --files "$1" $3) | sed "s/$(sedPath "$1")\///g" | rofi -dmenu)
-$2 "$file"
+$2 "$1"/"$file"
