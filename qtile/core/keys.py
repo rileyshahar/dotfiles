@@ -178,9 +178,15 @@ keys = [
             Key([], "r", lazy.spawn("rofi-rs"), desc="open rust docs"),
             Key(
                 [],
-                "l",
+                "p",
                 lazy.spawn("rofi-find " + getenv("HOME") + ' xdg-open "--type pdf"'),
                 desc="open pdfs",
+            ),
+            Key(
+                [],
+                "l",
+                lazy.spawn("rofi-find " + getenv("HOME") + "/library xdg-open"),
+                desc="open library files",
             ),
             Key(
                 [],
