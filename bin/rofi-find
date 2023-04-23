@@ -2,6 +2,11 @@
 
 set -eo pipefail
 
+# https://unix.stackexchange.com/questions/32907/what-characters-do-i-need-to-escape-when-using-sed-in-a-sh-script
+function sedPath {
+  echo $1|sed -r 's/([\$\.\*\/\[\\^])/\\\1/g'|sed 's/[]]/\[]]/g'
+}
+
 # have to keep this without quotes around the so it can take multiple arguments
-file=$(rg --files $1 $3 | rofi -dmenu)
+file=$((rg --files "$1" $3) | sed "s/$(sedPath "$1")\///g" | rofi -dmenu)
 $2 "$file"
