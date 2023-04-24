@@ -190,6 +190,14 @@ keys = [
             ),
             Key(
                 [],
+                "n",
+                lazy.spawn(
+                    "rofi-find " + getenv("HOME") + "/notes/zettlemath/notes xdg-open"
+                ),
+                desc="open library files",
+            ),
+            Key(
+                [],
                 "w",
                 lazy.spawn("rofi-browser wiki"),
                 desc="open wikipedia",
