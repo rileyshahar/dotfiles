@@ -190,11 +190,11 @@ keys = [
             ),
             Key(
                 [],
-                "n",
+                "m",
                 lazy.spawn(
                     "rofi-find " + getenv("HOME") + "/notes/zettlemath/notes xdg-open"
                 ),
-                desc="open library files",
+                desc="open math notes",
             ),
             Key(
                 [],
@@ -220,6 +220,12 @@ keys = [
                 "c",
                 lazy.function(find_edit, getenv("DOTFILES_DIR")),
                 desc="edit configs",
+            ),
+            Key(
+                [],
+                "m",
+                lazy.function(find_edit, getenv("HOME") + "/notes/zettlemath"),
+                desc="edit math notes",
             ),
         ],
         name="edit",
