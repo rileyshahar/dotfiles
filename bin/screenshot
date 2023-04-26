@@ -8,7 +8,7 @@ fi
 
 # selections
 fullscreen="grim -"
-drag_selection="grim -g \$(slurp) -"
+drag_selection="grim -g \"\$(slurp)\" -"
 
 # outputs
 copy="| wl-copy"
