@@ -15,13 +15,18 @@ def start_once() -> None:
         subprocess.Popen(daemon.split(" "))
 
 
-@hook.subscribe.client_new
+def _should_float(window: Window) -> bool:
+    """Check whether a window should float."""
+    return window.name == "__float" or "zettlemath" in window.name
+
+
+@hook.subscribe.client_new  # type: ignore
 def new_client(window: Window) -> None:
     """Set transparency and floats for the correct windows."""
     if any(any(app in c for app in TRANSPARENT_CLASSES) for c in window.get_wm_class()):
         window.cmd_opacity(0.8)
 
-    if window.name == "__float":
+    if _should_float(window):
         window.cmd_enable_floating()
         window.cmd_set_size_floating(950, 650)
         window.cmd_opacity(1.0)
