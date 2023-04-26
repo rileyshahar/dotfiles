@@ -1,5 +1,6 @@
 bat
 cargo-feature
 cargo-show-asm
+du-dust
 flamegraph
 selene
