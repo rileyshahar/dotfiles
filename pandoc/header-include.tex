@@ -2,6 +2,7 @@
 
 \usepackage{amsfonts, amscd, amssymb, amsthm, amsmath}
 \usepackage{
+	adjustbox,
 	capt-of,
 	enumerate,
 	fancyhdr,
@@ -13,6 +14,7 @@
 	tabularx,
 	tikz-cd,
 }
+\usepackage[section]{placeins}
 \usepackage[colorlinks=true, linkcolor=blue]{hyperref}
 \usepackage[nameinlink]{cleveref}
 \usepackage[shortlabels]{enumitem}
@@ -105,6 +107,7 @@
 \def\pathto{\rightsquigarrow}
 
 \newcommand{\catname}[1]{{\normalfont\texttt{#1}}}
+\newcommand*{\proj}[1]{\overline{#1}}
 
 % https://tex.stackexchange.com/a/118217
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
