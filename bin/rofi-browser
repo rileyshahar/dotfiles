@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-page=$(rofi -dmenu)
+page=$(rofi -i -dmenu)
 
 case $1 in
 
