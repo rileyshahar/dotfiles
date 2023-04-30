@@ -128,4 +128,20 @@ return {
 			{ i(1, "f"), i(2, "X"), i(3, "Y"), i(4, "x"), i(5, "y"), i(0) }
 		)
 	),
+	-- zettlekasten snippets
+	s(
+		{ trig = "znote", name = "zettle note", dscr = "A zettlekasten note." },
+		fmt(
+			[[
+        \input{{resources/_preamble.tex}}
+
+        \tag{{{}}}
+
+        {}
+
+        \input{{resources/_postamble.tex}}
+      ]],
+			{ i(1), i(0) }
+		)
+	),
 }
