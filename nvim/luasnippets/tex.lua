@@ -108,6 +108,35 @@ return {
 		)
 	),
 	s(
+		{ trig = "fig", name = "figure", dscr = "A figure." },
+		fmt(
+			[[
+    \begin{{figure}}[H]
+      \centering
+      {}
+    \end{{figure}}
+    ]],
+			{ i(0) }
+		)
+	),
+	s(
+		{ trig = "tikzcd", name = "tikz commutative diagram", dscr = "A commutative diagram in TikZ." },
+		fmt(
+			[[
+    \begin{{tikzcd}}
+      {}
+      X & Y & Z & W
+      \arrow["f", from=1-1, to=1-2]
+      \arrow["g", from=1-2, to=1-3]
+      \arrow["h", from=1-3, to=1-4]
+      \arrow["gf"', curve={{height=18pt}}, from=1-1, to=1-3]
+      \arrow["hg", curve={{height=-18pt}}, from=1-2, to=1-4]
+    \end{{tikzcd}}
+    ]],
+			{ i(0) }
+		)
+	),
+	s(
 		{ trig = "sfn", name = "small function", dscr = "A small block function definition." },
 		fmt(
 			[[ $${} \colon {} \to {};\quad {} \mapsto {}$$ {}]],
@@ -142,6 +171,23 @@ return {
         \input{{resources/_postamble.tex}}
       ]],
 			{ i(1), i(0) }
+		)
+	),
+	s(
+		{ trig = "zdef", name = "zettle definition", dscr = "A zettlekasten definition note." },
+		fmt(
+			[[
+        \input{{resources/_preamble.tex}}
+
+        \tag{{{}}}
+
+        \begin{{dfn*}}[{}]
+          {}
+        \end{{dfn*}}
+
+        \input{{resources/_postamble.tex}}
+      ]],
+			{ i(1), i(2), i(0) }
 		)
 	),
 }
