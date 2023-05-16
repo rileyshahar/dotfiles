@@ -28,7 +28,7 @@ widgets = bar.Bar(  # type: ignore
             mouse_callbacks={"Button1": lazy.spawn(BAR_APPS["cpu"])},
         ),
         widget.Memory(
-            fmt="徭 {}",
+            fmt=" {}",
             format="{MemPercent:.0f}%",
             foreground=COLORS.BRIGHT_YELLOW,
         ),
@@ -69,7 +69,7 @@ widgets = bar.Bar(  # type: ignore
             foreground=COLORS.BRIGHT_CYAN,
         ),
         widget.Clock(fmt=" {}", format="%a %Y-%m-%d", foreground=COLORS.BRIGHT_GREEN),
-        widget.Clock(fmt=" {}", format="%H:%M:%S", foreground=COLORS.BRIGHT_MAGENTA),
+        widget.Clock(fmt=" {}", format="%H:%M:%S", foreground=COLORS.BRIGHT_MAGENTA),
     ],
     size=30,
     background=COLORS.BACKGROUND,

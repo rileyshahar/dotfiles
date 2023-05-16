@@ -5,7 +5,7 @@ from libqtile.lazy import lazy
 from .keys import keys
 from .settings import MOD
 
-group_keys = {"": "z", "": "x", "": "c", **{i: i for i in "123456789"}}
+group_keys = {"": "z", "": "x", "󰭹": "c", **{i: i for i in "123456789"}}
 
 groups = [Group(i) for i in group_keys]
 
