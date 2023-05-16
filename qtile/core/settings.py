@@ -1,12 +1,12 @@
 """Easily configured settings."""
 from libqtile import qtile
 
-MOD = "MOD4"  # super
-
 if not qtile or qtile.core.name == "wayland":
     TERMINAL = "footclient"
+    MOD = "MOD4"  # super
 elif qtile.core.name == "x11":
     TERMINAL = "kitty"
+    MOD = "MOD1"  # alt
 
 FLOAT_TERM = "footclient --title=__float"
 BAR_APPS = {"brightness": "pkill -USR1 gammastep", "cpu": FLOAT_TERM + " btm"}
