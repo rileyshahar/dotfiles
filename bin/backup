@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if mountpoint -q /mnt/drive; then
+  read -p "already mounted; continue? [Y/n]" yn
+  case $yn in 
+    [yY] | "" ) echo "ok, we will proceed;"
+      ;;
+    * ) echo "exiting...;"
+      exit;;
+  esac
+else
+  mount /dev/sda1 /mnt/drive
+fi
+
+rsync -lptDuhPrR --info=progress2 "$1" /mnt/drive
