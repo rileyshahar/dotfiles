@@ -24,7 +24,7 @@ end
 
 -- set leaders
 vim.g.mapleader = ","
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "\\"
 map("<space>", "<nop>", "n")
 map("<space>", "<nop>", "v")
 
