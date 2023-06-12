@@ -112,4 +112,5 @@ return {
 	"dag/vim-fish",
 	"pest-parser/pest.vim",
 	"NoahTheDuke/vim-just",
+	"isovector/cornelis",
 }

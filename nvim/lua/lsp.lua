@@ -188,3 +188,7 @@ null_ls.setup({
 	sources = sources,
 	on_attach = on_attach,
 })
+
+-- require("coq-lsp").setup({lsp = {
+-- 	on_attach = on_attach
+-- }})
