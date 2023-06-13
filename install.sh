@@ -143,6 +143,7 @@ ln -sv "$DOTFILES_DIR/systemd/" "$CONFIG_HOME/systemd/user" > /dev/null
 ln -sv "$DOTFILES_DIR/anacron" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/cookiecutter" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/dunst" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/emacs" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/fish" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/fontconfig" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/foot" "$CONFIG_HOME"

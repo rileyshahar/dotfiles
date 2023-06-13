@@ -14,6 +14,7 @@ clang
 cppcheck
 dunst
 efm-langserver
+emacs
 exa
 feh
 firefox

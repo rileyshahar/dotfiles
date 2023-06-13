@@ -1,6 +1,6 @@
 ### ENVIRONMENT VARIABLES
 set -x VISUAL nvim
-set -x EDITOR "$VISUAL"
+set -x EDITOR nvim
 set -x BROWSER firefox
 set -x LANG "en_US.UTF-8"
 set -x MANPAGER "nvim +Man!"
@@ -70,7 +70,7 @@ set fish_color_autosuggestion white
 set fish_color_cancel -r
 
 # configure path
-set fish_user_paths $DOTFILES_DIR/bin $PYENV_ROOT/shims /bin/usr/local/opt/ruby/bin $CARGO_HOME/bin /usr/local/opt/llvm/bin/ $XDG_DATA_HOME/bin $HOME/.local/bin $XDG_DATA_HOME/gem/ruby/3.0.0/bin
+set fish_user_paths $DOTFILES_DIR/bin $PYENV_ROOT/shims /bin/usr/local/opt/ruby/bin $CARGO_HOME/bin /usr/local/opt/llvm/bin/ $XDG_DATA_HOME/gem/ruby/3.0.0/bin $XDG_DATA_HOME/bin $XDG_CONFIG_HOME/emacs/bin $HOME/.local/bin
 
 # make !! and !$ work
 function bind_bang
@@ -131,6 +131,7 @@ end
 
 ### ABBREVIATIONS
 abbr -a e $EDITOR
+abbr -a emacs "emacsclient -c -a 'emacs'"
 
 # python
 abbr -a p python

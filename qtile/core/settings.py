@@ -29,6 +29,7 @@ DAEMONS = (
     "anacron -t $HOME/.config/anacron/anacrontab -S $HOME/.local/share/anacron",
     "dunst",
     "batsignal",
+    "emacs --daemon"
 )
 
 
