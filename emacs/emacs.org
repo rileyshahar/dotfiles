@@ -9,27 +9,79 @@ My Emacs config, as a longtime (and heavily customized) Neovim user.
 
 Note that any defined functions should be prefixed with ~rs/~ for namespacing purposes.
 
+* Table of Contents :toc:
+- [[#package-management][Package Management]]
+  - [[#bootstrapping][Bootstrapping]]
+  - [[#use-package][Use-package]]
+- [[#keybinds][Keybinds]]
+  - [[#general][General]]
+  - [[#evil][Evil]]
+  - [[#key-chords][Key Chords]]
+  - [[#which-key][Which-Key]]
+- [[#org][Org]]
+  - [[#install][Install]]
+  - [[#ret][Ret]]
+  - [[#tangle][Tangle]]
+  - [[#autolist][Autolist]]
+  - [[#bullets][Bullets]]
+  - [[#table-of-contents][Table of Contents]]
+- [[#completion][Completion]]
+- [[#user-interface][User Interface]]
+  - [[#declutter][Declutter]]
+  - [[#colors][Colors]]
+  - [[#font][Font]]
+  - [[#line-numbers][Line Numbers]]
+  - [[#notifications][Notifications]]
+- [[#misc][Misc]]
+  - [[#troubleshooting][Troubleshooting]]
+  - [[#custom-file][Custom File]]
+- [[#sources][Sources]]
+
 * Package Management
-Here we install package archives, in particular ensuring that we get
-the newest `org` by getting it from its website.
-  
+Straight is a modern package manager for emacs.
+
+** Bootstrapping
+The following code comes directly from their github.
+
 #+begin_src emacs-lisp
-  (require 'package)
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+        (bootstrap-version 6))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
+#+end_src
 
-  (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                          ("org" . "https://orgmode.org/elpa/")
-                          ("elpa" . "https://elpa.gnu.org/packages/")))
+We also need to add the following file to prevent ~package.el~ from
+loading (note that this block is tangled to ~early-init.el~):
 
-  (package-initialize)
-  (unless package-archive-contents
-    (package-refresh-contents))
+#+begin_src emacs-lisp :tangle "~/.config/emacs/early-init.el"
+  (setq package-enable-at-startup nil)
+#+end_src
 
-  (require 'use-package)
-  ; always ensure packages are loaded
-  (setq use-package-always-ensure t)
+** Use-package
+We can make straight work with use-package.
+
+First, install use-package:
+#+begin_src emacs-lisp
+  (straight-use-package 'use-package)
+#+end_src
+
+Second, configure it to use straight:
+#+begin_src emacs-lisp
+  (use-package straight
+    :custom
+    (straight-use-package-by-default t))
 #+end_src
 
 * Keybinds
+
 ** General
 General makes it easier to set keybindings, especially prefixed.
 
@@ -40,14 +92,25 @@ General makes it easier to set keybindings, especially prefixed.
 #+end_src
 
 *** Leaders
-General supports leader keys, like vim.
+General supports leader keys, like vim. Note that we need to tell
+general to let us use arbitrary keys as a prefix.
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp(general-auto-unbind-keys)
+(general-auto-unbind-keys)
+
 (general-create-definer rs/leader-def
+  :keymaps 'normal
   :prefix ",")
 
 (general-create-definer rs/local-leader-def
+  :keymaps 'normal
   :prefix "\\")
+#+end_src
+
+*** Test
+#+begin_src emacs-lisp
+  (rs/leader-def
+    "bp" '(previous-buffer :wk "previous buffer"))
 #+end_src
 
 ** Evil
@@ -61,7 +124,6 @@ Evil provides vim-like bindings for emacs.
     (setq evil-want-C-u-scroll t)
     :config
     (evil-mode)
-    (define-key evil-insert-state-map (kbd "<C-return>") 'evil-normal-state)
     (evil-set-undo-system 'undo-redo))
 
   (use-package evil-collection
@@ -76,6 +138,15 @@ Evil provides vim-like bindings for emacs.
     (global-evil-surround-mode 1))
 #+end_src
 
+*** Mode Switching
+We can use general with key chords to exist insert mode.
+
+#+begin_src emacs-lisp
+  (general-define-key
+   :keymaps 'evil-insert-state-map
+   (general-chord "jk") '(evil-normal-state :wk "exit insert mode"))
+#+end_src
+
 ** Key Chords
 The key-chord library supports key chords. We use it in particular for
 binding `jk` to exit insert mode.
@@ -88,14 +159,12 @@ binding `jk` to exit insert mode.
   (setq key-chord-two-keys-delay 0.5)
   (setq key-chord-safety-interval-backward 0.0) ; always interpret a key as starting a chord
   (setq key-chord-safety-interval-forward 0.0)  ; always immediately execute a chord which completes
-  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-  (key-chord-mode 1)
 #+end_src
 
 ** Which-Key
 Which-key shows a popup list of keybindings in waiting-for-key mode.
 
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (use-package which-key)
   (which-key-mode)
 #+end_src
@@ -103,23 +172,72 @@ Which-key shows a popup list of keybindings in waiting-for-key mode.
 * Org
 Org-mode is a general-purpose note-taking framework.
 
+** Install
+We need to setup indent mode to ensure that org auto-indents.
+
 #+begin_src emacs-lisp
   (defun rs/org-mode-setup ()
     (org-indent-mode))
+#+end_src
 
+And now we can install.
+
+#+begin_src emacs-lisp
   (use-package org
     :hook (org-mode . rs/org-mode-setup)
     :config
-    (setq org-ellipsis " ▾")
+    (setq org-ellipsis " ▾") ; sets symbol for collapsed headers
     (setq org-return-follows-link t))
+#+end_src
 
+** Ret
+Evil mode messes with ~RET~, and does something not that useful with
+it anyway, so we rebind it to org's ~RET~.
+
+#+begin_src emacs-lisp
+  (general-def org-mode-map
+   "RET" '(org-return :wk "return"))
+#+end_src
+
+** Tangle
+This package automatically tangles when the metadata
+
+#+begin_src org :tangle no
+    #+auto_tangle: t
+#+end_src
+
+is set.
+
+#+begin_src emacs-lisp
   (use-package org-auto-tangle
     :defer t
     :hook (org-mode . org-auto-tangle-mode))
+#+end_src
 
-  ; auto continue lists
+** Autolist
+This package automatically continues lists.
+
+#+begin_src emacs-lisp
   (use-package org-autolist
     :hook (org-mode . org-autolist-mode))
+#+end_src
+
+** Bullets
+This package makes bullets look better.
+
+#+begin_src emacs-lisp
+  (use-package org-bullets
+    :after org
+    :hook (org-mode . org-bullets-mode))
+#+end_src
+
+** Table of Contents
+This package enables tables of contents.
+
+#+begin_src emacs-lisp
+  (use-package toc-org
+      :commands toc-org-enable
+      :hook (org-mode . toc-org-enable))
 #+end_src
 
 * Completion
@@ -165,24 +283,21 @@ Set theme.
   (load-theme 'doom-one t)
 #+end_src
 
-** Modeline
-Set modeline.
-
-#+begin_src emacs-lisp
-  ; dependency: icons
-  (use-package all-the-icons)
-
-  ; prettier modeline
-  (use-package doom-modeline
-    :ensure t
-    :init (doom-modeline-mode))
-#+end_src
-
 ** Font
 Set the font.
 
 #+begin_src emacs-lisp
+  ; dependency: icons
+  (use-package all-the-icons)
+  
   (set-face-attribute 'default nil :font "MesloLGS Nerd Font 11")
+#+end_src
+
+Italicize comments:
+
+#+begin_src emacs-lisp
+  (set-face-attribute 'font-lock-comment-face nil
+    :slant 'italic)
 #+end_src
 
 ** Line Numbers
@@ -204,6 +319,16 @@ Improve notifications settings.
 * Misc
 This section is just potpurri that we have to do.
 
+** Troubleshooting
+This package performs binary search on ~init.el~ to find the source of a bug.
+
+#+begin_src emacs-lisp
+  (use-package bug-hunter)
+#+end_src
+
+*** Usage
+To use, run ~bug-hunter-init-file~.
+
 ** Custom File
 We have a separate custom file so it doesn't clutter our config.
 
@@ -215,3 +340,4 @@ We have a separate custom file so it doesn't clutter our config.
 
 * Sources
 - https://youtube.com/playlist?list=PLEoMzSkcN8oPH1au7H6B7bBJ4ZO7BXjSZ
+- https://gitlab.com/dwt1/configuring-emacs

@@ -16,6 +16,6 @@ qutebrowser/autoconfig.yml
 qutebrowser/qsettings/QtProject.conf
 qutebrowser/bookmarks/urls
 emacs/auto-save-list
-emacs/elpa
+emacs/straight
 emacs/transient
 emacs/custom.el
