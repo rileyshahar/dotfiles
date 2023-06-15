@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 function map(lhs, rhs, mode, opts)
 	mode = mode or "n"
 	local options = { noremap = true }
+
 	if opts then
 		options = vim.tbl_extend("force", options, opts)
 	end

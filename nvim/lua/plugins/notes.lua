@@ -37,6 +37,13 @@ return {
 						},
 					},
 				},
+				["core.keybinds"] = {
+					config = {
+						hook = function(keybinds)
+							keybinds.map("norg", "<localleader>t", "<cmd>Neorg tangle current-file<cr>")
+						end,
+					},
+				},
 			},
 		},
 	},

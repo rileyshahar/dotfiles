@@ -128,9 +128,9 @@ function status_line()
 		gen_section(accent_color, { get_mode_group_display_name(mg) }),
 		gen_section(emph_highlight, { is_readonly(), "%t", is_modified() }),
 		gen_section(dark_highlight, {
-			process_diagnostics("E:", diagnostics.errors, "%#LspDiagnosticsDefaultError#"),
-			process_diagnostics("W:", diagnostics.warnings, "%#LspDiagnosticsDefaultWarning#"),
-			process_diagnostics("I:", diagnostics.info, "%#LspDiagnosticsDefaultInformation#"),
+			process_diagnostics("E:", diagnostics.errors, "%#DiagnosticError#"),
+			process_diagnostics("W:", diagnostics.warnings, "%#DiagnosticWarn#"),
+			process_diagnostics("I:", diagnostics.info, "%#DiagnosticInfo#"),
 		}),
 		"%=",
 		gen_section(dark_highlight, {

@@ -2,7 +2,7 @@
 vim.o.termguicolors = true
 
 -- colorscheme
-vim.cmd("colorscheme cac")
+vim.cmd("colorscheme theme")
 
 -- syntax highlighting
 vim.cmd("syntax enable")
