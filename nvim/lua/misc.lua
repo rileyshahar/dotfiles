@@ -12,11 +12,6 @@ map("Q", "gqip")
 vim.wo.number = true
 vim.wo.relativenumber = true
 
--- filetype support
-vim.o.filetype = true
-vim.o.syntax = true -- syntax highlighting
-vim.o.do_filetype_lua = true
-
 -- textwrap
 vim.o.textwidth = 80
 
