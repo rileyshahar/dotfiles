@@ -48,6 +48,7 @@ edit_map("c", "$DOTFILES_DIR") -- edit config
 
 -- extensions
 telescope.load_extension("fzf")
+-- telescope.load_extension("noice")
 
 -- use telescope for vim.ui.select
 -- we want the cursor theme here, i think, because in general vim.ui.select is

@@ -13,7 +13,6 @@ return {
 	"nvim-lua/popup.nvim",
 	"nvim-lua/plenary.nvim",
 	"tpope/vim-repeat", -- repeat plugin commands
-	"rcarriga/nvim-notify", -- notification ui
 	"lewis6991/gitsigns.nvim", -- git
 
 	-- quickfix
@@ -65,12 +64,8 @@ return {
 
 	-- lsp
 	"neovim/nvim-lspconfig",
-	"ray-x/lsp_signature.nvim", -- signature while typing
+	-- "ray-x/lsp_signature.nvim", -- signature while typing
 	"jose-elias-alvarez/null-ls.nvim",
-	{
-		"j-hui/fidget.nvim",
-		config = true,
-	}, -- lsp status indicator
 
 	-- appearance
 	"ap/vim-css-color",
@@ -113,4 +108,15 @@ return {
 	"pest-parser/pest.vim",
 	"NoahTheDuke/vim-just",
 	"isovector/cornelis",
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		opts = {
+			style = "night",
+			on_highlights = function(highlights, colors)
+				highlights.Comment.fg = colors.purple
+				highlights["@keyword"].fg = colors.cyan
+			end,
+		},
+	},
 }

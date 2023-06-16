@@ -1,11 +1,11 @@
 local c = {
 	norm = {
 		fg = "#a9b1d6",
-		bg = "#1a1b26", -- TODO: none?
+		bg = "#1a1b26",
 	},
 	highc = {
 		fg = "#c5c8d6",
-		bg = "#06080a",
+		bg = "#01020D",
 	},
 	lowc = {
 		fg = "#545a75",
@@ -19,7 +19,7 @@ local c = {
 	diff = {
 		add = {
 			fg = "#9ece61",
-			bg = "#3f6622",
+			bg = "#012800",
 		},
 
 		change = {
@@ -29,7 +29,7 @@ local c = {
 
 		delete = {
 			fg = "#f7768e",
-			bg = "#7f232a",
+			bg = "#340001",
 		},
 	},
 
@@ -51,15 +51,15 @@ local c = {
 	diag = {
 		error = {
 			fg = "#f7768e",
-			bg = "#7f232a",
+			bg = "#340001",
 		},
 
 		ok = {
 			fg = "#9ece61",
-			bg = "#3f6622",
+			bg = "#012800",
 		},
 
-		warning = {
+		warn = {
 			fg = "#e0af68",
 			bg = "#7d5938",
 		},
@@ -74,6 +74,8 @@ local c = {
 			bg = "#283457",
 		},
 	},
+
+	none = "NONE",
 }
 
 -- https://github.com/folke/tokyonight.nvim/blob/main/extras/lua/tokyonight_night.lua
@@ -81,62 +83,60 @@ local theme = {
 	ColorColumn = { bg = c.accent.bg },
 	Comment = { fg = c.syntax.comment, italic = true },
 	Conceal = { fg = c.lowc.fg },
-	CurSearch = { bg = c.diag.ok.bg, fg = c.norm.fg },
-	Cursor = { fg = c.bg, bg = c.fg },
-	CursorColumn = { bg = c.bg_highlight },
-	CursorLine = { bg = c.bg_highlight },
+	CurSearch = { bg = c.diag.info.fg, fg = c.norm.bg },
+	Cursor = { fg = c.norm.bg, bg = c.norm.fg },
+	CursorColumn = { bg = c.none },
+	CursorLine = { bg = c.none },
 	CursorLineNr = { fg = c.norm.fg },
 	DiffAdd = { bg = c.diff.add.bg },
 	DiffChange = { bg = c.diff.change.bg },
 	DiffDelete = { bg = c.diff.delete.bg },
-	DiffText = { fg = c.diff.add.bg },
+	DiffText = { bg = c.diff.add.fg },
 	Directory = { fg = c.syntax.link },
-	EndOfBuffer = { fg = c.bg },
-	ErrorMsg = { fg = c.diag.error.fg },
-	FloatBorder = { fg = c.lowc.bg, bg = c.lowc.bg },
-	FloatTitle = { fg = c.norm.fg, bg = c.norm.bg },
-	FoldColumn = { bg = c.norm.bg, fg = c.accent.bg },
+	EndOfBuffer = { fg = c.norm.bg, bg = c.none },
+	ErrorMsg = { fg = c.diag.error.fg, underline = true },
+	FloatBorder = { fg = c.lowc.bg, bg = c.highc.bg },
+	FloatTitle = { fg = c.norm.fg, bg = c.none },
+	FoldColumn = { bg = c.none, fg = c.accent.bg },
 	Folded = { fg = c.lowc.fg, bg = c.accent.bg },
 	IncSearch = { bg = c.diag.info.bg, fg = c.norm.fg },
 	LineNr = { fg = c.lowc.fg },
 	MatchParen = { bg = c.accent.bg },
-	ModeMsg = { fg = c.norm.fg, bg = c.norm.bg },
+	ModeMsg = { fg = c.norm.fg, bg = c.none },
 	MoreMsg = { fg = c.diag.hint.fg },
 	NonText = { fg = c.norm.bg },
 	Normal = { fg = c.norm.fg, bg = c.norm.bg },
-	NormalFloat = { fg = c.lowc.fg, bg = c.lowc.bg },
+	NormalFloat = { fg = c.norm.fg, bg = c.highc.bg },
 	NormalNC = { fg = c.norm.fg, bg = c.norm.bg },
-	NormalSB = { fg = c.fg_sidebar, bg = c.bg_sidebar },
-	Pmenu = { bg = c.norm.bg, fg = c.norm.fg },
-	PmenuSbar = { bg = c.lowc.bg },
+	Pmenu = { bg = c.none, fg = c.norm.fg },
+	PmenuSbar = { bg = c.none },
 	PmenuSel = { bg = c.accent.bg },
-	PmenuThumb = { bg = c.highc.bg },
+	PmenuThumb = { bg = c.none },
 	Question = { fg = c.diag.hint.fg },
 	QuickFixLine = { bg = c.accent.bg },
 	Search = { bg = c.diag.info.bg, fg = c.norm.fg },
-	SignColumn = { bg = c.norm.bg, fg = c.norm.fg },
-	SignColumnSB = { bg = c.bg_sidebar, fg = c.fg_gutter },
+	SignColumn = { bg = c.none, fg = c.norm.fg },
 	SpecialKey = { fg = c.diag.error.fg },
 	SpellBad = { fg = c.diag.error.fg, undercurl = true },
-	SpellCap = { sp = c.diag.warning.fg, undercurl = true },
+	SpellCap = { sp = c.diag.warn.fg, undercurl = true },
 	Substitute = { bg = c.accent.bg, fg = c.norm.fg },
 	TabLine = { bg = c.lowc.bg, fg = c.norm.fg },
-	TabLineFill = { bg = c.norm.bg, fg = c.norm.fg },
+	TabLineFill = { bg = c.none, fg = c.norm.fg },
 	TabLineSel = { bg = c.diag.error.fg, fg = c.norm.bg },
-	Title = { fg = c.syntax.func, bold = true },
+	Title = { fg = c.syntax.operator, bold = true },
 	VertSplit = { fg = c.norm.bg },
 	Visual = { bg = c.accent.bg },
 	VisualNOS = { bg = c.accent.bg },
-	WarningMsg = { fg = c.diag.warning.fg },
-	Whitespace = { fg = c.lowc.fg, bg = c.norm.bg },
+	WarningMsg = { fg = c.diag.warn.fg },
+	Whitespace = { fg = c.lowc.fg, bg = c.none },
 	WildMenu = { bg = c.accent.bg },
-	WinSeparator = { bg = c.norm.bg, fg = c.norm.bg },
+	WinSeparator = { bg = c.none, fg = c.norm.bg },
 
 	-- my statuslinads
 	StatusLine = { fg = c.norm.fg, bg = c.lowc.bg },
-	StatusLineDark = { fg = c.norm.fg, bg = c.norm.bg },
+	StatusLineDark = { fg = c.norm.fg, bg = c.none },
 	StatusNormal = { fg = c.norm.bg, bg = c.syntax.link },
-	StatusNop = { fg = c.norm.bg, bg = c.diag.warning.fg },
+	StatusNop = { fg = c.norm.bg, bg = c.diag.warn.fg },
 	StatusInsert = { fg = c.norm.bg, bg = c.syntax.string },
 	StatusVisual = { fg = c.norm.bg, bg = c.syntax.comment },
 	StatusSelect = { fg = c.norm.bg, bg = c.syntax.operator },
@@ -163,7 +163,7 @@ local theme = {
 	Statement = { fg = c.norm.fg },
 	-- Conditional   = { },
 	-- Repeat        = { },
-	-- Label         = { },
+	Label = { fg = c.syntax.link },
 	Operator = { fg = c.syntax.operator },
 	Keyword = { fg = c.syntax.keyword, bold = true },
 	-- Exception     = { },
@@ -176,7 +176,7 @@ local theme = {
 
 	Type = { fg = c.syntax.type, bold = true },
 	-- StorageClass  = { },
-	-- Structure     = { },
+	Structure = { fg = c.syntax.type },
 	-- Typedef       = { },
 
 	Special = { fg = c.syntax.special },
@@ -184,7 +184,7 @@ local theme = {
 	-- Tag           = { },
 	Delimiter = { fg = c.syntax.delimiter },
 	-- SpecialComment= { },
-	Debug = { fg = c.diag.warning.fg },
+	Debug = { fg = c.diag.warn.fg },
 
 	Underlined = { underline = true },
 	Bold = { bold = true },
@@ -192,35 +192,47 @@ local theme = {
 
 	-- Ignore = { }
 
-	Error = { fg = c.diag.error.fg },
-	Todo = { bg = c.diag.warning.fg, fg = c.norm.bg },
+	Error = { fg = c.diag.error.fg, underline = true },
+	-- Error = { fg = c.norm.bg, underline = true, bg = c.diag.error.fg },
+	Todo = { bg = c.diag.warn.fg, fg = c.norm.bg },
 
-	LspReferenceText = { bg = c.fg_gutter },
-	LspReferenceRead = { bg = c.fg_gutter },
-	LspReferenceWrite = { bg = c.fg_gutter },
+	-- Lua
+	coqProofKwd = { link = "Identifier" },
+	coqTactic = { link = "Operator" },
+	coqThm = { fg = c.syntax.func, bold = false },
+
+	LspCodeLens = { fg = c.syntax.link, underline = true },
+	LspSignatureActiveParameter = { fg = c.highc.fg, underline = true, bold = true },
+	LspInfoBorder = { fg = c.norm.fg, bg = c.none },
 
 	DiagnosticError = { fg = c.diag.error.fg, underline = true },
-	DiagnosticWarn = { fg = c.diag.warning.fg, underline = true },
+	DiagnosticWarn = { fg = c.diag.warn.fg, underline = true },
 	DiagnosticHint = { fg = c.diag.hint.fg, underline = true },
-	DiagnosticUnnecessary = { fg = c.diag.warning.fg },
+	DiagnosticOk = { fg = c.diag.ok.fg, underline = true },
+	DiagnosticUnnecessary = { fg = c.diag.warn.fg },
 
-	DiagnosticVirtualTextError = { bg = c.norm.bg, fg = c.diag.error.fg },
-	DiagnosticVirtualTextWarn = { bg = c.norm.bg, fg = c.diag.warning.fg },
-	DiagnosticVirtualTextInfo = { bg = c.norm.bg, fg = c.diag.info.fg },
-	DiagnosticVirtualTextHint = { bg = c.norm.bg, fg = c.diag.hint.fg },
+	DiagnosticSignError = { link = "DiagnosticError" },
+	DiagnosticSignWarn = { link = "DiagnosticWarn" },
+	DiagnosticSignHint = { link = "DiagnosticHint" },
+	DiagnosticSignOk = { link = "DiagnosticOk" },
+	DiagnosticSignUnnecessary = { link = "DiagnosticUnnecessary" },
+
+	DiagnosticVirtualTextError = { bg = c.none, fg = c.diag.error.fg },
+	DiagnosticVirtualTextWarn = { bg = c.none, fg = c.diag.warn.fg },
+	DiagnosticVirtualTextHint = { bg = c.none, fg = c.diag.hint.fg },
+	DiagnosticVirtualTextInfo = { bg = c.none, fg = c.diag.info.fg },
+	DiagnosticVirtualTextOk = { bg = c.none, fg = c.diag.ok.fg },
 
 	DiagnosticUnderlineError = { undercurl = true },
 	DiagnosticUnderlineWarn = { undercurl = true },
 	DiagnosticUnderlineInfo = { undercurl = true },
+	DiagnosticUnderlineOk = { undercurl = true },
 	DiagnosticUnderlineHint = { undercurl = true },
-
-	LspSignatureActiveParameter = { bold = true },
-	LspCodeLens = { fg = c.syntax.comment },
-	LspInfoBorder = { fg = c.norm.fg, bg = c.lowc.bg },
 
 	-- Treesitter
 	["@comment.documentation"] = {},
-	["@text.literal"] = { link = "Comment" },
+	["@text"] = { link = "Normal" },
+	["@text.literal"] = { fg = c.syntax.literal },
 	["@text.reference"] = { link = "Identifier" },
 	["@text.title"] = { link = "Title" },
 	["@text.uri"] = { link = "Underlined" },
@@ -256,7 +268,7 @@ local theme = {
 
 	["@conditional"] = { link = "Keyword" },
 	["@repeat"] = { link = "Keyword" },
-	["@label"] = { link = "Keyword" },
+	["@label"] = { link = "Label" },
 	["@operator"] = { link = "Operator" },
 	["@keyword"] = { link = "Keyword" },
 	["@keyword.function"] = { link = "Keyword" },
@@ -297,7 +309,7 @@ local theme = {
 	["@lsp.type.formatSpecifier"] = { link = "@punctuation.special" },
 	["@lsp.type.function"] = { link = "@function" },
 	["@lsp.type.generic"] = {},
-	["@lsp.type.interface"] = { link = "@interface" },
+	["@lsp.type.interface"] = { link = "Operator" },
 	["@lsp.type.keyword"] = { link = "@keyword" },
 	["@lsp.type.macro"] = { link = "Macro" },
 	["@lsp.type.method"] = { link = "@function" },
@@ -321,88 +333,166 @@ local theme = {
 	GitSignsDelete = { fg = c.diff.delete.fg },
 
 	-- Telescope
-	TelescopeBorder = { fg = c.norm.fg, bg = c.norm.bg },
-	TelescopeNormal = { fg = c.norm.fg, bg = c.highc.bg },
+	TelescopeBorder = { fg = c.norm.fg, bg = c.none },
+	TelescopeNormal = { fg = c.norm.fg, bg = c.none },
 
 	-- NeoVim
 	healthError = { fg = c.diag.error.fg },
 	healthSuccess = { fg = c.diag.ok.fg },
-	healthWarning = { fg = c.diag.warning.fg },
+	healthWarning = { fg = c.diag.warn.fg },
 
 	-- Cmp
 	CmpDocumentation = { fg = c.norm.fg, bg = c.highc.bg },
 	CmpDocumentationBorder = { fg = c.norm.fg, bg = c.accent.bg },
 	CmpGhostText = { fg = c.lowc.fg },
 
-	-- CmpItemAbbr = { fg = c.norm.fg },
-	-- CmpItemAbbrDeprecated = { fg = c.lowc.fg, strikethrough = true },
-	-- CmpItemAbbrMatch = { fg = c.blue1, bg = c.none },
-	-- CmpItemAbbrMatchFuzzy = { fg = c.blue1, bg = c.none },
-
-	-- CmpItemMenu = { fg = c.comment, bg = c.none },
-
-	-- CmpItemKindDefault = { fg = c.fg_dark, bg = c.none },
-
-	-- CmpItemKindKeyword = { fg = c.cyan, bg = c.none },
-
-	-- CmpItemKindVariable = { fg = c.magenta, bg = c.none },
-	-- CmpItemKindConstant = { fg = c.magenta, bg = c.none },
-	-- CmpItemKindReference = { fg = c.magenta, bg = c.none },
-	-- CmpItemKindValue = { fg = c.magenta, bg = c.none },
-	-- CmpItemKindCopilot = { fg = c.teal, bg = c.none },
-
-	-- CmpItemKindFunction = { fg = c.blue, bg = c.none },
-	-- CmpItemKindMethod = { fg = c.blue, bg = c.none },
-	-- CmpItemKindConstructor = { fg = c.blue, bg = c.none },
-
-	-- CmpItemKindClass = { fg = c.orange, bg = c.none },
-	-- CmpItemKindInterface = { fg = c.orange, bg = c.none },
-	-- CmpItemKindStruct = { fg = c.orange, bg = c.none },
-	-- CmpItemKindEvent = { fg = c.orange, bg = c.none },
-	-- CmpItemKindEnum = { fg = c.orange, bg = c.none },
-	-- CmpItemKindUnit = { fg = c.orange, bg = c.none },
-
-	-- CmpItemKindModule = { fg = c.yellow, bg = c.none },
-
-	-- CmpItemKindProperty = { fg = c.green1, bg = c.none },
-	-- CmpItemKindField = { fg = c.green1, bg = c.none },
-	-- CmpItemKindTypeParameter = { fg = c.green1, bg = c.none },
-	-- CmpItemKindEnumMember = { fg = c.green1, bg = c.none },
-	-- CmpItemKindOperator = { fg = c.green1, bg = c.none },
-	-- CmpItemKindSnippet = { fg = c.dark5, bg = c.none },
-
 	-- Lazy
 	LazyProgressDone = { bold = true, fg = c.diag.ok.fg },
-	LazyProgressTodo = { bold = true, fg = c.diag.warning.fg },
+	LazyProgressTodo = { bold = true, fg = c.diag.warn.fg },
 
 	-- Notify
+	NotifyBackground = { bg = c.none },
 	--- Border
 	NotifyERRORBorder = { fg = c.diag.error.fg },
-	NotifyWARNBorder = { fg = c.diag.error.fg },
+	NotifyWARNBorder = { fg = c.diag.warn.fg },
 	NotifyINFOBorder = { fg = c.diag.info.fg },
 	NotifyDEBUGBorder = { fg = c.syntax.comment },
 	NotifyTRACEBorder = { fg = c.syntax.special },
 	--- Icons
 	NotifyERRORIcon = { fg = c.diag.error.fg },
-	NotifyWARNIcon = { fg = c.diag.error.fg },
+	NotifyWARNIcon = { fg = c.diag.warn.fg },
 	NotifyINFOIcon = { fg = c.diag.info.fg },
 	NotifyDEBUGIcon = { fg = c.syntax.comment },
 	NotifyTRACEIcon = { fg = c.syntax.special },
 	--- Title
 	NotifyERRORTitle = { fg = c.diag.error.fg },
-	NotifyWARNTitle = { fg = c.diag.warning.fg },
+	NotifyWARNTitle = { fg = c.diag.warn.fg },
 	NotifyINFOTitle = { fg = c.diag.info.fg },
 	NotifyDEBUGTitle = { fg = c.syntax.comment },
 	NotifyTRACETitle = { fg = c.syntax.special },
-	--- Body
-	NotifyERRORBody = { fg = c.norm.fg, bg = c.norm.bg },
-	NotifyWARNBody = { fg = c.norm.fg, bg = c.norm.bg },
-	NotifyINFOBody = { fg = c.norm.fg, bg = c.norm.bg },
-	NotifyDEBUGBody = { fg = c.norm.fg, bg = c.norm.bg },
-	NotifyTRACEBody = { fg = c.norm.fg, bg = c.norm.bg },
 
-	-- Fidget
-	FidgetTask = { bg = c.norm.bg },
+	-- Cmp
+	CmpItemAbbr = { fg = c.norm.fg },
+	CmpItemAbbrDeprecated = { fg = c.lowc.fg, strikethrough = true },
+	CmpItemAbbrMatch = { fg = c.diag.info.fg, bg = c.none },
+	CmpItemAbbrMatchFuzzy = { fg = c.accent.fg, bg = c.none },
+	CmpItemMenu = { fg = c.comment, bg = c.none },
+
+	CmpItemKindClass = { link = "Structure" },
+	CmpItemKindColor = { link = "Constant" },
+	CmpItemKindConstant = { link = "Constant" },
+	CmpItemKindConstructor = { link = "Constructor" },
+	CmpItemKind = { link = "Normal" },
+	CmpItemKindEnum = { link = "@lsp.type.enum" },
+	CmpItemKindEnumMember = { link = "@lsp.type.enumMember" },
+	CmpItemKindEvent = { link = "Normal" }, -- TODO
+	CmpItemKindField = { link = "Field" },
+	CmpItemKindFile = { link = "Directory" },
+	CmpItemKindFolder = { link = "Directory" },
+	CmpItemKindFunction = { link = "Function" },
+	CmpItemKindInterface = { link = "@lsp.type.interface" },
+	CmpItemKindKeyword = { link = "Keyword" },
+	CmpItemKindMethod = { link = "@method" },
+	CmpItemKindModule = { link = "@interface" },
+	CmpItemKindOperator = { link = "Operator" },
+	CmpItemKindProperty = { link = "@property" },
+	CmpItemKindReference = { link = "@text.reference" },
+	CmpItemKindSnippet = { link = "Macro" },
+	CmpItemKindStruct = { link = "Structure" },
+	CmpItemKindText = { fg = c.norm.fg },
+	CmpItemKindTypeParameter = { link = "@lsp.type.typeParameter" },
+	CmpItemKindUnit = { link = "Literal" },
+	CmpItemKindValue = { link = "Literal" },
+	CmpItemKindVariable = { link = "Variable" },
+
+	-- Noice
+	--- cmdline
+	NoiceCmdlinePopupTitle = { fg = c.accent.fg },
+
+	NoiceCmdlineIcon = { fg = c.accent.fg },
+	NoiceCmdlinePopupBorder = { fg = c.accent.fg },
+
+	NoiceCmdlinePopupBorderSearch = { link = "NoiceCmdlinePopupBorder" },
+	NoiceCmdlineIconSearch = { link = "NoiceCmdlineIcon" },
+
+	-- NoiceCmdline
+	-- NoiceCmdlineIconCalculator
+	-- NoiceCmdlineIconCmdline
+	-- NoiceCmdlineIconFilter
+	-- NoiceCmdlineIconHelp
+	-- NoiceCmdlineIconIncRename
+	-- NoiceCmdlineIconInput
+	-- NoiceCmdlineIconLua
+	-- NoiceCmdlineIconSearch
+	-- NoiceCmdlinePopup
+	-- NoiceCmdlinePopupBorderCalculator
+	-- NoiceCmdlinePopupBorderCmdline
+	-- NoiceCmdlinePopupBorderFilter
+	-- NoiceCmdlinePopupBorderHelp
+	-- NoiceCmdlinePopupBorderIncRename
+	-- NoiceCmdlinePopupBorderInput
+	-- NoiceCmdlinePopupBorderLua
+	-- NoiceCmdlinePrompt = { fg = c.accent.fg },
+
+	--- completion
+	NoiceCompletionItemKindClass = { link = "CmpItemKindClass" },
+	NoiceCompletionItemKindColor = { link = "CmpItemKindColor" },
+	NoiceCompletionItemKindConstant = { link = "CmpItemKindConstant" },
+	NoiceCompletionItemKindConstructor = { link = "CmpItemKindConstructor" },
+	NoiceCompletionItemKindDefault = { link = "CmpItemKindDefault" },
+	NoiceCompletionItemKindEnum = { link = "CmpItemKindEnum" },
+	NoiceCompletionItemKindEnumMember = { link = "CmpItemKindEnumMember" },
+	NoiceCompletionItemKindField = { link = "CmpItemKindField" },
+	NoiceCompletionItemKindFile = { link = "CmpItemKindFile" },
+	NoiceCompletionItemKindFolder = { link = "CmpItemKindFolder" },
+	NoiceCompletionItemKindFunction = { link = "CmpItemKindFunction" },
+	NoiceCompletionItemKindInterface = { link = "CmpItemKindInterface" },
+	NoiceCompletionItemKindKeyword = { link = "CmpItemKindKeyword" },
+	NoiceCompletionItemKindMethod = { link = "CmpItemKindMethod" },
+	NoiceCompletionItemKindModule = { link = "CmpItemKindModule" },
+	NoiceCompletionItemKindProperty = { link = "CmpItemKindProperty" },
+	NoiceCompletionItemKindSnippet = { link = "CmpItemKindSnippet" },
+	NoiceCompletionItemKindStruct = { link = "CmpItemKindStruct" },
+	NoiceCompletionItemKindText = { link = "CmpItemKindText" },
+	NoiceCompletionItemKindUnit = { link = "CmpItemKindUnit" },
+	NoiceCompletionItemKindValue = { link = "CmpItemKindValue" },
+	NoiceCompletionItemKindVariable = { link = "CmpItemKindVariable" },
+	NoiceCompletionItemMenu = { link = "CmpItemMenu" },
+	NoiceCompletionItemWord = { link = "CmpItemMenu" },
+
+	-- NoiceLspProgressClient
+	-- NoiceLspProgressSpinner
+	NoiceLspProgressTitle = { link = "Normal" },
+
+	-- NoiceConfirm
+	-- NoiceConfirmBorder
+	-- NoiceCursor
+	-- NoiceFormatConfirm
+	-- NoiceFormatConfirmDefault
+	-- NoiceFormatDate
+	-- NoiceFormatEvent
+	-- NoiceFormatKind
+	-- NoiceFormatLevelDebug
+	-- NoiceFormatLevelError
+	-- NoiceFormatLevelInfo
+	-- NoiceFormatLevelOff
+	-- NoiceFormatLevelTrace
+	-- NoiceFormatLevelWarn
+	-- NoiceFormatProgressDone
+	-- NoiceFormatProgressTodo
+	-- NoiceFormatTitle
+	-- NoiceMini
+	-- NoicePopup
+	-- NoicePopupBorder
+	-- NoicePopupmenu
+	-- NoicePopupmenuBorder
+	-- NoicePopupmenuMatch
+	-- NoicePopupmenuSelected
+	-- NoiceScrollbar
+	-- NoiceScrollbarThumb
+	-- NoiceSplit
+	-- NoiceSplitBorder
+	-- NoiceVirtualText
 }
 
 for grp, opts in pairs(theme) do

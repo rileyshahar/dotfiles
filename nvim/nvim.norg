@@ -1,0 +1,3 @@
+@code lua
+local x = 3
+@end

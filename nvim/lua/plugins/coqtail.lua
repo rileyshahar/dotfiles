@@ -14,6 +14,7 @@ return {
 				"[c",
 				"<cmd>CoqUndo<cr><cmd>CoqJumpToEnd<cr>",
 			},
+			{ "<localleader>/", ":Coq Search " }, -- have to use : to not need to close the cmd
 		},
 	},
 	-- {

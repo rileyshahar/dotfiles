@@ -25,7 +25,7 @@ end
 
 -- set leaders
 vim.g.mapleader = ","
-vim.g.maplocalleader = "\\"
+vim.g.maplocalleader = ",,"
 map("<space>", "<nop>", "n")
 map("<space>", "<nop>", "v")
 
@@ -35,14 +35,16 @@ leaders = {
 	git = "<leader>g",
   goto = "g",
 	make = "m",
+	notify = "<leader>n",
 	plugin_meta = "<leader>p",
 	ui = "<leader>z"
 }
 
+-- appearance first bc some plugins (notify) rely on the colorscheme
+require("appearance")
 require("lazy").setup("plugins")
 
 -- shell out to modules
-require("appearance")
 require("completion")
 require("git")
 require("lsp")

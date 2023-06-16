@@ -72,13 +72,6 @@ return {
 	"machakann/vim-highlightedyank", -- highlight yanked text
 
 	-- navigation/movement
-	{
-		-- motion
-		"rlane/pounce.nvim",
-		keys = {
-			{ "<leader><leader>", "<cmd>Pounce<cr>" },
-		},
-	},
 	"chaoren/vim-wordmotion", -- snake case word
 
 	-- distraction-free writing

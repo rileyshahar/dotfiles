@@ -21,10 +21,12 @@ function async_run(prg_getter)
 
 	local function on_exit(_, status, _)
 		if status ~= 0 then
-			local message = table.concat(lines, "\\n")
-			vim.cmd('echo "' .. message .. '"')
+			local message = table.concat(lines, "\n")
+			vim.notify(message, "error", {
+				timeout = false,
+			})
 		else
-			vim.cmd('echo "made successfully"')
+			vim.notify("made successfully", "info")
 		end
 	end
 

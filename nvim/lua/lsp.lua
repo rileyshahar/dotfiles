@@ -1,15 +1,30 @@
 local nvim_lsp = require("lspconfig")
 local telescope = require("telescope.builtin")
 
+-- default error in case of no rename
+map("<leader>rn", function()
+	vim.notify("no rename provider attached", "error")
+end)
+
+-- default error in case of no action
+map("<leader>a", function()
+	vim.notify("no code action provider attached", "error")
+end, {"n", "v"})
+
+-- default error in case of no lens
+map("<leader>c", function()
+	vim.notify("no code lens provider attached", "error")
+end)
+
 -- modified from https://github.com/neovim/nvim-lspconfig
 local on_attach = function(client, bufnr)
-	require("lsp_signature").on_attach({
-		-- from lsp_signature config
-		bind = true,
-		handler_opts = {
-			border = "none",
-		},
-	}, bufnr)
+	-- require("lsp_signature").on_attach({
+	-- 	-- from lsp_signature config
+	-- 	bind = true,
+	-- 	handler_opts = {
+	-- 		border = "none",
+	-- 	},
+	-- }, bufnr)
 
 	-- map wrapper which ensures buffer-locality
 	local function lsp_map(lhs, rhs, mode)
@@ -18,24 +33,40 @@ local on_attach = function(client, bufnr)
 
 	-- gotos
 	lsp_map(leaders.goto .. "D", vim.lsp.buf.declaration)
-	lsp_map(leaders.goto .. "d", vim.lsp.buf.definition)
-	lsp_map(leaders.goto .. "i", vim.lsp.buf.implementation)
-	lsp_map(leaders.goto .. "t", vim.lsp.buf.type_definition)
-
-	-- code actions
-	lsp_map("<leader>a", vim.lsp.buf.code_action)
-	lsp_map("<leader>a", vim.lsp.buf.code_action, "v")
-	lsp_map("<leader>rn", vim.lsp.buf.rename) -- not under capability gate so we get an error if we try to use
-
-	-- documentation
-	lsp_map("K", vim.lsp.buf.hover)
-	lsp_map("<leader>k", vim.lsp.buf.signature_help)
+	lsp_map(leaders.goto .. "d", telescope.lsp_definitions)
+	lsp_map(leaders.goto .. "i", telescope.lsp_implementations)
+	lsp_map(leaders.goto .. "t", telescope.lsp_type_definitions)
 
 	-- finders
 	lsp_map(leaders.finder .. "S", telescope.lsp_workspace_symbols)
 	lsp_map(leaders.finder .. "s", telescope.lsp_document_symbols)
 	lsp_map(leaders.finder .. "r", telescope.lsp_references)
-	lsp_map(leaders.finder .. "d", telescope.diagnostics) -- TODO: do we want qflist or telescope
+	lsp_map(leaders.finder .. "d", telescope.diagnostics)
+
+	-- code actions
+	if client.server_capabilities.codeActionProvider then
+		lsp_map("<leader>a", vim.lsp.buf.code_action)
+		lsp_map("<leader>a", vim.lsp.buf.code_action, "v")
+	end
+
+	if client.server_capabilities.renameProvider then
+		lsp_map("<leader>rn", vim.lsp.buf.rename) -- not under capability gate so we get an error if we try to use
+	end
+
+	-- code lens
+	lsp_map("<leader>c", vim.lsp.codelens.run)
+
+	if client.server_capabilities.codeLensProvider then
+		vim.api.nvim_create_augroup("CodeLens", { clear = true })
+		vim.api.nvim_create_autocmd({"BufEnter", "CursorHold", "InsertLeave", "TextChanged"}, {
+			group = "CodeLens",
+			callback = vim.lsp.codelens.refresh,
+		})
+	end
+
+	-- documentation
+	lsp_map("K", vim.lsp.buf.hover)
+	lsp_map("<leader>k", vim.lsp.buf.signature_help)
 
 	-- diagnostics
 	lsp_map("<leader>d", vim.diagnostic.open_float)
@@ -192,3 +223,4 @@ null_ls.setup({
 -- require("coq-lsp").setup({lsp = {
 -- 	on_attach = on_attach
 -- }})
+--

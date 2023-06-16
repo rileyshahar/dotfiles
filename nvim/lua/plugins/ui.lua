@@ -1,0 +1,88 @@
+return {
+	-- {
+	-- 	"folke/noice.nvim",
+	-- 	event = "VeryLazy",
+	-- 	opts = {
+	-- 		cmdline = {
+	-- 			view = "cmdline",
+	-- 		},
+	-- 		lsp = {
+	-- 			-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+	-- 			override = {
+	-- 				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+	-- 				["vim.lsp.util.stylize_markdown"] = true,
+	-- 				["cmp.entry.get_documentation"] = true,
+	-- 			},
+	-- 		},
+	-- 		-- you can enable a preset for easier configuration
+	-- 		presets = {
+	-- 			long_message_to_split = true, -- long messages will be sent to a split
+	-- 		},
+	-- 		commands = {
+	-- 			last = {
+	-- 				view = "split",
+	-- 			},
+	-- 		},
+	-- 	},
+	-- 	dependencies = {
+	-- 		-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		-- OPTIONAL:
+	-- 		--   `nvim-notify` is only needed, if you want to use the notification view.
+	-- 		--   If not available, we use `mini` as the fallback
+	-- 		"rcarriga/nvim-notify",
+	-- 	},
+	-- 	keys = {
+	-- 		{
+	-- 			leaders.notify .. "c",
+	-- 			function()
+	-- 				require("noice").cmd("dismiss")
+	-- 			end,
+	-- 		},
+	-- 		{
+	-- 			leaders.notify .. "e",
+	-- 			function()
+	-- 				require("noice").cmd("errors")
+	-- 			end,
+	-- 		},
+	-- 		{
+	-- 			leaders.notify .. "l",
+	-- 			function()
+	-- 				require("noice").cmd("last")
+	-- 			end,
+	-- 		},
+	-- 		{
+	-- 			leaders.notify .. "h",
+	-- 			function()
+	-- 				require("noice").cmd("history")
+	-- 			end,
+	-- 		},
+	-- 		{
+	-- 			leaders.notify .. "t",
+	-- 			function()
+	-- 				require("noice").cmd("telescope")
+	-- 			end,
+	-- 		},
+	-- 		{
+	-- 			"<c-d>",
+	-- 			function()
+	-- 				if not require("noice.lsp").scroll(4) then
+	-- 					return "<c-d>"
+	-- 				end
+	-- 			end,
+	-- 			mode = { "n", "i", "s" },
+	-- 			silent = true,
+	-- 		},
+	-- 		{
+	-- 			"<c-s>",
+	-- 			function()
+	-- 				if not require("noice.lsp").scroll(-4) then
+	-- 					return "<c-s>"
+	-- 				end
+	-- 			end,
+	-- 			mode = { "n", "i", "s" },
+	-- 			silent = true,
+	-- 		},
+	-- 	},
+	-- },
+}
