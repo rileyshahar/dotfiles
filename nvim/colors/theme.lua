@@ -95,7 +95,7 @@ local theme = {
 	Directory = { fg = c.syntax.link },
 	EndOfBuffer = { fg = c.norm.bg, bg = c.none },
 	ErrorMsg = { fg = c.diag.error.fg, underline = true },
-	FloatBorder = { fg = c.lowc.bg, bg = c.highc.bg },
+	FloatBorder = { fg = c.highc.bg, bg = c.highc.bg },
 	FloatTitle = { fg = c.norm.fg, bg = c.none },
 	FoldColumn = { bg = c.none, fg = c.accent.bg },
 	Folded = { fg = c.lowc.fg, bg = c.accent.bg },

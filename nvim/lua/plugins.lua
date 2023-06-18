@@ -64,8 +64,12 @@ return {
 
 	-- lsp
 	"neovim/nvim-lspconfig",
-	-- "ray-x/lsp_signature.nvim", -- signature while typing
+	"ray-x/lsp_signature.nvim", -- signature while typing
 	"jose-elias-alvarez/null-ls.nvim",
+	{
+		"j-hui/fidget.nvim",
+		config = true,
+	}, -- lsp status indicator
 
 	-- appearance
 	"ap/vim-css-color",

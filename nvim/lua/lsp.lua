@@ -18,14 +18,11 @@ end)
 
 -- modified from https://github.com/neovim/nvim-lspconfig
 local on_attach = function(client, bufnr)
-	-- require("lsp_signature").on_attach({
-	-- 	-- from lsp_signature config
-	-- 	bind = true,
-	-- 	handler_opts = {
-	-- 		border = "none",
-	-- 	},
-	-- }, bufnr)
-
+	require("lsp_signature").on_attach({
+		-- from lsp_signature config
+		bind = true,
+    hint_inline = function() return true end,
+	}, bufnr)
 	-- map wrapper which ensures buffer-locality
 	local function lsp_map(lhs, rhs, mode)
 		map(lhs, rhs, mode, { buffer = bufnr })
