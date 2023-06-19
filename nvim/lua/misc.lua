@@ -1,7 +1,7 @@
 -- TODO: reorg this into other files
 
 -- basic keybinds
-map("jk", "<esc>", "i") -- exit insert mode
+map("jk", "<esc>", { "i", "t" }) -- exit insert mode
 map(";", ":") -- don't type shift
 map(";", ":", "v")
 map("\\", ",") -- we remapped , and ;

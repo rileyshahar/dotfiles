@@ -8,3 +8,4 @@ vim.cmd("colorscheme theme")
 vim.o.fillchars = "vert: ,vertleft: ,vertright: ,verthoriz: ,horiz: ,horizup: ,horizdown: "
 
 vim.o.cmdheight = 1
+vim.o.conceallevel = 2

@@ -5,6 +5,7 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
+			"nvim-neorg/neorg-telescope",
 		},
 		config = {
 			load = {
@@ -25,25 +26,21 @@ return {
 						engine = "nvim-cmp",
 					},
 				},
-				["core.concealer"] = {
-					config = {
-						icons = {
-							ordered = {
-								level_1 = {
-									-- don't use fancy unicode, just do this
-									icon = tostring,
-								},
-							},
-						},
-					},
-				},
+				["core.concealer"] = {},
 				["core.keybinds"] = {
 					config = {
 						hook = function(keybinds)
-							keybinds.map("norg", "<localleader>t", "<cmd>Neorg tangle current-file<cr>")
+							keybinds.map("norg", "n", "<localleader>t", "<cmd>Neorg tangle current-file<cr>")
+							keybinds.map(
+								"norg",
+								"n",
+								"<C-]>",
+								"<cmd>Neorg keybind all core.looking-glass.magnify-code-block<cr>"
+							)
 						end,
 					},
 				},
+				["core.integrations.telescope"] = {},
 			},
 		},
 	},

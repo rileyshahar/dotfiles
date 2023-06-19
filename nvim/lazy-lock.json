@@ -19,6 +19,7 @@
   "lazy.nvim": { "branch": "main", "commit": "67af46a7f53e06322753cdd8cfd524bbb8ca30a2" },
   "lsp_signature.nvim": { "branch": "master", "commit": "17ff7a405fea8376b015b8ea7910d2e59958bf68" },
   "neorg": { "branch": "main", "commit": "9a55117b6175e63d86346bb893392cdf0b6ad2cc" },
+  "neorg-telescope": { "branch": "main", "commit": "d24f445c912451ddbf17cbe8da36561b51b10d39" },
   "null-ls.nvim": { "branch": "main", "commit": "bbaf5a96913aa92281f154b08732be2f57021c45" },
   "nvim-autopairs": { "branch": "master", "commit": "41803bdbf75569571f93fd4571f6c654635b1b46" },
   "nvim-bqf": { "branch": "main", "commit": "5895e26e34d032f48d0b9a843da1eb24e25680ea" },

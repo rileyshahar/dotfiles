@@ -101,7 +101,7 @@ local theme = {
 	Folded = { fg = c.lowc.fg, bg = c.accent.bg },
 	IncSearch = { bg = c.diag.info.bg, fg = c.norm.fg },
 	LineNr = { fg = c.lowc.fg },
-	MatchParen = { bg = c.accent.bg },
+	MatchParen = { bg = c.lowc.fg },
 	ModeMsg = { fg = c.norm.fg, bg = c.none },
 	MoreMsg = { fg = c.diag.hint.fg },
 	NonText = { fg = c.norm.bg },
@@ -285,12 +285,10 @@ local theme = {
 	["@debug"] = { link = "Debug" },
 	["@tag"] = { link = "Tag" },
 
-	["@operator"] = { fg = c.syntax.operator },
 	["@punctuation.special"] = { fg = c.syntax.special5 },
 
 	["@string.documentation"] = { fg = c.syntax.string },
 	["@string.regex"] = { fg = c.syntax.special },
-	["@string.escape"] = { fg = c.syntax.escape },
 
 	["@variable.builtin"] = { fg = c.syntax.special },
 
@@ -326,6 +324,26 @@ local theme = {
 	["@lsp.type.typeParameter"] = { link = "@type" },
 	["@lsp.type.unresolvedReference"] = { fg = c.diag.error.fg },
 	["@lsp.type.variable"] = { link = "@variable" }, -- use treesitter styles for regular variables
+
+	-- Neorg
+	["@neorg.headings.1.title"] = { fg = c.syntax.operator },
+	["@neorg.headings.2.title"] = { fg = c.syntax.ident },
+	["@neorg.headings.3.title"] = { fg = c.syntax.func },
+	["@neorg.headings.4.title"] = { fg = c.syntax.string },
+	["@neorg.headings.5.title"] = { fg = c.syntax.type },
+	["@neorg.headings.6.title"] = { fg = c.syntax.comment },
+
+	["@neorg.headings.1.prefix"] = { link = "@neorg.headings.1.title" },
+	["@neorg.headings.2.prefix"] = { link = "@neorg.headings.2.title" },
+	["@neorg.headings.3.prefix"] = { link = "@neorg.headings.3.title" },
+	["@neorg.headings.4.prefix"] = { link = "@neorg.headings.4.title" },
+	["@neorg.headings.5.prefix"] = { link = "@neorg.headings.5.title" },
+	["@neorg.headings.6.prefix"] = { link = "@neorg.headings.6.title" },
+
+	["@neorg.markup.variable"] = { link = "Identifier" },
+	["@neorg.markup.variable.delimiter"] = { link = "Delimiter" },
+
+	["@neorg.ranged_verbatim.code_block"] = { bg = c.highc.bg },
 
 	-- GitSigns
 	GitSignsAdd = { fg = c.diff.add.fg },
