@@ -14,6 +14,7 @@ return {
 				pattern = [[\b(KEYWORDS)\b]],
 			},
 		},
+		lazy = false,
 		keys = {
 			{
 				"]t",

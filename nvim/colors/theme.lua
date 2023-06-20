@@ -341,8 +341,13 @@ local theme = {
 	["@neorg.headings.6.prefix"] = { link = "@neorg.headings.6.title" },
 
 	["@neorg.markup.variable"] = { link = "Identifier" },
-	["@neorg.markup.variable.delimiter"] = { link = "Delimiter" },
+	["@neorg.markup.verbatim"] = { link = "String" },
 
+	["@neorg.links.location.generic"] = { fg = c.syntax.link, underline = true },
+	["@neorg.anchors"] = { fg = c.syntax.link, underline = true },
+	["@neorg.anchors.declaration"] = { fg = c.syntax.link, underline = true },
+
+	["@neorg.markup.variable.delimiter"] = { link = "Delimiter" },
 	["@neorg.anchors.definition.delimiter"] = { link = "Delimiter" },
 	["@neorg.links.location.delimiter"] = { link = "Delimiter" },
 
