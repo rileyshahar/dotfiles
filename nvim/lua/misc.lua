@@ -53,3 +53,5 @@ vim.cmd("set undofile") -- persistent undo
 -- spell
 -- TODO: make spellchecker work well
 map("z=", require("telescope.builtin").spell_suggest)
+
+vim.o.concealcursor = "n"

@@ -5,11 +5,11 @@ local c = {
 	},
 	highc = {
 		fg = "#c5c8d6",
-		bg = "#01020D",
+		bg = "#101017",
 	},
 	lowc = {
 		fg = "#545a75",
-		bg = "#24283b",
+		bg = "#303246",
 	},
 	accent = {
 		fg = "#ad8ee6",
@@ -98,10 +98,10 @@ local theme = {
 	FloatBorder = { fg = c.highc.bg, bg = c.highc.bg },
 	FloatTitle = { fg = c.norm.fg, bg = c.none },
 	FoldColumn = { bg = c.none, fg = c.accent.bg },
-	Folded = { fg = c.lowc.fg, bg = c.accent.bg },
+	Folded = { bg = c.accent.bg },
 	IncSearch = { bg = c.diag.info.bg, fg = c.norm.fg },
 	LineNr = { fg = c.lowc.fg },
-	MatchParen = { bg = c.lowc.fg },
+	MatchParen = { bg = c.diag.info.fg },
 	ModeMsg = { fg = c.norm.fg, bg = c.none },
 	MoreMsg = { fg = c.diag.hint.fg },
 	NonText = { fg = c.norm.bg },
@@ -343,7 +343,10 @@ local theme = {
 	["@neorg.markup.variable"] = { link = "Identifier" },
 	["@neorg.markup.variable.delimiter"] = { link = "Delimiter" },
 
-	["@neorg.ranged_verbatim.code_block"] = { bg = c.highc.bg },
+	["@neorg.anchors.definition.delimiter"] = { link = "Delimiter" },
+	["@neorg.links.location.delimiter"] = { link = "Delimiter" },
+
+	["@neorg.tags.ranged_verbatim.code_block"] = { bg = c.highc.bg },
 
 	-- GitSigns
 	GitSignsAdd = { fg = c.diff.add.fg },
@@ -351,8 +354,12 @@ local theme = {
 	GitSignsDelete = { fg = c.diff.delete.fg },
 
 	-- Telescope
-	TelescopeBorder = { fg = c.norm.fg, bg = c.none },
-	TelescopeNormal = { fg = c.norm.fg, bg = c.none },
+	TelescopeBorder = { fg = c.highc.bg, bg = c.highc.bg },
+	TelescopeNormal = { fg = c.norm.fg, bg = c.highc.bg },
+	TelescopeTitle = { fg = c.highc.bg, bg = c.accent.fg },
+	TelescopePromptNormal = { bg = c.lowc.bg },
+	TelescopePromptBorder = { fg = c.lowc.bg, bg = c.lowc.bg },
+	TelescopePromptCounter = { fg = c.norm.fg },
 
 	-- NeoVim
 	healthError = { fg = c.diag.error.fg },
@@ -388,6 +395,10 @@ local theme = {
 	NotifyINFOTitle = { fg = c.diag.info.fg },
 	NotifyDEBUGTitle = { fg = c.syntax.comment },
 	NotifyTRACETitle = { fg = c.syntax.special },
+
+	-- BQF
+	BqfPreviewBorder = { fg = c.norm.fg, bg = c.norm.bg },
+	BqfPreviewTitle = { link = "Normal" },
 
 	-- Cmp
 	CmpItemAbbr = { fg = c.norm.fg },

@@ -15,13 +15,6 @@ return {
 	"tpope/vim-repeat", -- repeat plugin commands
 	"lewis6991/gitsigns.nvim", -- git
 
-	-- quickfix
-	"kevinhwang91/nvim-bqf", -- better quickfix keybinds
-	{
-		"https://gitlab.com/yorickpeterse/nvim-pqf.git",
-		config = true,
-	},
-
 	-- completion
 	{
 		"hrsh7th/nvim-cmp",

@@ -12,6 +12,15 @@ return {
 				["core.defaults"] = {},
 				["core.export"] = {},
 				["core.export.markdown"] = {},
+				["core.highlights"] = {
+					config = {
+						dim = {
+							tags = {
+								ranged_verbatim = {},
+							},
+						},
+					},
+				},
 				["core.dirman"] = {
 					config = {
 						workspaces = {
@@ -31,6 +40,7 @@ return {
 					config = {
 						hook = function(keybinds)
 							keybinds.map("norg", "n", "<localleader>t", "<cmd>Neorg tangle current-file<cr>")
+							keybinds.map("norg", "n", "<localleader>,", "<cmd>Telescope neorg search_headings<cr>")
 							keybinds.map(
 								"norg",
 								"n",

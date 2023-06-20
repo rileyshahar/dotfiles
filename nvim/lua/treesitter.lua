@@ -21,6 +21,7 @@ require("nvim-treesitter.configs").setup({
 				["ic"] = "@class.inner",
 				["ab"] = "@block.outer",
 				["ib"] = "@block.inner",
+				-- ["@parameter.outer"] = "v", -- charwise
 			},
 			-- You can choose the select mode (default is charwise 'v')
 			--

@@ -41,10 +41,10 @@ leaders = {
 }
 
 -- appearance first bc some plugins (notify) rely on the colorscheme
-require("appearance")
 require("lazy").setup("plugins")
 
 -- shell out to modules
+require("appearance")
 require("completion")
 require("git")
 require("lsp")
