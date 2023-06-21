@@ -41,7 +41,11 @@ leaders = {
 }
 
 -- appearance first bc some plugins (notify) rely on the colorscheme
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+	dev = {
+		path = "~/code/lua"
+	}
+})
 
 -- shell out to modules
 require("appearance")

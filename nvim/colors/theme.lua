@@ -352,6 +352,11 @@ local theme = {
 	["@neorg.links.location.delimiter"] = { link = "Delimiter" },
 
 	["@neorg.tags.ranged_verbatim.code_block"] = { bg = c.highc.bg },
+	["@neorg.tags.ranged_verbatim.parameters"] = { link = "Conceal", bg = c.highc.bg },
+	["@neorg.tags.ranged_verbatim.begin"] = { link = "Conceal", bg = c.highc.bg },
+	["@neorg.tags.ranged_verbatim.end"] = { link = "Conceal" },
+	["@neorg.tags.ranged_verbatim.name"] = { link = "Conceal" },
+	["@neorg.tags.ranged_verbatim.name.word"] = { link = "Conceal" },
 
 	-- GitSigns
 	GitSignsAdd = { fg = c.diff.add.fg },
