@@ -10,6 +10,7 @@ bluez
 bluez-utils
 bottom
 brightnessctl
+checkmake
 clang
 cppcheck
 dunst
@@ -35,6 +36,7 @@ jq
 keynav
 kitty
 libreoffice-fresh
+lua-language-server
 maim
 mpv
 mpv-mpris
@@ -66,10 +68,12 @@ ruby-fusuma
 sd
 shellcheck
 shellharden
+shfmt
 slack-desktop-wayland
 stack
 stylua
 sudo
+taplo
 task
 taskopen
 telegram-desktop

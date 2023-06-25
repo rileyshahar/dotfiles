@@ -15,8 +15,8 @@ return {
 			{ i(1), i(2), i(3), i(4), i(5), i(6), i(7) }
 		)
 	),
-  s(
-    { trig = "ip", name = "braket inner product", dscr = "Braket notation inner product." },
-    fmt("\\braket{{{}, {}}}", {i(1), i(2)})
-  )
+	s(
+		{ trig = "ip", name = "braket inner product", dscr = "Braket notation inner product." },
+		fmt("\\braket{{{}, {}}}", { i(1), i(2) })
+	)
 }

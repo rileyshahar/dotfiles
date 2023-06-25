@@ -8,7 +8,7 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-neorg/neorg-telescope",
 		},
-		config = {
+		opts = {
 			load = {
 				["core.defaults"] = {},
 				["core.export"] = {},
@@ -37,6 +37,7 @@ return {
 					},
 				},
 				["core.concealer"] = {},
+				-- TODO: descriptions
 				["core.keybinds"] = {
 					config = {
 						hook = function(keybinds)

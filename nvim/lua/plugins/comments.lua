@@ -1,34 +1,29 @@
 return {
+	-- comment
 	{
-		-- comment
 		"numToStr/Comment.nvim",
-		config = {
+		opts = {
 			ignore = "^$",
 		},
 	},
+
+	-- manage todo comments
 	{
-		-- manage todo comments
 		"Folke/todo-comments.nvim",
-		config = {
+		dependencies = { "nvim-lua/plenary.nvim" },
+		lazy = false,
+		opt = {
 			search = {
 				pattern = [[\b(KEYWORDS)\b]],
 			},
 		},
-		lazy = false,
-		keys = {
-			{
-				"]t",
-				function()
-					require("todo-comments").jump_next()
-				end,
-			},
-			{
-				"[t",
-				function()
-					require("todo-comments").jump_prev()
-				end,
-			},
-			{ leaders.finder .. "t", "<cmd>TodoTelescope<cr>" },
-		},
+		keys = function()
+			local tc = require("todo-comments")
+			return {
+				{ "]t",                  tc.jump_next,             desc = "todo" },
+				{ "[t",                  tc.jump_prev,             desc = "todo" },
+				{ leaders.finder .. "t", "<cmd>TodoTelescope<cr>", desc = "todos" },
+			}
+		end,
 	},
 }

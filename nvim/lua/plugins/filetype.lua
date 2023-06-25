@@ -19,4 +19,16 @@ return {
 			{ "<localleader>/", ":Coq Search ", desc = "coq search" }, -- have to use : to not need to close the cmd
 		},
 	},
+	{
+		"lervag/vimtex",
+		ft = tex
+	},
+	{
+		"dag/vim-fish",
+		ft = "fish"
+	},
+	{
+		"isovector/cornelis",
+		ft = "agda"
+	},
 }

@@ -22,11 +22,11 @@ function async_run(prg_getter)
 	local function on_exit(_, status, _)
 		if status ~= 0 then
 			local message = table.concat(lines, "\n")
-			vim.notify(message, "error", {
+			vim.notify(message, vim.diagnostic.severity.E, {
 				timeout = false,
 			})
 		else
-			vim.notify("made successfully", "info")
+			vim.notify("made successfully", vim.diagnostic.severity.I)
 		end
 	end
 
@@ -45,18 +45,18 @@ map(leaders.make .. "t", function()
 	async_run(function(bufnr)
 		return vim.api.nvim_buf_get_option(bufnr, "makeprg")
 	end)
-end)
+end, "temporarily")
 
 map(leaders.make .. "m", function()
 	async_run(function(_)
 		return "make"
 	end)
-end)
+end, "default")
 
 map(leaders.make .. "c", function()
 	async_run(function(_)
-		return "make clean"
+		return "clean"
 	end)
 end)
 
-map("<leader>v", "<cmd>!open /tmp/%<.pdf<cr>")
+map("<leader>v", "<cmd>!open /tmp/%<.pdf<cr>", "view temporary file")
