@@ -407,6 +407,15 @@ local theme = {
   NotifyDEBUGTitle = { fg = c.syntax.comment },
   NotifyTRACETitle = { fg = c.syntax.special },
 
+  -- WhichKey
+  WhichKey = { link = "Function" },          -- the key
+  WhichKeyGroup = { link = "Keyword" },      -- a group
+  WhichKeySeparator = { link = "Conceal" },  -- the separator between the key and its
+  WhichKeyDesc = { link = "String" },        -- the label of the key
+  WhichKeyFloat = { link = "NormalFloat" },  -- Normal in the popup window
+  WhichKeyBorder = { link = "FloatBorder" }, -- Normal in the popup window
+  WhichKeyValue = { link = "Comment" },      -- used by plugins that provide values
+
   -- BQF
   BqfPreviewBorder = { fg = c.norm.fg, bg = c.norm.bg },
   BqfPreviewTitle = { link = "Normal" },
