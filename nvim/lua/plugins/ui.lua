@@ -44,15 +44,25 @@ return {
 		keys = function()
 			local builtins = require("telescope.builtin")
 			return {
-				{ leaders.finder .. "f", builtins.find_files,  desc = "files" },
-				{ leaders.finder .. "g", builtins.live_grep,   desc = "in dir" },
-				{ leaders.finder .. "w", builtins.grep_string, desc = "word under cursor" },
-				{ leaders.finder .. "b", builtins.buffers,     desc = "buffers" },
-				{ leaders.finder .. "h", builtins.help_tags,   desc = "help tags" },
-				{ leaders.finder .. "R", builtins.registers,   desc = "registers" },
-				{ leaders.finder .. "k", builtins.keymaps,     desc = "keymaps" },
-				{ leaders.edit .. "n",   "$DOTFILES_DIR/nvim", desc = "neovim config" },
-				{ leaders.edit .. "c",   "$DOTFILES_DIR",      desc = "configs" },
+				{ leaders.finder .. "f", builtins.find_files, desc = "files" },
+				{ leaders.finder .. "g", builtins.live_grep,  desc = "in dir" },
+				{
+					leaders.finder .. "w",
+					builtins.grep_string,
+					desc =
+					"word under cursor"
+				},
+				{ leaders.finder .. "b", builtins.buffers,   desc = "buffers" },
+				{ leaders.finder .. "h", builtins.help_tags, desc = "help tags" },
+				{ leaders.finder .. "R", builtins.registers, desc = "registers" },
+				{ leaders.finder .. "k", builtins.keymaps,   desc = "keymaps" },
+				{
+					leaders.edit .. "n",
+					function() builtins.find_files({ cwd = "$DOTFILES_DIR/nvim" }) end,
+					desc =
+					"neovim config"
+				},
+				{ leaders.edit .. "c", function() builtins.find_files({ cwd = "$DOTFILES_DIR" }) end, desc = "configs" },
 			}
 		end,
 		opts = function()
@@ -83,6 +93,8 @@ return {
 			telescope.load_extension("fzf")
 		end,
 	},
+
+	-- vim.ui
 	{
 		"stevearc/dressing.nvim",
 		opts = function()
