@@ -27,6 +27,8 @@ return {
 
   "machakann/vim-highlightedyank", -- highlight yanked text
 
+  "chaoren/vim-wordmotion",        -- snake case w etc
+
   {
     "Wansmer/treesj",
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
@@ -41,40 +43,6 @@ return {
         { leaders.surround .. "j", tsj.join,   desc = "join brackets" },
       }
     end
-  },
-
-  {
-    "chrisgrieser/nvim-spider",
-    keys = {
-      {
-        "w",
-        function() require('spider').motion('w') end,
-        mode = { "n", "o", "x" },
-        desc =
-        "next word"
-      },
-      {
-        "e",
-        function() require('spider').motion('e') end,
-        mode = { "n", "o", "x" },
-        desc =
-        "end of word"
-      },
-      {
-        "b",
-        function() require('spider').motion('b') end,
-        mode = { "n", "o", "x" },
-        desc =
-        "start of word"
-      },
-      {
-        "ge",
-        function() require('spider').motion('ge') end,
-        mode = { "n", "o", "x" },
-        desc =
-        "end of prev word"
-      },
-    }
   },
 
   -- surround
