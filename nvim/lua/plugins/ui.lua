@@ -12,6 +12,7 @@ return {
         ["g"] = { name = "goto" },
         ["]"] = { name = "next" },
         ["["] = { name = "prev" },
+        ["s"] = { name = "surround" },
         ["<leader>"] = {
           name = "leader",
           ["m"] = { name = "make" },

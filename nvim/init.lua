@@ -31,10 +31,11 @@ leaders = {
 	edit = "<leader>e",
 	finder = "<leader>f",
 	git = "<leader>g",
+	go = "g",
 	make = "<leader>m",
 	notify = "<leader>n",
 	plugin_meta = "<leader>p",
-	go = "g",
+	surround = "s",
 }
 
 -- appearance first bc some plugins (notify) rely on the colorscheme

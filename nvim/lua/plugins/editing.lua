@@ -28,6 +28,22 @@ return {
   "machakann/vim-highlightedyank", -- highlight yanked text
 
   {
+    "Wansmer/treesj",
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    opts = {
+      use_default_keymaps = false
+    },
+    keys = function()
+      local tsj = require("treesj")
+      return {
+        { leaders.surround .. "t", tsj.toggle, desc = "toggle splitjoin" },
+        { leaders.surround .. "s", tsj.split,  desc = "split brackets" },
+        { leaders.surround .. "j", tsj.join,   desc = "join brackets" },
+      }
+    end
+  },
+
+  {
     "chrisgrieser/nvim-spider",
     keys = {
       {
@@ -73,14 +89,14 @@ return {
       n_lines = 500,
     },
     keys = {
-      { "s",  desc = "surround",      mode = { "n", "v" } },
-      { "sa", desc = "add",           mode = { "n", "v" } },
-      { "sd", desc = "delete" },
-      { "sf", desc = "find" },
-      { "sF", desc = "find_left" },
-      { "sh", desc = "highlight" },
-      { "sr", desc = "replace" },
-      { "sn", desc = "update_n_lines" },
+      { leaders.surround,        desc = "surround",      mode = { "n", "v" } },
+      { leaders.surround .. "a", desc = "add",           mode = { "n", "v" } },
+      { leaders.surround .. "d", desc = "delete" },
+      { leaders.surround .. "f", desc = "find" },
+      { leaders.surround .. "F", desc = "find_left" },
+      { leaders.surround .. "h", desc = "highlight" },
+      { leaders.surround .. "r", desc = "replace" },
+      { leaders.surround .. "n", desc = "update_n_lines" },
     }
   },
 
