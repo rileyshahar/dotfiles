@@ -17,7 +17,7 @@ return {
 		config = true,
 		keys = {
 			{
-				"|",
+				"-",
 				function()
 					require("oil").open()
 				end,
