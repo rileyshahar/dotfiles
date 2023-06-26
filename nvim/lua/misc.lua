@@ -1,10 +1,11 @@
 -- TODO: reorg this into other files
 
 -- basic keybinds
-map("jk", "<esc>", "exit insert mode", { "i", "t" })   -- exit insert mode
-map(";", ":", "command mode", { "n", "v" })            -- don't type shift
-map("\\", ",", "repeat search forwards", { "n", "v" }) -- don't type shift
-map("|", ";", "repeat search backwards", { "n", "v" }) -- don't type shift
+map("jk", "<esc>", "exit insert mode", { "i", "t" })    -- exit insert mode
+map(";", ":", "command mode", { "n", "v" })             -- don't type shift
+
+map("\\", ";", "repeat search backwards", { "n", "v" }) -- backwards search
+map("|", ",", "repeat search forwards", { "n", "v" })   -- forwards search
 
 -- line numbering
 vim.wo.number = true
