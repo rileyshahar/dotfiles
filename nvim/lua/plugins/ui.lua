@@ -1,114 +1,83 @@
 return {
-	-- key viewer
-	-- TODO: aesthetics
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		init = function()
-			vim.o.timeout = true
-			vim.o.timeoutlen = 300
-		end,
-		opts = {
-			prefixes = {
-				["g"] = { name = "goto" },
-				["]"] = { name = "next" },
-				["["] = { name = "prev" },
-				["<leader>"] = {
-					name = "leader",
-					["m"] = { name = "make" },
-					["f"] = { name = "find" },
-					["g"] = { name = "git" },
-					[","] = { name = "local" },
-					["e"] = { name = "edit" },
-					["p"] = { name = "plugin" },
-					["r"] = { name = "refactor" },
-				},
-			},
-		},
-		config = function(_, opts)
-			local wk = require("which-key")
-			wk.setup(opts)
-			wk.register(opts.prefixes)
-		end,
-	},
+  -- key viewer
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+    opts = {
+      prefixes = {
+        ["g"] = { name = "goto" },
+        ["]"] = { name = "next" },
+        ["["] = { name = "prev" },
+        ["<leader>"] = {
+          name = "leader",
+          ["m"] = { name = "make" },
+          ["f"] = { name = "find" },
+          ["g"] = { name = "git" },
+          [","] = { name = "local" },
+          ["e"] = { name = "edit" },
+          ["p"] = { name = "plugin" },
+          ["r"] = { name = "refactor" },
+        },
+      },
+    },
+    config = function(_, opts)
+      local wk = require("which-key")
+      wk.setup(opts)
+      wk.register(opts.prefixes)
+    end,
+  },
 
-	-- fuzzy finder
-	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-			"nvim-lua/plenary.nvim",
-		},
-		lazy = false,
-		cmd = "Telescope",
-		keys = function()
-			local builtins = require("telescope.builtin")
-			return {
-				{ leaders.finder .. "f", builtins.find_files, desc = "files" },
-				{ leaders.finder .. "g", builtins.live_grep,  desc = "in dir" },
-				{
-					leaders.finder .. "w",
-					builtins.grep_string,
-					desc =
-					"word under cursor"
-				},
-				{ leaders.finder .. "b", builtins.buffers,   desc = "buffers" },
-				{ leaders.finder .. "h", builtins.help_tags, desc = "help tags" },
-				{ leaders.finder .. "R", builtins.registers, desc = "registers" },
-				{ leaders.finder .. "k", builtins.keymaps,   desc = "keymaps" },
-				{
-					leaders.edit .. "n",
-					function() builtins.find_files({ cwd = "$DOTFILES_DIR/nvim" }) end,
-					desc =
-					"neovim config"
-				},
-				{ leaders.edit .. "c", function() builtins.find_files({ cwd = "$DOTFILES_DIR" }) end, desc = "configs" },
-			}
-		end,
-		opts = function()
-			local actions = require("telescope.actions")
-			return {
-				defaults = {
-					prompt_prefix = " ",
-					selection_caret = " ",
-					mappings = {
-						i = {
-							["<c-down>"] = actions.cycle_history_next,
-							["<c-up>"] = actions.cycle_history_prev,
-							["<c-f>"] = actions.preview_scrolling_down,
-							["<c-b>"] = actions.preview_scrolling_up,
-						},
-					},
-					pickers = {
-						lsp_code_actions = {
-							theme = "cursor",
-						},
-					},
-				},
-			}
-		end,
-		config = function(_, opts)
-			local telescope = require("telescope")
-			telescope.setup(opts)
-			telescope.load_extension("fzf")
-		end,
-	},
+  -- vim.ui
+  {
+    "stevearc/dressing.nvim",
+    opts = function()
+      return {
+        input = {
+          enabled = true,
+          win_options = {
+            winhighlight = "FloatBorder:NormalFloat"
+          }
+        },
+        select = {
+          telescope = require("telescope.themes").get_cursor(),
+        }
+      }
+    end
+  },
 
-	-- vim.ui
-	{
-		"stevearc/dressing.nvim",
-		opts = function()
-			return {
-				input = {
-					enabled = true,
-					win_options = {
-						winhighlight = "FloatBorder:NormalFloat"
-					}
-				},
-				select = {
-					telescope = require("telescope.themes").get_cursor(),
-				}
-			}
-		end
-	},
+  -- notify
+  {
+    "rcarriga/nvim-notify",
+    lazy = false,
+    opts = {
+      timeout = 3000,
+    },
+    keys = {
+      {
+        "<leader>n",
+        desc = "notifications",
+      },
+      {
+        "<leader>nd",
+        function()
+          require("notify").dismiss({ silent = true, pending = true })
+        end,
+        desc = "dismiss notifications",
+      },
+      {
+        "<leader>nh",
+        "<cmd>Notifications<cr>",
+        desc = "notification history",
+      },
+    },
+    config = function(_, opts)
+      vim.notify = require("notify")
+      require("notify").setup(opts)
+    end,
+    priority = 60,
+  }
 }
