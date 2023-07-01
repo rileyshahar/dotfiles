@@ -202,6 +202,12 @@ keys = [
                 lazy.spawn("rofi-browser wiki"),
                 desc="open wikipedia",
             ),
+            Key(
+                [],
+                "n",
+                lazy.spawn("rofi-browser ncat"),
+                desc="open ncatlab",
+            ),
         ],
         name="open",
     ),
