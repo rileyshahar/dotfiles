@@ -81,6 +81,7 @@ keys = [
     Key([MOD, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([MOD, "control", "shift"], "q", lazy.shutdown(), desc="exit qtile"),
     Key([MOD, "shift"], "Space", lazy.spawncmd(), desc="launch the prompt widget"),
+    Key([MOD, "shift"], "b", lazy.hide_show_bar(), desc="toggle the bar"),
     # notifications
     Key([MOD], "period", lazy.spawn("dunstctl close"), desc="close top notification"),
     Key(
