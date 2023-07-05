@@ -78,7 +78,7 @@ task
 taskopen
 telegram-desktop
 texlab
-texlive-most
+texlive-full
 tldr
 tree
 ttf-lato
