@@ -8,9 +8,10 @@ require("nvim-surround").buffer_setup({
 		["l"] = {
 			add = function()
 				local clipboard = vim.fn.getreg("+"):gsub("\n", "")
+				local text = vim.fn.input({ prompt = "link: ", default = clipboard })
 				return {
 					{ "[" },
-					{ "]{" .. clipboard .. "}" },
+					{ "]{" .. text .. "}" },
 				}
 			end,
 			find = "%b[]%b{}",
@@ -19,9 +20,10 @@ require("nvim-surround").buffer_setup({
 				target = "^()()%b[]%{(.-)()%}$",
 				replacement = function()
 					local clipboard = vim.fn.getreg("+"):gsub("\n", "")
+					local text = vim.fn.input({ prompt = "link: ", default = clipboard })
 					return {
 						{ "" },
-						{ clipboard },
+						{ text },
 					}
 				end,
 			},
