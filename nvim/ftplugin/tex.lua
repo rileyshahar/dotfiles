@@ -4,7 +4,7 @@ vim.bo.shiftwidth = 2
 map("<localleader>v", "<cmd>!open /tmp/%<.pdf<cr><cr>")
 
 -- do magic to work with environments and commands in latex.
--- taken VERBATIM from https://github.com/kylechui/nvim-surround/discussions/53#discussioncomment-5585321
+-- taken (almost) verbatim from https://github.com/kylechui/nvim-surround/discussions/53#discussioncomment-5585321
 local function tex_find_environment()
   local cfg = require("nvim-surround.config")
   if vim.g.loaded_nvim_treesitter then
