@@ -6,17 +6,28 @@ vim.bo.makeprg = "pandoc -d default % -o /tmp/%<.pdf"
 vim.wo.linebreak = true
 vim.bo.textwidth = 80
 
-require("mini.surround").setup({
-	custom_surroundings = {
-		L = {
-			output = function()
-				local text = string.gmatch(vim.fn.getreg("+"), "[^\n]+")()
+require("nvim-surround").buffer_setup({
+	surrounds = {
+		["l"] = {
+			add = function()
+				local clipboard = vim.fn.getreg("+"):gsub("\n", "")
 				return {
-					left = "[",
-					right = "](" .. text .. ")",
+					{ "[" },
+					{ "](" .. clipboard .. ")" },
 				}
 			end,
-			input = { "%[().-()%]%(.*%)" },
-		}
-	}
+			find = "%b[]%b()",
+			delete = "^(%[)().-(%]%b())()$",
+			change = {
+				target = "^()()%b[]%((.-)()%)$",
+				replacement = function()
+					local clipboard = vim.fn.getreg("+"):gsub("\n", "")
+					return {
+						{ "" },
+						{ clipboard },
+					}
+				end,
+			},
+		},
+	},
 })
