@@ -8,11 +8,34 @@ vim.bo.textwidth = 80
 
 require("nvim-surround").buffer_setup({
 	surrounds = {
+		["L"] = {
+			add = function()
+				local clipboard = vim.fn.getreg("+"):gsub("\n", "")
+				if clipboard then
+					return {
+						{ "[" },
+						{ "](" .. clipboard .. ")" },
+					}
+				end
+			end,
+			find = "%b[]%b()",
+			delete = "^(%[)().-(%]%b())()$",
+			change = {
+				target = "^()()%b[]%((.-)()%)$",
+				replacement = function()
+					local clipboard = vim.fn.getreg("+"):gsub("\n", "")
+					if clipboard then
+						return {
+							{ "" },
+							{ text },
+						}
+					end
+				end,
+			},
+		},
 		["l"] = {
 			add = function()
-				local cfg = require("nvim-surround.config")
-				local text = cfg.get_input("Enter the link target: ")
-				-- local clipboard = vim.fn.getreg("+"):gsub("\n", "")
+				local text = vim.fn.input({ prompt = "Link: " })
 				if text then
 					return {
 						{ "[" },
@@ -25,8 +48,7 @@ require("nvim-surround").buffer_setup({
 			change = {
 				target = "^()()%b[]%((.-)()%)$",
 				replacement = function()
-					local cfg = require("nvim-surround.config")
-					local text = cfg.get_input("Enter the link target: ")
+					local text = vim.fn.input({ prompt = "Link: " })
 					if text then
 						return {
 							{ "" },
