@@ -7,24 +7,28 @@ require("nvim-surround").buffer_setup({
 	surrounds = {
 		["l"] = {
 			add = function()
-				local clipboard = vim.fn.getreg("+"):gsub("\n", "")
-				local text = vim.fn.input({ prompt = "link: ", default = clipboard })
-				return {
-					{ "[" },
-					{ "]{" .. text .. "}" },
-				}
+				local cfg = require("nvim-surround.config")
+				local text = cfg.get_input("Enter the link target: ")
+				if text then
+					return {
+						{ "[" },
+						{ "]{" .. text .. "}" },
+					}
+				end
 			end,
 			find = "%b[]%b{}",
 			delete = "^(%[)().-(%]%b{})()$",
 			change = {
 				target = "^()()%b[]%{(.-)()%}$",
 				replacement = function()
-					local clipboard = vim.fn.getreg("+"):gsub("\n", "")
-					local text = vim.fn.input({ prompt = "link: ", default = clipboard })
-					return {
-						{ "" },
-						{ text },
-					}
+					local cfg = require("nvim-surround.config")
+					local text = cfg.get_input("Enter the link target: ")
+					if text then
+						return {
+							{ "" },
+							{ text },
+						}
+					end
 				end,
 			},
 		},
