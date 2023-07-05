@@ -1,11 +1,23 @@
 -- TODO: reorg this into other files
 
 -- basic keybinds
-map("jk", "<esc>", "exit insert mode", { "i", "t" })    -- exit insert mode
-map(";", ":", "command mode", { "n", "v" })             -- don't type shift
+map("jk", "<c-\\><c-n>", "exit insert mode", { "i", "t" }) -- exit insert mode
+map(";", ":", "command mode", { "n", "v" })                -- don't type shift
 
-map("\\", ";", "repeat search backwards", { "n", "v" }) -- backwards search
-map("|", ",", "repeat search forwards", { "n", "v" })   -- forwards search
+map("\\", ";", "repeat search backwards", { "n", "v" })    -- backwards search
+map("|", ",", "repeat search forwards", { "n", "v" })      -- forwards search
+
+-- move to window
+map("<c-h>", "<c-w>h", "move to left window")
+map("<c-j>", "<c-w>j", "move to lower window")
+map("<c-k>", "<c-w>k", "move to upper window")
+map("<c-l>", "<c-w>l", "move to right window")
+
+-- resize windows
+map("<c-up>", "<cmd>resize +2<cr>", "increase window height")
+map("<c-down>", "<cmd>resize -2<cr>", "decrease window height")
+map("<c-left>", "<cmd>vertical resize -2<cr>", "decrease window width")
+map("<c-right>", "<cmd>vertical resize +2<cr>", "increase window width")
 
 -- line numbering
 vim.wo.number = true

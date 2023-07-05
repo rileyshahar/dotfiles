@@ -36,6 +36,7 @@ leaders = {
 	notify = "<leader>n",
 	plugin_meta = "<leader>p",
 	surround = "s",
+	terminal = "<c-t>"
 }
 
 -- appearance first bc some plugins (notify) rely on the colorscheme
