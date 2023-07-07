@@ -1,0 +1,75 @@
+(defcfg
+  fallthrough true  ;; makes media keys etc. work
+  input  (device-file "/dev/input/event2")
+  output (uinput-sink "KMonad kbd"))
+  ;; TODO: compose key
+
+;; this defines the layout of the physical keyboard. layers use the same
+;; structure to override keys.
+(defsrc
+  esc   f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11   f12    ins  del
+  `     1    2    3    4    5    6    7    8    9    0    -     =      bspc
+  tab   q    w    e    r    t    y    u    i    o    p    [     ]      ret
+  caps  a    s    d    f    g    h    j    k    l    ;    '     \
+  lsft  z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl  lmet lalt           spc       ralt rctl           up
+                                                     left down right
+  )
+
+;; layer template:
+;; (deflayer foo
+;;   _     _    _    _    _    _    _    _    _    _    _    _     _      _    _
+;;   _     _    _    _    _    _    _    _    _    _    _    _     _      _
+;;   _     _    _    _    _    _    _    _    _    _    _    _     _      _
+;;   _     _    _    _    _    _    _    _    _    _    _    _     _
+;;   _     _    _    _    _    _    _    _    _    _    _    _
+;;   _     _    _              _         _    _              _
+;;                                                      _    _    _
+;;   )
+
+  ;; s;  (tap-hold 200 ; rsft)
+  ;; sl  (tap-hold 200 l rctl)
+  ;; xrt (tap-hold 200 ret rctl)
+  ;; ls (tap-hold 250 \( lsft )
+  ;; rs (tap-hold 250 \) rsft ))
+
+;; aliases make it easier to write long commands
+(defalias
+  esct (tap-hold-next 200 esc lctl)
+  asft (tap-hold 150 a lsft)
+  sctl (tap-hold 150 s lctl)
+  dmet (tap-hold 150 d lmet)
+  farr (tap-hold 150 f (layer-toggle viarrows))
+  galt (tap-hold 150 g lalt)
+
+  sym  (layer-toggle symbols))
+
+(deflayer base
+  @sym  f1    f2    f3    f4    f5    f6   f7   f8   f9   f10  f11   f12    ins  del
+  `     1     2     3     4     5     6    7    8    9    0    -     =      bspc
+  tab   q     w     e     r     t     y    u    i    o    p    [     ]      ret
+  @esct @asft @sctl @dmet @farr @galt h    j    k    l    ;    '     \
+  lsft  z     x     c     v     b     n    m    ,    .    /    rsft
+  lctl  lalt  lmet              spc        rmet cmps           up
+                                                          left down right
+  )
+
+(deflayer viarrows
+  _     _    _    _    _    _    _    _    _    _     _    _     _      _    _
+  _     _    _    _    _    _    _    _    _    _     _    _     _      _
+  _     _    _    _    _    _    _    _    _    _     _    _     _      _
+  _     _    _    _    _    _    left down up   right _    _     _
+  _     _    _    _    _    _    _    _    _    _     _    _
+  _     _    _              _         _    _               _
+                                                      _    _    _
+  )
+
+(deflayer symbols
+  _     _    _    _    _    _    _    _    _    _    _    _     _      _    _
+  _     _    _    _    _    _    _    _    _    _    _    _     _      _
+  _     _    _    _    _    _    _    1    2    3    _    _     _      _
+  _     _    _    _    _    _    _    4    5    6    _    _     _
+  _     _    _    _    _    _    _    7    8    9    _    _
+  _     _    _              _         0    _              _
+                                                     _    _    _
+  )

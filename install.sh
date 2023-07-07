@@ -184,4 +184,14 @@ sudo chsh -s $(which fish) $(whoami) > /dev/null
 echo "setting colorscheme to tokyonight"
 $DOTFILES_DIR/bin/cac tokyonight --no-reload > /dev/null
 
+echo "setting up kmonad"
+sudo usermod -aG input $USER
+sudo groupadd uinput
+sudo usermod -aG uinput $USER
+
+echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' >> /etc/udev/rules.d/90-uinput.rules
+echo uinput >> /etc/modules-load.d/uinput.conf
+
+sudo ln -sv "$DOTFILES_DIR/kmonad" "/etc/kmonad/config.kbd"
+
 # EOSU
