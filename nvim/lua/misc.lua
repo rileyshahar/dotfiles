@@ -4,9 +4,6 @@
 map("jk", "<c-\\><c-n>", "exit insert mode", { "i", "t" }) -- exit insert mode
 map(";", ":", "command mode", { "n", "v" })                -- don't type shift
 
-map("\\", ";", "repeat search backwards", { "n", "v" })    -- backwards search
-map("|", ",", "repeat search forwards", { "n", "v" })      -- forwards search
-
 -- move to window
 map("<c-h>", "<c-w>h", "move to left window")
 map("<c-j>", "<c-w>j", "move to lower window")

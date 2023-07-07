@@ -1,4 +1,6 @@
 return {
+	"machakann/vim-highlightedyank", -- highlight yanked text
+
 	-- key viewer
 	{
 		"folke/which-key.nvim",

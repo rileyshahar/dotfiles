@@ -31,6 +31,7 @@ return {
 		"isovector/cornelis",
 		ft = "agda"
 	},
+	"kmonad/kmonad-vim",
 	{
 		"akinsho/toggleterm.nvim",
 		config = true,

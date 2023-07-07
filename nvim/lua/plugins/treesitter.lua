@@ -9,24 +9,11 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
 		build = ":TSUpdate",
-		keys = {
-			{ sel_char,   desc = "incremental selection",   mode = { "n", "x" } },
-			{ desel_char, desc = "incremental deselection", mode = { "x" } },
-		},
 		opts = {
 			ensure_installed = "all",
 			ignore_install = {}, -- list of parsers to ignore installing
 			highlight = {
 				enable = true,
-			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = sel_char,
-					node_incremental = sel_char,
-					scope_incremental = false,
-					node_decremental = desel_char,
-				},
 			},
 			textobjects = {
 				select = {
