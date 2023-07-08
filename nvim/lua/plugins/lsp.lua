@@ -265,17 +265,14 @@ return {
           end
 
           -- inlay hints
-          if vim.lsp.buf.inlay_hint and client.server_capabilities.inlayHintProvider then
-            vim.lsp.buf.inlay_hint(bufnr, true)
+          if client.server_capabilities.inlayHintProvider then
+            vim.lsp.inlay_hint(bufnr, true)
           end
 
           -- lsp signature
           require("lsp_signature").on_attach({
-            -- from lsp_signature config
             bind = true,
-            hint_inline = function()
-              return true
-            end,
+            hint_enable = false
           })
         end,
       })

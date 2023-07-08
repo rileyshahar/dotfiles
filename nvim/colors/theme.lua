@@ -204,6 +204,7 @@ local theme = {
 	LspCodeLens = { fg = c.syntax.link, underline = true },
 	LspSignatureActiveParameter = { fg = c.highc.fg, underline = true, bold = true },
 	LspInfoBorder = { fg = c.norm.fg, bg = c.none },
+	LspInlayHint = { link = "Conceal" },
 
 	DiagnosticError = { fg = c.diag.error.fg, underline = true },
 	DiagnosticWarn = { fg = c.diag.warn.fg, underline = true },
