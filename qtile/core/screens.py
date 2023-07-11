@@ -6,7 +6,7 @@ from .settings import COLORS
 defaults = {
     "background": COLORS.BACKGROUND,
     "foreground": COLORS.FOREGROUND,
-    "font": "MesloLG S Nerd Font",
+    "font": "JetBrainsMono Nerd Font",
     "fontsize": 16,
     "padding": 8,
 }

@@ -126,7 +126,7 @@
 ; dependency: icons
 (use-package all-the-icons)
 
-(set-face-attribute 'default nil :font "MesloLGS Nerd Font 11")
+(set-face-attribute 'default nil :font "JetBrainsMono Nerd Font")
 
 (set-face-attribute 'font-lock-comment-face nil
   :slant 'italic)

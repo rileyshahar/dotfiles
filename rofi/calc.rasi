@@ -4,7 +4,7 @@
 * {
 	spacing: 0;
 	background-color: transparent;
-	font: "MesloLG S Nerd Font 13";
+	font: "JetBrainsMono Nerd Font 13";
         color: @foreground;
         width: 30%;
 }
@@ -33,7 +33,7 @@ message {
 
 textbox {
         color: @brightblue;
-	font: "MesloLG S Nerd Font 16";
+	font: "JetBrainsMono Nerd Font 13";
 }
 
 listview {
