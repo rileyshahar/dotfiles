@@ -342,6 +342,8 @@ local theme = {
 	["@neorg.headings.5.prefix"] = { link = "@neorg.headings.5.title" },
 	["@neorg.headings.6.prefix"] = { link = "@neorg.headings.6.title" },
 
+	["@neorg.markup.bold"] = { bold = true },
+	["@neorg.markup.italic"] = { italic = true },
 	["@neorg.markup.variable"] = { link = "Identifier" },
 	["@neorg.markup.verbatim"] = { link = "String" },
 
@@ -359,6 +361,8 @@ local theme = {
 	["@neorg.tags.ranged_verbatim.end"] = { link = "Conceal" },
 	["@neorg.tags.ranged_verbatim.name"] = { link = "Conceal" },
 	["@neorg.tags.ranged_verbatim.name.word"] = { link = "Conceal" },
+
+	["@neorg.quotes.1.content"] = { link = "String" },
 
 	-- GitSigns
 	GitSignsAdd = { fg = c.diff.add.fg },
