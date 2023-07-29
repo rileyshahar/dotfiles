@@ -19,3 +19,7 @@ Host hopper
 Host ferris-v
   User rileyshahar
   Hostname ferris-v.reed.edu
+
+Host reed
+  User rileyshahar
+  Hostname sftp.reed.edu
