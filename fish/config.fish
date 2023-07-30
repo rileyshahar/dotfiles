@@ -93,13 +93,9 @@ function bind_dollar
     end
 end
 
-# not used because it looks weird on window resizing
-# function fish_right_prompt -d "print the time"
-#     if test (stty size | cut -d" " -f2) -gt 60
-#         set_color bryellow
-#         date '+%H:%M:%S'
-#     end
-# end
+function __neovim_cwd_hook -v PWD
+    nvr --remote-send "<C-\><C-n>:tchdir $PWD<CR>i" >/dev/null 2>&1 &
+end
 
 # function _handle_cmd_completion_in_inactive_window --on-event fish_postexec -a last_command -d "send a system notification when a command terminates"
 

@@ -39,6 +39,13 @@ leaders = {
 	terminal = "<c-t>"
 }
 
+if os.getenv("NVIM") ~= nil then
+	require('lazy').setup {
+		{ 'willothy/flatten.nvim', config = true },
+	}
+	return
+end
+
 -- appearance first bc some plugins (notify) rely on the colorscheme
 require("lazy").setup("plugins", {
 	dev = {

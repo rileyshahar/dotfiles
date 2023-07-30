@@ -19,6 +19,7 @@ APPS = [
     ("Apostrophe", "firefox", "browser"),
     ("Space", "launcher", "launcher"),
     ("n", FLOAT_TERM + " newsboat", "newsboat"),
+    ("Slash", TERMINAL + " nvim +terminal --listen /tmp/nvimsocket", "neovim terminal"),
 ]
 
 DAEMONS = (
