@@ -46,16 +46,13 @@ if os.getenv("NVIM") ~= nil then
 	return
 end
 
--- appearance first bc some plugins (notify) rely on the colorscheme
+require("make")
+require("misc")
+require("statusline")
+require("ui")
+
 require("lazy").setup("plugins", {
 	dev = {
 		path = "~/code/lua"
 	}
 })
-
--- shell out to modules
-require("make")
-require("misc")
-require("statusline")
-
-require("ui")

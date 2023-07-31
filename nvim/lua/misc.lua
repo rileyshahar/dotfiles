@@ -61,4 +61,4 @@ vim.cmd("set undofile") -- persistent undo
 -- spell
 vim.o.spelllang = 'en_us'
 -- vim.o.spell = true TODO: stop spellchecking strings
-map("z=", require("telescope.builtin").spell_suggest, "suggest spelling replacements")
+map("z=", function() require("telescope.builtin").spell_suggest() end, "suggest spelling replacements")
