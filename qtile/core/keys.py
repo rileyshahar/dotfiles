@@ -175,7 +175,7 @@ keys = [
         [MOD],
         "o",
         [
-            Key([], "o", lazy.spawn("rofi-browser search"), desc="search on ddg"),
+            Key([], "o", lazy.spawn("rofi-browser search"), desc="search the web"),
             Key([], "r", lazy.spawn("rofi-rs"), desc="open rust docs"),
             Key(
                 [],
@@ -191,11 +191,9 @@ keys = [
             ),
             Key(
                 [],
-                "m",
-                lazy.spawn(
-                    "rofi-find " + getenv("HOME") + "/notes/zettlemath/notes xdg-open"
-                ),
-                desc="open math notes",
+                "t",
+                lazy.spawn("rofi-browser trees"),
+                desc="open trees",
             ),
             Key(
                 [],
@@ -230,9 +228,9 @@ keys = [
             ),
             Key(
                 [],
-                "m",
-                lazy.function(find_edit, getenv("HOME") + "/notes/zettlemath"),
-                desc="edit math notes",
+                "t",
+                lazy.function(find_edit, getenv("HOME") + "/notes/forest/trees"),
+                desc="edit trees",
             ),
         ],
         name="edit",

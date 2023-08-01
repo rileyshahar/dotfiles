@@ -14,6 +14,10 @@ wiki)
 	url="en.wikipedia.org/wiki/$page"
 	;;
 
+trees)
+	url="rileyshahar.com/$page"
+	;;
+
 rust)
 	rofi-rs
 	exit
