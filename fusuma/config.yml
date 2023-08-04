@@ -5,6 +5,6 @@ swipe:
     right:
       command: "wtype -M win -P left -p left -m win"
     down:
-      command: "wtype -M win -P down -p down -m win"
+      command: "wtype -M win -P j -p j -m win"
     up:
-      command: "wtype -M win -P up -p up -m win"
+      command: "wtype -M win -P k -p k -m win"
