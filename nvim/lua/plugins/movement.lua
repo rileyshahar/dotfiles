@@ -13,6 +13,7 @@ return {
 		keys = function()
 			local builtins = require("telescope.builtin")
 			return {
+				{ "<c-;>",               builtins.find_files, desc = "find files", mode = { "i", "t", "n", "v", "x" }},
 				{ leaders.finder .. "f", builtins.find_files, desc = "files" },
 				{ leaders.finder .. "g", builtins.live_grep,  desc = "in dir" },
 				{
@@ -33,7 +34,7 @@ return {
 				},
 				{ leaders.edit .. "c", function() builtins.find_files({ cwd = "$DOTFILES_DIR" }) end, desc = "configs" },
 			}
-		end,
+	end,
 		opts = function()
 			local actions = require("telescope.actions")
 			return {

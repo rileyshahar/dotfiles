@@ -49,6 +49,7 @@ end
 require("make")
 require("misc")
 require("statusline")
+require("terminal")
 require("ui")
 
 require("lazy").setup("plugins", {

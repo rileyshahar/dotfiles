@@ -93,11 +93,11 @@ function bind_dollar
     end
 end
 
-# function __neovim_cwd_hook -v PWD
-#     if test -n $NVIM
-#         nvr --remote-send "<C-\><C-n>:tchdir $PWD<CR>i" >/dev/null 2>&1 &
-#     end
-# end
+function __neovim_cwd_hook -v PWD
+    if test -n $NVIM
+        nvr --remote-send "<C-\><C-n>:tchdir $PWD<CR>i" >/dev/null 2>&1 &
+    end
+end
 
 # function _handle_cmd_completion_in_inactive_window --on-event fish_postexec -a last_command -d "send a system notification when a command terminates"
 
