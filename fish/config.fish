@@ -165,8 +165,8 @@ abbr -a gd upto_git
 
 # taskwarrior
 abbr -a t task
-abbr -a to taskopen -c $XDG_CONFIG_HOME/task/taskopenrc
-abbr -a taskopen taskopen -c $XDG_CONFIG_HOME/task/taskopenrc
+abbr -a to taskopen --config=$XDG_CONFIG_HOME/task/taskopenrc
+abbr -a taskopen taskopen --config=$XDG_CONFIG_HOME/task/taskopenrc
 
 # misc
 abbr -a mc mkdir-cd

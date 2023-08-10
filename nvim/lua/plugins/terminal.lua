@@ -30,7 +30,6 @@ return {
 				"<cmd>ToggleTermSendCurrentLine<cr>",
 				desc = "send current line to terminal",
 				mode = { "n", "i" },
-				print("hello world")
 			},
 			{
 				leaders.terminal .. "<cr>",
