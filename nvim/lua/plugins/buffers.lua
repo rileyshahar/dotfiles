@@ -1,16 +1,16 @@
 return {
 	-- buffer tabline
-	-- {
-	--   "jose-elias-alvarez/buftabline.nvim",
-	--   lazy = false, -- never lazy load
-	--   opts = {
-	--     go_to_maps = false,
-	--   },
-	--   keys = {
-	--     { "<s-h>", "<cmd>BufPrev<cr>" },
-	--     { "<s-l>", "<cmd>BufNext<cr>" },
-	--   },
-	-- },
+	{
+		"jose-elias-alvarez/buftabline.nvim",
+		lazy = false, -- never lazy load
+		opts = {
+			go_to_maps = false,
+		},
+		keys = {
+			{ "<s-h>", "<cmd>BufPrev<cr>" },
+			{ "<s-l>", "<cmd>BufNext<cr>" },
+		},
+	},
 
 	-- file manager
 	{

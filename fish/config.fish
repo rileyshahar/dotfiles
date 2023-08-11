@@ -93,11 +93,11 @@ function bind_dollar
     end
 end
 
-function __neovim_cwd_hook -v PWD
-    if test -n $NVIM
-        nvr --remote-send "<C-\><C-n>:tchdir $PWD<CR>i" >/dev/null 2>&1 &
-    end
-end
+# function __neovim_cwd_hook -v PWD
+#     if test -n $NVIM
+#         nvr --remote-send "<C-\><C-n>:tchdir $PWD<CR>i" >/dev/null 2>&1 &
+#     end
+# end
 
 # function _handle_cmd_completion_in_inactive_window --on-event fish_postexec -a last_command -d "send a system notification when a command terminates"
 
@@ -179,6 +179,7 @@ abbr -a j just
 abbr -a i paru # install
 abbr -a yay echo "type `i`" # for muscle memory
 abbr -a ckc cookiecutter
+abbr -a mail hydroxide serve \>$XDG_DATA_HOME/hydroxide/hydroxide.log \& \; aerc
 
 # kittens :)
 # if type -q kitty and test $TERM = xterm-kitty
