@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd ~/notes/forest
+out=$(forester new --dir=trees/ --prefix="${1:-rs}" 2>&1 | rev | cut -d " " -f 1 | rev)
+nvim trees/"$out".tree
