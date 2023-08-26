@@ -13,6 +13,7 @@
   ff = only
 
 [diff]
+	# external = difft TODO: can difftastic integrate with delta
   renames = copies
 
 [commit]
