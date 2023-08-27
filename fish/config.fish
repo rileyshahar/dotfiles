@@ -75,11 +75,32 @@ set fish_user_paths $DOTFILES_DIR/bin $PYENV_ROOT/shims /bin/usr/local/opt/ruby/
 # greeting
 function fish_greeting
     if test -z $NVIM
+        set -l date_fmt "%A, %m-%d"
+
         echo
-        set -l task (task next limit:1 | tail -n +4 | head -n 1 | sed 's/^ //' | cut -d ' ' -f1)
-        echo "  • most urgent task: $(task _get $task.description) due $(task _get $task.due.month)-$(task _get $task.due.day) [$task]"
-        set -l note (ls -tA ~/notes/forest/trees | head -n1 | path change-extension '')
-        echo "  • most recent note: $(forester complete ~/notes/forest/trees | rg $note | cut -d "," -f 2 | string trim) [$note]"
+        echo "  Welcome." | figlet | lolcat
+        echo "  It is $(date +"$date_fmt")."
+
+        if task overdue 2>/dev/null
+            set_color red
+            echo "  You have overdue tasks."
+            set_color normal
+        end
+        echo
+        set -l task (task next limit:1 | tail -n +4 | head -n 1 | sed "s/^ //" | cut -d " " -f1)
+
+        echo -n "  Your most urgent task is to "
+        set_color --bold blue
+        echo -n (task _get $task.description)
+        set_color normal
+        echo ", due $(date -d (task _get $task.due) +"$date_fmt") [$task]."
+
+        set -l note (ls -tA ~/notes/forest/trees | head -n1 | path change-extension "")
+        echo -n "  Your most recent note is "
+        set_color --italics
+        echo -n (forester complete ~/notes/forest/trees | rg $note | cut -d "," -f 2 | string trim)
+        set_color normal
+        echo " [$note]."
         echo
     end
 end
