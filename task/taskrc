@@ -32,8 +32,10 @@ color.due.today=black on red
 color.uda.priority.H=
 color.uda.priority.M=
 color.uda.priority.L=
-color.project.grad=blue
+
+color.project.apps=blue
 color.project.school=green
+color.project.research=yellow
 color.tag.social=magenta
 
 urgency.active.coefficient=4.0
