@@ -22,13 +22,19 @@ include dark-16.theme
 
 news.version=2.6.0
 
-color.blocking= 
+alias.+hw=+homework
+alias.-hw=-homework
+
+color.blocking=
 color.blocked=red
 color.due=
 color.due.today=black on red
 color.uda.priority.H=
 color.uda.priority.M=
 color.uda.priority.L=
+color.project.grad=blue
+color.project.school=green
+color.tag.social=magenta
 
 urgency.active.coefficient=4.0
 urgency.age.coefficient=2.0
@@ -48,3 +54,10 @@ urgency.waiting.coefficient=-3.0
 
 report.next.labels=ID,Active,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
 report.next.columns=id,start.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+
+taskd.certificate=/home/riley/.config/task/private.certificate.pem
+taskd.key=/home/riley/.config/task/private.key.pem
+taskd.ca=/home/riley/.config/task/ca.cert.pem
+taskd.server=inthe.am:53589
+taskd.credentials=inthe_am/riley.shahar/9301edc5-bfcd-407e-a467-4a587c2bf8ee
+taskd.trust=strict

@@ -19,3 +19,4 @@ emacs/auto-save-list
 emacs/straight
 emacs/transient
 emacs/custom.el
+task/*.pem

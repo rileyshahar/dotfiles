@@ -72,6 +72,18 @@ set fish_color_cancel -r
 # configure path
 set fish_user_paths $DOTFILES_DIR/bin $PYENV_ROOT/shims /bin/usr/local/opt/ruby/bin $CARGO_HOME/bin /usr/local/opt/llvm/bin/ $XDG_DATA_HOME/gem/ruby/3.0.0/bin $XDG_DATA_HOME/bin $XDG_CONFIG_HOME/emacs/bin $HOME/.local/bin
 
+# greeting
+function fish_greeting
+    if test -z $NVIM
+        echo
+        set -l task (task next limit:1 | tail -n +4 | head -n 1 | sed 's/^ //' | cut -d ' ' -f1)
+        echo "  • most urgent task: $(task _get $task.description) due $(task _get $task.due.month)-$(task _get $task.due.day) [$task]"
+        set -l note (ls -tA ~/notes/forest/trees | head -n1 | path change-extension '')
+        echo "  • most recent note: $(forester complete ~/notes/forest/trees | rg $note | cut -d "," -f 2 | string trim) [$note]"
+        echo
+    end
+end
+
 # make !! and !$ work
 function bind_bang
     switch (commandline -t)[-1]
