@@ -26,7 +26,7 @@ alias.+hw=+homework
 alias.-hw=-homework
 
 color.blocking=
-color.blocked=red
+color.blocked=rgb311
 color.due=
 color.due.today=black on red
 color.uda.priority.H=
@@ -38,6 +38,8 @@ color.project.school=green
 color.project.research=yellow
 color.tag.social=magenta
 
+rule.precedence.color=due,blocked,project,tag
+
 urgency.active.coefficient=4.0
 urgency.age.coefficient=2.0
 urgency.annotations.coefficient=0
@@ -48,11 +50,10 @@ urgency.inherit=1
 urgency.project.coefficient=0
 urgency.scheduled.coefficient=0
 urgency.tags.coefficient=0
-urgency.uda.priority.H.coefficient=6.0
-urgency.uda.priority.L.coefficient=1.8
-urgency.uda.priority.M.coefficient=3.9
+urgency.uda.priority.H.coefficient=4.0
+urgency.uda.priority.L.coefficient=2.0
+urgency.uda.priority.M.coefficient=3.0
 urgency.user.tag.next.coefficient=25.0
-urgency.waiting.coefficient=-3.0
 
 report.next.labels=ID,Active,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
 report.next.columns=id,start.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency

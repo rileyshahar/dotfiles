@@ -78,7 +78,7 @@ function fish_greeting
         set -l date_fmt "%A, %m-%d"
 
         echo
-        echo "  Welcome." | figlet | lolcat
+        echo "  Hello." | figlet | lolcat -F 0.3
         echo "  It is $(date +"$date_fmt")."
 
         if task overdue 2>/dev/null
@@ -87,7 +87,7 @@ function fish_greeting
             set_color normal
         end
         echo
-        set -l task (task next limit:1 | tail -n +4 | head -n 1 | sed "s/^ //" | cut -d " " -f1)
+        set -l task (task next -BLOCKED limit:1 2>/dev/null | tail -n +4 | head -n 1 | sed "s/^ //" | cut -d " " -f1)
 
         echo -n "  Your most urgent task is to "
         set_color --bold blue
