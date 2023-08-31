@@ -81,7 +81,8 @@ function fish_greeting
         echo "  Hello." | figlet | lolcat -F 0.3
         echo "  It is $(date +"$date_fmt")."
 
-        if task overdue 2>/dev/null
+        if task overdue 1>/dev/null 2>/dev/null
+            echo
             set_color red
             echo "  You have overdue tasks."
             set_color normal
@@ -89,7 +90,7 @@ function fish_greeting
         echo
         set -l task (task next -BLOCKED limit:1 2>/dev/null | tail -n +4 | head -n 1 | sed "s/^ //" | cut -d " " -f1)
 
-        echo -n "  Your most urgent task is to "
+        echo -n "  Your most urgent task is "
         set_color --bold blue
         echo -n (task _get $task.description)
         set_color normal
