@@ -5,6 +5,10 @@ return {
 		opts = {
 			ignore = "^$",
 		},
+		keys = {
+			{ "gc", desc = "comment linewise" },
+			{ "gb", desc = "comment blockwise" },
+		}
 	},
 
 	-- manage todo comments
