@@ -74,7 +74,7 @@ set fish_user_paths $DOTFILES_DIR/bin $PYENV_ROOT/shims /bin/usr/local/opt/ruby/
 
 # greeting
 function fish_greeting
-    if test -z $NVIM
+    if [ "$PWD" = "$HOME" ] # dont run if spawned from another terminal
         set -l date_fmt "%A, %m-%d"
 
         echo
