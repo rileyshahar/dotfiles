@@ -96,7 +96,16 @@ function fish_greeting
         set_color normal
         echo ", due $(date -d (task _get $task.due) +"$date_fmt") [$task]."
 
-        set -l note (ls -tA ~/notes/forest/trees | head -n1 | path change-extension "")
+        # https://stackoverflow.com/questions/5566310/how-to-recursively-find-and-list-the-latest-modified-files-in-a-directory-with-s
+        set -l note (
+          find ~/notes/forest/trees -type f -print0 |
+          xargs -0 stat --format '%Y :%y %n' |
+          sort -nr |
+          cut -d" " -f5- |
+          head -n1 |
+          path basename |
+          path change-extension ""
+        )
         echo -n "  Your most recent note is "
         set_color --italics
         echo -n (forester complete ~/notes/forest/trees | rg $note | cut -d "," -f 2 | string trim)
