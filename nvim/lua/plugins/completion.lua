@@ -42,6 +42,21 @@ return {
 				"rileyshahar/cmp-forester",
 				dev = true,
 			},
+			{
+				"zbirenbaum/copilot-cmp",
+				config = true,
+				dependencies = {
+					{
+						"zbirenbaum/copilot.lua",
+						-- cmd = "Copilot",
+						-- event = "InsertEnter",
+						opts = {
+							suggestion = { enabled = false },
+							panel = { enabled = false },
+						},
+					},
+				},
+			},
 		},
 		opts = function()
 			local cmp = require("cmp")
@@ -64,9 +79,10 @@ return {
 					["<c-f>"] = cmp.mapping.scroll_docs(4),
 					["<c-e>"] = cmp.mapping.abort(),
 					["<c-space>"] = cmp.mapping.complete(),
+					["<c-q>"] = cmp.mapping.confirm({ select = true }),
 					["<tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
-							cmp.confirm({ select = true })
+							cmp.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace, })
 						elseif ls.expandable() then
 							ls.expand()
 						elseif ls.jumpable() then
@@ -93,6 +109,7 @@ return {
 				}),
 				sources = {
 					{ name = "neorg" },
+					{ name = "copilot" },
 					-- { name = "cmp_git" },
 					{ name = "luasnip" },
 					{ name = "nvim_lsp" },
