@@ -6,8 +6,8 @@ return {
 			ignore = "^$",
 		},
 		keys = {
-			{ "gc", desc = "comment linewise" },
-			{ "gb", desc = "comment blockwise" },
+			{ "gc", desc = "comment linewise",  mode = { "n", "v", "x" } },
+			{ "gb", desc = "comment blockwise", mode = { "n", "v", "x" } },
 		}
 	},
 
