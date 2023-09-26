@@ -36,7 +36,8 @@ leaders = {
 	notify = "<leader>n",
 	plugin_meta = "<leader>p",
 	surround = "s",
-	terminal = "<c-t>"
+	terminal = "<c-t>",
+	ui = "<leader>u"
 }
 
 if os.getenv("NVIM") ~= nil then
