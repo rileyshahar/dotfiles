@@ -20,19 +20,19 @@ return {
 		},
 	},
 
-	-- {
-	-- 	"lervag/vimtex",
-	-- 	ft = "tex"
-	-- },
+	{
+		"lervag/vimtex",
+		ft = "tex",
+	},
 
 	{
 		"dag/vim-fish",
-		ft = "fish"
+		ft = "fish",
 	},
 
 	{
 		"isovector/cornelis",
-		ft = "agda"
+		ft = "agda",
 	},
 
 	"kmonad/kmonad-vim",
