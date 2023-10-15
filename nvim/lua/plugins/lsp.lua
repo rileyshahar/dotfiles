@@ -318,7 +318,6 @@ return {
 				lua = { "stylua" },
 				python = { "isort", "black" },
 				fish = { "fish_indent" },
-				tex = { "latexindent" },
 				sh = { "shellharden", "shfmt" },
 				markdown = { "mdformat" },
 			},
