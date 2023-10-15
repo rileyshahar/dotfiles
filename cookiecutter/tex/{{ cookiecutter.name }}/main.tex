@@ -1,0 +1,40 @@
+{% raw %}% vim:ft=tex
+\documentclass[sigplan,screen,nonacm,natbib=false]{acmart}
+
+% links/refs
+\usepackage[backend=biber]{biblatex}
+\addbibresource{references.bib}
+\usepackage[capitalise]{cleveref}
+
+% figs
+\usepackage{subcaption}
+\usepackage{mathpartir}
+
+% formatting
+\usepackage{enumitem}
+
+% macros
+\input{macros.tex}
+
+% metadata
+{% endraw %}\title{{ "{" ~ cookiecutter.title ~ "}" }}{% raw %}
+\author{Riley Shahar}
+\orcid{0009-0003-9485-4399}
+\affiliation{
+	\institution{Reed College}
+	\city{Portland}
+	% \state{Oregon}
+	\country{USA}
+}
+\email{rileyshahar@reed.edu}
+
+% \keywords{TODO}
+
+% \begin{abstract}
+%   TODO
+% \end{abstract}
+
+\begin{document}
+\maketitle
+
+\end{document}{% endraw %}
