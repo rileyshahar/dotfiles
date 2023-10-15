@@ -34,7 +34,7 @@ return {
 				},
 				severity_sort = true,
 			},
-			autoformat = true,
+			-- autoformat = true,
 			servers = {
 				clangd = {},
 				texlab = {
@@ -53,8 +53,8 @@ return {
 						"opam",
 						"exec",
 						"--",
-						"ocamllsp"
-					}
+						"ocamllsp",
+					},
 				},
 				taplo = {},
 				pylsp = {
@@ -126,52 +126,44 @@ return {
 						{
 							leaders.go .. "D",
 							vim.lsp.buf.declaration,
-							desc =
-							"declaration"
+							desc = "declaration",
 						},
 						{
 							leaders.go .. "d",
 							telescope.lsp_definitions,
-							desc =
-							"definitions"
+							desc = "definitions",
 						},
 						{
 							leaders.go .. "i",
 							telescope.lsp_implementations,
-							desc =
-							"implementations"
+							desc = "implementations",
 						},
 						{
 							leaders.go .. "t",
 							telescope.lsp_type_definitions,
-							desc =
-							"type definitions"
+							desc = "type definitions",
 						},
 
 						-- finders
 						{
 							leaders.finder .. "S",
 							telescope.lsp_workspace_symbols,
-							desc =
-							"workspace symbols"
+							desc = "workspace symbols",
 						},
 						{
 							leaders.finder .. "s",
 							telescope.lsp_document_symbols,
-							desc =
-							"document symbols"
+							desc = "document symbols",
 						},
 						{
 							leaders.finder .. "r",
 							telescope.lsp_references,
-							desc =
-							"references"
+							desc = "references",
 						},
 						{
 							leaders.finder .. "d",
 							telescope.diagnostics,
-							desc =
-							"diagnostics"
+							desc = "diagnostics",
 						},
 						-- TODO: errors?
 
@@ -179,14 +171,12 @@ return {
 						{
 							"<leader>c",
 							vim.lsp.codelens.run,
-							desc =
-							"run codelens"
+							desc = "run codelens",
 						},
 						{
 							"<leader>a",
 							action,
-							desc =
-							"code actions"
+							desc = "code actions",
 						},
 						{ "<leader>rn", rename, desc = "rename" },
 
@@ -194,22 +184,19 @@ return {
 						{
 							"K",
 							vim.lsp.buf.hover,
-							desc =
-							"float docs"
+							desc = "float docs",
 						},
 						{
 							"<leader>k",
 							vim.lsp.buf.signature_help,
-							desc =
-							"float signature"
+							desc = "float signature",
 						},
 
 						-- diagnostics
 						{
 							"<leader>d",
 							vim.diagnostic.open_float,
-							desc =
-							"float diagnostics"
+							desc = "float diagnostics",
 						},
 						{
 							"[d",
@@ -230,7 +217,7 @@ return {
 							function()
 								vim.diagnostic.goto_prev({
 									wrap = true,
-									severity = vim.diagnostic.severity.ERROR
+									severity = vim.diagnostic.severity.ERROR,
 								})
 							end,
 							desc = "error",
@@ -240,7 +227,7 @@ return {
 							function()
 								vim.diagnostic.goto_next({
 									wrap = true,
-									severity = vim.diagnostic.severity.ERROR
+									severity = vim.diagnostic.severity.ERROR,
 								})
 							end,
 							desc = "error",
@@ -254,23 +241,22 @@ return {
 					-- setup code lens
 					if client.server_capabilities.codeLensProvider then
 						vim.api.nvim_create_augroup("CodeLens", { clear = true })
-						vim.api.nvim_create_autocmd(
-							{ "BufEnter", "CursorHold", "InsertLeave", "TextChanged" }, {
-								group = "CodeLens",
-								callback = vim.lsp.codelens.refresh,
-							})
+						vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave", "TextChanged" }, {
+							group = "CodeLens",
+							callback = vim.lsp.codelens.refresh,
+						})
 					end
 
 					-- formatting
-					if client.server_capabilities.documentFormattingProvider then
-						vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
-						vim.api.nvim_create_autocmd("BufWritePre", {
-							buffer = bufnr,
-							callback = function()
-								vim.lsp.buf.format()
-							end,
-						})
-					end
+					-- if client.server_capabilities.documentFormattingProvider then
+					--   vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
+					--   vim.api.nvim_create_autocmd("BufWritePre", {
+					--     buffer = bufnr,
+					--     callback = function()
+					--       vim.lsp.buf.format()
+					--     end,
+					--   })
+					-- end
 
 					-- inlay hints
 					if client.server_capabilities.inlayHintProvider then
@@ -280,7 +266,7 @@ return {
 					-- lsp signature
 					require("lsp_signature").on_attach({
 						bind = true,
-						hint_enable = false
+						hint_enable = false,
 					})
 				end,
 			})
@@ -317,54 +303,52 @@ return {
 		end,
 	},
 
-	-- inject other software into lsp
-	{
-		"jose-elias-alvarez/null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		opts = function()
-			local nls = require("null-ls")
-			return {
-				root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json",
-					"Makefile", ".git"),
-				sources = {
-					-- prose
-					nls.builtins.code_actions.proselint.with({
-						filetypes = { "markdown", "tex", "norg" }
-					}),
-					nls.builtins.diagnostics.proselint.with({
-						filetypes = { "markdown", "tex", "norg" }
-					}),
-
-					-- fish
-					nls.builtins.formatting.fish_indent,
-					nls.builtins.diagnostics.fish,
-
-					-- bash
-					nls.builtins.formatting.shellharden,
-					nls.builtins.formatting.shfmt,
-					nls.builtins.diagnostics.shellcheck,
-
-					-- make
-					nls.builtins.diagnostics.checkmake,
-
-					-- tex
-					nls.builtins.diagnostics.chktex,
-
-					-- c
-					nls.builtins.diagnostics.cppcheck,
-
-					-- general
-					nls.builtins.formatting.trim_newlines,
-					nls.builtins.formatting.trim_whitespace,
-				},
-			}
-		end,
-	},
-
 	-- status indicator
 	{
 		"j-hui/fidget.nvim",
 		tag = "legacy",
 		config = true,
+	},
+
+	-- formatter
+	{
+		"stevearc/conform.nvim",
+		opts = {
+			formatters_by_ft = {
+				lua = { "stylua" },
+				python = { "isort", "black" },
+				fish = { "fish_indent" },
+				tex = { "latexindent" },
+				sh = { "shellharden", "shfmt" },
+				markdown = { "mdformat" },
+			},
+			format_on_save = {
+				timeout_ms = 500,
+				lsp_fallback = true,
+			},
+		},
+	},
+
+	-- linter
+	{
+		"mfussenegger/nvim-lint",
+		lazy = false,
+		config = function()
+			local lint = require("lint")
+			lint.linters_by_ft = {
+				fish = { "fish" },
+				bash = { "shellcheck" },
+				tex = { "chktex" },
+				c = { "cppcheck" },
+				markdown = { "proselint" },
+			}
+			vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave", "BufEnter" }, {
+				group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
+				callback = function()
+					-- td: async
+					lint.try_lint()
+				end,
+			})
+		end,
 	},
 }
