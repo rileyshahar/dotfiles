@@ -10,7 +10,7 @@ elif qtile.core.name == "x11":
 
 FLOAT_TERM = "footclient --title=__float"
 BAR_APPS = {"brightness": "pkill -USR1 gammastep", "cpu": FLOAT_TERM + " btm --battery"}
-TRANSPARENT_CLASSES = ("zathura", "foot")  # wm classes to make transparent
+TRANSPARENT_CLASSES = ("zathura", "foot", "kitty", "neovide")  # wm classes to make transparent
 
 APPS = [
     # (key, command, description)
