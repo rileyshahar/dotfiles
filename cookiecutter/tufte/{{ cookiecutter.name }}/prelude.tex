@@ -1,0 +1,134 @@
+{% raw %}% vim:ft=tex
+
+% must-haves
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amsxtra}
+
+% fonts
+\usepackage{bbm}
+
+% links/refs
+\usepackage[
+ unicode=true,
+ pdfusetitle,
+ bookmarks=true,
+ bookmarksnumbered=false,
+ breaklinks=false,
+ backref=false,
+ colorlinks=true,
+ linkcolor=blue,
+ citecolor=blue,
+ urlcolor=blue,
+ final
+]{hyperref}
+\usepackage{bookmark}
+\usepackage[
+	backend=biber,
+	style=alphabetic
+]{biblatex}
+\addbibresource{references.bib}
+\usepackage[capitalise]{cleveref}
+\usepackage{orcidlink}
+
+% figs
+\usepackage{float}
+\usepackage{tikz-cd}
+\usepackage{subcaption}
+\usepackage{mathpartir}
+\usepackage{adjustbox}
+
+% formatting
+\usepackage{enumitem}
+
+% quality of life
+\renewcommand{\emptyset}{\varnothing}
+
+% diagrams
+\newcommand{\punctuation}[1]{\makebox[0pt][l]{#1}}
+
+% font conventions
+\newcommand{\cat}[1]{{\mathcal{#1}}}
+\newcommand{\scat}[1]{{\textsc{\text{#1}}}}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}{Corollary}[thm]
+
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{ex}[thm]{Example}
+
+\theoremstyle{remark}
+\newtheorem*{rmk}{Remark}
+\newtheorem*{ntn}{Notation}
+
+% alphabets
+\def\cA{\mathcal{A}}
+\def\cB{\mathcal{B}}
+\def\cC{\mathcal{C}}
+\def\cD{\mathcal{D}}
+\def\cE{\mathcal{E}}
+\def\cF{\mathcal{F}}
+\def\cG{\mathcal{G}}
+\def\cH{\mathcal{H}}
+\def\cI{\mathcal{I}}
+\def\cJ{\mathcal{J}}
+\def\cK{\mathcal{K}}
+\def\cL{\mathcal{L}}
+\def\cM{\mathcal{M}}
+\def\cN{\mathcal{N}}
+\def\cO{\mathcal{O}}
+\def\cP{\mathcal{P}}
+\def\cQ{\mathcal{Q}}
+\def\cR{\mathcal{R}}
+\def\cS{\mathcal{S}}
+\def\cT{\mathcal{T}}
+\def\cU{\mathcal{U}}
+\def\cV{\mathcal{V}}
+\def\cW{\mathcal{W}}
+\def\cX{\mathcal{X}}
+\def\cY{\mathcal{Y}}
+\def\cZ{\mathcal{Z}}
+
+\def\AA{\mathbb{A}}
+\def\BB{\mathbb{B}}
+\def\CC{\mathbb{C}}
+\def\DD{\mathbb{D}}
+\def\EE{\mathbb{E}}
+\def\FF{\mathbb{F}}
+\def\GG{\mathbb{G}}
+\def\HH{\mathbb{H}}
+\def\II{\mathbb{I}}
+\def\JJ{\mathbb{J}}
+\def\KK{\mathbb{K}}
+\def\LL{\mathbb{L}}
+\def\MM{\mathbb{M}}
+\def\NN{\mathbb{N}}
+\def\OO{\mathbb{O}}
+\def\PP{\mathbb{P}}
+\def\QQ{\mathbb{Q}}
+\def\RR{\mathbb{R}}
+\def\SS{\mathbb{S}}
+\def\TT{\mathbb{T}}
+\def\UU{\mathbb{U}}
+\def\VV{\mathbb{V}}
+\def\WW{\mathbb{W}}
+\def\XX{\mathbb{X}}
+\def\YY{\mathbb{Y}}
+\def\ZZ{\mathbb{Z}}
+
+\def\kk{\Bbbk}
+
+% itemize spacing
+% https://tex.stackexchange.com/a/650378
+\let\tempone\itemize
+\let\temptwo\enditemize
+\renewenvironment{itemize}{
+\tempone\setlength{\itemsep}{-1ex}}
+{\temptwo}{% endraw %}

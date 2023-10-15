@@ -1,6 +1,39 @@
-{% raw %}% vim:ft=plaintex
-% macros
+{% raw %}% vim:ft=tex
+
+% fonts
+\usepackage{bbm}
+
+% figs
+\usepackage{float}
+\usepackage{tikz-cd}
+\usepackage{subcaption}
+\usepackage{mathpartir}
+\usepackage{adjustbox}
+
+% quality of life
 \renewcommand{\emptyset}{\varnothing}
+
+% diagrams
+\newcommand{\punctuation}[1]{\makebox[0pt][l]{#1}}
+
+% font conventions
+\newcommand{\cat}[1]{{\mathcal{#1}}}
+\newcommand{\scat}[1]{{\textsc{\text{#1}}}}
+
+% theorems
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}{Corollary}[thm]
+
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{ex}[thm]{Example}
+
+\theoremstyle{remark}
+\newtheorem*{rmk}{Remark}
+\newtheorem*{ntn}{Notation}
 
 % alphabets
 \def\cA{\mathcal{A}}
@@ -56,4 +89,5 @@
 \def\XX{\mathbb{X}}
 \def\YY{\mathbb{Y}}
 \def\ZZ{\mathbb{Z}}
-{% endraw %}
+
+\def\kk{\Bbbk}{% endraw %}

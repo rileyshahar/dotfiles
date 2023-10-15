@@ -1,0 +1,23 @@
+{% raw %}
+% vim:ft=tex
+\makeatletter
+\renewcommand{\maketitle}{%
+  \newpage
+	\begin{fullwidth}
+		\begin{center}
+			{\Huge\bfseries
+			\@title}
+			\tuftebreak
+			{\Large
+			\@author}
+			\\
+			\@date
+		\end{center}
+	\end{fullwidth}
+
+  \thispagestyle{plain}% suppress the running head
+}
+\makeatother
+
+\setcounter{secnumdepth}{2}
+{% endraw %}
