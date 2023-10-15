@@ -1,8 +1,8 @@
 return {
-  -- {
-  -- 	"willothy/flatten.nvim",
-  -- 	config = true,
-  -- },
+  {
+    "willothy/flatten.nvim",
+    config = true,
+  },
   {
     "akinsho/toggleterm.nvim",
     config = true,
