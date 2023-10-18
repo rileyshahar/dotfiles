@@ -47,7 +47,6 @@ if os.getenv("NVIM") ~= nil then
 	return
 end
 
-require("make")
 require("misc")
 require("statusline")
 require("terminal")
