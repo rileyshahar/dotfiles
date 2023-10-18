@@ -13,28 +13,34 @@ return {
 		keys = function()
 			local builtins = require("telescope.builtin")
 			return {
-				{ "<c-;>",               builtins.find_files, desc = "find files", mode = { "i", "t", "n", "v", "x" }},
+				{ "<c-;>", builtins.find_files, desc = "find files", mode = { "i", "t", "n", "v", "x" } },
 				{ leaders.finder .. "f", builtins.find_files, desc = "files" },
-				{ leaders.finder .. "g", builtins.live_grep,  desc = "in dir" },
+				{ leaders.finder .. "g", builtins.live_grep, desc = "in dir" },
 				{
 					leaders.finder .. "w",
 					builtins.grep_string,
-					desc =
-					"word under cursor"
+					desc = "word under cursor",
 				},
-				{ leaders.finder .. "b", builtins.buffers,   desc = "buffers" },
+				{ leaders.finder .. "b", builtins.buffers, desc = "buffers" },
 				{ leaders.finder .. "h", builtins.help_tags, desc = "help tags" },
 				{ leaders.finder .. "R", builtins.registers, desc = "registers" },
-				{ leaders.finder .. "k", builtins.keymaps,   desc = "keymaps" },
+				{ leaders.finder .. "k", builtins.keymaps, desc = "keymaps" },
 				{
 					leaders.edit .. "n",
-					function() builtins.find_files({ cwd = "$DOTFILES_DIR/nvim" }) end,
-					desc =
-					"neovim config"
+					function()
+						builtins.find_files({ cwd = "$DOTFILES_DIR/nvim" })
+					end,
+					desc = "neovim config",
 				},
-				{ leaders.edit .. "c", function() builtins.find_files({ cwd = "$DOTFILES_DIR" }) end, desc = "configs" },
+				{
+					leaders.edit .. "c",
+					function()
+						builtins.find_files({ cwd = "$DOTFILES_DIR" })
+					end,
+					desc = "configs",
+				},
 			}
-	end,
+		end,
 		opts = function()
 			local actions = require("telescope.actions")
 			return {
@@ -79,18 +85,18 @@ return {
 					char = {
 						keys = { "f", "F", "t", "T" },
 						highlight = { backdrop = false },
-					}
-				}
+					},
+				},
 			},
 			keys = function()
 				local flash = require("flash")
 				return {
-					{ "<space>",   flash.jump,       desc = "flash",               mode = { "n", "x" } },
-					{ "<c-space>", flash.treesitter, desc = "flash treesitter",    mode = { "n", "x", "o" } },
-					{ "<space>",   flash.remote,     desc = "flash remote",        mode = "o" },
-					{ "<c-s>",     flash.toggle,     desc = "toggle flash search", mode = "c" },
+					{ "<space>", flash.jump, desc = "flash", mode = { "n", "x" } },
+					{ "<c-space>", flash.treesitter, desc = "flash treesitter", mode = { "n", "x", "o" } },
+					{ "<space>", flash.remote, desc = "flash remote", mode = "o" },
+					{ "<c-s>", flash.toggle, desc = "toggle flash search", mode = "c" },
 				}
-			end
-		}
-	}
+			end,
+		},
+	},
 }

@@ -37,13 +37,13 @@ leaders = {
 	plugin_meta = "<leader>p",
 	surround = "s",
 	terminal = "<c-t>",
-	ui = "<leader>u"
+	ui = "<leader>u",
 }
 
 if os.getenv("NVIM") ~= nil then
-	require('lazy').setup {
-		{ 'willothy/flatten.nvim', config = true },
-	}
+	require("lazy").setup({
+		{ "willothy/flatten.nvim", config = true },
+	})
 	return
 end
 
@@ -53,8 +53,12 @@ require("statusline")
 require("terminal")
 require("ui")
 
+if vim.g.neovide then
+	require("neovide")
+end
+
 require("lazy").setup("plugins", {
 	dev = {
-		path = "~/code/lua"
-	}
+		path = "~/code/lua",
+	},
 })

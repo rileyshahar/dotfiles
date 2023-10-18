@@ -2,7 +2,7 @@
 from libqtile import qtile
 
 if not qtile or qtile.core.name == "wayland":
-    TERMINAL = "footclient"
+    TERMINAL = "neovide +term -- +startinsert"
     MOD = "MOD4"  # super
 elif qtile.core.name == "x11":
     TERMINAL = "kitty"
@@ -19,7 +19,6 @@ APPS = [
     ("Apostrophe", "firefox", "browser"),
     ("Space", "launcher", "launcher"),
     ("n", FLOAT_TERM + " newsboat", "newsboat"),
-    ("Slash", TERMINAL + " nvim +terminal --listen /tmp/nvimsocket", "neovim terminal"),
 ]
 
 DAEMONS = (

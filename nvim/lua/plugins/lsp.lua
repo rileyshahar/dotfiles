@@ -316,10 +316,10 @@ return {
 		opts = {
 			formatters_by_ft = {
 				lua = { "stylua" },
-				python = { "isort", "black" },
-				fish = { "fish_indent" },
-				sh = { "shellharden", "shfmt" },
-				markdown = { "mdformat" },
+				-- python = { "isort", "black" },
+				-- fish = { "fish_indent" },
+				-- sh = { "shellharden", "shfmt" },
+				-- markdown = { "mdformat" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
@@ -328,26 +328,26 @@ return {
 		},
 	},
 
-	-- linter
-	{
-		"mfussenegger/nvim-lint",
-		lazy = false,
-		config = function()
-			local lint = require("lint")
-			lint.linters_by_ft = {
-				fish = { "fish" },
-				bash = { "shellcheck" },
-				tex = { "chktex" },
-				c = { "cppcheck" },
-				markdown = { "proselint" },
-			}
-			vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave", "BufEnter" }, {
-				group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
-				callback = function()
-					-- td: async
-					lint.try_lint()
-				end,
-			})
-		end,
-	},
+	-- -- linter
+	-- {
+	-- 	"mfussenegger/nvim-lint",
+	-- 	lazy = false,
+	-- 	config = function()
+	-- 		local lint = require("lint")
+	-- 		lint.linters_by_ft = {
+	-- 			fish = { "fish" },
+	-- 			bash = { "shellcheck" },
+	-- 			-- tex = { "chktex" },
+	-- 			c = { "cppcheck" },
+	-- 			markdown = { "proselint" },
+	-- 		}
+	-- 		vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave", "BufEnter" }, {
+	-- 			group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
+	-- 			callback = function()
+	-- 				-- td: async
+	-- 				lint.try_lint()
+	-- 			end,
+	-- 		})
+	-- 	end,
+	-- },
 }
