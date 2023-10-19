@@ -25,7 +25,7 @@ end
 
 -- set leaders
 vim.g.mapleader = ","
-vim.g.maplocalleader = ",,"
+vim.g.maplocalleader = "\\"
 
 leaders = {
 	edit = "<leader>e",
@@ -37,6 +37,7 @@ leaders = {
 	plugin_meta = "<leader>p",
 	surround = "s",
 	terminal = "<c-t>",
+	-- terminal_local = "<C-'>",
 	ui = "<leader>u",
 }
 

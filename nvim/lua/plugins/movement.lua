@@ -70,6 +70,7 @@ return {
 		end,
 	},
 
+	-- flash
 	{
 		{
 			"folke/flash.nvim",
