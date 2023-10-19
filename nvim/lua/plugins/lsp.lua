@@ -316,9 +316,10 @@ return {
 		opts = {
 			formatters_by_ft = {
 				lua = { "stylua" },
+				tex = { "latexindent" },
 				-- python = { "isort", "black" },
-				-- fish = { "fish_indent" },
-				-- sh = { "shellharden", "shfmt" },
+				fish = { "fish_indent" },
+				sh = { "shellharden", "shfmt" },
 				-- markdown = { "mdformat" },
 			},
 			format_on_save = {
