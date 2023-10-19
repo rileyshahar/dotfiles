@@ -1,3 +1,4 @@
+-- TODO: templates or something
 function make_async_run(cmd)
 	-- -- local cmd, num_subs = vim.o.makeprg:gsub("%$%*", params.args)
 	-- if num_subs == 0 then
@@ -25,6 +26,7 @@ return {
 
 			{ leaders.make .. "c", make_async_run("clean"), desc = "clean" },
 		},
+		cmd = "Overseer",
 		config = function(opts)
 			require("overseer").setup(opts)
 			vim.api.nvim_create_user_command("Make", function(params)
