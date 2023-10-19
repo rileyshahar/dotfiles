@@ -36,4 +36,17 @@ return {
 	},
 
 	"kmonad/kmonad-vim",
+
+	{
+		"Julian/lean.nvim",
+		ft = "lean",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+			"nvim-lua/plenary.nvim",
+		},
+		opts = {
+			mappings = true,
+			-- TODO: lsp on_attach?
+		},
+	},
 }
