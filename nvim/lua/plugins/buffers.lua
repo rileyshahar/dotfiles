@@ -25,6 +25,7 @@ return {
 	-- projects
 	{
 		"ahmedkhalf/project.nvim",
+		dev = true,
 		lazy = false,
 		opts = {
 			manual_mode = true,

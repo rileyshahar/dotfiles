@@ -468,6 +468,13 @@ local theme = {
 	FlashCurrent = { link = "CurSearch" },
 	FlashLabel = { link = "Keyword" },
 
+	-- Alpha
+	AlphaShortcut = { link = "Function" },
+	AlphaHeader = { link = "Keyword" },
+	AlphaHeaderLabel = { fg = c.syntax.link },
+	AlphaFooter = { fg = c.lowc.fg },
+	AlphaButtons = { link = "String" },
+
 	-- Noice
 	--- cmdline
 	NoiceCmdlinePopupTitle = { fg = c.accent.fg },
