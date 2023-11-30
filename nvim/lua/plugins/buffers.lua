@@ -31,7 +31,7 @@ return {
 			manual_mode = true,
 		},
 		dependencies = { "nvim-telescope/telescope.nvim" },
-		config = function(opts)
+		config = function(_, opts)
 			require("project_nvim").setup(opts)
 			require("telescope").load_extension("projects")
 		end,

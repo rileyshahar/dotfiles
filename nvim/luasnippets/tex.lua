@@ -71,28 +71,26 @@ return {
 		{ trig = "thm", name = "theorem", dscr = "A theorem." },
 		fmt(
 			[[
-			\begin{{{}}}\label{{{}}}
+			\begin{{{}}}\label{{thm:{}}}
 		    {}
 		  \end{{{}}}
-		  {}
 		  ]],
 			{ c(1, {
 				t("thm"),
 				t("prop"),
 				t("cor"),
-			}), i(2), i(3), rep(1), i(0) }
+			}), i(2), i(0), rep(1) }
 		)
 	),
 	s(
 		{ trig = "dfn", name = "definition", dscr = "A definition." },
 		fmt(
 			[[
-			\begin{{dfn}}[{}]\label{{{}}}
+			\begin{{dfn}}[{}]\label{{def:{}}}
 		    {}
 		  \end{{dfn}}
-		  {}
 		  ]],
-			{ i(1), rep(1), i(2), i(0) }
+			{ i(1), rep(1), i(0) }
 		)
 	),
 	s(
@@ -102,9 +100,8 @@ return {
 		  \begin{{proof}}
 		    {}
 		  \end{{proof}}
-		  {}
 		  ]],
-			{ i(1), i(0) }
+			{ i(0) }
 		)
 	),
 	s(
