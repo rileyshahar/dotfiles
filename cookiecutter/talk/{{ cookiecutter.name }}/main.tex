@@ -1,0 +1,21 @@
+% vim:ft=tex
+\documentclass{beamer}
+\usetheme{metropolis}
+
+% macros
+\input{prelude.tex}
+
+% metadata
+\title{{ "{" ~ cookiecutter.title ~ "}" }}
+\author{Riley Shahar}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{frame}[shrink=10,fragile]{References}
+	\nocite{*}
+	\printbibliography[heading=none,omitnumbers=true]
+\end{frame}
+
+\end{document}
