@@ -151,7 +151,6 @@ mkdir $CONFIG_HOME
 
 mkdir -p /var/spool/cron
 sudo ln -sv "$DOTFILES_DIR/cron/crontab" "/var/spool/cron/$(whoami)"
-ln -sv "$DOTFILES_DIR/systemd/" "$CONFIG_HOME/systemd/user" > /dev/null
 
 ln -sv "$DOTFILES_DIR/anacron" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/cookiecutter" "$CONFIG_HOME"
@@ -165,14 +164,19 @@ ln -sv "$DOTFILES_DIR/gammastep" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/git" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/kanshi" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/keynav" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/kitty" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/kmonad" "/etc"
 ln -sv "$DOTFILES_DIR/mpv" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/newsboat" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/nvim" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/pandoc" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/proselint" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/qtile" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/rofi" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/ssh" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/systemd" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/tarsnap" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/task" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/tridactyl" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/wallpaper.jpg" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/xdg/mimeapps.list" "$CONFIG_HOME"
