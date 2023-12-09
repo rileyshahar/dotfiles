@@ -25,12 +25,19 @@
 #   n # new partition
 #   2 # partion number 2
 #     # default, start immediately after preceding partition
+#   +2G # 2G of swap
+#   n # new partition
+#   3 # partion number 2
+#     # default, start immediately after preceding partition
 #     # default, extend partition to end of disk
 #   t # change partition type
 #   1 # change for partition 1
 #   1 # change to EFI type
 #   t # change partition type
 #   2 # change for partition 2
+#   19 # linux swap type
+#   t # change partition type
+#   3 # change for partition 3
 #   20 # linux filesystem type
 #   w # write the partition table
 #   q # quit fdisk
@@ -38,10 +45,14 @@
 #
 # echo "formatting partitions"
 # mkfs.fat -F32 ${disk}1
-# mkfs.ext4 ${disk}2
+# mkswap ${disk}2
+# mkfs.ext4 ${disk}3
 #
 # echo "mounting root"
-# mount ${disk}2 /mnt
+# mount ${disk}3 /mnt
+#
+# echo "activating swap"
+# swapon ${disk}2
 #
 # echo "installing system packages"
 # pacstrap /mnt base linux linux-firmware
@@ -117,7 +128,7 @@ cd ..
 rm -rf paru
 
 echo "downloading dotfiles"
-git clone --recursive https://github.com/nihilistkitten/dotfiles > /dev/null
+git clone --recursive https://github.com/rileyshahar/dotfiles > /dev/null
 
 echo "installing packages; this make take a while."
 echo "installing aur packages"

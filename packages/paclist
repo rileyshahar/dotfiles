@@ -21,7 +21,6 @@ feh
 figlet
 firefox
 fish
-fusuma
 fzf
 gammastep
 gcc
@@ -44,11 +43,10 @@ maim
 mpv
 mpv-mpris
 mypy
+neovide
 neovim-git
 networkmanager
 newsboat
-nvidia
-nvidia-prime
 openssh
 pandoc
 pandoc-include-code
@@ -62,11 +60,12 @@ python-cookiecutter
 python-iwlib
 python-pip
 python-pywlroots
-qtile
+qtile-wayland-git
 redshift
 ripgrep
 rofi
 rofi-calc
+ruby-fusuma
 ruby-fusuma
 sd
 shellcheck
@@ -84,6 +83,7 @@ texlab
 texlive-full
 tldr
 tree
+ttf-jetbrains-mono-nerd
 ttf-lato
 ttf-liberation
 ttf-meslo-nerd
