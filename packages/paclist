@@ -30,9 +30,11 @@ github-cli
 gnuplot
 google-chrome
 graphviz
+grim
 hyperfine
 imv
 jq
+kanshi
 keynav
 kitty
 kmonad-bin
@@ -52,6 +54,8 @@ pandoc
 pandoc-include-code
 picom
 pipewire
+pipewire-audio
+pipewire-pulse
 playerctl
 prettier
 procs
@@ -66,12 +70,12 @@ ripgrep
 rofi
 rofi-calc
 ruby-fusuma
-ruby-fusuma
 sd
 shellcheck
 shellharden
 shfmt
 slack-desktop-wayland
+slurp
 stack
 stylua
 sudo

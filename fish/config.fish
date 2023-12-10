@@ -80,37 +80,6 @@ function fish_greeting
         echo
         echo "  Hello." | figlet | lolcat -F 0.3
         echo "  It is $(date +"$date_fmt")."
-
-        if task overdue 1>/dev/null 2>/dev/null
-            echo
-            set_color red
-            echo "  You have overdue tasks."
-            set_color normal
-        end
-        echo
-        set -l task (task next -BLOCKED limit:1 2>/dev/null | tail -n +4 | head -n 1 | sed "s/^ //" | cut -d " " -f1)
-
-        echo -n "  Your most urgent task is "
-        set_color --bold blue
-        echo -n (task _get $task.description)
-        set_color normal
-        echo ", due $(date -d (task _get $task.due) +"$date_fmt") [$task]."
-
-        # https://stackoverflow.com/questions/5566310/how-to-recursively-find-and-list-the-latest-modified-files-in-a-directory-with-s
-        set -l note (
-          find ~/notes/forest/trees -type f -print0 |
-          xargs -0 stat --format '%Y :%y %n' |
-          sort -nr |
-          cut -d" " -f5- |
-          head -n1 |
-          path basename |
-          path change-extension ""
-        )
-        echo -n "  Your most recent note is "
-        set_color --italics
-        echo -n (forester complete ~/notes/forest/trees | rg $note | cut -d "," -f 2 | string trim)
-        set_color normal
-        echo " [$note]."
         echo
     end
 end
@@ -279,10 +248,10 @@ bind ! bind_bang
 bind '$' bind_dollar
 
 ## sourcing stuff to make useful things work
-if type -q pyenv
-    status is-login; and pyenv init --path | source
-    status is-interactive; and pyenv init - | source
-end
+# if type -q pyenv
+# status is-login; and pyenv init --path | source
+# status is-interactive; and pyenv init - | source
+# end
 
 ### Start x
 if status is-login

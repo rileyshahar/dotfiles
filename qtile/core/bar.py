@@ -32,16 +32,10 @@ widgets = bar.Bar(  # type: ignore
             format="{MemPercent:.0f}%",
             foreground=COLORS.BRIGHT_YELLOW,
         ),
-        widget.GenPollText(
-            fmt=" {}",
-            update_interval=1,
-            func=lambda: subprocess.check_output("statusbar-nvidia").decode("utf-8"),
-            foreground=COLORS.BRIGHT_CYAN,
-        ),
         widget.Wlan(
             fmt=" {}",
             format="{essid} ({percent:2.0%})",
-            interface="wlp0s20f3",
+            interface="wlp1s0",
             foreground=COLORS.BRIGHT_MAGENTA,
         ),
         widget.Prompt(),  # XXX: probably not a long-term soln
@@ -55,7 +49,9 @@ widgets = bar.Bar(  # type: ignore
         widget.Spacer(),
         widget.Backlight(
             fmt=" {}",
-            backlight_name="intel_backlight",
+            backlight_name="amdgpu_bl1",
+            brightness_file="brightness",
+            max_brightness_file="max_brightness",
             foreground=COLORS.BRIGHT_YELLOW,
             update_interval=0.1,
             change_command="brightnessctl set {0}%",

@@ -148,6 +148,8 @@ CONFIG_HOME="$HOME/.config"
 DATA_HOME="$HOME/.local/share"
 
 mkdir $CONFIG_HOME
+
+mkdir -p /var/spool/cron
 sudo ln -sv "$DOTFILES_DIR/cron/crontab" "/var/spool/cron/$(whoami)"
 ln -sv "$DOTFILES_DIR/systemd/" "$CONFIG_HOME/systemd/user" > /dev/null
 
@@ -161,12 +163,14 @@ ln -sv "$DOTFILES_DIR/foot" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/fusuma" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/gammastep" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/git" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/kanshi" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/keynav" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/mpv" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/newsboat" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/nvim" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/pandoc" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/qtile" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/rofi" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/ssh" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/tarsnap" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/tridactyl" "$CONFIG_HOME"
@@ -200,9 +204,13 @@ sudo usermod -aG input $USER
 sudo groupadd uinput
 sudo usermod -aG uinput $USER
 
-echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' >> /etc/udev/rules.d/90-uinput.rules
-echo uinput >> /etc/modules-load.d/uinput.conf
-
+sudo modprobe uninput
+sudo 'echo uinput >> /etc/modules-load.d/uinput.conf'
 sudo ln -sv "$DOTFILES_DIR/kmonad" "/etc/kmonad/config.kbd"
+sudo systemctl enable kmonad@config
+
+echo "TODO: change the device-file in kmonad config"
+echo "TODO: change the brightness file and wlan interfact in qtile"
+echo "TODO: run :nativemessenger for tridactly in firefox"
 
 # EOSU
