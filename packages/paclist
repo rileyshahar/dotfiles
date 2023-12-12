@@ -4,12 +4,14 @@ acpi
 android-messages-desktop
 autorandr
 bc
+biber
 blueman
 bluez
 bluez-utils
 bottom
 brightnessctl
 bsignal
+cava
 checkmake
 clang
 cppcheck
@@ -30,7 +32,6 @@ github-cli
 gnuplot
 google-chrome
 graphviz
-grim
 hyperfine
 imv
 jq
@@ -75,7 +76,6 @@ shellcheck
 shellharden
 shfmt
 slack-desktop-wayland
-slurp
 stack
 stylua
 sudo

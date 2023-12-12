@@ -3,6 +3,7 @@ import subprocess
 
 from libqtile import bar, widget
 from libqtile.lazy import lazy
+from qtile_extras.widget import Visualizer
 
 from widgets import MyBattery
 
@@ -30,7 +31,7 @@ widgets = bar.Bar(  # type: ignore
         widget.Memory(
             fmt=" {}",
             format="{MemPercent:.0f}%",
-            foreground=COLORS.BRIGHT_YELLOW,
+            foreground=COLORS.BRIGHT_GREEN,
         ),
         widget.Wlan(
             fmt=" {}",
@@ -38,15 +39,6 @@ widgets = bar.Bar(  # type: ignore
             interface="wlp1s0",
             foreground=COLORS.BRIGHT_MAGENTA,
         ),
-        widget.Prompt(),  # XXX: probably not a long-term soln
-        widget.Spacer(),
-        widget.GroupBox(
-            highlight_method="text",
-            this_current_screen_border=COLORS.DIM_MAGENTA,
-            active=COLORS.FOREGROUND,
-            hide_unused=True,
-        ),
-        widget.Spacer(),
         widget.Backlight(
             fmt=" {}",
             backlight_name="amdgpu_bl1",
@@ -64,6 +56,25 @@ widgets = bar.Bar(  # type: ignore
             func=lambda: subprocess.check_output("statusbar-pulse").decode("utf-8"),
             foreground=COLORS.BRIGHT_CYAN,
         ),
+        widget.Prompt(),  # XXX: probably not a long-term soln
+        widget.Spacer(),
+        widget.GenPollText(
+            update_interval=1,
+            func=lambda: subprocess.check_output("current-track").decode("utf-8").strip(),
+            foreground=COLORS.BRIGHT_MAGENTA,
+        ),
+        widget.Spacer(),
+        Visualizer(
+            background=COLORS.BACKGROUND,
+            bar_colour=COLORS.BRIGHT_CYAN,
+            bars = 12,
+        ),
+        # widget.GroupBox(
+        #     highlight_method="text",
+        #     this_current_screen_border=COLORS.DIM_MAGENTA,
+        #     active=COLORS.FOREGROUND,
+        #     hide_unused=True,
+        # ),
         widget.Clock(fmt=" {}", format="%a %Y-%m-%d", foreground=COLORS.BRIGHT_GREEN),
         widget.Clock(fmt=" {}", format="%H:%M:%S", foreground=COLORS.BRIGHT_MAGENTA),
     ],
