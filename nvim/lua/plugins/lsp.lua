@@ -68,6 +68,7 @@ return {
 						},
 					},
 				},
+				marksman = {},
 				rust_analyzer = {
 					cmd = { "rustup", "run", "stable", "rust-analyzer" },
 					settings = {

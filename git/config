@@ -2,6 +2,7 @@
 [user]
   name = Riley Shahar
   email = riley@rileyshahar.com
+	signingkey = AC2CC9D5F29317DE 
 
 [core]
   pager = delta
@@ -40,9 +41,3 @@
   plus-color = syntax "#012800"
   minus-color = normal "#340001"
   syntax-theme = TwoDark
-
-[sendemail]
-	smtpServer = 127.0.0.1
-	smtpServerPort = 1025
-	smtpUser = rileyshaharproton.me
-	smtpPass =  aDkrNznQ0zJsPHOKR4LiUlr405jRRpD/HrwbhERObus=

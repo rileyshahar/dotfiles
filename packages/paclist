@@ -1,17 +1,17 @@
 1password
 ack
 acpi
+anacron
 android-messages-desktop
 autorandr
+batsignal
 bc
-biber
 blueman
 bluez
 bluez-utils
 bottom
 brightnessctl
 bsignal
-cava
 checkmake
 clang
 cppcheck
@@ -23,6 +23,7 @@ feh
 figlet
 firefox
 fish
+foot
 fzf
 gammastep
 gcc

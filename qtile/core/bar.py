@@ -67,7 +67,6 @@ widgets = bar.Bar(  # type: ignore
         Visualizer(
             background=COLORS.BACKGROUND,
             bar_colour=COLORS.BRIGHT_CYAN,
-            bars = 12,
         ),
         # widget.GroupBox(
         #     highlight_method="text",
