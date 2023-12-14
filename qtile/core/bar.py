@@ -67,6 +67,7 @@ widgets = bar.Bar(  # type: ignore
         Visualizer(
             background=COLORS.BACKGROUND,
             bar_colour=COLORS.BRIGHT_CYAN,
+            mouse_callbacks={"Button1": lazy.spawn(BAR_APPS["visualizer"])},
         ),
         # widget.GroupBox(
         #     highlight_method="text",

@@ -9,7 +9,8 @@ elif qtile.core.name == "x11":
     MOD = "MOD1"  # alt
 
 FLOAT_TERM = "footclient --title=__float"
-BAR_APPS = {"brightness": "pkill -USR1 gammastep", "cpu": FLOAT_TERM + " btm --battery"}
+BAR_APPS = {"brightness": "pkill -USR1 gammastep", "cpu": FLOAT_TERM + " btm --battery",
+            "visualizer": "footclient cava"}
 TRANSPARENT_CLASSES = ("zathura", "foot", "kitty", "neovide")  # wm classes to make transparent
 
 APPS = [

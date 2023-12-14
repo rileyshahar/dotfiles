@@ -172,6 +172,7 @@ keys = [
         [
             Key([], "c", lazy.spawn(BAR_APPS["cpu"]), desc="spawn top"),
             Key([], "b", lazy.spawn(BAR_APPS["brightness"]), desc="toggle night mode"),
+            Key([], "m", lazy.spawn(BAR_APPS["visualizer"]), desc="spawn cava"),
         ],
         name="bar",
     ),
