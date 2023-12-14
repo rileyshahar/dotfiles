@@ -62,6 +62,10 @@ keys = [
     Key(
         [MOD], "up", lazy.screen.toggle_group(), desc="toggle group"
     ),  # TODO: pick smth else?
+
+    # new groups
+    Key([MOD, "shift"], "right", lazy.screen.next_group(), desc="next group"),
+    Key([MOD, "shift"], "left", lazy.screen.prev_group(), desc="previous group"),
     # apps
     *(
         Key([MOD], key, lazy.spawn(app), desc=f"launch {name}")
