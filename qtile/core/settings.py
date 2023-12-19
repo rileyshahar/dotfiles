@@ -28,10 +28,10 @@ DAEMONS = (
     "foot --server",
     "gammastep",
     "fusuma",
-    "anacron -t $HOME/.config/anacron/anacrontab -S $HOME/.local/share/anacron",
-    "dunst",
+    "dunst &",
     "batsignal",
-    "emacs --daemon"
+    "emacs --daemon",
+    "otd-daemon"
 )
 
 
