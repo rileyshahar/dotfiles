@@ -179,6 +179,7 @@ ln -sv "$DOTFILES_DIR/task" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/tridactyl" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/wallpaper.jpg" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/xdg/mimeapps.list" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/xournalpp" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/zathura" "$CONFIG_HOME"
 
 echo "enabling networkmanager"

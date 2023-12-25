@@ -1,10 +1,8 @@
 1password
 ack
 acpi
-anacron
 android-messages-desktop
 autorandr
-batsignal
 bc
 blueman
 bluez
@@ -23,7 +21,6 @@ feh
 figlet
 firefox
 fish
-foot
 fzf
 gammastep
 gcc
@@ -52,6 +49,7 @@ neovim-git
 networkmanager
 newsboat
 openssh
+opentabletdriver
 pandoc
 pandoc-include-code
 picom
@@ -103,6 +101,7 @@ wlroots-nvidia
 write-good
 wtype
 xorg
+xournalpp
 yamllint
 youtube-dl
 zathura
