@@ -4,3 +4,6 @@
 [submodule "xmonad/xmonad-contrib"]
 	path = xmonad/xmonad-contrib
 	url = https://github.com/xmonad/xmonad-contrib
+[submodule "texmf/tex/latex/dnd"]
+	path = texmf/tex/latex/dnd
+	url = git@github.com:rpgtex/DND-5e-LaTeX-Template.git

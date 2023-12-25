@@ -43,6 +43,7 @@ set -x RUSTUP_HOME "$XDG_DATA_HOME/rustup"
 set -x STACK_ROOT "$XDG_DATA_HOME/stack"
 set -x TERMINFO "$XDG_DATA_HOME/terminfo"
 set -x TMUX_PLUGIN_MANAGER_PATH "$XDG_DATA_HOME/tmux/plugins"
+set -x TEXMFHOME "$XDG_CONFIG_HOME/texmf"
 
 # fish colors (comments are base16 numbers)
 set pure_color_git_branch brgreen
