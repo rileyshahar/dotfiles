@@ -19,7 +19,6 @@ APPS = [
     ("Return", TERMINAL, "terminal"),
     ("Apostrophe", "firefox", "browser"),
     ("Space", "launcher", "launcher"),
-    ("n", FLOAT_TERM + " newsboat", "newsboat"),
     ("Slash", "neovide", "neovim"),
 ]
 
