@@ -87,8 +87,30 @@ return {
 		fmt(
 			[[
 			\begin{{dfn}}[{}]\label{{def:{}}}
-		    {}
-		  \end{{dfn}}
+        {}
+	    \end{{dfn}}
+		  ]],
+			{ i(1), rep(1), i(0) }
+		)
+	),
+	s(
+		{ trig = "con", name = "construction", dscr = "A construction." },
+		fmt(
+			[[
+			\begin{{con}}[{}]\label{{con:{}}}
+        {}
+	    \end{{con}}
+		  ]],
+			{ i(1), rep(1), i(0) }
+		)
+	),
+	s(
+		{ trig = "ex", name = "example", dscr = "An example." },
+		fmt(
+			[[
+			\begin{{ex}}[{}]\label{{ex:{}}}
+        {}
+	    \end{{ex}}
 		  ]],
 			{ i(1), rep(1), i(0) }
 		)

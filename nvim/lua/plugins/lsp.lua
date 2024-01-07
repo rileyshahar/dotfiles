@@ -105,22 +105,22 @@ return {
 
 					-- keys
 					local action
-					if client.server_capabilities.codeActionProvider then
-						action = vim.lsp.buf.code_action
-					else
-						action = function()
-							vim.notify("no code action provider", vim.diagnostic.severity.W)
-						end
-					end
+					-- if client.server_capabilities.codeActionProvider then
+					action = vim.lsp.buf.code_action
+					-- else
+					-- 	action = function()
+					-- 		vim.notify("no code action provider", vim.diagnostic.severity.W)
+					-- 	end
+					-- end
 
 					local rename
-					if client.server_capabilities.renameProvider then
-						rename = vim.lsp.buf.rename
-					else
-						rename = function()
-							vim.notify("no rename provider", vim.diagnostic.severity.W)
-						end
-					end
+					-- if client.server_capabilities.renameProvider then
+					rename = vim.lsp.buf.rename
+					-- else
+					-- 	rename = function()
+					-- 		vim.notify("no rename provider", vim.diagnostic.severity.W)
+					-- 	end
+					-- end
 
 					local keys = {
 						-- gotos
@@ -261,7 +261,9 @@ return {
 
 					-- inlay hints
 					if client.server_capabilities.inlayHintProvider then
-						vim.lsp.inlay_hint(bufnr, true)
+						if vim.lsp.inlay_hint then
+							vim.lsp.inlay_hint.enable(bufnr, true)
+						end
 					end
 
 					-- lsp signature
