@@ -44,8 +44,9 @@ $if(graphics)$
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 $endif$
 
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\let\tightlist\relax
+% \providecommand{\tightlist}{%
+%   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \newenvironment{dnditem}[2]{
   \begin{paperbox}{#1}
   {\emph{#2}}
@@ -70,6 +71,10 @@ $endif$
 \let\oldquote=\quote
 \let\endoldquote=\endquote
 \renewenvironment{quote}{\begin{DndReadAloud}}{\end{DndReadAloud}}
+
+% needed for emdashes;
+% https://tex.stackexchange.com/questions/231795/unicode-support-for-em-dash
+\usepackage{fontspec}
 
 $if(title-meta)$
 \title{$title-meta$}
