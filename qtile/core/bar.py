@@ -33,12 +33,12 @@ widgets = bar.Bar(  # type: ignore
             format="{MemPercent:.0f}%",
             foreground=COLORS.BRIGHT_GREEN,
         ),
-        widget.Wlan(
-            fmt=" {}",
-            format="{essid} ({percent:2.0%})",
-            interface="wlp1s0",
-            foreground=COLORS.BRIGHT_MAGENTA,
-        ),
+        # widget.Wlan(
+        #     fmt=" {}",
+        #     format="{essid} ({percent:2.0%})",
+        #     interface="wlp1s0",
+        #     foreground=COLORS.BRIGHT_MAGENTA,
+        # ),
         widget.Backlight(
             fmt=" {}",
             backlight_name="amdgpu_bl1",

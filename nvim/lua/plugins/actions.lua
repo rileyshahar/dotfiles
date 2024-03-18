@@ -32,7 +32,7 @@ return {
 
 			{ leaders.make .. "c", make_async_run("make clean"), desc = "clean" },
 
-			{ leaders.make .. "v", "<cmd>!open /tmp/%<.pdf<cr>", desc = "view" },
+			{ leaders.make .. "v", "<cmd>!open /tmp/%<.pdf<cr> &", desc = "view" },
 		},
 		cmd = "Overseer",
 		config = true,

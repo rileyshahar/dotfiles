@@ -20,6 +20,9 @@
 \usepackage{listings}
 \usepackage{shortvrb}
 \usepackage{stfloats}
+\usepackage{amstext}
+\usepackage{amsmath}
+\usepackage{mathtools}
 
 \usepackage[unicode=true]{hyperref}
 \hypersetup{breaklinks=true,

@@ -7,6 +7,7 @@ return {
 		dependencies = {
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			"nvim-lua/plenary.nvim",
+			"debugloop/telescope-undo.nvim",
 		},
 		lazy = false,
 		cmd = "Telescope",
@@ -67,6 +68,7 @@ return {
 			local telescope = require("telescope")
 			telescope.setup(opts)
 			telescope.load_extension("fzf")
+			telescope.load_extension("undo")
 		end,
 	},
 

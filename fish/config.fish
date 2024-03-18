@@ -254,6 +254,9 @@ bind '$' bind_dollar
 # status is-interactive; and pyenv init - | source
 # end
 
+# setup stuff
+eval (opam env)
+
 ### Start x
 if status is-login
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
