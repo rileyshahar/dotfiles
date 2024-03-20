@@ -9,7 +9,7 @@ python = "^3.10"
 qtile = "^0.22.1"
 
 [tool.poetry.dev-dependencies]
-black = "^22.10.0"
+black = "^24.3.0"
 flake8 = "^4.0.1"
 flake8-black = "^0.2.5"
 flake8-bugbear = "^21.11.29"
