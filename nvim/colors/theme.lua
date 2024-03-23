@@ -290,7 +290,7 @@ local theme = {
 	["@debug"] = { link = "Debug" },
 	["@tag"] = { link = "Tag" },
 
-	["@punctuation.special"] = { fg = c.syntax.special5 },
+	["@punctuation.special"] = { fg = c.syntax.special },
 
 	["@string.documentation"] = { fg = c.syntax.string },
 	["@string.regex"] = { fg = c.syntax.special },
@@ -299,6 +299,8 @@ local theme = {
 
 	["@text.diff.add"] = { link = "DiffAdd" },
 	["@text.diff.delete"] = { link = "DiffDelete" },
+
+	["@markup.link"] = { fg = c.syntax.type },
 
 	-- LSP Semantic Token Groups
 	["@lsp.type.boolean"] = { link = "@boolean" },
