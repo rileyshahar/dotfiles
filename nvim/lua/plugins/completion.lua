@@ -12,6 +12,7 @@ return {
 		opts = {
 			history = true,
 			delete_check_events = "TextChanged",
+			enable_autosnippets = true,
 		},
 		keys = {
 			-- jumping is mapped in cmp
@@ -38,10 +39,7 @@ return {
 			"hrsh7th/cmp-path",
 			"ray-x/cmp-treesitter",
 			"lukas-reineke/cmp-under-comparator",
-			{
-				"rileyshahar/cmp-forester",
-				dev = true,
-			},
+			"rileyshahar/cmp-forester",
 			{
 				"zbirenbaum/copilot-cmp",
 				config = true,

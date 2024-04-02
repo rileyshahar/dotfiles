@@ -28,6 +28,11 @@ local function alpha_opts()
 		),
 		dashboard.button("t", "  terminal", "<cmd>terminal<cr>"),
 		dashboard.button(
+			"m",
+			"  forest",
+			'<cmd>lua require("telescope.builtin").find_files({ cwd = "~/notes/forest/trees" })<cr><cmd>cd ~/notes/forest<cr>'
+		),
+		dashboard.button(
 			"c",
 			"  configs",
 			'<cmd>lua require("telescope.builtin").find_files({ cwd = "$DOTFILES_DIR" })<cr>'

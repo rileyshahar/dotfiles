@@ -11,12 +11,16 @@ return {
        \taxon{{{}}}
        \author{{rileyshahar}}
 
-       \texpackage{{preamble}}
-       \texpackage{{quiver}}
        \import{{macros01}}
+
        {}
       ]],
-			{ i(1, "title"), p(os.date, "%Y-%m-%d"), c(2, { t("definition"), t("reference"), t("theorem") }), i(0) }
+			{
+				i(1, "title"),
+				p(os.date, "%Y-%m-%d"),
+				c(2, { t("definition"), t("reference"), t("theorem"), i(2) }),
+				i(0),
+			}
 		)
 	),
 
@@ -31,5 +35,15 @@ return {
 			]],
 			{ i(1, "reference"), i(2, "label"), i(3, "note"), i(0) }
 		)
+	),
+
+	s(
+		{ trig = "\\$|\\# ", trigEngine = "ecma", name = "math", dscr = "Inline math.", snippetType = "autosnippet" },
+		fmt("#{{{}}} {}", { i(1), i(0) })
+	),
+
+	s(
+		{ trig = "##", name = "display math", dscr = "Display math.", snippetType = "autosnippet" },
+		fmt("##{{{}}} {}", { i(1), i(0) })
 	),
 }
