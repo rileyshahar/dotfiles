@@ -46,4 +46,9 @@ return {
 		{ trig = "##", name = "display math", dscr = "Display math.", snippetType = "autosnippet" },
 		fmt("##{{{}}} {}", { i(1), i(0) })
 	),
+
+	s(
+		{ trig = "cite", name = "citation", dscr = "A citation." },
+		fmt("\\cite{{{}}}{{{}}}{{{}}}", { i(1, "note"), i(2, "name"), i(3, "location") })
+	),
 }

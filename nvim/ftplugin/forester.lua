@@ -1,5 +1,12 @@
 vim.bo.makeprg = "scripts/server.sh"
 
+vim.o.commentstring = "% %s"
+
+vim.o.expandtab = true
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
+
 local forester_task
 local task_window
 
@@ -49,3 +56,4 @@ end
 
 map("<localleader>s", make_forester, "start forester server")
 map("<localleader>c", stop_forester, "stop forester server")
+map("<localleader>n", "<cmd>!forester new --dest=trees/ --dirs=trees/ --prefix=rs<cr>")
