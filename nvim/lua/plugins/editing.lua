@@ -11,19 +11,19 @@ return {
 		config = true,
 		keys = {
 			{ "g=", desc = "evaluate" },
-			{ "g+", "g=$", desc = "evaluate to eol" },
+			{ "g+", "g=$", desc = "evaluate to eol", remap = true },
 
 			{ "gx", desc = "exchange" },
-			{ "gX", "gx$", desc = "exchange to eol" },
+			{ "gX", "gx$", desc = "exchange to eol", remap = true },
 
 			{ "gm", desc = "multiply" },
-			{ "gM", "gm$", desc = "multiply to eol" },
+			{ "gM", "gm$", desc = "multiply to eol", remap = true },
 
 			{ "gr", desc = "replace" },
-			{ "gR", "gr$", desc = "replace to eol" },
+			{ "gR", "gr$", desc = "replace to eol", remap = true },
 
 			{ "gs", desc = "sort" },
-			{ "gS", "gs$", desc = "sort to eol" },
+			{ "gS", "gs$", desc = "sort to eol", remap = true },
 		},
 	},
 
