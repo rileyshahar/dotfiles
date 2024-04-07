@@ -189,6 +189,18 @@ keys = [
                 desc="open pdfs",
             ),
             Key(
+                ["shift"],
+                "p",
+                lazy.spawn("rofi-find " + getenv("HOME") + '/library/papers xdg-open "--type pdf"'),
+                desc="open papers",
+            ),
+            Key(
+                ["shift"],
+                "M",
+                lazy.spawn("rofi-find " + getenv("HOME") + '/library/math xdg-open "--type pdf"'),
+                desc="open textbooks",
+            ),
+            Key(
                 [],
                 "l",
                 lazy.spawn("rofi-find " + getenv("HOME") + "/library xdg-open"),
@@ -196,8 +208,8 @@ keys = [
             ),
             Key(
                 [],
-                "t",
-                lazy.spawn("rofi-browser trees"),
+                "m",
+                lazy.spawn("rofi-forester"),
                 desc="open trees",
             ),
             Key(

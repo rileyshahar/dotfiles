@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+json=$(forester query all ~/notes/forest/trees)
+titles=$(echo "$json" | jq -r '.[].title')
+choice=$(echo "$titles" | rofi -i -dmenu)
+escaped=$(echo -n "$choice" | jq -Rsa .)
+page=$(echo "$json" | jq -r ".[] | select(.title == $escaped).route")
+url="~/notes/forest/output/$page"
+
+firefox --new-window "$url"

@@ -7,15 +7,11 @@ page=$(rofi -i -dmenu)
 case $1 in
 
 ncat)
-	url="https://ncatlab.org/nlab/search?query=$page"
+	url="https://ncatlab.org/nlab/show/$page"
 	;;
 
 wiki)
 	url="en.wikipedia.org/wiki/$page"
-	;;
-
-trees)
-	url="rileyshahar.com/$page"
 	;;
 
 rust)
