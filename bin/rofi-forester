@@ -6,7 +6,22 @@ json=$(forester query all ~/notes/forest/trees)
 titles=$(echo "$json" | jq -r '.[].title')
 choice=$(echo "$titles" | rofi -i -dmenu)
 escaped=$(echo -n "$choice" | jq -Rsa .)
-page=$(echo "$json" | jq -r ".[] | select(.title == $escaped).route")
-url="~/notes/forest/output/$page"
 
-firefox --new-window "$url"
+case "$1" in
+
+"read")
+	page=$(echo "$json" | jq -r ".[] | select(.title == $escaped).route")
+	firefox --new-window "~/notes/forest/output/$page"
+	exit
+	;;
+"edit")
+	page=$(echo "$json" | jq -r ".[] | select(.title == $escaped).sourcePath")
+
+	if [ "$page" = "" ]; then
+		page=$(forester new --dest="$HOME"/notes/forest/trees --prefix=rs --dirs="$HOME"/notes/forest/trees/)
+	fi
+
+	neovide "$page"
+	exit
+	;;
+esac

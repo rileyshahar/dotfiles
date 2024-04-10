@@ -56,4 +56,4 @@ end
 
 map("<localleader>s", make_forester, "start forester server")
 map("<localleader>c", stop_forester, "stop forester server")
-map("<localleader>n", "<cmd>!forester new --dest=trees/ --dirs=trees/ --prefix=rs<cr>")
+map("<localleader>n", "<cmd>terminal note<cr>")
