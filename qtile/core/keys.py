@@ -6,7 +6,7 @@ from libqtile.config import Key, KeyChord
 from libqtile.core.manager import Qtile
 from libqtile.lazy import lazy
 
-from .settings import APPS, BAR_APPS, FLOAT_TERM, MOD
+from .settings import APPS, BAR_APPS, FLOAT_TERM, MOD, TERMINAL
 
 if not qtile or qtile.core.name == "wayland":
     ctrl_keys = [
@@ -15,13 +15,13 @@ if not qtile or qtile.core.name == "wayland":
         # Key(["control"], "k", lazy.layout.up(), desc="previous window"),
         # Key(["control"], "l", lazy.layout.right(), desc="right column"),
     ]
-elif qtile.core.name == "x11":
+else:
     ctrl_keys = []
 
 
 def find_edit(mgr: Qtile, cwd: str) -> None:
     """Return a function which edits a file in a floating terminal."""
-    mgr.cmd_spawn(f"rofi-find {cwd} '{FLOAT_TERM} nvim'")
+    mgr.cmd_spawn(f"rofi-find {cwd} 'neovide'")
 
 
 keys = [
@@ -55,6 +55,12 @@ keys = [
         lazy.layout.swap_column_right(),
         desc="move column right",
     ),
+
+    # change screens
+    Key([MOD, "shift"], "right", lazy.next_screen(), desc="next screen"),
+    Key([MOD, "shift"], "left", lazy.prev_screen(), desc="previous screen"),
+    # TODO: up and down?
+
     # change groups
     Key([MOD], "right", lazy.screen.next_group(skip_empty=True), desc="next group"),
     Key([MOD], "left", lazy.screen.prev_group(skip_empty=True), desc="previous group"),
@@ -63,9 +69,6 @@ keys = [
         [MOD], "up", lazy.screen.toggle_group(), desc="toggle group"
     ),  # TODO: pick smth else?
 
-    # new groups
-    Key([MOD, "shift"], "right", lazy.screen.next_group(), desc="next group"),
-    Key([MOD, "shift"], "left", lazy.screen.prev_group(), desc="previous group"),
     # apps
     *(
         Key([MOD], key, lazy.spawn(app), desc=f"launch {name}")
@@ -195,8 +198,8 @@ keys = [
                 desc="open papers",
             ),
             Key(
-                ["shift"],
-                "M",
+                [],
+                "t",
                 lazy.spawn("rofi-find " + getenv("HOME") + '/library/math xdg-open "--type pdf"'),
                 desc="open textbooks",
             ),
@@ -209,7 +212,7 @@ keys = [
             Key(
                 [],
                 "m",
-                lazy.spawn("rofi-forester"),
+                lazy.spawn("rofi-forester read"),
                 desc="open trees",
             ),
             Key(
@@ -245,8 +248,8 @@ keys = [
             ),
             Key(
                 [],
-                "t",
-                lazy.function(find_edit, getenv("HOME") + "/notes/forest/trees"),
+                "m",
+                lazy.spawn("rofi-forester edit"),
                 desc="edit trees",
             ),
         ],

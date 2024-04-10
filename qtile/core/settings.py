@@ -1,12 +1,8 @@
 """Easily configured settings."""
 from libqtile import qtile
 
-if not qtile or qtile.core.name == "wayland":
-    TERMINAL = "neovide +term -- +startinsert"
-    MOD = "MOD4"  # super
-elif qtile.core.name == "x11":
-    TERMINAL = "kitty"
-    MOD = "MOD1"  # alt
+TERMINAL = "neovide +term -- +startinsert"
+MOD = "MOD4"  # super
 
 FLOAT_TERM = "footclient --title=__float"
 BAR_APPS = {"brightness": "pkill -USR1 gammastep", "cpu": FLOAT_TERM + " btm --battery",
