@@ -163,9 +163,9 @@ ln -sv "$DOTFILES_DIR/fusuma" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/gammastep" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/git" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/kanshi" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/keyd" "/etc"
 ln -sv "$DOTFILES_DIR/keynav" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/kitty" "$CONFIG_HOME"
-ln -sv "$DOTFILES_DIR/kmonad" "/etc"
 ln -sv "$DOTFILES_DIR/mpv" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/nvim" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/pandoc" "$CONFIG_HOME"
@@ -178,6 +178,7 @@ ln -sv "$DOTFILES_DIR/tarsnap" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/task" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/tridactyl" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/wallpaper.jpg" "$CONFIG_HOME"
+ln -sv "$DOTFILES_DIR/11 $CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/xdg/mimeapps.list" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/xournalpp" "$CONFIG_HOME"
 ln -sv "$DOTFILES_DIR/zathura" "$CONFIG_HOME"
@@ -203,10 +204,11 @@ sudo chsh -s $(which fish) $(whoami) > /dev/null
 echo "setting colorscheme to tokyonight"
 $DOTFILES_DIR/bin/cac tokyonight --no-reload > /dev/null
 
-echo "setting up kmonad"
+echo "setting up keyd"
 sudo usermod -aG input $USER
 sudo groupadd uinput
 sudo usermod -aG uinput $USER
+sudo systemctl enable --now keyd
 
 sudo modprobe uninput
 sudo 'echo uinput >> /etc/modules-load.d/uinput.conf'
