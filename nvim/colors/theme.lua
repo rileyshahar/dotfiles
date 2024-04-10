@@ -127,6 +127,7 @@ local theme = {
 	VertSplit = { fg = c.norm.bg },
 	Visual = { bg = c.accent.bg },
 	VisualNOS = { bg = c.accent.bg },
+	-- MsgArea = { fg = c.norm.fg, bg = c.none },
 	WarningMsg = { fg = c.diag.warn.fg },
 	Whitespace = { fg = c.lowc.fg, bg = c.none },
 	WildMenu = { bg = c.accent.bg },

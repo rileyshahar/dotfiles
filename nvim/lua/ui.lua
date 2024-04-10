@@ -2,7 +2,7 @@
 vim.o.termguicolors = true
 
 -- colorscheme
-vim.cmd("colorscheme theme")
+vim.cmd("colorscheme tokyonight")
 
 -- make split borders blank
 vim.o.fillchars = "vert: ,vertleft: ,vertright: ,verthoriz: ,horiz: ,horizup: ,horizdown: "

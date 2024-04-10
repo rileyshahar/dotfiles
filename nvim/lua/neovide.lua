@@ -22,6 +22,17 @@ ResetGuiFont = function()
 	RefreshGuiFont()
 end
 
+ToggleLight = function()
+	if vim.g.neovide_transparency == 1.0 then
+		vim.cmd("colorscheme tokyonight-night")
+		vim.g.neovide_transparency = 0.8
+	else
+		vim.cmd("colorscheme tokyonight-day")
+		vim.g.neovide_transparency = 1.0
+	end
+	vim.g.gui_font_size = vim.g.gui_font_default_size
+	RefreshGuiFont()
+end
 -- Call function on startup to set default value
 ResetGuiFont()
 
@@ -37,3 +48,7 @@ end, "decrease font size", { "n", "i", "t" })
 map("<C-=>", function()
 	ResetGuiFont()
 end, "reset font size", { "n", "i", "t" })
+
+map(leaders.ui .. "c", function()
+	ToggleLight()
+end, "toggle light/dark mode")
