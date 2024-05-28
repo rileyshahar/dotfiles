@@ -1,4 +1,4 @@
-vim.g.neovide_transparency = 0.8
+vim.g.neovide_transparency = 1.0
 vim.g.neovide_cursor_animation_length = 0.0
 vim.g.neovide_cursor_trail_size = 0.0
 -- vim.o.guifont = "JetBrainsMono Nerd Font:h10" -- text below applies for VimScript
@@ -25,7 +25,7 @@ end
 ToggleLight = function()
 	if vim.g.neovide_transparency == 1.0 then
 		vim.cmd("colorscheme tokyonight-night")
-		vim.g.neovide_transparency = 0.8
+		vim.g.neovide_transparency = 1.0
 	else
 		vim.cmd("colorscheme tokyonight-day")
 		vim.g.neovide_transparency = 1.0

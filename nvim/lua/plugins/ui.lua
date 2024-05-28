@@ -247,6 +247,31 @@ return {
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
-		opts = {},
+		config = true,
+	},
+
+	-- {
+	-- 	"catppuccin/nvim",
+	-- 	name = "catppuccin",
+	-- 	priority = 1000,
+	-- 	opts = {
+	-- 		term_colors = true,
+	-- 		custom_highlights = {
+	-- 			["@markup.italic"] = { link = "Italic" },
+	-- 		},
+	-- 		-- color_overrides = {
+	-- 		-- 	mocha = {
+	-- 		-- 		base = "#1a1b26",
+	-- 		-- 	},
+	-- 		-- },
+	-- 	},
+	-- },
+
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
+			theme = "tokyonight",
+		},
 	},
 }

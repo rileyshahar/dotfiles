@@ -55,7 +55,7 @@ require("lazy").setup("plugins", {
 })
 
 require("misc")
-require("statusline")
+-- require("statusline")
 require("terminal")
 require("ui")
 
