@@ -1,20 +1,17 @@
 % vim:ft=tex
-\documentclass[sigplan,screen,nonacm,natbib=false,balance=false]{acmart}
+\documentclass[nobib,nohyper]{tufte-handout}
 
-% macros
+% prelude
 \input{prelude.tex}
+
+% title formatting
+\input{title.tex}
 
 % metadata
 \title{{ "{" ~ cookiecutter.title ~ "}" }}
-\author{Riley Shahar}
-\orcid{0009-0003-9485-4399}
-\affiliation{
-	\institution{Reed College}
-	\city{Portland}
-	% \state{Oregon}
-	\country{USA}
-}
-\email{rileyshahar@reed.edu}
+\author{Riley Shahar
+\orcidlink{0009-0003-9485-4399}}
+\date{}
 
 % \keywords{TODO}
 
@@ -24,5 +21,7 @@
 
 \begin{document}
 \maketitle
+
+\printbibliography
 
 \end{document}

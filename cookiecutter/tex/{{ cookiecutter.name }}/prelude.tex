@@ -1,5 +1,12 @@
 {% raw %}% vim:ft=tex
 
+% must-haves
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amsxtra}
+
 % formatting
 \usepackage{enumitem}
 \usepackage{multicol}
@@ -7,20 +14,35 @@
 % fonts
 \usepackage{bbm}
 
-% figs
-\usepackage{float}
-\usepackage{tikz-cd}
-\usepackage{subcaption}
-\usepackage{mathpartir}
-\usepackage{adjustbox}
-
-% refs
+% links/refs
+\usepackage[
+	unicode=true,
+	pdfusetitle,
+	bookmarks=true,
+	bookmarksnumbered=false,
+	breaklinks=false,
+	backref=false,
+	colorlinks=true,
+	linkcolor=blue,
+	citecolor=blue,
+	urlcolor=blue,
+	final
+]{hyperref}
+\usepackage{bookmark}
 \usepackage[
 	backend=biber,
 	style=alphabetic
 ]{biblatex}
 \addbibresource{references.bib}
 \usepackage[capitalise]{cleveref}
+\usepackage{orcidlink}
+
+% figs
+\usepackage{float}
+\usepackage{tikz-cd}
+\usepackage{subcaption}
+\usepackage{mathpartir}
+\usepackage{adjustbox}
 
 % quality of life
 \renewcommand{\emptyset}{\varnothing}
@@ -109,4 +131,12 @@
 \def\YY{\mathbb{Y}}
 \def\ZZ{\mathbb{Z}}
 
-\def\kk{\Bbbk}{% endraw %}
+\def\kk{\Bbbk}
+
+% itemize spacing
+% https://tex.stackexchange.com/a/650378
+\let\tempone\itemize
+\let\temptwo\enditemize
+\renewenvironment{itemize}{
+\tempone\setlength{\itemsep}{-1ex}}
+{\temptwo}{% endraw %}
