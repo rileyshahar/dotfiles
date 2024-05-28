@@ -37,15 +37,15 @@ return {
 		)
 	),
 
-	s(
-		{ trig = "\\$|\\# ", trigEngine = "ecma", name = "math", dscr = "Inline math.", snippetType = "autosnippet" },
-		fmt("#{{{}}} {}", { i(1), i(0) })
-	),
-
-	s(
-		{ trig = "##", name = "display math", dscr = "Display math.", snippetType = "autosnippet" },
-		fmt("##{{{}}} {}", { i(1), i(0) })
-	),
+	-- s(
+	-- 	{ trig = "\\$|\\# ", trigEngine = "ecma", name = "math", dscr = "Inline math.", snippetType = "autosnippet" },
+	-- 	fmt("#{{{}}} {}", { i(1), i(0) })
+	-- ),
+	--
+	-- s(
+	-- 	{ trig = "##", name = "display math", dscr = "Display math.", snippetType = "autosnippet" },
+	-- 	fmt("##{{{}}} {}", { i(1), i(0) })
+	-- ),
 
 	s(
 		{ trig = "cite", name = "citation", dscr = "A citation." },
