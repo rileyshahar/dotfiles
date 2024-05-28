@@ -240,13 +240,13 @@ return {
 					end
 
 					-- setup code lens
-					if client.server_capabilities.codeLensProvider then
-						vim.api.nvim_create_augroup("CodeLens", { clear = true })
-						vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave", "TextChanged" }, {
-							group = "CodeLens",
-							callback = vim.lsp.codelens.refresh,
-						})
-					end
+					-- if client.server_capabilities.codeLensProvider then
+					-- 	vim.api.nvim_create_augroup("CodeLens", { clear = true })
+					-- 	vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave", "TextChanged" }, {
+					-- 		group = "CodeLens",
+					-- 		callback = vim.lsp.codelens.refresh,
+					-- 	})
+					-- end
 
 					-- formatting
 					-- if client.server_capabilities.documentFormattingProvider then
@@ -260,11 +260,11 @@ return {
 					-- end
 
 					-- inlay hints
-					if client.server_capabilities.inlayHintProvider then
-						if vim.lsp.inlay_hint then
-							vim.lsp.inlay_hint.enable(bufnr, true)
-						end
-					end
+					-- if client.server_capabilities.inlayHintProvider then
+					-- 	if vim.lsp.inlay_hint then
+					-- 		vim.lsp.inlay_hint.enable(bufnr, true)
+					-- 	end
+					-- end
 
 					-- lsp signature
 					require("lsp_signature").on_attach({

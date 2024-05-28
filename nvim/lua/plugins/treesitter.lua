@@ -57,7 +57,7 @@ return {
 			vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 
 			require("nvim-treesitter.configs").setup(opts)
-		end
+		end,
 	},
 	{
 		"nvim-treesitter/playground",
