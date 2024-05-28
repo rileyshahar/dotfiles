@@ -12,7 +12,7 @@ vim.o.cmdheight = 1
 
 -- conceal
 vim.o.conceallevel = 2
-vim.o.concealcursor = "n"
+-- vim.o.concealcursor = ""
 
 -- splits
 vim.o.splitright = true
