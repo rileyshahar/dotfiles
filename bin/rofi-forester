@@ -2,7 +2,10 @@
 
 set -euo pipefail
 
-json=$(forester query all ~/notes/forest/trees)
+json=$(
+	cd ~/notes/forest
+	forester query all
+)
 titles=$(echo "$json" | jq -r '.[].title')
 choice=$(echo "$titles" | rofi -i -dmenu)
 escaped=$(echo -n "$choice" | jq -Rsa .)
@@ -14,11 +17,12 @@ case "$1" in
 	firefox --new-window "~/notes/forest/output/$page"
 	exit
 	;;
+
 "edit")
 	page=$(echo "$json" | jq -r ".[] | select(.title == $escaped).sourcePath")
 
 	if [ "$page" = "" ]; then
-		page=$(forester new --dest="$HOME"/notes/forest/trees --prefix=rs --dirs="$HOME"/notes/forest/trees/)
+		page=$(forester new ~/notes/forest/forest.toml --dest="$HOME"/notes/forest/trees --prefix=rs)
 	fi
 
 	neovide "$page"

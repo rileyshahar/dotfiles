@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 cd ~/notes/forest
-out=$(forester new --dir=trees/ --prefix="${1:-rs}" --dest=trees/ --template=main 2>&1 | rev | cut -d " " -f 1 | rev)
+out=$(forester new forest.toml --prefix="${1:-rs}" --dest=trees/ --template=main 2>&1 | rev | cut -d " " -f 1 | rev)
 nvim "$out"
