@@ -47,22 +47,6 @@ return {
 
 	"chaoren/vim-wordmotion", -- snake case w etc
 
-	{
-		"Wansmer/treesj",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		opts = {
-			use_default_keymaps = false,
-		},
-		keys = function()
-			local tsj = require("treesj")
-			return {
-				{ leaders.surround .. "t", tsj.toggle, desc = "toggle splitjoin" },
-				{ leaders.surround .. "s", tsj.split, desc = "split brackets" },
-				{ leaders.surround .. "j", tsj.join, desc = "join brackets" },
-			}
-		end,
-	},
-
 	-- surround
 	{
 		"echasnovski/mini.surround",
