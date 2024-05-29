@@ -13,8 +13,8 @@ return {
 			{ "g=", desc = "evaluate" },
 			{ "g+", "g=$", desc = "evaluate to eol", remap = true },
 
-			{ "gx", desc = "exchange" },
-			{ "gX", "gx$", desc = "exchange to eol", remap = true },
+			{ "ge", desc = "exchange" },
+			{ "gE", "ge$", desc = "exchange to eol", remap = true },
 
 			{ "gm", desc = "multiply" },
 			{ "gM", "gm$", desc = "multiply to eol", remap = true },
