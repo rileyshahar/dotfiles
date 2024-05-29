@@ -14,6 +14,9 @@ vim.o.cmdheight = 1
 vim.o.conceallevel = 2
 -- vim.o.concealcursor = ""
 
+-- statusline
+vim.o.laststatus = 3
+
 -- splits
 vim.o.splitright = true
 map("<c-q>", "<cmd>q<cr>", "close split", { "i", "n", "t", "v", "x" })
