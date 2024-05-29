@@ -4,6 +4,8 @@ vim.g.neovide_cursor_trail_size = 0.0
 -- vim.o.guifont = "JetBrainsMono Nerd Font:h10" -- text below applies for VimScript
 vim.g.neovide_scroll_animation_length = 0.0
 
+local colorscheme = "night"
+
 vim.g.gui_font_default_size = 10
 vim.g.gui_font_size = vim.g.gui_font_default_size
 vim.g.gui_font_face = "JetBrainsMono Nerd Font"
@@ -23,16 +25,19 @@ ResetGuiFont = function()
 end
 
 ToggleLight = function()
-	if vim.g.neovide_transparency == 1.0 then
+	if colorscheme == "day" then
+		colorscheme = "night"
 		vim.cmd("colorscheme tokyonight-night")
 		vim.g.neovide_transparency = 1.0
 	else
+		colorscheme = "day"
 		vim.cmd("colorscheme tokyonight-day")
 		vim.g.neovide_transparency = 1.0
 	end
 	vim.g.gui_font_size = vim.g.gui_font_default_size
 	RefreshGuiFont()
 end
+
 -- Call function on startup to set default value
 ResetGuiFont()
 
