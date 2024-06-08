@@ -192,24 +192,6 @@ keys = [
                 desc="open pdfs",
             ),
             Key(
-                ["shift"],
-                "p",
-                lazy.spawn("rofi-find " + getenv("HOME") + '/library/papers xdg-open "--type pdf"'),
-                desc="open papers",
-            ),
-            Key(
-                [],
-                "t",
-                lazy.spawn("rofi-find " + getenv("HOME") + '/library/math xdg-open "--type pdf"'),
-                desc="open textbooks",
-            ),
-            Key(
-                [],
-                "l",
-                lazy.spawn("rofi-find " + getenv("HOME") + "/library xdg-open"),
-                desc="open library files",
-            ),
-            Key(
                 [],
                 "m",
                 lazy.spawn("rofi-forester read"),
@@ -229,6 +211,49 @@ keys = [
             ),
         ],
         name="open",
+    ),
+    KeyChord(
+        [MOD],
+        "r",
+        [
+            Key(
+                [],
+                "r",
+                lazy.spawn("rofi-find " + getenv("HOME") + "/library xdg-open"),
+                desc="read"
+            ),
+            Key(
+                [],
+                "m",
+                lazy.spawn("rofi-find " + getenv("HOME") + "/library/math xdg-open"),
+                desc="read math books"
+            ),
+            Key(
+                [],
+                "f",
+                lazy.spawn("rofi-find " + getenv("HOME") + "/library/ffn xdg-open"),
+                desc="read fanfic"
+            ),
+            Key(
+                [],
+                "s",
+                lazy.spawn("rofi-find " + getenv("HOME") + "/library/spec xdg-open"),
+                desc="read speculative fiction"
+            ),
+            Key(
+                [],
+                "p",
+                lazy.spawn("rofi-find " + getenv("HOME") + "/library/papers xdg-open"),
+                desc="read papers"
+            ),
+            Key(
+                [],
+                "t",
+                lazy.spawn("rofi-find " + getenv("HOME") + "/library/ttrpg xdg-open"),
+                desc="read ttrpgs"
+            ),
+        ],
+        name="read",
     ),
     KeyChord(
         [MOD],
