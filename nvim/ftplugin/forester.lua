@@ -54,6 +54,13 @@ local function stop_forester()
 	task_win = nil
 end
 
+local function note()
+	vim.ui.input({ prompt = "prefix: " }, function(input)
+		vim.cmd("terminal note " .. input)
+	end)
+end
+
 map("<localleader>s", make_forester, "start forester server")
 map("<localleader>c", stop_forester, "stop forester server")
 map("<localleader>n", "<cmd>terminal note<cr>")
+map("<localleader>N", note)
