@@ -18,7 +18,7 @@ class MyBattery(Battery):
                 self.layout.colour = self.foreground
 
         match status.state:
-            case BatteryState.DISCHARGING:
+            case BatteryState.DISCHARGING | BatteryState.NOT_CHARGING:
                 if status.percent > 0.8:
                     char = " "
                 elif status.percent > 0.6:

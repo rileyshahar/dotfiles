@@ -25,6 +25,8 @@ def find_edit(mgr: Qtile, cwd: str) -> None:
 
 
 keys = [
+    # toggle floating
+    Key([MOD], "t", lazy.window.toggle_floating(), desc="toggle floating"),
     # change focus
     Key([MOD], "h", lazy.layout.left(), desc="left column"),
     Key([MOD], "j", lazy.layout.down(), desc="next window"),
