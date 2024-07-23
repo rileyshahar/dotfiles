@@ -49,7 +49,7 @@ return {
 	{
 		"echasnovski/mini.surround",
 		init = function()
-			vim.keymap.del({ "n", "v" }, "s")
+			-- vim.keymap.del({ "n", "v" }, "s")
 		end,
 		opts = {
 			search_method = "cover",
