@@ -37,6 +37,8 @@ return {
 
 	"kmonad/kmonad-vim",
 
+	"petRUShka/vim-sage",
+
 	{
 		"Julian/lean.nvim",
 		ft = "lean",

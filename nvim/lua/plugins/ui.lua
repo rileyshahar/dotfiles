@@ -83,28 +83,26 @@ return {
 		end,
 		opts = {
 			prefixes = {
-				["g"] = { name = "goto" },
-				["]"] = { name = "next" },
-				["["] = { name = "prev" },
-				["s"] = { name = "surround" },
-				["<c-t>"] = { name = "terminal" },
-				["<leader>"] = {
-					name = "leader",
-					["m"] = { name = "make" },
-					["f"] = { name = "find" },
-					["g"] = { name = "git" },
-					[","] = { name = "local" },
-					["e"] = { name = "edit" },
-					["p"] = { name = "plugin" },
-					["r"] = { name = "refactor" },
-					["n"] = { name = "notify" },
-				},
+				{ "<c-t>", group = "terminal" },
+				{ "<leader>", group = "leader" },
+				{ "<leader>,", group = "local" },
+				{ "<leader>e", group = "edit" },
+				{ "<leader>f", group = "find" },
+				{ "<leader>g", group = "git" },
+				{ "<leader>m", group = "make" },
+				{ "<leader>n", group = "notify" },
+				{ "<leader>p", group = "plugin" },
+				{ "<leader>r", group = "refactor" },
+				{ "[", group = "prev" },
+				{ "]", group = "next" },
+				{ "g", group = "goto" },
+				{ "s", group = "surround" },
 			},
 		},
 		config = function(_, opts)
 			local wk = require("which-key")
 			wk.setup(opts)
-			wk.register(opts.prefixes)
+			wk.add(opts.prefixes)
 		end,
 	},
 
@@ -190,17 +188,17 @@ return {
 	},
 
 	-- twilight
-	{
-		"folke/twilight.nvim",
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
-		keys = {
-			{ leaders.ui .. "t", "<cmd>Twilight<cr>", desc = "twilight" },
-		},
-	},
+	-- {
+	-- 	"folke/twilight.nvim",
+	-- 	opts = {
+	-- 		-- your configuration comes here
+	-- 		-- or leave it empty to use the default settings
+	-- 		-- refer to the configuration section below
+	-- 	},
+	-- 	keys = {
+	-- 		{ leaders.ui .. "t", "<cmd>Twilight<cr>", desc = "twilight" },
+	-- 	},
+	-- },
 
 	-- dashboard
 	{

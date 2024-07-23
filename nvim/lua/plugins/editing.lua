@@ -13,7 +13,7 @@ return {
 			{ "g=", desc = "evaluate" },
 			{ "g+", "g=$", desc = "evaluate to eol", remap = true },
 
-			{ "ge", desc = "exchange" },
+			{ "gx", desc = "exchange" },
 			{ "gE", "ge$", desc = "exchange to eol", remap = true },
 
 			{ "gm", desc = "multiply" },
@@ -44,8 +44,6 @@ return {
 	},
 
 	"machakann/vim-highlightedyank", -- highlight yanked text
-
-	"chaoren/vim-wordmotion", -- snake case w etc
 
 	-- surround
 	{
@@ -81,15 +79,35 @@ return {
 		opts = function()
 			local ai = require("mini.ai")
 			return {
-				search_method = "cover",
 				n_lines = 500,
+				-- from https://github.com/LazyVim/LazyVim/blob/f94a0591b3e5838794b1c3897ec21491aeb080fe/lua/lazyvim/plugins/coding.lua
 				custom_textobjects = {
-					o = ai.gen_spec.treesitter({
+					o = ai.gen_spec.treesitter({ -- code block
 						a = { "@block.outer", "@conditional.outer", "@loop.outer" },
 						i = { "@block.inner", "@conditional.inner", "@loop.inner" },
-					}, {}),
-					f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
-					c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
+					}),
+					f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }), -- function
+					c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }), -- class
+					t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" }, -- tags
+					d = { "%f[%d]%d+" }, -- digits
+					g = function(ai_type)
+						local start_line, end_line = 1, vim.fn.line("$")
+						if ai_type == "i" then
+							-- Skip first and last blank lines for `i` textobject
+							local first_nonblank, last_nonblank =
+								vim.fn.nextnonblank(start_line), vim.fn.prevnonblank(end_line)
+							-- Do nothing for buffer with all blanks
+							if first_nonblank == 0 or last_nonblank == 0 then
+								return { from = { line = start_line, col = 1 } }
+							end
+							start_line, end_line = first_nonblank, last_nonblank
+						end
+
+						local to_col = math.max(vim.fn.getline(end_line):len(), 1)
+						return { from = { line = start_line, col = 1 }, to = { line = end_line, col = to_col } }
+					end,
+					u = ai.gen_spec.function_call(), -- u for "Usage"
+					U = ai.gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
 				},
 			}
 		end,
@@ -97,41 +115,59 @@ return {
 			require("mini.ai").setup(opts)
 
 			-- register all text objects with which-key
-			local keys = {
-				[" "] = "whitespace",
-				['"'] = "double quote",
-				["'"] = "single quote",
-				["`"] = "backtick",
-				["("] = "parentheses",
-				[")"] = "parentheses (ws)",
-				["<lt>"] = "angle bracket",
-				[">"] = "angle bracket (ws)",
-				["["] = "square bracket",
-				["]"] = "square bracket (ws)",
-				["{"] = "curly brace",
-				["}"] = "curly brace (ws)",
-				["?"] = "prompt",
-				_ = "underscore",
-				a = "argument",
-				B = "block",
-				b = "brackets",
-				c = "class",
-				f = "function",
-				o = "block, conditional, or loop",
-				q = "quote",
-				t = "tag",
-				l = "last textobject",
-				n = "next textobject",
-				p = "paragraph",
-				s = "sentence",
-				w = "word",
-				W = "WORD",
+			-- from https://github.com/LazyVim/LazyVim/blob/f94a0591b3e5838794b1c3897ec21491aeb080fe/lua/lazyvim/util/mini.lua
+			local objects = {
+				{ " ", desc = "whitespace" },
+				{ '"', desc = '" string' },
+				{ "'", desc = "' string" },
+				{ "(", desc = "() block" },
+				{ ")", desc = "() block with ws" },
+				{ "<", desc = "<> block" },
+				{ ">", desc = "<> block with ws" },
+				{ "?", desc = "user prompt" },
+				{ "U", desc = "use/call without dot" },
+				{ "[", desc = "[] block" },
+				{ "]", desc = "[] block with ws" },
+				{ "_", desc = "underscore" },
+				{ "`", desc = "` string" },
+				{ "a", desc = "argument" },
+				{ "b", desc = ")]} block" },
+				{ "c", desc = "class" },
+				{ "d", desc = "digit(s)" },
+				{ "f", desc = "function" },
+				{ "g", desc = "entire file" },
+				{ "o", desc = "block, conditional, loop" },
+				{ "q", desc = "quote `\"'" },
+				{ "t", desc = "tag" },
+				{ "u", desc = "use/call" },
+				{ "{", desc = "{} block" },
+				{ "}", desc = "{} with ws" },
 			}
-			require("which-key").register({
-				mode = { "o", "x" },
-				i = keys,
-				a = keys,
-			})
+
+			local ret = { mode = { "o", "x" } }
+			local mappings = vim.tbl_extend("force", {}, {
+				around = "a",
+				inside = "i",
+				around_next = "an",
+				inside_next = "in",
+				around_last = "al",
+				inside_last = "il",
+			}, opts.mappings or {})
+			mappings.goto_left = nil
+			mappings.goto_right = nil
+
+			for name, prefix in pairs(mappings) do
+				name = name:gsub("^around_", ""):gsub("^inside_", "")
+				ret[#ret + 1] = { prefix, group = name }
+				for _, obj in ipairs(objects) do
+					local desc = obj.desc
+					if prefix:sub(1, 1) == "i" then
+						desc = desc:gsub(" with ws", "")
+					end
+					ret[#ret + 1] = { prefix .. obj[1], desc = obj.desc }
+				end
+			end
+			require("which-key").add(ret, { notify = false })
 		end,
 	},
 }
