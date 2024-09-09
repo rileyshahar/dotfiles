@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from libqtile.config import Screen
 
 from .bar import widgets
@@ -15,10 +17,16 @@ screens = [
     Screen(
         wallpaper="~/dotfiles/wallpaper.jpg",
         wallpaper_mode="stretch",
-        bottom=widgets,
+        bottom=widgets(),
     ),
     Screen(
         wallpaper="~/dotfiles/wallpaper.jpg",
         wallpaper_mode="stretch",
+        bottom=widgets(),
+    ),
+    Screen(
+        wallpaper="~/dotfiles/wallpaper.jpg",
+        wallpaper_mode="stretch",
+        bottom=widgets(),
     ),
 ]

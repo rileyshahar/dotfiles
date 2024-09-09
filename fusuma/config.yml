@@ -1,5 +1,13 @@
 swipe:
   3:
+    # left:
+    #   command: "xdotool key super+Right"
+    # right:
+    #   command: "xdotool key super+Left"
+    # down:
+    #   command: "xdotool key super+j"
+    # up:
+    #   command: "xdotool key super+k"
     left:
       command: "wtype -M win -P right -p right -m win"
     right:

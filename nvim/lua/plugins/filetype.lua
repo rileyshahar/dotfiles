@@ -52,21 +52,15 @@ return {
 		},
 	},
 
-	-- {
-	-- 	"kentookura/forester.nvim",
-	-- 	ft = "forester",
-	-- 	opts = {
-	-- 		forests = { "~/notes/forest/" }, -- global forests
-	-- 		tree_dirs = { "trees" }, -- where the plugin will look for trees. Works outside of global forests
-	-- 		-- conceal = false; -- Concealing is highly experimental, incomplete, partially broken. Enable only if you want to improve it!
-	-- 	},
-	-- 	config = function(opts)
-	-- 		require("forester").setup(opts)
-	-- 	end,
-	-- 	dependencies = {
-	-- 		{ "nvim-treesitter/nvim-treesitter" },
-	-- 		{ "nvim-lua/plenary.nvim" },
-	-- 		{ "hrsh7th/nvim-cmp" },
-	-- 	},
-	-- },
+	{
+		"kentookura/forester.nvim",
+		ft = "forester",
+		dependencies = {
+			{ "nvim-telescope/telescope.nvim" },
+			{ "nvim-treesitter/nvim-treesitter" },
+			{ "nvim-lua/plenary.nvim" },
+			{ "hrsh7th/nvim-cmp" },
+		},
+		config = true,
+	},
 }

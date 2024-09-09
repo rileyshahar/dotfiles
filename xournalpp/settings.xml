@@ -14,7 +14,7 @@
   <property name="zoomStep" value="10"/>
   <property name="zoomStepScroll" value="2"/>
   <property name="displayDpi" value="72"/>
-  <property name="mainWndWidth" value="1124"/>
+  <property name="mainWndWidth" value="2252"/>
   <property name="mainWndHeight" value="1470"/>
   <property name="maximized" value="false"/>
   <property name="showToolbar" value="true"/>
@@ -167,6 +167,10 @@
     </data>
   </data>
   <data name="deviceClasses">
+    <data name="PIXA3854:00 093A:0274 Touchpad">
+      <attribute name="deviceClass" type="int" value="1"/>
+      <attribute name="deviceSource" type="int" value="6"/>
+    </data>
     <data name="Wayland Finger Scrolling">
       <attribute name="deviceClass" type="int" value="1"/>
       <attribute name="deviceSource" type="int" value="6"/>

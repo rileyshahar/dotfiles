@@ -44,6 +44,9 @@ keys = [
     Key([MOD, "control"], "k", lazy.layout.grow_up(), desc="grow up"),
     Key([MOD, "control"], "l", lazy.layout.grow_right(), desc="grow right"),
     Key([MOD, "control"], "r", lazy.layout.normalize(), desc="reset sizes"),
+    Key([MOD], 'm', lazy.layout.maximize()),
+    Key([MOD], 'n', lazy.layout.normalize()),
+
     # move columns
     Key(
         [MOD, "control", "shift"],

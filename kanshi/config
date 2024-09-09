@@ -1,3 +1,14 @@
 profile {
-	output eDP-1 enable scale 1.4
+	output eDP-1 enable
+}
+
+profile {
+	output "Philips Consumer Electronics Company PHL 27E2F7901 UHB2340004327" enable
+	output eDP-1 enable
+}
+
+profile {
+	output eDP-1 disable
+	output "Dell Inc. DELL S2722QC 23MFMD3" position 0,0 mode 3840x2160 transform 270
+	output "Philips Consumer Electronics Company PHL 27E2F7901 UHB2340004327" position 2160,0 mode 3840x2160
 }

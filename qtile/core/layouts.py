@@ -29,12 +29,19 @@ max_theme = {
     "border_normal": NORMAL_COLOR,
 }
 
+vert_theme = {
+    **layout_theme,
+    "border_focus": FOCUS_COLOR,
+    "border_normal": NORMAL_COLOR
+}
+
 float_theme = {
     **layout_theme,
     "border_normal": NORMAL_COLOR,
     "border_focus": FOCUS_COLOR,
 }
 
+vertical_layout = layout.VerticalTile(**vert_theme)
 
 layouts = [
     layout.Columns(**columns_theme),  # type: ignore

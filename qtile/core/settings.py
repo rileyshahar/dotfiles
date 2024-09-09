@@ -25,8 +25,8 @@ DAEMONS = (
     "fusuma",
     "dunst &",
     "batsignal",
-    "emacs --daemon",
-    "otd-daemon"
+    "otd-daemon",
+    "kanshi &"
 )
 
 
