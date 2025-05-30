@@ -44,8 +44,12 @@ keys = [
     Key([MOD, "control"], "k", lazy.layout.grow_up(), desc="grow up"),
     Key([MOD, "control"], "l", lazy.layout.grow_right(), desc="grow right"),
     Key([MOD, "control"], "r", lazy.layout.normalize(), desc="reset sizes"),
-    Key([MOD], 'm', lazy.layout.maximize()),
-    Key([MOD], 'n', lazy.layout.normalize()),
+    Key([MOD], "m", lazy.layout.maximize()),
+    Key([MOD], "n", lazy.layout.normalize()),
+    # TODO: use fewer keys for this, we dont need separate keys for different layouts.
+    # should be able to condition on the layout
+    Key([MOD, "control"], "m", lazy.layout.grow()),
+    Key([MOD, "control"], "n", lazy.layout.shrink()),
 
     # move columns
     Key(
@@ -193,7 +197,7 @@ keys = [
             Key(
                 [],
                 "p",
-                lazy.spawn("rofi-find " + getenv("HOME") + ' xdg-open "--type pdf"'),
+                lazy.spawn("rofi-find " + getenv("HOME") + ' zathura "--type pdf"'),
                 desc="open pdfs",
             ),
             Key(
@@ -224,38 +228,50 @@ keys = [
             Key(
                 [],
                 "r",
-                lazy.spawn("rofi-find " + getenv("HOME") + "/library xdg-open"),
+                lazy.spawn("rofi-find " + getenv("HOME") + "/library zathura"),
                 desc="read"
             ),
             Key(
                 [],
                 "m",
-                lazy.spawn("rofi-find " + getenv("HOME") + "/library/math xdg-open"),
+                lazy.spawn("rofi-find " + getenv("HOME") + "/library/math zathura"),
                 desc="read math books"
             ),
             Key(
                 [],
                 "f",
-                lazy.spawn("rofi-find " + getenv("HOME") + "/library/ffn xdg-open"),
+                lazy.spawn("rofi-find " + getenv("HOME") + "/library/ffn zathura"),
                 desc="read fanfic"
             ),
             Key(
                 [],
                 "s",
-                lazy.spawn("rofi-find " + getenv("HOME") + "/library/spec xdg-open"),
+                lazy.spawn("rofi-find " + getenv("HOME") + "/library/spec zathura"),
                 desc="read speculative fiction"
             ),
             Key(
                 [],
+                "l",
+                lazy.spawn("rofi-find " + getenv("HOME") + "/library/lit zathura"),
+                desc="read literary fiction"
+            ),
+            Key(
+                [],
                 "p",
-                lazy.spawn("rofi-find " + getenv("HOME") + "/library/papers xdg-open"),
+                lazy.spawn("rofi-find " + getenv("HOME") + "/library/papers zathura"),
                 desc="read papers"
             ),
             Key(
                 [],
                 "t",
-                lazy.spawn("rofi-find " + getenv("HOME") + "/library/ttrpg xdg-open"),
+                lazy.spawn("rofi-find " + getenv("HOME") + "/library/ttrpg zathura"),
                 desc="read ttrpgs"
+            ),
+            Key(
+                [],
+                "b",
+                lazy.spawn("rofi-find " + getenv("HOME") + "/library/bridge zathura"),
+                desc="read bridge"
             ),
         ],
         name="read",

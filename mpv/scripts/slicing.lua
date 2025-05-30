@@ -18,9 +18,15 @@ local o = {
 	command_template = [[
         ffmpeg -v warning -y -stats
         -ss $shift -i "$in" -t $duration
-        -c:v $vcodec -c:a $acodec $audio
-        -vf $prevf$vf$postvf $opts "$out.$ext"
+				"$out.$ext"
     ]],
+	-- command_template = [[
+	--        ffmpeg -v warning -y -stats
+	--        -ss $shift -i "$in" -t $duration
+	--        -c:v $vcodec -c:a $acodec $audio
+	--        -vf $prevf$vf$postvf $opts
+	-- 			"$out.$ext"
+	--    ]],
 }
 options.read_options(o)
 

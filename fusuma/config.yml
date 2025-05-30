@@ -9,10 +9,10 @@ swipe:
     # up:
     #   command: "xdotool key super+k"
     left:
-      command: "wtype -M win -P right -p right -m win"
+      command: "wtype -M win -P right -p right -m win || xdotool key super+Right"
     right:
-      command: "wtype -M win -P left -p left -m win"
+      command: "wtype -M win -P left -p left -m win || xdotool key super+Left"
     down:
-      command: "wtype -M win -P j -p j -m win"
+      command: "wtype -M win -P j -p j -m win || xdotool key super+j"
     up:
-      command: "wtype -M win -P k -p k -m win"
+      command: "wtype -M win -P k -p k -m win || xdotool key super+k"

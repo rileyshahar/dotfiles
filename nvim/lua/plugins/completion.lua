@@ -39,7 +39,7 @@ return {
 			"hrsh7th/cmp-path",
 			"ray-x/cmp-treesitter",
 			"lukas-reineke/cmp-under-comparator",
-			"rileyshahar/cmp-forester",
+			-- "rileyshahar/cmp-forester",
 			{
 				"zbirenbaum/copilot-cmp",
 				config = true,
@@ -144,7 +144,7 @@ return {
 					{ name = "buffer", keyword_length = 3 },
 					{ name = "path" },
 					{ name = "spell", keyword_length = 3 },
-					{ name = "forester" },
+					-- { name = "forester" },
 				},
 				formatting = {
 					fields = { "abbr", "menu", "kind" },

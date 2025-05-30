@@ -3,7 +3,7 @@ import subprocess
 
 from libqtile import bar, widget
 from libqtile.lazy import lazy
-from qtile_extras.widget import Visualizer
+# from qtile_extras.widget import Visualizer
 
 from widgets import MyBattery
 
@@ -65,11 +65,11 @@ def widgets():
                 foreground=COLORS.BRIGHT_MAGENTA,
             ),
             widget.Spacer(),
-            Visualizer(
-                background=COLORS.BACKGROUND,
-                bar_colour=COLORS.BRIGHT_CYAN,
-                mouse_callbacks={"Button1": lazy.spawn(BAR_APPS["visualizer"])},
-            ),
+            # Visualizer(
+            #     background=COLORS.BACKGROUND,
+            #     bar_colour=COLORS.BRIGHT_CYAN,
+            #     mouse_callbacks={"Button1": lazy.spawn(BAR_APPS["visualizer"])},
+            # ),
             # widget.GroupBox(
             #     highlight_method="text",
             #     this_current_screen_border=COLORS.DIM_MAGENTA,
