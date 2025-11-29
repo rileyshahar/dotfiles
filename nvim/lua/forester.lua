@@ -1,0 +1,8 @@
+-- vim.filetype.add({ extension = { tree = "forester" } })
+--
+-- vim.lsp.config["forester-lsp"] = {
+-- 	cmd = { "forester", "lsp" },
+-- 	filetypes = { "forester" },
+-- }
+--
+-- vim.lsp.enable("forester-lsp")

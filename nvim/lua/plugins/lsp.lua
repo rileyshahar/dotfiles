@@ -69,6 +69,10 @@ return {
 					},
 				},
 				marksman = {},
+				forester_lsp = {
+					cmd = { "forester", "lsp" },
+					filetypes = { "forester" },
+				},
 				rust_analyzer = {
 					cmd = { "rustup", "run", "stable", "rust-analyzer" },
 					settings = {

@@ -200,7 +200,6 @@ abbr -a mail hydroxide serve \>$XDG_DATA_HOME/hydroxide/hydroxide.log \& \; aerc
 #     abbr -a ssh "kitty +kitten ssh" # ssh compatibility (https://sw.kovidgoyal.net/kitty/faq/#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer)
 # end
 
-
 # ls replacement
 if type -q exa
     set ls_function exa
@@ -227,7 +226,6 @@ end
 abbr -a bat $cat_function
 abbr -a cat $cat_function
 
-
 # top replacement
 if type -q btm
     set top_function btm
@@ -239,7 +237,6 @@ end
 
 abbr -a top $top_function
 abbr -a btm $top_function
-
 
 ### KEYBINDINGS
 bind \cs history-token-search-backward
@@ -260,8 +257,8 @@ eval (opam env)
 ### Start x
 if status is-login
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-        exec qtile start -b wayland
+        # exec qtile start -b wayland
         # exec sway --unsupported-gpu
-        # exec startx "$XDG_CONFIG_HOME/X11/xinitrc" -- -keeptty
+        exec startx "$XDG_CONFIG_HOME/X11/xinitrc" -- -keeptty
     end
 end

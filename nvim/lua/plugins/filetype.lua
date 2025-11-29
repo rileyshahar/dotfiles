@@ -52,15 +52,15 @@ return {
 		},
 	},
 
-	{
-		"kentookura/forester.nvim",
-		ft = "forester",
-		dependencies = {
-			{ "nvim-telescope/telescope.nvim" },
-			{ "nvim-treesitter/nvim-treesitter" },
-			{ "nvim-lua/plenary.nvim" },
-			{ "hrsh7th/nvim-cmp" },
-		},
-		config = true,
-	},
+	-- {
+	-- 	"kentookura/forester.nvim",
+	-- 	ft = "forester",
+	-- 	dependencies = {
+	-- 		{ "nvim-telescope/telescope.nvim" },
+	-- 		{ "nvim-treesitter/nvim-treesitter" },
+	-- 		{ "nvim-lua/plenary.nvim" },
+	-- 		{ "hrsh7th/nvim-cmp" },
+	-- 	},
+	-- 	config = true,
+	-- },
 }

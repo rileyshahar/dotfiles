@@ -144,7 +144,7 @@ return {
 					{ name = "buffer", keyword_length = 3 },
 					{ name = "path" },
 					{ name = "spell", keyword_length = 3 },
-					-- { name = "forester" },
+					{ name = "forester" },
 				},
 				formatting = {
 					fields = { "abbr", "menu", "kind" },
