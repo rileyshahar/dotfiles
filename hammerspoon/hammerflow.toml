@@ -1,0 +1,80 @@
+# settings
+leader_key = "f18"   # required, the leader key that starts the sequence
+leader_key_mods = "" # optional, default "", not recommended - a dedicated leader key is better
+# supports cmd ctrl alt shift
+auto_reload = true     # optional, default true, reload when any file in this directory is saved
+toast_on_reload = true # optional, default false, show a toast when the config is reloaded
+show_ui = true         # optional, default true, show the ui with your key maps
+key_maps_per_line = 3  # optional, default 5, number of key maps per line in the ui
+
+
+n = "Neovide"
+N = ["cmd:neovide", "Neovide"]
+b = "Firefox"
+c = "Fantastical"
+t = "Todoist"
+k = ["input:https://kagi.com/search?q={input}", "kagi"]
+
+[C]
+label = "[chats]"
+t = "Telegram"
+d = "Discord"
+s = "Slack"
+w = "WhatsApp"
+p = "Signal"      # "private"
+m = "Texty"
+
+# create groups to nest actions
+[l]
+label = "[links]"         # the "label" key is reserved to change the label of the group
+t = "https://twitter.com"
+
+[l.m]
+label = "[me]"
+g = ["https://github.com/rileyshahar", "github"]
+w = ["https://rileyshahar.com", "website"]
+
+[r]
+label = "[raycast]"
+c = ["raycast://extensions/raycast/raycast/confetti", "confetti"]
+e = ["raycast://extensions/raycast/emoji-symbols/search-emoji-symbols", "emoji"]
+
+
+# # use prefixes for special actions
+# [p]
+# label = "[prefixes]"
+# t = "text:sam@saml.dev"       # types "sam@saml.dev"
+# z = "cmd:code ~/.zshrc"       # run any terminal command
+# x = "code: ~/.zshrc"          # open a file or directory in VS Code
+# s = "shortcut:cmd shift 4"    # trigger a keyboard shortcut
+# w = "menu:File>New Window"    # select menu items (frontmost app)
+# n = "menu:Safari|File>New Tab" # select menu items (specific app)
+# r = "reload"                  # reserved for reloading your hammerspoon config (helpful when auto_reload is false)
+# i = "input:https://google.com/search?q={input}" # capture input and insert it into any other action
+#
+#
+# we have window management too!
+[w]
+label = "[window]"
+h = ["window:left-half", "left half"]
+j = ["window:bottom-half", "left half"]
+k = ["window:top-half", "right half"]
+l = ["window:right-half", "right half"]
+c = ["window:center-half", "center half"]
+f = ["window:fullscreen", "fullscreen"]
+m = ["window:maximized", "maximize"]
+s = [
+  "window:.4,.3,.2,.4",
+  "small center",
+] # or use 4 percentages for x,y,width,height for custom placement - more details in README
+
+
+# or use raycast for window management if you prefer
+[w.r]
+label = "[raycast-window]"
+h = ["raycast://extensions/raycast/window-management/left-half", "left half"]
+l = ["raycast://extensions/raycast/window-management/right-half", "right half"]
+c = [
+  "raycast://extensions/raycast/window-management/center-half",
+  "center half",
+]

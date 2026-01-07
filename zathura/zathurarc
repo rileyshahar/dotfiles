@@ -33,3 +33,6 @@ set render-loading-bg "#c0caf5"
 set recolor-lightcolor "#1a1b26"
 set recolor-darkcolor "#c0caf5"
 set font "monospace normal 14"
+
+set scroll-step 1
+set scroll-hstep 1

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+ZATHURA="/opt/homebrew/bin/zathura"   # <- replace with output of `which zathura`
+
+"$ZATHURA" "$1" >/dev/null 2>&1 &

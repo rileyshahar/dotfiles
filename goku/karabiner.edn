@@ -1,0 +1,145 @@
+{:profiles
+ {:Default {:default true
+            :delay 150
+            :alone 150
+            :held 150}}
+
+ :applications
+ {:apple-mail ["^com\\.apple\\.mail$"]}
+
+ :main
+ [
+  ; modes:
+  ; 0: insert
+  ; 1: normal
+  ; 2: visual
+  ; 3: app-specific
+  {:des "[vim] toggle modes"
+   :rules
+   [
+    [:f3
+     [{:set ["vim" 1]}
+      {:set ["mode" 0]}
+      {:shell "/opt/homebrew/bin/hs -c 'setWidgetAndShow(\"INS\")'"}]
+      ["vim" 0]]
+
+    [:f3
+     [{:set ["vim" 0]}
+      {:set ["mode" 0]}
+      {:shell "/opt/homebrew/bin/hs -c 'hideWidget()'"}]
+      ["vim" 1]]
+
+    [:escape
+     [{:set ["mode" 1]}
+      {:shell "/opt/homebrew/bin/hs -c 'setWidgetAndShow(\"NRM\")'"}]
+       [["vim" 1] ["mode" 0]]]
+
+    [:escape
+     [{:set ["mode" 1]}
+      {:shell "/opt/homebrew/bin/hs -c 'setWidgetAndShow(\"NRM\")'"}]
+       [["vim" 1] ["mode" 2]]]
+
+    [:escape
+     [{:set ["mode" 1]}
+      {:shell "/opt/homebrew/bin/hs -c 'setWidgetAndShow(\"NRM\")'"}]
+       [["vim" 1] ["mode" 3]]]
+
+    [:i
+     [{:set ["mode" 0]}
+      {:shell "/opt/homebrew/bin/hs -c 'setWidgetAndShow(\"INS\")'"}]
+       [["vim" 1] ["mode" 1]]]
+
+    [:v
+     [{:set ["mode" 2]}
+      {:shell "/opt/homebrew/bin/hs -c 'setWidgetAndShow(\"VIS\")'"}]
+      [["vim" 1] ["mode" 1]]]
+
+    [:a
+     [{:set ["mode" 3]}
+      {:shell "/opt/homebrew/bin/hs -c 'setWidgetAndShow(\"APP\")'"}]
+      [["vim" 1] ["mode" 1]]]
+   ]}
+
+  {:des "[vim] arrow keys (NORMAL and APP)"
+   :rules
+   [
+    [:h :left_arrow  [["mode" 1]]]
+    [:j :down_arrow  [["mode" 1]]]
+    [:k :up_arrow    [["mode" 1]]]
+    [:l :right_arrow [["mode" 1]]]
+
+    [:h :left_arrow  [["mode" 3]]]
+    [:j :down_arrow  [["mode" 3]]]
+    [:k :up_arrow    [["mode" 3]]]
+    [:l :right_arrow [["mode" 3]]]
+
+    [:h :!Sleft_arrow  [["mode" 2]]]
+    [:j :!Sdown_arrow  [["mode" 2]]]
+    [:k :!Sup_arrow    [["mode" 2]]]
+    [:l :!Sright_arrow [["mode" 2]]]
+
+    [:e :!Oright_arrow [["mode" 1]]]
+    [:e :!Oright_arrow [["mode" 3]]]
+
+    [:b :!Oleft_arrow [["mode" 1]]]
+    [:b :!Oleft_arrow [["mode" 3]]]
+
+    [:h :!Sleft_arrow  [["mode" 2]]]
+    [:j :!Sdown_arrow  [["mode" 2]]]
+    [:k :!Sup_arrow    [["mode" 2]]]
+    [:l :!Sright_arrow [["mode" 2]]]
+
+   ]}
+
+  {:des "[vim] apple mail (APP only)"
+   :rules
+   [
+    [:##a :!CTa [:apple-mail ["mode" 3]]]
+   ]}
+
+  {:des "tapped modifiers => actions"
+   :rules
+   [
+    ;; right_option: tap => opt+cmd+space, hold => right_option
+    [:##right_option
+     nil
+     []
+     {:alone   [{:key :spacebar :modi [:left_option :left_command] :halt true}]
+      :delayed {:canceled [{:key :spacebar :modi [:left_option :left_command] :halt true}]}
+      :held    [:right_option]}]
+
+    ;; right_command: tap => cmd+space, hold => right_command
+    [:##right_command
+     nil
+     []
+     {:alone   [{:key :spacebar :modi [:left_command] :halt true}]
+      :delayed {:canceled [{:key :spacebar :modi [:left_command] :halt true}]}
+      :held    [:right_command]}]
+   ]}
+
+  {:des "held home row => modifiers"
+   :rules
+   [
+    ;; tab => hold cmd, tap tab (with per-rule params)
+    [:##tab
+     [{:key :left_command}]
+     []
+     {:alone   [{:key :tab :halt true}]
+      :delayed {:canceled [{:key :tab :halt true}]}
+      :held    [:left_command]}]
+
+    ;; caps_lock => hold ctrl, tap esc (with per-rule params)
+    [:##caps_lock
+     [{:key :left_control}]
+     []
+     {:alone   [{:key :escape :halt true}]
+      :delayed {:canceled [{:key :escape :halt true}]}
+      :held    [:left_control]}]
+
+    ;; a/s/d/f => home-row mods (tap key, hold modifier)
+    [:##a nil [] {:alone [{:key :a :halt true}] :delayed {:canceled [{:key :a :halt true}]} :held [:left_shift]}]
+    [:##s nil [] {:alone [{:key :s :halt true}] :delayed {:canceled [{:key :s :halt true}]} :held [:left_control]}]
+    [:##d nil [] {:alone [{:key :d :halt true}] :delayed {:canceled [{:key :d :halt true}]} :held [:left_option]}]
+    [:##f nil [] {:alone [{:key :f :halt true}] :delayed {:canceled [{:key :f :halt true}]} :held [:left_command]}]
+   ]}
+ ]}

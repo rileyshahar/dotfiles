@@ -7,3 +7,6 @@
 [submodule "texmf/tex/latex/dnd"]
 	path = texmf/tex/latex/dnd
 	url = git@github.com:rpgtex/DND-5e-LaTeX-Template.git
+[submodule "hammerspoon/Spoons/Hammerflow.spoon"]
+	path = hammerspoon/Spoons/Hammerflow.spoon
+	url = https://github.com/saml-dev/Hammerflow.spoon.git

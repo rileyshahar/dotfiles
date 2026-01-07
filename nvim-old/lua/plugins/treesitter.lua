@@ -11,7 +11,7 @@ return {
 		build = ":TSUpdate",
 		opts = {
 			ensure_installed = "all",
-			ignore_install = {}, -- list of parsers to ignore installing
+			ignore_install = { "ipkg" }, -- list of parsers to ignore installing
 			highlight = {
 				enable = true,
 			},

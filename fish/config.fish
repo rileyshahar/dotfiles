@@ -9,19 +9,9 @@ set -x XDG_CACHE_HOME "$HOME/.cache"
 set -x XDG_CONFIG_HOME "$HOME/.config"
 set -x XDG_DATA_HOME "$HOME/.local/share"
 
-set -x CPLUS_INCLUDE_PATH /usr/local/include
-set -x CMAKE_EXPORT_COMPILE_COMMANDS true
-
-set -x KITTY_ENABLE_WAYLAND 1
-set -x MOZ_ENABLE_WAYLAND 1
-
 set -x FZF_DEFAULT_COMMAND "rg --files --hidden"
 
 set -x BAT_THEME TwoDark
-
-set -x GPG_TTY (tty)
-
-set -x SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
 
 set -x DOTFILES_DIR $HOME/dotfiles
 
@@ -201,9 +191,9 @@ abbr -a mail hydroxide serve \>$XDG_DATA_HOME/hydroxide/hydroxide.log \& \; aerc
 # end
 
 # ls replacement
-if type -q exa
-    set ls_function exa
-    set ls_sort -lsold
+if type -q eza
+    set ls_function eza
+    set ls_sort -lsnew
 else
     set ls_function ls
     set ls_sort -ltr
@@ -252,7 +242,7 @@ bind '$' bind_dollar
 # end
 
 # setup stuff
-eval (opam env)
+# eval (opam env)
 
 ### Start x
 if status is-login
