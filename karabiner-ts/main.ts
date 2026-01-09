@@ -5,6 +5,7 @@
 
 import {
   FromKeyParam,
+  FromModifierParam,
   ifApp,
   ifVar,
   map,
@@ -74,7 +75,7 @@ const transition = (
   );
 
 type DualRoleOpts = {
-  fromMods?: Parameters<typeof map>[1];
+  fromMods?: FromModifierParam | "";
   /** Optional immediate "to" (keeps your tab/caps behavior exactly) */
   immediateTo?: ToEvent;
   alone: { key_code: ToKeyCode; mods?: Modifier[] };
@@ -82,16 +83,45 @@ type DualRoleOpts = {
 };
 
 const dualRole = (fromKey: FromKeyParam, opts: DualRoleOpts) => {
-  const fromMods = opts.fromMods ?? "optionalAny";
   const alone = haltKey(opts.alone.key_code, opts.alone.mods);
 
-  let m = map(fromKey, fromMods);
+  let m = opts.fromMods
+    ? map(fromKey, opts.fromMods)
+    : map(fromKey, "optionalAny");
   if (opts.immediateTo) m = m.to(opts.immediateTo);
 
   return m
     .toIfAlone(alone)
     .toIfHeldDown(opts.heldDown)
     .toDelayedAction([], [alone]);
+};
+
+type KeySpec = {
+  from: FromKeyParam;
+  fromMods?: FromModifierParam | "";
+  to: ToEvent;
+};
+
+const process = (from: FromKeyParam, m: FromModifierParam | "" | undefined) => {
+  if (m == undefined) {
+    return map(from, "optionalAny");
+  } else if (m == "") {
+    return map(from);
+  } else {
+    return map(from, m);
+  }
+};
+
+const appConfig = (name: string, app: string, keys: KeySpec[]) => {
+  return rule(`[vim] ${name} (app only)`).manipulators(
+    keys.map((ks) =>
+      process(ks.from, ks.fromMods).condition(
+        ifApp(app),
+        ...vimActive,
+        modeIs(Mode.app),
+      ).to(ks.to)
+    ),
+  );
 };
 
 /** -----------------------------
@@ -157,6 +187,180 @@ const rules = [
     ...transition("a", Mode.nrm, Mode.app),
   ]),
 
+  appConfig("apple mail", "com.apple.mail", [
+    // archive
+    {
+      from: "a",
+      to: { key_code: "a", modifiers: ["left_command", "left_control"] },
+    },
+    // forward
+    {
+      from: "f",
+      to: { key_code: "f", modifiers: ["left_command", "left_shift"] },
+    },
+    // reply all
+    {
+      from: "r",
+      fromMods: "",
+      to: { key_code: "r", modifiers: ["left_command", "left_shift"] },
+    },
+    // reply
+    {
+      from: "r",
+      fromMods: "shift",
+      to: { key_code: "r", modifiers: ["left_command"] },
+    },
+    // toggle read
+    {
+      from: "t",
+      to: { key_code: "u", modifiers: ["left_command", "left_shift"] },
+    },
+  ]),
+
+  // appConfig("preview", "com.apple.preview", [
+  //   {
+  //     from: "j",
+  //     fromMods: "",
+  //     to: { key_code: "down_arrow" },
+  //   },
+  //   {
+  //     from: "k",
+  //     fromMods: "",
+  //     to: { key_code: "up_arrow" },
+  //   },
+  //   {
+  //     from: "h",
+  //     fromMods: "",
+  //     to: { key_code: "left_arrow" },
+  //   },
+  //   {
+  //     from: "l",
+  //     fromMods: "",
+  //     to: { key_code: "right_arrow" },
+  //   },
+  //
+  //   // zathura: J/K = next/prev page
+  //   // {
+  //   //   from: "J",
+  //   //   to: { key_code: "down_arrow", modifiers: ["left_option"] },
+  //   // },
+  //   // {
+  //   //   from: "K",
+  //   //   to: { key_code: "up_arrow", modifiers: ["left_option"] },
+  //   // },
+  //
+  //   // zathura: space / b = page down / page up
+  //   {
+  //     from: "spacebar",
+  //     to: { key_code: "page_down" },
+  //   },
+  //   {
+  //     from: "b",
+  //     to: { key_code: "page_up" },
+  //   },
+  //
+  //   // zathura: d/u are half-page by default; Preview doesn’t have a clean half-page shortcut,
+  //   // so approximate with screen-at-a-time
+  //   {
+  //     from: "d",
+  //     to: { key_code: "page_down" },
+  //   },
+  //   {
+  //     from: "u",
+  //     to: { key_code: "page_up" },
+  //   },
+  //
+  //   // zathura: gg / G = first / last page (best-effort)
+  //   // {
+  //   //   from: "gg",
+  //   //   to: { key_code: "home" },
+  //   // },
+  //   // {
+  //   //   from: "G",
+  //   //   to: { key_code: "end" },
+  //   // },
+  //
+  //   // zathura: g (and nG) to jump — map to Preview “Go to Page…”
+  //   {
+  //     from: "g",
+  //     to: { key_code: "g", modifiers: ["left_option", "left_command"] },
+  //   },
+  //
+  //   // zathura: + / - / a / s
+  //   // zoom in/out (Cmd-+ / Cmd--), best-fit (Cmd-9), “width mode” approximation = continuous scroll (Cmd-1)
+  //   {
+  //     from: "=",
+  //     fromMods: "shift",
+  //     to: { key_code: "equal_sign", modifiers: ["left_shift", "left_command"] }, // Cmd-+
+  //   },
+  //   {
+  //     from: "-",
+  //     to: { key_code: "hyphen", modifiers: ["left_command"] }, // Cmd--
+  //   },
+  //   {
+  //     from: "a",
+  //     to: { key_code: "9", modifiers: ["left_command"] }, // Cmd-9 (Zoom to Fit)
+  //   },
+  //   {
+  //     from: "s",
+  //     to: { key_code: "1", modifiers: ["left_command"] }, // Cmd-1 (Continuous Scroll view)
+  //   },
+  //   {
+  //     from: "=",
+  //     to: { key_code: "0", modifiers: ["left_command"] }, // Cmd-0 (Actual Size / “reset-ish”)
+  //   },
+  //
+  //   // zathura: r = rotate (Preview uses Cmd-R / Cmd-L)
+  //   {
+  //     from: "r",
+  //     to: { key_code: "r", modifiers: ["left_command"] }, // rotate clockwise
+  //   },
+  //   {
+  //     from: "R",
+  //     to: { key_code: "l", modifiers: ["left_command"] }, // rotate counterclockwise (extra)
+  //   },
+  //
+  //   // zathura: /, n, N = search / next / previous
+  //   {
+  //     from: "/",
+  //     to: { key_code: "f", modifiers: ["left_command"] }, // Find
+  //   },
+  //   {
+  //     from: "n",
+  //     to: { key_code: "g", modifiers: ["left_command"] }, // Find Next
+  //   },
+  //   {
+  //     from: "N",
+  //     to: { key_code: "g", modifiers: ["left_shift", "left_command"] }, // Find Previous
+  //   },
+  //
+  //   // zathura: Tab = index — map to Preview thumbnails sidebar
+  //   {
+  //     from: "tab",
+  //     to: { key_code: "2", modifiers: ["left_option", "left_command"] },
+  //   },
+  //
+  //   // open / close / quit
+  //   {
+  //     from: "o",
+  //     to: { key_code: "o", modifiers: ["left_command"] },
+  //   },
+  //   {
+  //     from: "q",
+  //     to: { key_code: "w", modifiers: ["left_command"] }, // close document window (safer zathura-like quit)
+  //   },
+  //   {
+  //     from: "Q",
+  //     to: { key_code: "q", modifiers: ["left_command"] }, // quit Preview.app (optional)
+  //   },
+  //
+  //   // fullscreen toggle (handy)
+  //   {
+  //     from: "f",
+  //     to: { key_code: "f", modifiers: ["left_control", "left_command"] },
+  //   },
+  // ]),
+
   rule("[vim] movement").manipulators([
     ...hjkl(Mode.nrm),
     ...hjkl(Mode.app),
@@ -167,106 +371,6 @@ const rules = [
     //   .condition(...vimActive, modeIs(Mode.app))
     //   .to("f15"),
   ]),
-
-  rule("[vim] apple mail (app only)").manipulators([
-    map("a", "optionalAny")
-      .condition(ifApp("^com\\.apple\\.mail$"), ...vimActive, modeIs(Mode.app))
-      .to({ key_code: "a", modifiers: ["left_command", "left_control"] }),
-    map("f", "optionalAny")
-      .condition(ifApp("^com\\.apple\\.mail$"), ...vimActive, modeIs(Mode.app))
-      .to({ key_code: "f", modifiers: ["left_command", "left_shift"] }),
-    map("r", "optionalAny")
-      .condition(ifApp("^com\\.apple\\.mail$"), ...vimActive, modeIs(Mode.app))
-      .to({ key_code: "r", modifiers: ["left_command", "left_shift"] }),
-  ]),
-
-  // rule("[vim] Preview.app (app only) zathura-style").manipulators([
-  //   // gg / G: first / last (beginning/end of document)
-  //   mapDoubleTap("g", 250)
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .singleTap(null)
-  //     .to(haltKey("home")),
-  //   map("g", ["left_shift"])
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .to(haltKey("end")),
-  //
-  //   // J / K: next / previous page
-  //   map("j", ["left_shift"])
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .to(haltKey("down_arrow", ["left_option"])),
-  //   map("k", ["left_shift"])
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .to(haltKey("up_arrow", ["left_option"])),
-  //
-  //   // tab + sidebar (table of contents / thumbnails / notes / bookmarks)
-  //   // tab keeps your global "tab-as-cmd" behavior: hold = ⌘, tap = TOC
-  //   map("tab")
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .to({ key_code: "left_command" })
-  //     .toIfAlone(haltKey("3", ["left_option", "left_command"]))
-  //     .toIfHeldDown({ key_code: "left_command" })
-  //     .toDelayedAction([], [haltKey("3", ["left_option", "left_command"])]),
-  //   // Shift-Tab: hide sidebar
-  //   map("tab", ["left_shift"])
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .to(haltKey("1", ["left_option", "left_command"])),
-  //   // t: thumbnails, T: table of contents
-  //   map("t")
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .to(haltKey("2", ["left_option", "left_command"])),
-  //   map("t", ["left_shift"])
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .to(haltKey("3", ["left_option", "left_command"])),
-  //   // H: highlights & notes, B: bookmarks
-  //   map("h", ["left_shift"])
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .to(haltKey("4", ["left_option", "left_command"])),
-  //   map("b", ["left_shift"])
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .to(haltKey("5", ["left_option", "left_command"])),
-  //   // c: contact sheet view
-  //   map("c")
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .to(haltKey("6", ["left_option", "left_command"])),
-  //
-  //   // a / +/-/=: fit / zoom in/out / actual size
-  //   map("a")
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .to(haltKey("9", ["left_option", "left_command"])),
-  //   map("equal_sign", ["left_shift"])
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .to({
-  //       key_code: "equal_sign",
-  //       modifiers: ["left_option", "left_command", "left_shift"],
-  //       halt: true,
-  //     }),
-  //   map("hyphen")
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .to({
-  //       key_code: "hyphen",
-  //       modifiers: ["left_option", "left_command"],
-  //       halt: true,
-  //     }),
-  //   map("equal_sign")
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .to(haltKey("0", ["left_option", "left_command"])),
-  //
-  //   // / n N: find / next / previous
-  //   map("slash")
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .to(haltKey("f", ["left_command"])),
-  //   map("n")
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .to(haltKey("g", ["left_command"])),
-  //   map("n", ["left_shift"])
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .to(haltKey("g", ["left_command", "left_shift"])),
-  //
-  //   // R: rotate 90° (clockwise)
-  //   map("r", ["left_shift"])
-  //     .condition(ifApp("^com\\.apple\\.Preview$"), vimOn, modeIs(Mode.app))
-  //     .to(haltKey("r", ["left_command"])),
-  // ]),
 
   rule("tapped modifiers => actions").manipulators([
     dualRole("left_command", {
