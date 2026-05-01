@@ -13,30 +13,50 @@ N = ["cmd:neovide", "Neovide"]
 b = "Firefox"
 c = "Fantastical"
 t = "Todoist"
-k = ["input:https://kagi.com/search?q={input}", "kagi"]
+g = ["input:https://google.com/search?q={input}", "google"]
 
-[C]
-label = "[chats]"
+[s]
+label = "[system]"
+n = ["cmd:nightlight toggle", "night shift"]
+m = ["hs:ToggleMuted()", "mute"]
+d = ["hs:ToggleDarkMode()", "dark mode"]
+
+[m]
+label = "[message]"
+c = "Cardhop"
 t = "Telegram"
 d = "Discord"
 s = "Slack"
 w = "WhatsApp"
-p = "Signal"      # "private"
-m = "Texty"
+p = "Signal"        # "private"
+i = "Messages"
+m = "Mail"
 
-# create groups to nest actions
 [l]
-label = "[links]"         # the "label" key is reserved to change the label of the group
-t = "https://twitter.com"
+label = "[links]"
 
 [l.m]
 label = "[me]"
 g = ["https://github.com/rileyshahar", "github"]
 w = ["https://rileyshahar.com", "website"]
+b = [
+  "cmd:echo https://fantastical.app/rileyshahar/meet-with-me | pbcopy",
+  "book me (30m)",
+]
+B = [
+  "cmd:echo https://fantastical.app/rileyshahar/meet-with-me-1h | pbcopy",
+  "book me (1h)",
+]
+e = ["cmd:echo rshahar@sas.upenn.edu | pbcopy", "work email"]
+E = ["cmd:echo riley.shahar@gmail.com | pbcopy", "home email"]
 
 [r]
 label = "[raycast]"
-c = ["raycast://extensions/raycast/raycast/confetti", "confetti"]
+p = ["raycast://extensions/raycast/raycast/confetti", "party"]
+c = [
+  "raycast://extensions/raycast/clipboard-history/clipboard-history",
+  "clipboard",
+]
 e = ["raycast://extensions/raycast/emoji-symbols/search-emoji-symbols", "emoji"]
 
 

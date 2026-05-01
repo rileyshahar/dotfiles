@@ -8,7 +8,7 @@ return {
         sources = {
           projects = {
             patterns = pp.patterns,
-            dev = { "~/dotfiles", "~/notes", "~/code" },
+            dev = { "~/dotfiles", "~/notes", "~/code", "~/notes/writing", "~/notes/writing/math" },
             recent = true,
           },
         },
