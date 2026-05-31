@@ -8,6 +8,7 @@ import {
   Toast,
   Clipboard,
   Icon,
+  closeMainWindow,
 } from "@raycast/api";
 import { useCachedPromise, useCachedState, usePromise } from "@raycast/utils";
 import { spawn } from "child_process";
@@ -38,25 +39,33 @@ export default function Command() {
   const prefs = getPreferenceValues<Prefs>();
 
   const [searchText, setSearchText] = useState("");
-  const [searchRoot, setSearchRoot] = useCachedState<string>("searchRootKey", os.homedir());
+  const [searchRoot, setSearchRoot] = useCachedState<string>(
+    "searchRootKey",
+    os.homedir(),
+  );
+  const [selected, setSelected] = useState<Set<string>>(new Set());
 
   // Get FD CLI path
-  const { data: fdPath, isLoading: isFdLoading } = useCachedPromise(async () => {
-    try {
-      return await ensureFdCLI();
-    } catch (error) {
-      throw new Error(`Couldn't load the fd CLI: ${error}`);
-    }
-  });
+  const { data: fdPath, isLoading: isFdLoading } = useCachedPromise(
+    async () => {
+      try {
+        return await ensureFdCLI();
+      } catch (error) {
+        throw new Error(`Couldn't load the fd CLI: ${error}`);
+      }
+    },
+  );
 
   // Get FZF CLI path
-  const { data: fzfPath, isLoading: isFzfCliLoading } = useCachedPromise(async () => {
-    try {
-      return await ensureFzfCLI();
-    } catch (error) {
-      throw new Error(`Couldn't load the fzf CLI: ${error}`);
-    }
-  });
+  const { data: fzfPath, isLoading: isFzfCliLoading } = useCachedPromise(
+    async () => {
+      try {
+        return await ensureFzfCLI();
+      } catch (error) {
+        throw new Error(`Couldn't load the fzf CLI: ${error}`);
+      }
+    },
+  );
 
   // cleanup old .temp files (older than 10min)
   // In this extension when user exits during indexing, it will leave
@@ -80,7 +89,9 @@ export default function Command() {
 
         const birthtimeDiff = now - stats.birthtimeMs;
         if (birthtimeDiff > CutoffMs) {
-          console.log(`birthtimeMsDiff: ${birthtimeDiff.toFixed(0)}, removing ${filepath}`);
+          console.log(
+            `birthtimeMsDiff: ${birthtimeDiff.toFixed(0)}, removing ${filepath}`,
+          );
           await afs.rm(filepath, {
             force: true,
           });
@@ -131,7 +142,10 @@ export default function Command() {
       const searchDirs = searchRoot.split(" ");
 
       // Final file fzf is reading from
-      const fdOutput = path.join(environment.supportPath, `fd-out-${sanitizeFilename(searchRoot)}.txt`);
+      const fdOutput = path.join(
+        environment.supportPath,
+        `fd-out-${sanitizeFilename(searchRoot)}.txt`,
+      );
       // File to write to during the indexing
       const fdOutputTemp = `${fdOutput}.${Date.now()}${randomInt(10000)}.temp`;
 
@@ -147,10 +161,14 @@ export default function Command() {
 
       const outFD = fs.openSync(fdOutputTemp, "wx");
       try {
-        const fd = spawn(fdPath, [...optionalArgs, "--print0", ".", ...searchDirs], {
-          stdio: ["ignore", outFD, "pipe"],
-          signal: abortableFd.current?.signal,
-        });
+        const fd = spawn(
+          fdPath,
+          [...optionalArgs, "--print0", ".", ...searchDirs],
+          {
+            stdio: ["ignore", outFD, "pipe"],
+            signal: abortableFd.current?.signal,
+          },
+        );
 
         await new Promise<void>((resolve, reject) => {
           let stderr = "";
@@ -180,9 +198,13 @@ export default function Command() {
 
       toast.hide();
 
-      console.log(`renaming ${basename(fdOutputTemp)} -> ${basename(fdOutput)}`);
+      console.log(
+        `renaming ${basename(fdOutputTemp)} -> ${basename(fdOutput)}`,
+      );
       await afs.rename(fdOutputTemp, fdOutput);
-      console.log(`finished renaming ${basename(fdOutputTemp)} -> ${basename(fdOutput)}`);
+      console.log(
+        `finished renaming ${basename(fdOutputTemp)} -> ${basename(fdOutput)}`,
+      );
       return { filepath: fdOutput, randomUUID: randomUUID() };
     },
     [searchRoot, fdPath],
@@ -195,7 +217,12 @@ export default function Command() {
 
   // Get filteredPaths from fzf output
   const { data: filteredPaths, isLoading: isFilteredPathsLoading } = usePromise(
-    async (searchText: string, fzfPath?: string, fdOutput?: string, _?: string) => {
+    async (
+      searchText: string,
+      fzfPath?: string,
+      fdOutput?: string,
+      _?: string,
+    ) => {
       assert(fzfPath !== undefined);
       assert(fdOutput !== undefined);
       assert(_ !== undefined); // required by linter
@@ -215,7 +242,9 @@ export default function Command() {
           signal: abortableFzf.current?.signal,
         });
         await new Promise<void>((resolve, reject) => {
-          const rl = readline.createInterface({ input: fzf.stdout as Stream.Readable });
+          const rl = readline.createInterface({
+            input: fzf.stdout as Stream.Readable,
+          });
           rl.on("line", (line) => {
             // Limit results, as otherwise they will exceed memory limits,
             // raycast will terminate the extension. Issue #21580
@@ -240,7 +269,11 @@ export default function Command() {
           fzf.on("close", (code) => {
             rl.close();
             // Fzf returns error code 1 if output is empty
-            if (code === 0 || code === null || (code === 1 && stderr.length === 0)) {
+            if (
+              code === 0 ||
+              code === null ||
+              (code === 1 && stderr.length === 0)
+            ) {
               resolve();
             } else {
               reject(`Exit code of 'fzf' = ${code}:\n${stderr}`);
@@ -261,66 +294,166 @@ export default function Command() {
     },
   );
 
+  function toggleSelection(filepath: string) {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(filepath)) next.delete(filepath);
+      else next.add(filepath);
+      return next;
+    });
+  }
+
+  // Add files to a selection so an action can run on all of them at once;
+  // when nothing is selected, actions fall back to the hovered item.
+  async function openTargets(
+    targets: string[],
+    app?: { name?: string; bundleId?: string },
+  ) {
+    const args: string[] = [];
+    if (app?.name) args.push("-a", app.name);
+    else if (app?.bundleId) args.push("-b", app.bundleId);
+    args.push(...targets);
+    try {
+      await new Promise<void>((resolve, reject) => {
+        const child = spawn("/usr/bin/open", args, { stdio: "ignore" });
+        child.on("error", reject);
+        child.on("close", (code) =>
+          code === 0
+            ? resolve()
+            : reject(new Error(`'open' exited with code ${code}`)),
+        );
+      });
+      await closeMainWindow();
+    } catch (error) {
+      await showToast({
+        style: Toast.Style.Failure,
+        title: "Couldn't open",
+        message: `${error}`,
+      });
+    }
+  }
+
   return (
     <List
       navigationTitle="Search Files"
-      isLoading={isFdLoading || isFdOutputLoading || isFzfCliLoading || isFilteredPathsLoading}
+      isLoading={
+        isFdLoading ||
+        isFdOutputLoading ||
+        isFzfCliLoading ||
+        isFilteredPathsLoading
+      }
       searchBarPlaceholder={"Search for your files"}
       onSearchTextChange={setSearchText}
       filtering={false} // disable builtin filtering as we use a custom one
       searchBarAccessory={
-        <List.Dropdown tooltip="Search" value={searchRoot} onChange={setSearchRoot}>
+        <List.Dropdown
+          tooltip="Search"
+          value={searchRoot}
+          onChange={setSearchRoot}
+        >
           <List.Dropdown.Item title="Home (~)" value={os.homedir()} />
           <List.Dropdown.Item title="Everything (/)" value={"/"} />
-          <List.Dropdown.Item title={`Custom Directories`} value={prefs.customSearchDirs} />
+          <List.Dropdown.Item
+            title={`Custom Directories`}
+            value={prefs.customSearchDirs}
+          />
         </List.Dropdown>
       }
     >
       {filteredPaths?.map((filepath) => {
         const filename = basename(filepath);
+        const isSelected = selected.has(filepath);
+        const targets =
+          selected.size > 0
+            ? Array.from(new Set([...selected, filepath]))
+            : [filepath];
+        const count = targets.length;
+        const suffix = count === 1 ? "" : ` (${count})`;
         return (
           <List.Item
             key={filepath}
-            title={filepath.startsWith(os.homedir()) ? filepath.replace(os.homedir(), "~") : filepath}
+            title={
+              filepath.startsWith(os.homedir())
+                ? filepath.replace(os.homedir(), "~")
+                : filepath
+            }
             subtitle={filename}
+            icon={isSelected ? Icon.CheckCircle : Icon.Circle}
+            accessories={
+              selected.size > 0
+                ? [{ text: `${selected.size} selected` }]
+                : undefined
+            }
             quickLook={{ path: filepath, name: filename }}
             actions={
               <ActionPanel>
-                <Action.Open title="Open" target={filepath} />
-                <Action.Open
-                  title="Open in Neovide"
-                  target={filepath}
-                  application="Neovide"
-                  shortcut={{ modifiers: ["cmd"], key: "n" }}
-                />
-                <Action.OpenWith path={filepath} shortcut={{ modifiers: ["cmd"], key: "o" }} />
-                <Action.Open
-                  title="Add to Dropover"
-                  target={filepath}
-                  application="me.damir.dropover-mac"
-                  icon={{ fileIcon: "/Applications/Dropover.app" }}
-                  shortcut={{ modifiers: ["cmd", "shift"], key: "d" }}
-                />
-                <Action.ShowInFinder title="Show in Finder" path={filepath} />
-                <Action.CopyToClipboard
-                  title="Copy Path to Clipboard"
-                  content={filepath}
-                  shortcut={{ modifiers: ["cmd"], key: "c" }}
+                <Action
+                  title={`Open${suffix}`}
+                  icon={Icon.Document}
+                  onAction={() => openTargets(targets)}
                 />
                 <Action
-                  title="Copy Contents to Clipboard"
+                  title={isSelected ? "Deselect" : "Select"}
+                  icon={isSelected ? Icon.Circle : Icon.CheckCircle}
+                  shortcut={{ modifiers: ["cmd"], key: "return" }}
+                  onAction={() => toggleSelection(filepath)}
+                />
+                <Action
+                  title={`Open in Neovide${suffix}`}
+                  icon={{ fileIcon: "/Applications/Neovide.app" }}
+                  shortcut={{ modifiers: ["cmd"], key: "n" }}
+                  onAction={() => openTargets(targets, { name: "Neovide" })}
+                />
+                <Action.OpenWith
+                  path={filepath}
+                  shortcut={{ modifiers: ["cmd"], key: "o" }}
+                />
+                <Action
+                  title={`Add to Dropover${suffix}`}
+                  icon={{ fileIcon: "/Applications/Dropover.app" }}
+                  shortcut={{ modifiers: ["cmd"], key: "d" }}
+                  onAction={() =>
+                    openTargets(targets, { bundleId: "me.damir.dropover-mac" })
+                  }
+                />
+                <Action.ShowInFinder title="Show in Finder" path={filepath} />
+                <Action
+                  title={`Copy Path${count === 1 ? "" : "s"} to Clipboard`}
+                  icon={Icon.CopyClipboard}
+                  shortcut={{ modifiers: ["cmd"], key: "c" }}
+                  onAction={async () => {
+                    await Clipboard.copy(targets.join("\n"));
+                    await showToast({
+                      title:
+                        count === 1
+                          ? "Copied path to clipboard"
+                          : `Copied ${count} paths to clipboard`,
+                    });
+                  }}
+                />
+                <Action
+                  title={`Copy Contents to Clipboard${suffix}`}
                   icon={Icon.Clipboard}
                   shortcut={{ modifiers: ["cmd", "shift"], key: "c" }}
                   onAction={async () => {
                     try {
-                      const stats = await afs.stat(filepath);
-                      const isDir = stats.isDirectory();
-                      const contents = isDir
-                        ? (await afs.readdir(filepath)).join("\n")
-                        : await afs.readFile(filepath, "utf8");
-                      await Clipboard.copy(contents);
+                      const parts = await Promise.all(
+                        targets.map(async (target) => {
+                          const stats = await afs.stat(target);
+                          const body = stats.isDirectory()
+                            ? (await afs.readdir(target)).join("\n")
+                            : await afs.readFile(target, "utf8");
+                          return count > 1
+                            ? `==> ${target} <==\n${body}`
+                            : body;
+                        }),
+                      );
+                      await Clipboard.copy(parts.join("\n\n"));
                       await showToast({
-                        title: isDir ? "Copied directory listing to clipboard" : "Copied file contents to clipboard",
+                        title:
+                          count === 1
+                            ? "Copied contents to clipboard"
+                            : `Copied contents of ${count} items to clipboard`,
                       });
                     } catch (error) {
                       await showToast({
@@ -331,7 +464,9 @@ export default function Command() {
                     }
                   }}
                 />
-                <Action.ToggleQuickLook shortcut={{ modifiers: ["cmd"], key: "y" }} />
+                <Action.ToggleQuickLook
+                  shortcut={{ modifiers: ["cmd"], key: "y" }}
+                />
               </ActionPanel>
             }
           />
