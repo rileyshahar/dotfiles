@@ -1,4 +1,15 @@
-import { Action, ActionPanel, Clipboard, Icon, Keyboard, List, Toast, closeMainWindow, showToast } from "@raycast/api";
+import {
+  Action,
+  ActionPanel,
+  Clipboard,
+  Icon,
+  Keyboard,
+  List,
+  LocalStorage,
+  Toast,
+  closeMainWindow,
+  showToast,
+} from "@raycast/api";
 import { useCachedState } from "@raycast/utils";
 import afs from "fs/promises";
 import path, { basename } from "path";
@@ -44,6 +55,31 @@ export function Picker({ command }: { command: string }) {
   const [sourceFile, setSourceFile] = useState<string | null>(null);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
+
+  // value -> last-used epoch ms, persisted per command. Used to float recently
+  // acted-on items to the top of the browse list when config.recents is set.
+  const [recents, setRecents] = useState<Record<string, number>>({});
+  useEffect(() => {
+    if (!config.recents) return;
+    LocalStorage.getItem<string>(`recents-${command}`).then((raw) => {
+      if (raw) setRecents(JSON.parse(raw) as Record<string, number>);
+    });
+  }, [command, config.recents]);
+
+  function recordRecents(targets: string[]) {
+    if (!config.recents) return;
+    const now = Date.now();
+    const next = { ...recents };
+    for (const t of targets) next[t] = now;
+    // Cap the store so it can't grow without bound.
+    const trimmed = Object.fromEntries(
+      Object.entries(next)
+        .sort(([, a], [, b]) => b - a)
+        .slice(0, 200),
+    );
+    setRecents(trimmed);
+    LocalStorage.setItem(`recents-${command}`, JSON.stringify(trimmed));
+  }
 
   // Keep the latest search text readable from the streaming source callback
   // without re-subscribing it on every keystroke.
@@ -140,11 +176,19 @@ export function Picker({ command }: { command: string }) {
     return selected.size > 0 ? Array.from(new Set([...selected, hovered])) : [hovered];
   }
 
+  // Stable sort floating recently-used items first. Only meaningful for the
+  // empty-query browse view; Raycast re-ranks by match score once you type.
+  const displayItems = useMemo(() => {
+    if (!config.recents) return items;
+    return [...items].sort((a, b) => (recents[b.value] ?? 0) - (recents[a.value] ?? 0));
+  }, [items, recents, config.recents]);
+
   async function runExec(exe: string, targets: string[], mode: SinkMode, animatedTitle?: string) {
     let toast: Toast | undefined;
     if (animatedTitle) toast = await showToast({ style: Toast.Style.Animated, title: animatedTitle });
     try {
       await runTargets(exe, targets, mode);
+      recordRecents(targets);
       await closeMainWindow();
     } catch (err) {
       if (toast) toast.hide();
@@ -313,7 +357,7 @@ export function Picker({ command }: { command: string }) {
         ) : undefined
       }
     >
-      {items.map((item) => (
+      {displayItems.map((item) => (
         <List.Item
           key={item.value}
           id={item.value}

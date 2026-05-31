@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# source contract: print one JSON item per line ({value,title,subtitle}).
+# A project is any immediate subdirectory of these roots. Edit to taste.
+
+roots=(
+  "$HOME/dotfiles"
+  "$HOME/notes"
+  "$HOME/code"
+  "$HOME/notes/writing"
+  "$HOME/notes/writing/math"
+)
+
+for root in "${roots[@]}"; do
+  [ -d "$root" ] || continue
+  for dir in "$root"/*/; do
+    [ -d "$dir" ] || continue
+    dir="${dir%/}"
+    jq -nc --arg v "$dir" --arg t "$(basename "$dir")" --arg s "${root/#$HOME/~}" \
+      '{value: $v, title: $t, subtitle: $s}'
+  done
+done

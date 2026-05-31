@@ -14,6 +14,12 @@
       "mode": "view"
     },
     {
+      "name": "project",
+      "title": "Open Project",
+      "description": "Pick a project directory and open it in Neovide.",
+      "mode": "view"
+    },
+    {
       "name": "eb-minutes",
       "title": "EB Minutes",
       "description": "View EB Minutes",

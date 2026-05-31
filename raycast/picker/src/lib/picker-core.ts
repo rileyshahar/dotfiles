@@ -30,6 +30,9 @@ export type Config = {
   primary_title?: string;
   dropdown?: DropdownSpec;
   actions: ActionSpec[];
+  // When true, items acted on are remembered and floated to the top of the
+  // browse list on later opens (builtin-filter commands only).
+  recents?: boolean;
 };
 
 export type Item = {
@@ -56,9 +59,25 @@ const PATH_PREFIX = [
   "/usr/local/bin",
 ].join(":");
 
+// Raycast spawns the extension with SHELL=/bin/sh, which anything we launch
+// (e.g. nvim's :terminal) would inherit. Resolve the login shell once so spawned
+// processes match it. Falls back to process.env.SHELL when fish isn't installed.
+const LOGIN_SHELL = ((): string | undefined => {
+  for (const dir of PATH_PREFIX.split(":")) {
+    const candidate = path.join(dir, "fish");
+    try {
+      if (fs.statSync(candidate).isFile()) return candidate;
+    } catch {
+      // not here; keep looking
+    }
+  }
+  return process.env.SHELL;
+})();
+
 function spawnEnv(extra?: Record<string, string>): NodeJS.ProcessEnv {
   return {
     ...process.env,
+    ...(LOGIN_SHELL ? { SHELL: LOGIN_SHELL } : {}),
     ...extra,
     PATH: `${PATH_PREFIX}:${process.env.PATH ?? ""}`,
   };
@@ -80,6 +99,7 @@ export function loadConfig(command: string): Config {
     primary_title: parsed.primary_title,
     dropdown: parsed.dropdown,
     actions: parsed.actions ?? [],
+    recents: parsed.recents ?? false,
   };
 }
 
