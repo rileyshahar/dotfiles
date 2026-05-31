@@ -1,0 +1,44 @@
+#!/opt/homebrew/bin/fish
+
+# Give Neovide/Neovim the environment your terminal normally has.
+set -gx SHELL /opt/homebrew/bin/fish
+set -gx PATH \
+    /opt/homebrew/bin \
+    /usr/local/bin \
+    /opt/local/bin \
+    $HOME/bin \
+    $HOME/.local/bin \
+    $HOME/.cargo/bin \
+    /usr/bin \
+    /bin \
+    /usr/sbin \
+    /sbin
+
+# Pick the right nvim path.
+if test -x /opt/homebrew/bin/nvim
+    set NVIM_BIN /opt/homebrew/bin/nvim
+else if test -x /usr/local/bin/nvim
+    set NVIM_BIN /usr/local/bin/nvim
+else
+    set NVIM_BIN (command -s nvim)
+end
+
+# Use QSpace's path argument, or fall back to home.
+set DIR $argv[1]
+if test -z "$DIR"
+    set DIR $HOME
+end
+
+# If QSpace passes a selected file, open terminal in its parent directory.
+if test -f "$DIR"
+    set DIR (dirname "$DIR")
+end
+
+exec /Applications/Neovide.app/Contents/MacOS/neovide \
+    --neovim-bin "$NVIM_BIN" \
+    --chdir "$DIR" \
+    --fork \
+    -- \
+    +"set shell=/opt/homebrew/bin/fish" \
+    +terminal \
+    +startinsert

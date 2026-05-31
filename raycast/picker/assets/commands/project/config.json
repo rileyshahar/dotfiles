@@ -24,6 +24,12 @@
       "exec": "finder",
       "sink_mode": "each",
       "shortcut": { "modifiers": ["cmd"], "key": "f" }
+    },
+    {
+      "title": "Open in oil.nvim",
+      "exec": "oil",
+      "sink_mode": "each",
+      "shortcut": { "modifiers": ["cmd"], "key": "o" }
     }
   ]
 }

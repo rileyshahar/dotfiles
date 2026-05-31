@@ -2,5 +2,4 @@
 set -euo pipefail
 # cmd+T: open the project in Neovide with a terminal buffer.
 dir="${1:?usage: terminal <project-dir>}"
-cd "$dir"
-neovide --fork -- -c "terminal" -c "startinsert"
+neovide-term "$dir"

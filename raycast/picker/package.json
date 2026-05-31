@@ -57,7 +57,10 @@
     "typescript": "^5.8.2"
   },
   "scripts": {
+    "check-exec": "node scripts/check-exec.mjs",
+    "prebuild": "npm run check-exec",
     "build": "ray build",
+    "predev": "npm run check-exec",
     "dev": "ray develop",
     "fix-lint": "ray lint --fix",
     "lint": "ray lint",

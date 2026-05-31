@@ -60,11 +60,13 @@ set fish_color_valid_path --underline
 set fish_color_autosuggestion white
 set fish_color_cancel -r
 
-# direnv
-direnv hook fish | source
-
 # configure path
 set fish_user_paths $DOTFILES_DIR/bin $PYENV_ROOT/shims /bin/usr/local/opt/ruby/bin $CARGO_HOME/bin /usr/local/opt/llvm/bin/ $XDG_DATA_HOME/gem/ruby/3.0.0/bin $XDG_DATA_HOME/bin $XDG_CONFIG_HOME/emacs/bin $HOME/.local/bin
+
+# direnv
+if test -x direnv
+    direnv hook fish | source
+end
 
 # greeting
 function fish_greeting
