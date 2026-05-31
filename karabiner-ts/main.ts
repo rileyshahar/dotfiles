@@ -40,6 +40,9 @@ const VAR = {
   // vim-mode-plus-like prefixes/operators (normal mode)
   VIM_OP: "vim_op",
   VIM_G_PREFIX: "vim_g_prefix",
+
+  // X11-style compose key state (driven by fn)
+  COMPOSE: "compose",
 } as const;
 
 const MODE = {
@@ -480,6 +483,182 @@ const opGgSecond = (op: Exclude<Op, "none">) => {
 };
 
 /** -----------------------------
+ *  Compose key (fn = X11-style compose)
+ *
+ *  Tap fn to enter compose mode (sticky); the next 1-2 keys are interpreted
+ *  as an X11 compose sequence and the resulting Unicode character is typed
+ *  via Hammerspoon. Holding fn preserves the normal fn modifier behavior.
+ *  Escape aborts an in-progress sequence. Mode also auto-clears after a
+ *  per-step timeout if no matching key arrives.
+ *  ----------------------------- */
+
+const COMPOSE = {
+  off: 0,
+  active: 1, // tapped fn, waiting for first key
+  acute: 2, // '
+  grave: 3, // `
+  diaeresis: 4, // "
+  circumflex: 5, // ^
+  tilde: 6, // ~
+  o_prefix: 7,
+  t_prefix: 8,
+  plus_prefix: 9,
+  dash_prefix: 10,
+  lt_prefix: 11,
+  eq_prefix: 12,
+  dot_prefix: 13,
+  bang_prefix: 14,
+  q_prefix: 15,
+  dash_dash_prefix: 16,
+} as const;
+
+const COMPOSE_PARAMS = {
+  "basic.to_delayed_action_delay_milliseconds": 2000,
+} as const;
+
+const composeIs = (state: number) => ifVar(VAR.COMPOSE, state);
+
+// Type a Unicode string via Hammerspoon. [[..]] is a Lua long-string literal
+// so the contents are not interpreted (safe for any single character).
+const typeUnicode = (s: string): ToEvent =>
+  to$(hs(`hs.eventtap.keyStrokes([[${s}]])`));
+
+type ComposeFirst = {
+  state: number;
+  key: FromKeyParam;
+  mods?: FromModifierParam | "";
+};
+
+type ComposeSecond = {
+  state: number;
+  key: FromKeyParam;
+  mods?: FromModifierParam | "";
+  out: string;
+};
+
+type ComposeTransition = {
+  state: number;
+  key: FromKeyParam;
+  mods?: FromModifierParam | "";
+  nextState: number;
+};
+
+const COMPOSE_FIRSTS: readonly ComposeFirst[] = [
+  { state: COMPOSE.acute, key: "quote", mods: "" },
+  { state: COMPOSE.grave, key: "grave_accent_and_tilde", mods: "" },
+  { state: COMPOSE.diaeresis, key: "quote", mods: "shift" },
+  { state: COMPOSE.circumflex, key: "6", mods: "shift" },
+  { state: COMPOSE.tilde, key: "grave_accent_and_tilde", mods: "shift" },
+  { state: COMPOSE.o_prefix, key: "o", mods: "" },
+  { state: COMPOSE.t_prefix, key: "t", mods: "" },
+  { state: COMPOSE.plus_prefix, key: "equal_sign", mods: "shift" },
+  { state: COMPOSE.dash_prefix, key: "hyphen", mods: "" },
+  { state: COMPOSE.lt_prefix, key: "comma", mods: "shift" },
+  { state: COMPOSE.eq_prefix, key: "equal_sign", mods: "" },
+  { state: COMPOSE.dot_prefix, key: "period", mods: "" },
+  { state: COMPOSE.bang_prefix, key: "1", mods: "shift" },
+  { state: COMPOSE.q_prefix, key: "slash", mods: "shift" },
+] as const;
+
+const accentPairs = (
+  state: number,
+  pairs: ReadonlyArray<readonly [FromKeyParam, string, string]>,
+): ComposeSecond[] =>
+  pairs.flatMap(([key, lower, upper]) => [
+    { state, key, mods: "", out: lower },
+    { state, key, mods: "shift", out: upper },
+  ]);
+
+const COMPOSE_SECONDS: readonly ComposeSecond[] = [
+  // ' + vowel
+  ...accentPairs(COMPOSE.acute, [
+    ["a", "á", "Á"],
+    ["e", "é", "É"],
+    ["i", "í", "Í"],
+    ["o", "ó", "Ó"],
+    ["u", "ú", "Ú"],
+    ["y", "ý", "Ý"],
+  ]),
+  // ` + vowel
+  ...accentPairs(COMPOSE.grave, [
+    ["a", "à", "À"],
+    ["e", "è", "È"],
+    ["i", "ì", "Ì"],
+    ["o", "ò", "Ò"],
+    ["u", "ù", "Ù"],
+  ]),
+  // " + vowel
+  ...accentPairs(COMPOSE.diaeresis, [
+    ["a", "ä", "Ä"],
+    ["e", "ë", "Ë"],
+    ["i", "ï", "Ï"],
+    ["o", "ö", "Ö"],
+    ["u", "ü", "Ü"],
+    ["y", "ÿ", "Ÿ"],
+  ]),
+  // ^ + vowel
+  ...accentPairs(COMPOSE.circumflex, [
+    ["a", "â", "Â"],
+    ["e", "ê", "Ê"],
+    ["i", "î", "Î"],
+    ["o", "ô", "Ô"],
+    ["u", "û", "Û"],
+  ]),
+  // ~ + a/n/o
+  ...accentPairs(COMPOSE.tilde, [
+    ["a", "ã", "Ã"],
+    ["n", "ñ", "Ñ"],
+    ["o", "õ", "Õ"],
+  ]),
+
+  // Symbols
+  { state: COMPOSE.o_prefix, key: "c", mods: "", out: "©" }, // oc
+  { state: COMPOSE.o_prefix, key: "r", mods: "", out: "®" }, // or
+  { state: COMPOSE.t_prefix, key: "m", mods: "", out: "™" }, // tm
+  { state: COMPOSE.plus_prefix, key: "hyphen", mods: "", out: "±" }, // +-
+  { state: COMPOSE.dash_prefix, key: "period", mods: "shift", out: "→" }, // ->
+  { state: COMPOSE.lt_prefix, key: "hyphen", mods: "", out: "←" }, // <-
+  { state: COMPOSE.lt_prefix, key: "3", mods: "", out: "♥" }, // <3
+  { state: COMPOSE.eq_prefix, key: "period", mods: "shift", out: "⇒" }, // =>
+  { state: COMPOSE.dot_prefix, key: "period", mods: "", out: "…" }, // ..
+  { state: COMPOSE.bang_prefix, key: "1", mods: "shift", out: "¡" }, // !!
+  { state: COMPOSE.q_prefix, key: "slash", mods: "shift", out: "¿" }, // ??
+  { state: COMPOSE.dash_dash_prefix, key: "period", mods: "", out: "–" }, // --.
+  { state: COMPOSE.dash_dash_prefix, key: "hyphen", mods: "", out: "—" }, // ---
+] as const;
+
+const COMPOSE_TRANSITIONS: readonly ComposeTransition[] = [
+  {
+    state: COMPOSE.dash_prefix,
+    key: "hyphen",
+    mods: "",
+    nextState: COMPOSE.dash_dash_prefix,
+  },
+] as const;
+
+const composeFirstManip = ({ state, key, mods }: ComposeFirst) =>
+  mapFrom(key, mods)
+    .condition(composeIs(COMPOSE.active))
+    .to(setVar(VAR.COMPOSE, state))
+    .toDelayedAction([setVar(VAR.COMPOSE, COMPOSE.off)], [])
+    .parameters(COMPOSE_PARAMS);
+
+const composeSecondManip = ({ state, key, mods, out }: ComposeSecond) =>
+  mapFrom(key, mods)
+    .condition(composeIs(state))
+    .to(setVar(VAR.COMPOSE, COMPOSE.off))
+    .to(typeUnicode(out));
+
+const composeTransitionManip = (
+  { state, key, mods, nextState }: ComposeTransition,
+) =>
+  mapFrom(key, mods)
+    .condition(composeIs(state))
+    .to(setVar(VAR.COMPOSE, nextState))
+    .toDelayedAction([setVar(VAR.COMPOSE, COMPOSE.off)], [])
+    .parameters(COMPOSE_PARAMS);
+
+/** -----------------------------
  *  Global / Profile
  *  ----------------------------- */
 
@@ -820,20 +999,20 @@ const rules = [
     map("f3").condition(vimOn).to(setMode("ign")),
 
     // ESC / C-[ -> Normal from ins/vis/app
-    ...modeTransition("escape", ["ins", "vis", "app"], "nrm"),
+    // ...modeTransition("escape", ["ins", "vis", "app"], "nrm"),
 
     // i/v from Normal
     ...modeTransition("i", "nrm", "ins"),
     ...modeTransition("v", "nrm", "vis"),
 
-    // NOTE: app mode entry moved from "a" -> "spacebar" (because a/A are vim-mode-plus exit keys)
-    ...modeTransition("spacebar", "nrm", "app"),
+    // ...modeTransition("spacebar", "nrm", "app"),
   ]),
 
   appConfig("apple mail", "com.apple.mail", APP_MAIL_KEYS),
   appConfig("apple mail", "com.apple.Safari", APP_SAFARI_KEYS),
   appConfig("skim", "net.sourceforge.skim-app.skim", APP_SKIM_KEYS),
 
+  /*
   rule("[vim] movement").manipulators([
     // NORMAL: hjkl (with modifier pass-through)
     ...hjklNormalWithModifiers(),
@@ -941,6 +1120,26 @@ const rules = [
       .to(clearVimPlus()[0])
       .to(clearVimPlus()[1])
       .to(setMode("ins")),
+  ]),
+  */
+
+  rule("[compose] fn = X11-style compose key").manipulators([
+    // Tap fn alone: enter compose mode. Holding fn with another key still
+    // produces the normal fn modifier behavior via the passthrough `to`.
+    map("fn")
+      .to({ key_code: "fn" })
+      .toIfAlone(setVar(VAR.COMPOSE, COMPOSE.active))
+      .toDelayedAction([setVar(VAR.COMPOSE, COMPOSE.off)], [])
+      .parameters(COMPOSE_PARAMS),
+
+    ...COMPOSE_FIRSTS.map(composeFirstManip),
+    ...COMPOSE_TRANSITIONS.map(composeTransitionManip),
+    ...COMPOSE_SECONDS.map(composeSecondManip),
+
+    // Abort an in-progress sequence.
+    map("escape")
+      .condition(composeIs(COMPOSE.off).unless())
+      .to(setVar(VAR.COMPOSE, COMPOSE.off)),
   ]),
 
   rule("tapped modifiers => actions").manipulators([

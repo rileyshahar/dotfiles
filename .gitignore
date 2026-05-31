@@ -20,3 +20,4 @@ emacs/straight
 emacs/transient
 emacs/custom.el
 task/*.pem
+bin/drive-credentials

@@ -1,0 +1,82 @@
+#!/usr/bin/env sh
+# yabai config — port of qtile's layouts/screens/hooks for macOS.
+
+# ────────────────────────────────────────────────────────────────────
+# global settings
+# ────────────────────────────────────────────────────────────────────
+
+# bsp ≈ qtile Columns (default tiling)
+yabai -m config layout                      bsp
+
+# split direction: keep new windows splitting horizontally by default
+yabai -m config window_placement            second_child
+yabai -m config split_ratio                 0.50
+yabai -m config auto_balance                off
+
+# matches qtile margin: 0 / outer.* = 0
+yabai -m config top_padding                 0
+yabai -m config bottom_padding              0
+yabai -m config left_padding                0
+yabai -m config right_padding               0
+yabai -m config window_gap                  0
+
+# follow_mouse_focus = True
+yabai -m config focus_follows_mouse         autoraise
+yabai -m config mouse_follows_focus         on
+
+# bring_front_click = "floating_only"  (yabai's closest equivalent)
+yabai -m config window_topmost              off
+yabai -m config window_shadow               float
+
+# mouse drag/resize: alt+drag (matches MOD-based wm interaction)
+yabai -m config mouse_modifier              alt
+yabai -m config mouse_action1               move
+yabai -m config mouse_action2               resize
+yabai -m config mouse_drop_action           swap
+
+# ────────────────────────────────────────────────────────────────────
+# window borders (qtile layout border colors)
+# requires `borders` (FelixKratz/JankyBorders); skipped silently if absent
+# NORMAL = BRIGHT_BLACK 24283b · FOCUS = DIM_BLUE 7aa2f7
+# ────────────────────────────────────────────────────────────────────
+if command -v borders >/dev/null 2>&1; then
+    borders active_color=0xff7aa2f7 inactive_color=0xff24283b width=2.0 &
+fi
+
+# ────────────────────────────────────────────────────────────────────
+# floating rules (qtile floating_layout.float_rules)
+# ────────────────────────────────────────────────────────────────────
+yabai -m rule --add app="^System Settings$"      manage=off
+yabai -m rule --add app="^System Preferences$"   manage=off
+yabai -m rule --add app="^Calculator$"           manage=off
+yabai -m rule --add app="^Archive Utility$"      manage=off
+yabai -m rule --add app="^Finder$" title="(Copy|Move|Info|Preferences)" manage=off
+yabai -m rule --add title="^Preferences$"        manage=off
+yabai -m rule --add title="^pinentry"            manage=off
+# floating terminal (alt+shift+Return spawns neovide with this title)
+yabai -m rule --add title="__float"              manage=off
+
+# ────────────────────────────────────────────────────────────────────
+# space labels (qtile groups)
+# qtile groups: z, x, c (special), 1..9; plus a "tall" group on screen 2
+# macOS spaces are created via Mission Control; label them in order here
+# ────────────────────────────────────────────────────────────────────
+yabai -m space 1  --label one     2>/dev/null
+yabai -m space 2  --label two     2>/dev/null
+yabai -m space 3  --label three   2>/dev/null
+yabai -m space 4  --label four    2>/dev/null
+yabai -m space 5  --label five    2>/dev/null
+yabai -m space 6  --label six     2>/dev/null
+yabai -m space 7  --label seven   2>/dev/null
+yabai -m space 8  --label eight   2>/dev/null
+yabai -m space 9  --label nine    2>/dev/null
+yabai -m space 10 --label z       2>/dev/null
+yabai -m space 11 --label x       2>/dev/null
+yabai -m space 12 --label c       2>/dev/null
+yabai -m space 13 --label tall    2>/dev/null
+
+# qtile's "tall" group used VerticalTile on screen 2; yabai's stack is the
+# closest single-column equivalent
+yabai -m space tall --layout stack 2>/dev/null
+
+echo "yabai configuration loaded.."
