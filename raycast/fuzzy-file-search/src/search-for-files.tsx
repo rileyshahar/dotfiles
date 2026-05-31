@@ -274,6 +274,17 @@ export default function Command() {
     });
   }
 
+  async function gatherContents(targets: string[]) {
+    const parts = await Promise.all(
+      targets.map(async (target) => {
+        const stats = await afs.stat(target);
+        const body = stats.isDirectory() ? (await afs.readdir(target)).join("\n") : await afs.readFile(target, "utf8");
+        return targets.length > 1 ? `==> ${target} <==\n${body}` : body;
+      }),
+    );
+    return parts.join("\n\n");
+  }
+
   // Add files to a selection so an action can run on all of them at once;
   // when nothing is selected, actions fall back to the hovered item.
   async function openTargets(targets: string[], app?: { name?: string; bundleId?: string }) {
@@ -398,6 +409,40 @@ export default function Command() {
                     }}
                   />
                   <Action
+                    title={`Paste Path${count === 1 ? "" : "s"} to Current App`}
+                    icon={Icon.Clipboard}
+                    shortcut={{ modifiers: ["cmd", "ctrl"], key: "v" }}
+                    onAction={async () => {
+                      try {
+                        await Clipboard.paste(targets.join("\n"));
+                        await closeMainWindow();
+                      } catch (error) {
+                        await showToast({
+                          style: Toast.Style.Failure,
+                          title: "Couldn't paste path",
+                          message: `${error}`,
+                        });
+                      }
+                    }}
+                  />
+                  <Action
+                    title={`Paste Contents to Current App${suffix}`}
+                    icon={Icon.Clipboard}
+                    shortcut={{ modifiers: ["cmd", "shift"], key: "v" }}
+                    onAction={async () => {
+                      try {
+                        await Clipboard.paste(await gatherContents(targets));
+                        await closeMainWindow();
+                      } catch (error) {
+                        await showToast({
+                          style: Toast.Style.Failure,
+                          title: "Couldn't paste contents",
+                          message: `${error}`,
+                        });
+                      }
+                    }}
+                  />
+                  <Action
                     title={`Copy Path${count === 1 ? "" : "s"} to Clipboard`}
                     icon={Icon.CopyClipboard}
                     shortcut={{ modifiers: ["cmd", "ctrl"], key: "c" }}
@@ -414,16 +459,7 @@ export default function Command() {
                     shortcut={{ modifiers: ["cmd", "shift"], key: "c" }}
                     onAction={async () => {
                       try {
-                        const parts = await Promise.all(
-                          targets.map(async (target) => {
-                            const stats = await afs.stat(target);
-                            const body = stats.isDirectory()
-                              ? (await afs.readdir(target)).join("\n")
-                              : await afs.readFile(target, "utf8");
-                            return count > 1 ? `==> ${target} <==\n${body}` : body;
-                          }),
-                        );
-                        await Clipboard.copy(parts.join("\n\n"));
+                        await Clipboard.copy(await gatherContents(targets));
                         await showToast({
                           title:
                             count === 1
