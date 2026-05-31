@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+shopt -s extglob
+# sink_mode "each": one invocation per selected line as $1.
+
+base="/Users/riley/Google Drive/My Drive/GETUP-UAW Organizing Committee/Organizing Committee Meetings/OC Meeting Notes"
+selected="${1:?usage: sink <meeting-note>}"
+
+if [[ -e "$base/$selected" ]]; then
+  open "$base/$selected"
+  exit 0
+fi
+
+if [[ -e "$base/$selected.gdoc" ]]; then
+  open "$base/$selected.gdoc"
+  exit 0
+fi
+
+for path in "$base"/*.gdoc; do
+  [[ -e "$path" ]] || continue
+  name="${path##*/}"
+  name="${name%.gdoc}"
+  name="${name%%+([[:space:]])}"
+  if [[ "$name" == "$selected" ]]; then
+    open "$path"
+    exit 0
+  fi
+done
+
+echo "could not find OC meeting note: $selected" >&2
+exit 1

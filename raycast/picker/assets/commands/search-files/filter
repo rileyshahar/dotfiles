@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# filter contract: $1 is the query; candidate items arrive on stdin (one per
+# line). Print the matching lines, best first. Exiting non-zero with no output
+# (fzf's behaviour on no match) is treated as an empty result, not an error.
+
+query="${1:-}"
+fzf --filter "$query"

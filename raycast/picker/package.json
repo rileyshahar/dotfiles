@@ -1,0 +1,63 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "picker",
+  "title": "Picker",
+  "description": "Generic fuzzy pickers wired up from source/filter/sink scripts per command.",
+  "icon": "command-icon.png",
+  "author": "riley",
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "search-files",
+      "title": "Search Files",
+      "description": "Fuzzy-find files and folders by path using fd + fzf.",
+      "mode": "view"
+    },
+    {
+      "name": "eb-minutes",
+      "title": "EB Minutes",
+      "description": "View EB Minutes",
+      "mode": "view"
+    },
+    {
+      "name": "department-lists",
+      "title": "Department Lists",
+      "description": "Department Lists picker.",
+      "mode": "view"
+    },
+    {
+      "name": "building-lists",
+      "title": "Building Lists",
+      "description": "Building Lists picker.",
+      "mode": "view"
+    },
+    {
+      "name": "oc-meeting-notes",
+      "title": "OC Meeting Notes",
+      "description": "View OC Minutes",
+      "mode": "view"
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.102.3",
+    "@raycast/utils": "^1.17.0"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^2.0.4",
+    "@types/node": "22.13.10",
+    "@types/react": "19.0.10",
+    "eslint": "^9.22.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.2"
+  },
+  "scripts": {
+    "build": "ray build",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint",
+    "publish": "npx @raycast/api@latest publish"
+  },
+  "platforms": [
+    "macOS"
+  ]
+}

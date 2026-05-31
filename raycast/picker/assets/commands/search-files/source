@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# source contract: print newline-separated items to stdout, exit 0 on success.
+# PICKER_DROPDOWN holds the selected search root ("~" or "/").
+# Edit the fd flags below to change what gets indexed.
+
+root="${PICKER_DROPDOWN:-$HOME}"
+case "$root" in
+"~" | "") root="$HOME" ;;
+esac
+
+# fd already skips hidden files and honors .gitignore. The big remaining
+# time sinks are the OS/app dirs below (esp. ~/Library — caches, cloud
+# storage, photo libraries); excluding them keeps indexing near-instant.
+fd --type file --type directory --follow \
+  --exclude Library \
+  --exclude System \
+  --exclude private \
+  --exclude usr \
+  --exclude nix \
+  --exclude '*.photoslibrary' \
+  --exclude 'CloudStorage' \
+  . "$root" 2>/dev/null

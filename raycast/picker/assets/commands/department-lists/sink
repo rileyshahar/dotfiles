@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# sink_mode "each": one invocation per selected line as $1.
+
+base="/Users/riley/Google Drive/My Drive/GETUP-UAW Organizing Committee/Organizing Lists/Department Lists"
+department="${1:?usage: sink <department>}"
+file="GETUP-UAW List: $department.gsheet"
+
+open "$base/$file"

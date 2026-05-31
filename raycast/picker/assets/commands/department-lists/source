@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# source contract: print newline-separated items to stdout, exit 0 on success.
+
+base="/Users/riley/Google Drive/My Drive/GETUP-UAW Organizing Committee/Organizing Lists/Department Lists"
+prefix="GETUP-UAW List: "
+suffix=".gsheet"
+
+ls "$base" | while IFS= read -r f; do
+  [[ "$f" == "$prefix"*"$suffix" ]] || continue
+  department="${f#"$prefix"}"
+  printf '%s\n' "${department%"$suffix"}"
+done | sort -f
