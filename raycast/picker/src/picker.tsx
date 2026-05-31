@@ -13,19 +13,15 @@ import {
 import { useCachedState } from "@raycast/utils";
 import afs from "fs/promises";
 import path, { basename } from "path";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Config,
   Item,
-  MAX_RESULTS,
   SinkMode,
   commandDir,
   loadConfig,
   parseItems,
-  readIndexHead,
-  runFilter,
   runSourceLines,
-  runSourceToFile,
   runTargets,
 } from "./lib/picker-core";
 
@@ -43,16 +39,13 @@ async function gatherContents(targets: string[]): Promise<string> {
 export function Picker({ command }: { command: string }) {
   const config = useMemo<Config>(() => loadConfig(command), [command]);
   const isFile = config.item_type === "file";
-  const isStream = config.filter === "stream";
 
   const [dropdownValue, setDropdownValue] = useCachedState<string>(
     `dropdown-${command}`,
     config.dropdown?.items[0]?.value ?? "",
   );
-  const [searchText, setSearchText] = useState("");
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
-  const [sourceFile, setSourceFile] = useState<string | null>(null);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
 
@@ -81,41 +74,16 @@ export function Picker({ command }: { command: string }) {
     LocalStorage.setItem(`recents-${command}`, JSON.stringify(trimmed));
   }
 
-  // Keep the latest search text readable from the streaming source callback
-  // without re-subscribing it on every keystroke.
-  const searchTextRef = useRef("");
-  useEffect(() => {
-    searchTextRef.current = searchText;
-  }, [searchText]);
-
-  // Build the candidate list. Builtin mode loads everything and lets Raycast
-  // filter. Stream mode writes source output to an index file, but paints rows
-  // live as the source emits them so browsing feels instant on a cold index.
+  // Load the full candidate list and let Raycast's builtin filter handle typing.
   useEffect(() => {
     let canceled = false;
     setLoading(true);
-    setSourceFile(null);
-    setItems([]);
     (async () => {
       try {
-        if (isStream) {
-          const file = await runSourceToFile(command, dropdownValue, (lines) => {
-            // Only show the live browse stream while the query is empty;
-            // a non-empty query will be served by the filter effect instead.
-            if (canceled || searchTextRef.current.length > 0) return;
-            setItems((prev) => {
-              if (prev.length >= MAX_RESULTS) return prev;
-              return [...prev, ...parseItems(lines, config.source_format, config.item_type)].slice(0, MAX_RESULTS);
-            });
-            setLoading(false);
-          });
-          if (!canceled) setSourceFile(file);
-        } else {
-          const lines = await runSourceLines(command, dropdownValue);
-          if (!canceled) {
-            setItems(parseItems(lines, config.source_format, config.item_type));
-            setLoading(false);
-          }
+        const lines = await runSourceLines(command, dropdownValue);
+        if (!canceled) {
+          setItems(parseItems(lines, config.source_format, config.item_type));
+          setLoading(false);
         }
       } catch (err) {
         if (!canceled) {
@@ -127,38 +95,7 @@ export function Picker({ command }: { command: string }) {
     return () => {
       canceled = true;
     };
-  }, [command, dropdownValue, isStream, config.source_format, config.item_type]);
-
-  // Stream mode: re-run the filter on every keystroke, ignoring stale results.
-  const reqId = useRef(0);
-  const abortRef = useRef<AbortController | null>(null);
-  useEffect(() => {
-    if (!isStream || !sourceFile) return;
-    const id = ++reqId.current;
-    abortRef.current?.abort();
-    const controller = new AbortController();
-    abortRef.current = controller;
-    setLoading(true);
-    (async () => {
-      try {
-        // Empty query: read the index head directly. fzf must consume the
-        // whole index before emitting, so we only pay that cost when typing.
-        const lines =
-          searchText.length === 0
-            ? await readIndexHead(sourceFile, MAX_RESULTS)
-            : await runFilter(command, searchText, sourceFile, controller.signal);
-        if (id === reqId.current) {
-          setItems(parseItems(lines, config.source_format, config.item_type));
-          setLoading(false);
-        }
-      } catch (err) {
-        if (id === reqId.current && (err as Error).name !== "AbortError") {
-          setLoading(false);
-          showToast({ style: Toast.Style.Failure, title: "filter failed", message: (err as Error).message });
-        }
-      }
-    })();
-  }, [command, searchText, sourceFile, isStream, config.source_format, config.item_type]);
+  }, [command, dropdownValue, config.source_format, config.item_type]);
 
   function toggle(value: string) {
     setSelected((prev) => {
@@ -339,8 +276,6 @@ export function Picker({ command }: { command: string }) {
     <List
       isLoading={loading}
       searchBarPlaceholder={config.placeholder}
-      filtering={isStream ? false : undefined}
-      onSearchTextChange={isStream ? setSearchText : undefined}
       selectedItemId={selectedItemId ?? undefined}
       onSelectionChange={setSelectedItemId}
       searchBarAccessory={

@@ -1,7 +1,6 @@
 {
   "placeholder": "Search projects",
   "sink_mode": "each",
-  "filter": "builtin",
   "source_format": "json",
   "item_type": "plain",
   "primary_title": "Pick Files in Neovide",

@@ -2,17 +2,11 @@
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "picker",
   "title": "Picker",
-  "description": "Generic fuzzy pickers wired up from source/filter/sink scripts per command.",
+  "description": "Generic pickers wired up from source/sink scripts per command.",
   "icon": "command-icon.png",
   "author": "riley",
   "license": "MIT",
   "commands": [
-    {
-      "name": "search-files",
-      "title": "Search Files",
-      "description": "Fuzzy-find files and folders by path using fd + fzf.",
-      "mode": "view"
-    },
     {
       "name": "project",
       "title": "Open Project",

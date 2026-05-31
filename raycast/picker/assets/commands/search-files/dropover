@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-# sink_mode "all": all selected paths arrive on stdin, one per line.
-paths=()
-while IFS= read -r line; do
-  [ -n "$line" ] && paths+=("$line")
-done
-open -b me.damir.dropover-mac "${paths[@]}"
