@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -euo pipefail
 # sink_mode "each": one invocation per selected path as $1.
-open -a Neovide "${1:?usage: neovide <path>}"
+neovide --fork "${1:?usage: neovide <path>}"
