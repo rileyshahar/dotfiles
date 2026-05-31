@@ -41,6 +41,7 @@ export default function Command() {
   const [searchText, setSearchText] = useState("");
   const [searchRoot, setSearchRoot] = useCachedState<string>("searchRootKey", os.homedir());
   const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
 
   // Get FD CLI path
   const { data: fdPath, isLoading: isFdLoading } = useCachedPromise(async () => {
@@ -272,6 +273,10 @@ export default function Command() {
       else next.add(filepath);
       return next;
     });
+    // Advance the hover to the next item so repeated cmd+enter selects a run.
+    const idx = filteredPaths?.indexOf(filepath) ?? -1;
+    const nextItem = idx >= 0 ? filteredPaths?.[idx + 1] : undefined;
+    if (nextItem) setSelectedItemId(nextItem);
   }
 
   async function gatherContents(targets: string[]) {
@@ -315,6 +320,8 @@ export default function Command() {
       searchBarPlaceholder={"Search for your files"}
       onSearchTextChange={setSearchText}
       filtering={false} // disable builtin filtering as we use a custom one
+      selectedItemId={selectedItemId ?? undefined}
+      onSelectionChange={setSelectedItemId}
       searchBarAccessory={
         <List.Dropdown tooltip="Search" value={searchRoot} onChange={setSearchRoot}>
           <List.Dropdown.Item title="Home (~)" value={os.homedir()} />
@@ -332,6 +339,7 @@ export default function Command() {
         return (
           <List.Item
             key={filepath}
+            id={filepath}
             title={filepath.startsWith(os.homedir()) ? filepath.replace(os.homedir(), "~") : filepath}
             subtitle={filename}
             icon={isSelected ? Icon.CheckCircle : Icon.Circle}
