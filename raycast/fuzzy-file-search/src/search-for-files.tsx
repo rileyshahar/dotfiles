@@ -294,6 +294,13 @@ export default function Command() {
                   shortcut={{ modifiers: ["cmd"], key: "n" }}
                 />
                 <Action.OpenWith path={filepath} shortcut={{ modifiers: ["cmd"], key: "o" }} />
+                <Action.Open
+                  title="Add to Dropover"
+                  target={filepath}
+                  application="me.damir.dropover-mac"
+                  icon={{ fileIcon: "/Applications/Dropover.app" }}
+                  shortcut={{ modifiers: ["cmd", "shift"], key: "d" }}
+                />
                 <Action.ShowInFinder title="Show in Finder" path={filepath} />
                 <Action.CopyToClipboard
                   title="Copy Path to Clipboard"
