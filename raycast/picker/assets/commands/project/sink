@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-# default action: open the project in Neovide and launch the file picker.
-# --fork lets Neovide detach so this script returns immediately.
-dir="${1:?usage: sink <project-dir>}"
-cd "$dir"
-neovide --fork -- -c "autocmd VimEnter * ++once lua LazyVim.pick('files')()"

@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-# cmd+F: reveal the project directory in Finder.
-dir="${1:?usage: finder <project-dir>}"
-open "$dir"

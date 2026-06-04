@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-# cmd+O: open the project directory in Neovim (oil.nvim is the default
-# directory handler). cd first so nvim's cwd is the project and so that when
-# flatten.nvim forwards the dir to a running host, the oil:// path resolves
-# against the project rather than our spawn cwd.
-dir="${1:?usage: oil <project-dir>}"
-cd "$dir"
-neovide --fork "$dir"
