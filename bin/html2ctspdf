@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -ne 2 ]]; then
+  echo "Usage: $0 INPUT.html OUTPUT.pdf" >&2
+  exit 1
+fi
+
+node - "$1" "$2" <<'NODE'
+const path = require("node:path");
+const { pathToFileURL } = require("node:url");
+const { chromium } = require("playwright");
+
+const [input, output] = process.argv.slice(2);
+
+(async () => {
+  const browser = await chromium.launch();
+  const page = await browser.newPage({
+    viewport: {
+      width: 794,   // approximately 210 mm at 96 DPI
+      height: 1000
+    }
+  });
+
+  await page.goto(pathToFileURL(path.resolve(input)).href, {
+    waitUntil: "load"
+  });
+
+  // Keep normal browser/screen styling.
+  await page.emulateMedia({ media: "screen" });
+
+  const height = await page.evaluate(async () => {
+    await document.fonts.ready;
+
+    const body = document.body;
+    const root = document.documentElement;
+
+    return Math.max(
+      body?.scrollHeight || 0,
+      body?.offsetHeight || 0,
+      root.scrollHeight,
+      root.offsetHeight,
+      root.clientHeight
+    );
+  });
+
+  await page.pdf({
+    path: path.resolve(output),
+    width: "210mm",
+    height: `${height + 2}px`,
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0
+    },
+    printBackground: true
+  });
+
+  await browser.close();
+})().catch(error => {
+  console.error(error);
+  process.exit(1);
+});
+NODE

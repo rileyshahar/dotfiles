@@ -17,4 +17,4 @@
 # Ensure common install locations are on PATH (Raycast uses a minimal env)
 export PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/.local/bin:$PATH"
 
-yt-dlp -f "bv*+ba/b" --merge-output-format mkv -P "$HOME/Downloads" "$1"
+yt-dlp -f "bv*+ba/b" --cookies-from-browser firefox --merge-output-format mkv -P "$HOME/Downloads" "$1"

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ "$#" -lt 1 ]; then
+  echo "Usage: $0 <youtube-url> [output-directory]"
+  exit 1
+fi
+
+URL="$1"
+OUTDIR="${2:-.}"
+
+mkdir -p "$OUTDIR"
+
+yt-dlp \
+  --format "bestaudio/best" \
+  --extract-audio \
+  --audio-format mp3 \
+  --audio-quality 0 \
+  --embed-metadata \
+  --embed-thumbnail \
+  --output "$OUTDIR/%(title)s [%(id)s].%(ext)s" \
+  "$URL"

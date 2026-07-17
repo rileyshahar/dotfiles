@@ -13,6 +13,6 @@ sleep 0.7
 "$HS" -c 'exports.moveFrontmostToLeftHalf()'
 
 cd "$HOME/media/vids/"
-open -a "Elmedia Player" *
+open -a "Elmedia Player" .
 sleep 0.7
 "$HS" -c 'exports.fullscreenFrontmost()'
